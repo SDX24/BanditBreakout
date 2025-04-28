@@ -10,26 +10,26 @@
  * - Effect
  */
 export default class Status {
-    player_id: string;
+    player_id: number;
     gold: number;
     health: number;
     hasEffect: boolean;
-    effect: number;
+    effects: number[];
     
     /**
      * Creates a new Status instance
      * 
      * @param player_id - The player this status belongs to
-     * @param gold - Starting gold amount (defaults to 0)
-     * @param health - Starting health points (defaults to 10)
-     * @param hasEffect - Whether player starts with an effect (defaults to false)
-     * @param effect - Starting effect ID (defaults to 0)
+     * @param gold - The amount of gold the player has (defaults to 0)
+     * @param health - The player's current health (defaults to 10)
+     * @param hasEffect - Whether the player has an active effect (defaults to false)
+     * @param effects - Array of effect IDs (defaults to empty array)
      */
-    constructor(player_id: string, gold: number = 0, health: number = 10, hasEffect: boolean = false, effect: number = 0) {
+    constructor(player_id: number) {
         this.player_id = player_id;
-        this.gold = gold;
-        this.health = health;
-        this.hasEffect = hasEffect;
-        this.effect = effect;
+        this.gold = 0;
+        this.health = 10;
+        this.hasEffect = false;
+        this.effects = [];
     }
 }

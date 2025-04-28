@@ -27,12 +27,12 @@ export default class Item {
      * 
      * @param isUsable - Can be used (defaults to false!!)
      */
-    constructor(id: number, name: string, description: string, effect: string, isBattleItem: boolean = false, isUsable: boolean = false) {
+    constructor(id: number, name: string, description: string, effect: string, isBattleItem: boolean = false) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.effect = effect;
         this.isBattleItem = isBattleItem;
-        this.isUsable = isUsable;
+        this.isUsable = false;
     }
 }
