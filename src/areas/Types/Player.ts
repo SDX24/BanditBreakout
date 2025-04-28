@@ -59,42 +59,55 @@ export default class Player {
 
     // STATUS RELATED METHODS
 
-    // GOLD
 
-    public goldGet() {
-    return this.status.gold;
-    }
 
-    public goldSet(gold: number) {
-    this.status.gold = gold;
-    }
+    // GOLD AND HEALTH MANAGEMENT
 
-    public goldAdd(gold: number) {
-    this.status.gold += gold;
-    }
+  /**
+   * Manage player's gold using string commands
+   * @param action - Command string: "+5" (add 5), "-5" (remove 5), "=5" (set to 5)
+   * @returns Current gold amount after operation
+   */
+  public gold(action: string): number {
+    return this._manageResource(action, 'gold');
+  }
 
-    public goldRemove(gold: number) {
-    this.status.gold -= gold;
-    }
-
-    // HEALTH
+  /**
+   * Manage player's health using string commands
+   * @param action - Command string: "+5" (heal 5), "-5" (damage 5), "=5" (set to 5)
+   * @returns Current health amount after operation
+   */
+  public health(action: string): number {
+    const result = this._manageResource(action, 'health');
     
-    public healthGet() {
-    return this.status.health;
-    }
-
-    public healthSet(health: number) {
-    this.status.health = health;
-    }
-
-    public healthAdd(health: number) {
-    this.status.health += health;
-    }
-
-    public healthRemove(health: number) {
-    this.status.health -= health;
+    if (this.status.health <= 0) {
+      this.killPlayer();
     }
     
+    return result;
+  }
+  
+  private _manageResource(action: string, resourceType: 'gold' | 'health'): number {
+    const firstChar = action.charAt(0);
+    const amount = parseInt(action.substring(1));
+    
+    if (firstChar === '+') {
+      this.status[resourceType] += amount;
+
+    } else if (firstChar === '-') {
+      this.status[resourceType] = Math.max(0, this.status[resourceType] - amount);
+
+    } else if (firstChar === '=') {
+      this.status[resourceType] = amount;
+
+    }
+    
+    return this.status[resourceType];
+  }
+
+
+
+
     // EFFECTS
     
     public effectGet() {
@@ -143,8 +156,8 @@ export default class Player {
     return this.position;
     }
 
-    public positionSet(position: number) {
-    this.position = this.position;
+    private positionSet(position: number) {
+    this.position = position;
     }
 
 }
