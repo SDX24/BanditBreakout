@@ -116,4 +116,35 @@ export default class Player {
     }
     }
 
+    // INVENTORY RELATED METHODS
+
+    public inventoryGet() {
+    return this.inventory;
+    }
+
+    public inventorySet(inventory: Item[]) {
+    this.inventory = inventory;
+    }
+
+    public inventoryAdd(item: Item) {
+    this.inventory.push(item);
+    }
+
+    public inventoryRemove(item: Item) {
+    const index = this.inventory.indexOf(item);
+    if (index > -1) {
+        this.inventory.splice(index, 1);
+    }
+    }
+
+    // POSITION RELATED METHODS
+
+    public positionGet() {
+    return this.position;
+    }
+
+    public positionSet(position: number) {
+    this.position = this.position;
+    }
+
 }
