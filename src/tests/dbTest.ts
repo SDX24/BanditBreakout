@@ -1,6 +1,20 @@
 import { connectToDatabase, disconnectFromDatabase } from '../db/mongoose';
 import { createPlayer, getPlayer, updatePlayerPosition, updatePlayerStatus, addItemToInventory } from '../db/operations/playerOps';
 import { createGame, getGame, addPlayerToGame, updateGameMap } from '../db/operations/gameOps';
+import { PlayerModel } from '../db/models/PlayerModel';
+import { GameModel } from '../db/models/GameModel';
+
+async function cleanUpDatabase() {
+    try {
+        await PlayerModel.deleteMany({});
+        console.log('✓ Cleared existing players');
+        await GameModel.deleteMany({});
+        console.log('✓ Cleared existing games');
+    } catch (error) {
+        console.error('Error cleaning up database:', error);
+        throw error;
+    }
+}
 
 async function runTests() {
     try {
@@ -8,6 +22,11 @@ async function runTests() {
         console.log('Test 1: Connecting to database...');
         await connectToDatabase();
         console.log('✓ Database connection successful\n');
+
+        // Clean up existing data
+        console.log('Cleaning up existing data...');
+        await cleanUpDatabase();
+        console.log('✓ Database cleanup completed\n');
 
         // Test 2: Create a Player
         console.log('Test 2: Creating a player...');
