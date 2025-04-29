@@ -9,20 +9,26 @@ export default class Map {
         this.playerPositions = [];
     }
 
+    // INITIALIZE MAP, MAIN FUNCTION
     
     public initializeMap(playerCount: number) {
         this.createTiles(100);
         this.setPlayerPosAll(0, this.countPlayers(playerCount));
-        this.setEvents(2, 4, 6, 8, 23, 77)
-        this.setEvent(100, "Boss")
+        this.setEventOfType()
         this.updateMap()
 
         console.log("Map initialized")
     }
 
+    // UPDATING MAP (REFRESH)
+
     public updateMap() {
 
     }
+
+    // PRIVATE METHODS FOR INITIALIZATION
+
+    // PLAYERS RELATED METHODS
 
     private countPlayers(playerCount: number) {
         let playersArray: number[] = []
@@ -32,6 +38,15 @@ export default class Map {
         return playersArray
         console.log(`Players counted, there are ${playersArray.length}`)
     }
+    
+    private setPlayerPosAll(pos: number, playerIds: number[]) {
+        let tile = this.tiles[pos];
+        tile.hasPlayerOnTile = true;
+        playerIds.forEach(player_Id => tile.addPlayer(player_Id))
+        console.log(`Set player positions to start`)
+    }
+
+    // TILE RELATED METHODS
 
     private createTiles(tilesAmount: number) {
         for (let i = 0; i < tilesAmount; i++) {
@@ -40,11 +55,15 @@ export default class Map {
         console.log("Created tiles")
     }
 
-    private setPlayerPosAll(pos: number, playerIds: number[]) {
-        let tile = this.tiles[pos];
-        tile.hasPlayerOnTile = true;
-        playerIds.forEach(player_Id => tile.addPlayer(player_Id))
+
+    private connectTiles(from: number, to: number): void {
+        this.tiles[from].connectTo(to);
+        this.tiles[to].connectTo(from);
+        console.log(`Connected tile ${from} to tile ${to}`)
     }
 
+    private setEventOfType() {
+        
+    }
 
 }

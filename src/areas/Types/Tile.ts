@@ -13,7 +13,7 @@ export default class Tile {
     playersOnTile: number[]
     hasEvent: boolean;
     event: IEvent;
-    
+    connections: number[];
     /**
      * Creates a new Tile instance
      * 
@@ -21,6 +21,7 @@ export default class Tile {
      * @param hasEvent - Whether this tile triggers an event (defaults to false)
      * @param hasPlayer - Whether a player is currently on this tile (defaults to false)
      * @param event - Event (defaults to Nothing). Can be set
+     * @param connections - Array of tile indexes connected to the tile
      */
     constructor(position: number) {
         this.position = position;
@@ -28,6 +29,7 @@ export default class Tile {
         this.hasPlayerOnTile = false;
         this.playersOnTile = []
         this.event = new NothingEvent();
+        this.connections = [];
         
     }
 
@@ -40,6 +42,18 @@ export default class Tile {
 
     public setPosition(position: number): void {
         this.position = position;
+    }
+
+    // TILE CONNECTION RELATED METHODS
+
+    public getConnections(): number[] {
+        return this.connections;
+    }
+
+    public connectTo(tileIndex: number): void {
+        if (!this.connections.includes(tileIndex)) {
+            this.connections.push(tileIndex);
+        }
     }
 
     // PLAYER RELATED METHODS
