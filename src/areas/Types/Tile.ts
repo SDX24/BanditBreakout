@@ -1,4 +1,5 @@
 import { IEvent, NothingEvent, EventFactory } from './Event';
+import Player from './Player';
 
 /**
  * Represents a single tile on the game map
@@ -8,7 +9,8 @@ import { IEvent, NothingEvent, EventFactory } from './Event';
  */
 export default class Tile {
     position: number;
-    hasPlayer: boolean;
+    hasPlayerOnTile: boolean;
+    playersOnTile: number[]
     hasEvent: boolean;
     event: IEvent;
     
@@ -23,19 +25,48 @@ export default class Tile {
     constructor(position: number) {
         this.position = position;
         this.hasEvent = false;
-        this.hasPlayer = false;
+        this.hasPlayerOnTile = false;
+        this.playersOnTile = []
         this.event = new NothingEvent();
+        
     }
 
-    //  TILE RELATED METHODS
+    //  TILE POSITION RELATED METHODS
 
     public getPosition(): number {
         return this.position;
     }
 
+
     public setPosition(position: number): void {
         this.position = position;
     }
+
+    // PLAYER RELATED METHODS
+
+    public hasPlayer(): boolean {
+        return this.hasPlayerOnTile;
+    }
+
+    public getPlayersOnTile(): number[] {
+        return this.playersOnTile;
+    }
+
+    public addPlayer(player_id: number): void {
+        this.playersOnTile.push(player_id);
+        this.hasPlayerOnTile = true;
+    }
+
+    public removePlayer(player_id: number): void {
+        const index = this.playersOnTile.indexOf(player_id);
+        if (index > -1) {
+            this.playersOnTile.splice(index, 1);
+        }
+        if (this.playersOnTile.length === 0) {
+            this.hasPlayerOnTile = false;
+        }
+    }
+
 
     //  EVENT RELATED METHODS
 
