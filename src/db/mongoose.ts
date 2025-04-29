@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 
-config(); // Load environment variables
+dotenv.config(); // Load environment variables
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/banditbreakout';
 
@@ -10,7 +10,7 @@ export async function connectToDatabase() {
         await mongoose.connect(MONGODB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-        });
+        } as any);
         console.log('Connected to MongoDB database');
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
