@@ -7,10 +7,7 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/bandit
 
 export async function connectToDatabase() {
     try {
-        await mongoose.connect(MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        } as any);
+        await mongoose.connect(MONGODB_URI);
         console.log('Connected to MongoDB database');
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
