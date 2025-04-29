@@ -1,6 +1,19 @@
 import { create } from "domain";
 import Tile from "../Types/Tile";
 
+const eventTiles = {
+    0: [0],
+    1: [1, 2, 3, 6, 7, 11, 13, 16, 19, 20, 26, 30, 32, 33, 35, 39, 40, 41, 46, 50, 52, 54, 59, 60, 64, 66, 68, 73, 76, 83, 88, 91, 92, 100, 102],
+    2: [22, 28, 34, 43, 48, 53, 57, 62, 67, 71, 74, 77, 80, 81, 82, 86, 87, 93, 98, 104],
+    3: [8, 15, 17, 21, 45, 51, 63, 72, 78, 89, 94],
+    4: [4, 9, 10, 18, 23, 31, 37, 38, 42, 49, 56, 70, 79, 84, 85, 90, 96, 101],
+    5: [12, 25, 36, 47, 65, 69, 95, 103],
+    6: [24, 27],
+    7: [97, 99],
+    8: [5, 14, 29, 55, 58, 61, 75]
+};
+
+
 export default class Map {
     tiles: Tile[];
     playerPositions: number[];
@@ -13,7 +26,7 @@ export default class Map {
     // INITIALIZE MAP, MAIN FUNCTION
     
     public initializeMap(playerCount: number) {
-        this.createTiles(104);
+        this.createTiles(105);
         this.connectMap()
         this.eventMap()
         this.setPlayerPosAll(0, this.countPlayers(playerCount));
@@ -102,17 +115,11 @@ export default class Map {
         
     }
 
-    private createEventRange = (start: number, end: number, type: number) => {
-        for (let i = start; i < end; i++) {
-            this.createEventOfType(type, i)
-        }
-    };
-
     private eventMap() {
-        // events go from 1 - 8
-
-        this.createEventRange(0, 5, 0);
-
+        Object.entries(eventTiles).forEach(([type, indexes]) => {
+            indexes.forEach(index => this.createEventOfType(parseInt(type), index));
+        });
+        console.log("Created events on map")
     }
 
 }

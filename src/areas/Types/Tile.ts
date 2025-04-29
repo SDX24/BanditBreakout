@@ -85,6 +85,10 @@ export default class Tile {
         return this.event;
     }
 
+    public hasEvent(): boolean {
+        return this.event.type !== 0;
+    }
+
     /**
      * Set an event on this tile by event type
      * @param eventType - The type of event to set
