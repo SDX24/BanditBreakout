@@ -1,0 +1,26 @@
+These are the connections between tiles.
+
+straight paths
+
+0 - 44
+45 - 63
+64 - 67
+68 - 84
+85 - 92
+93 - 101
+102 - 104
+
+intersections
+
+5-45
+14-63
+61-64
+29-67
+29-101
+40-104
+102-99
+90-93
+55-68
+81-85
+58-92
+

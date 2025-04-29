@@ -11,21 +11,18 @@ export default class Tile {
     position: number;
     hasPlayerOnTile: boolean;
     playersOnTile: number[]
-    hasEvent: boolean;
     event: IEvent;
     connections: number[];
     /**
      * Creates a new Tile instance
      * 
      * @param position - Position on the game map
-     * @param hasEvent - Whether this tile triggers an event (defaults to false)
      * @param hasPlayer - Whether a player is currently on this tile (defaults to false)
      * @param event - Event (defaults to Nothing). Can be set
      * @param connections - Array of tile indexes connected to the tile
      */
     constructor(position: number) {
         this.position = position;
-        this.hasEvent = false;
         this.hasPlayerOnTile = false;
         this.playersOnTile = []
         this.event = new NothingEvent();
@@ -84,11 +81,7 @@ export default class Tile {
 
     //  EVENT RELATED METHODS
 
-    public eventHas(): boolean {
-        return this.hasEvent;
-    }
-
-    public eventGet(): IEvent {
+    public getEvent(): IEvent {
         return this.event;
     }
 
@@ -99,13 +92,11 @@ export default class Tile {
      * - 1: SafeEvent
      * @returns True if the event was set successfully
      */
-    public eventSet(eventType: number): boolean {
+    public setEvent(eventType: number): boolean {
         if (eventType === 0) {
             this.event = new NothingEvent();
-            this.hasEvent = false;
         } else {
             this.event = EventFactory.createEvent(eventType);
-            this.hasEvent = true;
         }
         return true;
     }
