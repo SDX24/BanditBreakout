@@ -14,7 +14,7 @@ export default class Status {
     gold: number;
     health: number;
     hasEffect: boolean;
-    effects: number[];
+    effects: string[];
     
     /**
      * Creates a new Status instance

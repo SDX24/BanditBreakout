@@ -105,7 +105,13 @@ export default class Player {
     return this.status[resourceType];
   }
 
+    public getGold() {
+    return this.status.gold;
+    }
 
+    public getHealth() {
+    return this.status.health;
+    }
 
 
     // EFFECTS
@@ -114,15 +120,15 @@ export default class Player {
     return this.status.effects;
     }
     
-    public effectSet(effects: number[]) {
+    public effectSet(effects: string[]) {
     this.status.effects = effects;
     }
 
-    public effectAdd(effect: number) {
+    public effectAdd(effect: string) {
     this.status.effects.push(effect);
     }
 
-    public effectRemove(effect: number) {
+    public effectRemove(effect: string) {
     const index = this.status.effects.indexOf(effect);
     if (index > -1) {
         this.status.effects.splice(index, 1);
