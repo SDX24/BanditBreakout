@@ -1,17 +1,45 @@
 import { create } from "domain";
 import Tile from "../Types/Tile";
+import { EOL } from "os";
 
 const eventTiles = {
     0: [0],
-    1: [1, 2, 3, 6, 7, 11, 13, 16, 19, 20, 26, 30, 32, 33, 35, 39, 40, 41, 46, 50, 52, 54, 59, 60, 64, 66, 68, 73, 76, 83, 88, 91, 92, 100, 102],
-    2: [22, 28, 34, 43, 48, 53, 57, 62, 67, 71, 74, 77, 80, 81, 82, 86, 87, 93, 98, 104],
-    3: [8, 15, 17, 21, 45, 51, 63, 72, 78, 89, 94],
-    4: [4, 9, 10, 18, 23, 31, 37, 38, 42, 49, 56, 70, 79, 84, 85, 90, 96, 101],
-    5: [12, 25, 36, 47, 65, 69, 95, 103],
-    6: [24, 27],
-    7: [97, 99],
-    8: [5, 14, 29, 55, 58, 61, 75]
+    1: [1, 2, 3, 6, 10, 12, 15, 18, 19, 26, 29, 31, 32, 34, 38, 39, 40, 45, 49, 51, 53, 58, 59, 63, 65, 67, 74, 81, 86, 89, 90, 98, 101],
+    2: [21, 27, 33, 42, 43, 47, 52, 56, 61, 66, 70, 72, 75, 78, 79, 80, 84, 85, 91, 96, 102],
+    3: [7, 14, 16, 20, 44, 50, 62, 71, 76, 87, 92],
+    4: [4, 8, 9, 17, 22, 30, 36, 37, 41, 48, 55, 69, 77, 82, 83, 88, 93, 99],
+    5: [11, 24, 35, 46, 64, 68, 100],
+    6: [23, 25],
+    7: [94, 97],
+    8: [5, 13, 28, 54, 57, 60, 73]
 };
+
+const connectionRanges = [
+    [0, 43],
+    [44, 62],
+    [63, 66],
+    [67, 82],
+    [83, 90],
+    [91, 99],
+    [100, 102]
+];
+
+const connectionPoints = [
+    [5, 44],
+    [9, 15],
+    [13, 62],
+    [55, 61],
+    [60, 63],
+    [28, 66],
+    [28, 99],
+    [39, 102],
+    [100, 97],
+    [88, 91],
+    [54, 67],
+    [79, 83],
+    [73, 82],
+    [57, 90]
+];
 
 
 export default class Map {
@@ -26,19 +54,20 @@ export default class Map {
     // INITIALIZE MAP, MAIN FUNCTION
     
     public initializeMap(playerCount: number) {
-        this.createTiles(105);
+        // actual tiles + 1 since there is tile 0
+        this.createTiles(103);
         this.connectMap()
         this.eventMap()
         this.setPlayerPosAll(0, this.countPlayers(playerCount));
         this.updateMap()
 
-        console.log("Map initialized")
+        console.log(`Map initialized${EOL}`)
     }
 
     // UPDATING MAP (REFRESH)
 
     public updateMap() {
-
+        //later TODO
     }
 
     // PRIVATE METHODS FOR INITIALIZATION
@@ -58,7 +87,7 @@ export default class Map {
         let tile = this.tiles[pos];
         tile.hasPlayerOnTile = true;
         playerIds.forEach(player_Id => tile.addPlayer(player_Id))
-        console.log(`Set player positions to start`)
+        console.log(`Set player positions to start${EOL}`)
     }
 
     // TILE RELATED METHODS
@@ -67,12 +96,13 @@ export default class Map {
         for (let i = 0; i < tilesAmount; i++) {
             this.tiles.push(new Tile(i));
         }
-        console.log("Created tiles")
+        console.log(`Created tiles${EOL}`)
     }
 
     private connectTiles(from: number, to: number): void {
         this.tiles[from].connectTo(to);
         this.tiles[to].connectTo(from);
+        console.log(`Connected tile ${from} to tile ${to}`)
     }
 
     private connectRange = (start: number, end: number) => {
@@ -83,28 +113,16 @@ export default class Map {
 
     private connectMap() {
         // straigth paths
-        this.connectRange(45, 63);
-        this.connectRange(64, 67);
-        this.connectRange(0, 44);
-        this.connectRange(68, 84);
-        this.connectRange(85, 92);
-        this.connectRange(93, 101);
-        this.connectRange(102, 104);
+        connectionRanges.forEach(([start, end]) => {
+            this.connectRange(start, end);
+        });
 
         // intersections
-        this.connectTiles(5, 45);
-        this.connectTiles(14, 63);
-        this.connectTiles(61, 64);
-        this.connectTiles(29, 67);
-        this.connectTiles(29, 101);
-        this.connectTiles(40, 104);
-        this.connectTiles(102, 99);
-        this.connectTiles(90, 93);
-        this.connectTiles(55, 68);
-        this.connectTiles(81, 85);
-        this.connectTiles(58, 92);
+        connectionPoints.forEach(([from, to]) => {
+            this.connectTiles(from, to);
+        });
 
-        console.log("Connected map")
+        console.log(`Connected map${EOL}`)
     }
 
 
@@ -119,7 +137,7 @@ export default class Map {
         Object.entries(eventTiles).forEach(([type, indexes]) => {
             indexes.forEach(index => this.createEventOfType(parseInt(type), index));
         });
-        console.log("Created events on map")
+        console.log(`Created events on map${EOL}`)
     }
 
 }
