@@ -23,5 +23,6 @@ export default class Game {
         this.map.initializeMap(playerCount)
 
     }
+    
 
 }
