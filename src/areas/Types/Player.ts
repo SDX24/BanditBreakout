@@ -19,7 +19,6 @@ export default class Player {
   isAlive: boolean;
   status: Status;
   inventory: Item[];
-  position: number;
 
 
     /**
@@ -40,7 +39,6 @@ export default class Player {
         this.isAlive = true;
         this.status = new Status(this.id);
         this.inventory = [];
-        this.position = 0;
       } 
 
     //  GAME RELATED METHODS
@@ -157,13 +155,5 @@ export default class Player {
     }
 
     // POSITION RELATED METHODS
-
-    public getPosition() {
-    return this.position;
-    }
-
-    private positionSet(position: number) {
-    this.position = position;
-    }
 
 }
