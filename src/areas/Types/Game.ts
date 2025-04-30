@@ -1,13 +1,15 @@
 import Player from "./Player"
 import Map from "../Map/Map"
+import Move from "./Movement"
 export default class Game {
     players: Player[]
     map: Map
-    
+    move: Move
 
     constructor() {
         this.players = []
         this.map = new Map()
+        this.move = new Move(this)
     }
     
 
@@ -15,7 +17,7 @@ export default class Game {
         console.log("Game started!")
 
         // create players
-        for (let player = 0; player < playerCount; player++) {
+        for (let player = 1; player <= playerCount; player++) {
             this.players.push(new Player(game_id, player))
         }
         

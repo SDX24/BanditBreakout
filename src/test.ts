@@ -20,6 +20,14 @@ console.log(tile0)
 console.log("Map tile 1:")
 console.log(game.map.tiles[1])
 
+game.move.allTo(1)
+game.move.playerTo(1, 2)
+
+console.log("Map tile 1:")
+console.log(game.map.tiles[1])
+
+console.log("Map tile 2:")
+console.log(game.map.tiles[2])
 
 
 //note the player positions are empty because tiles have them. they need to be link somehow TODO
