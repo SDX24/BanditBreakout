@@ -35,5 +35,25 @@ export default class Movement {
             this.playerTo(player.id, tile);
         }
     }
+
+    /**
+     * Swaps two players on the map
+     * @param player1 - The ID of the first player to swap
+     * @param player2 - The ID of the second player to swap
+     */
+    public swap(player1: number, player2: number): void {
+        const tile1 = this.game.map.findPlayer(player1);
+        const tile2 = this.game.map.findPlayer(player2);
+
+        if (tile1 !== -1 && tile2 !== -1) {
+            this.playerTo(player1, tile2);
+            this.playerTo(player2, tile1);
+            console.log(`Swapped players ${player1} and ${player2}`);
+        } else {
+            console.error(`One or both players not found on the map.`);
+        }
+    }
+
+    
     
 }
