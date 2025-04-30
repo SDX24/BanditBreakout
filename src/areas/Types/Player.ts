@@ -116,7 +116,7 @@ export default class Player {
 
     // EFFECTS
     
-    public effectGet() {
+    public getEffect() {
     return this.status.effects;
     }
     
@@ -137,7 +137,7 @@ export default class Player {
 
     // INVENTORY RELATED METHODS
 
-    public inventoryGet() {
+    public getInventory() {
     return this.inventory;
     }
 
@@ -158,7 +158,7 @@ export default class Player {
 
     // POSITION RELATED METHODS
 
-    public positionGet() {
+    public getPosition() {
     return this.position;
     }
 
