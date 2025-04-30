@@ -1,10 +1,15 @@
+// Import necessary modules
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import { connectToDatabase } from './db/mongoose';
+import { getRedisClient } from './cache';
 
 const app = express();
 const server = http.createServer(app);
+// Get Redis client for connection status checking if needed
+const redis = getRedisClient();
+
 const io = new Server(server, {
     cors: {
         origin: "*",
@@ -44,6 +49,7 @@ server.listen(PORT, () => {
 process.on('SIGINT', async () => {
     console.log('Shutting down server...');
     await import('./db/mongoose').then(({ disconnectFromDatabase }) => disconnectFromDatabase());
+    redis.quit();
     server.close(() => {
         console.log('Server shut down complete');
         process.exit(0);
