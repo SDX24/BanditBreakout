@@ -1,6 +1,8 @@
 import Status from './Status';
 import Item from './Item';
 import Tile from './Tile';
+import Game from './Game';
+import Move from './Movement';
 
 /**
  * Represents a player on the map
@@ -13,12 +15,13 @@ import Tile from './Tile';
  * - Current position
  */
 export default class Player {
-  game_id: string;
+  game: Game;
   id: number;
   character_id: number;
   isAlive: boolean;
   status: Status;
   inventory: Item[];
+  move: Move;
 
 
     /**
@@ -30,15 +33,15 @@ export default class Player {
    * @param isAlive - Whether the player is alive (defaults to true)
    * @param status - The player's status object with gold, health and effects
    * @param inventory - Initial items in inventory (defaults to empty array)
-   * @param position - Starting position on the map (defaults to 0)
    */
-    constructor(game_id: string, id: number) {
-        this.game_id = game_id;
+    constructor(game: Game, id: number) {
+        this.game = game;
         this.id = id;
         this.character_id = 0;
         this.isAlive = true;
         this.status = new Status(this.id);
         this.inventory = [];
+        this.move = new Move(this)
       } 
 
     //  GAME RELATED METHODS
