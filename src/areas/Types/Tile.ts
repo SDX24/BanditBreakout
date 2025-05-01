@@ -25,7 +25,7 @@ export default class Tile {
         this.position = position;
         this.hasPlayerOnTile = false;
         this.playersOnTile = []
-        this.event = new NothingEvent();
+        this.event = new NothingEvent(this);
         this.connections = [];
         
     }
@@ -92,16 +92,20 @@ export default class Tile {
     /**
      * Set an event on this tile by event type
      * @param eventType - The type of event to set
+     * @param tile - The tile
      * - 0: NothingEvent
      * - 1: SafeEvent
+     * - 2: BattleEvent
+     * - 3: BattleEffectEvent
+     * - 4: ItemEvent
+     * - 5: StoryEvent
+     * - 6: SlotsEvent
+     * - 7: MiningEvent
+     * - 8: DecisionEvent
      * @returns True if the event was set successfully
      */
-    public setEvent(eventType: number): boolean {
-        if (eventType === 0) {
-            this.event = new NothingEvent();
-        } else {
-            this.event = EventFactory.createEvent(eventType);
-        }
+    public setEvent(eventType: number, tile: Tile): boolean {
+        this.event = EventFactory.createEvent(eventType, tile);
         return true;
     }
     

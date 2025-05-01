@@ -141,7 +141,7 @@ export default class Map {
 
     private createEventOfType(type: number, tileIndex: number) {
         let tile = this.tiles[tileIndex];
-        tile.setEvent(type);
+        tile.setEvent(type, tile);
         console.log(`Set event of type ${type} on tile ${tileIndex}`)
         
     }
