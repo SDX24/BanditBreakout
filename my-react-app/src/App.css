@@ -1,0 +1,31 @@
+.loading-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.5s ease;
+}
+
+.black-bg {
+  background-color: black;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.logo {
+  max-width: 200px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
