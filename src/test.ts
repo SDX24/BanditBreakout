@@ -27,9 +27,11 @@ console.log("***")
 
 console.log("Testing event")
 let p1 = game.players[0]
+console.log("Player 1's gold:")
 console.log(p1.getGold())
 console.log("Player 1 steping on safe")
 game.move.playerTo(1, 2)
+console.log("Player 1's gold:")
 console.log(p1.getGold())
 
 
