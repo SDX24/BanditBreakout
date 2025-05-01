@@ -12,16 +12,32 @@ game.startGame(4, "ABC123");
 // console.log("Players are at positions:")
 // console.log(game.map.playerPositions)
 
-let tile0 = game.map.tiles[0]
+// let tile0 = game.map.tiles[0]
 
-console.log("Map tile 0:")
-console.log(tile0)
+// console.log("Map tile 0:")
+// console.log(tile0)
 
-console.log("Map tile 1:")
-console.log(game.map.tiles[1])
+console.log(game.map.tiles[5])
 
-console.log("Map tile 2:")
+let p1 = game.players[0]
+p1.move.front(5)
+
+console.log(game.map.tiles[5])
+
 console.log(game.map.tiles[2])
+
+let p2 = game.players[1]
+p2.move.to(2)
+
+console.log(game.map.tiles[2])
+
+p1.move.back(1)
+console.log(game.map.tiles[4])
+
+
+
+
+
 
 
 // console.log("***")
