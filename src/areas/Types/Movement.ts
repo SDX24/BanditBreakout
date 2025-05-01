@@ -1,30 +1,32 @@
+import { EOL } from 'os';
 import Game from './Game';
 import Player from './Player';
 
 export default class Movement {
+    private player: Player;
     private game: Game;
     
-    constructor(game: Game) {
-        this.game = game;
+    constructor(player: Player) {
+        this.player = player;
+        this.game = this.player.game;
     }
     
     /**
      * Moves a specific player to a specific Tile
-     * @param playerId - The ID of the player to move
      * @param tile - The tile index
      */
-    public playerTo(playerId: number, tile: number): void {
-        const currentPos = this.game.map.findPlayer(playerId);
+    public to(tile: number): void {
+        const currentPos = this.game.map.findPlayer(this.player.id);
         
         if (currentPos !== -1) {
-            this.game.map.tiles[currentPos].removePlayer(playerId);
-            this.game.map.tiles[tile].addPlayer(playerId);
+            this.game.map.tiles[currentPos].removePlayer(this.player.id);
+            this.game.map.tiles[tile].addPlayer(this.player.id);
             
-            this.game.map.tiles[tile].getEvent().onStep(playerId, this.game);
+            this.game.map.tiles[tile].getEvent().onStep(this.player.id, this.game);
             
-            console.log(`Moved player ${playerId} to tile ${tile}`);
+            console.log(`Moved player ${this.player.id} to tile ${tile}`);
         } else {
-            console.error(`Player ${playerId} not found on the map. Dead or not in the game.`);
+            console.error(`Player ${this.player.id} not found on the map. Dead or not in the game.`);
         }
     }
     
@@ -32,34 +34,73 @@ export default class Movement {
      * Moves all players to a specific Tile
      * @param tile - The tile index
      */
-    public allTo(tile: number): void {
+    public playerAndEveryoneTo(tile: number): void {
         for (const player of this.game.players) {
-            this.playerTo(player.id, tile);
+            this.to(tile);
         }
     }
 
     /**
      * Swaps two players on the map
      * @param player1 - The ID of the first player to swap
-     * @param player2 - The ID of the second player to swap
      */
-    public swap(player1: number, player2: number): void {
-        const tile1 = this.game.map.findPlayer(player1);
-        const tile2 = this.game.map.findPlayer(player2);
+    public swap(swapPlayer: Player): void {
+        const tile1 = this.game.map.findPlayer(this.player.id);
+        const tile2 = this.game.map.findPlayer(swapPlayer.id);
 
         if (tile1 !== -1 && tile2 !== -1) {
-            this.playerTo(player1, tile2);
-            this.playerTo(player2, tile1);
-            console.log(`Swapped players ${player1} and ${player2}`);
+            this.to(tile2);
+            swapPlayer.move.to(tile1);
+            console.log(`Swapped players ${this.player.id} and ${swapPlayer}`);
         } else {
             console.error(`One or both players not found on the map.`);
         }
     }
 
-    public front(playerId: number, by: number): void {
-        const startTile = this.game.map.findPlayer(playerId);
-        
+    public front(by: number): void {
+        let currentTile = this.game.map.findPlayer(this.player.id);
+        for (let i = 0; i < by; i++) {
+
+            const frontArray = this.game.map.tiles[currentTile].getFront();
+
+            if (frontArray.length === 0) {
+                console.log(`THIS SHOULD CONNECT THE BOSS BATTLE`); // TODO
+                this.player.move.to(43)
+                currentTile = 43
+
+            } else if (frontArray.length > 1) {
+                console.log('this should start decision event') // TODO
+                // REMOVE NEXT LINE AND REPALCE WITH DECISION EVENT WHEN IMPLEMENTED
+                this.player.move.to(frontArray[0])
+                currentTile = frontArray[0];
+
+            } else {
+                this.player.move.to(frontArray[0])
+                currentTile = frontArray[0];
+            }
+        }
     }
+
+public back(by: number): void {
+    let currentTile = this.game.map.findPlayer(this.player.id);
+    
+    for (let i = 0; i < by; i++) {
+        const backArray = this.game.map.tiles[currentTile].getBack();
+        
+        if (backArray.length === 0) {
+            console.log(`player ${this.player.id} moved back to start`);
+            this.player.move.to(0);
+            currentTile = 0;
+        } else if (backArray.length > 1) {
+            let randomIndex = Math.floor(Math.random() * backArray.length);
+            this.player.move.to(backArray[randomIndex]);
+            currentTile = backArray[randomIndex];
+        } else {
+            this.player.move.to(backArray[0]);
+            currentTile = backArray[0];
+        }
+    }
+}
 
     
 }
