@@ -68,7 +68,7 @@ export class BattleEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.position}`); 
+        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
     }
 }
 
@@ -85,7 +85,7 @@ export class BattleEffectEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.position}`); 
+        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
     }
 }
 
@@ -102,7 +102,7 @@ export class ItemEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.position}`); 
+        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
     }
 }
 
@@ -119,7 +119,7 @@ export class StoryEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.position}`); 
+        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
     }
 }
 
@@ -136,7 +136,7 @@ export class SlotsEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.position}`); 
+        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
     }
 }
 
@@ -153,7 +153,7 @@ export class MiningEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.position}`); 
+        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
     }
 }
 
@@ -170,7 +170,7 @@ export class DecisionEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.position}`); 
+        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
     }
 }
 

@@ -8,21 +8,23 @@ import Player from './Player';
  * May contain events that trigger when a player lands on them.
  */
 export default class Tile {
-    position: number;
+    index: number;
     hasPlayerOnTile: boolean;
     playersOnTile: number[]
     event: IEvent;
     connections: number[];
+    back: number[] = [];
+    front: number[] = [];
     /**
      * Creates a new Tile instance
      * 
-     * @param position - Position on the game map
+     * @param index - Index on the game map
      * @param hasPlayer - Whether a player is currently on this tile (defaults to false)
      * @param event - Event (defaults to Nothing). Can be set
      * @param connections - Array of tile indexes connected to the tile
      */
-    constructor(position: number) {
-        this.position = position;
+    constructor(index: number) {
+        this.index = index;
         this.hasPlayerOnTile = false;
         this.playersOnTile = []
         this.event = new NothingEvent(this);
@@ -30,15 +32,15 @@ export default class Tile {
         
     }
 
-    //  TILE POSITION RELATED METHODS
+    //  TILE INDEX RELATED METHODS
 
-    public getPosition(): number {
-        return this.position;
+    public getIndex(): number {
+        return this.index;
     }
 
 
-    public setPosition(position: number): void {
-        this.position = position;
+    public setIndex(index: number): void {
+        this.index = index;
     }
 
     // TILE CONNECTION RELATED METHODS
@@ -51,6 +53,24 @@ export default class Tile {
         if (!this.connections.includes(tileIndex)) {
             this.connections.push(tileIndex);
         }
+    }
+
+    // BACK AND FRONT RELATED METHODS
+
+    public setBack(tileIndexArray: number[]) {
+        this.back = tileIndexArray;
+    }
+    
+    public setFront(tileIndexArray: number[]) {
+        this.front = tileIndexArray;
+    }
+    
+    public getBack(): number[] {
+        return this.back;
+    }
+    
+    public getFront(): number[] {
+        return this.front;
     }
 
     // PLAYER RELATED METHODS
