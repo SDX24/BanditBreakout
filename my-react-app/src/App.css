@@ -1,3 +1,15 @@
+/* this to stop the horizontal and vertical scroll */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* this to stop the horizontal and vertical scroll */
+body {
+  overflow: hidden;
+}
+
 .loading-screen {
   width: 100vw;
   height: 100vh;
@@ -5,6 +17,9 @@
   justify-content: center;
   align-items: center;
   transition: background-color 0.5s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .black-bg {
