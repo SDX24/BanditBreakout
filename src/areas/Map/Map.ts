@@ -2,6 +2,7 @@ import { create } from "domain";
 import Tile from "../Types/Tile";
 import { EOL } from "os";
 
+// events
 const eventTiles = {
     0: [0],
     1: [1, 2, 3, 6, 10, 12, 15, 18, 19, 26, 29, 31, 32, 34, 38, 39, 40, 45, 49, 51, 53, 58, 59, 63, 65, 67, 74, 81, 86, 89, 90, 98, 101],
@@ -14,6 +15,7 @@ const eventTiles = {
     8: [5, 13, 28, 54, 57, 60, 73]
 };
 
+// strainht paths
 const connectionRanges = [
     [0, 43],
     [44, 62],
@@ -24,6 +26,7 @@ const connectionRanges = [
     [100, 102]
 ];
 
+// intersections
 const connectionPoints = [
     [5, 44],
     [9, 15],
@@ -41,6 +44,31 @@ const connectionPoints = [
     [57, 90]
 ];
 
+// Front and back paths special cases
+const tilePaths = {
+    // Special intersections
+    5: { b: [4], f: [6, 44] },
+    13: { b: [12], f: [14, 62] },
+    60: { b: [61], f: [61, 63] },
+    54: { b: [53], f: [55, 67] },
+    57: { b: [56], f: [58, 90] },
+    73: { b: [72], f: [74, 82] },
+    79: { b: [78, 80], f: [83] },
+    88: { b: [87, 89], f: [91] },
+    97: { b: [96, 98], f: [100] },
+    39: { b: [38, 102], f: [40] },
+    28: { b: [27, 66], f: [29, 99] },
+    
+    // Reverse numbered paths
+    99: { b: [28], f: [98] },
+    90: { b: [57], f: [89] },
+    82: { b: [73], f: [81] },
+    81: { b: [82], f: [80] },
+    62: { b: [13], f: [61] },
+    59: { b: [58], f: [58] },
+    58: { b: [59], f: [57, 59] }
+};
+
 
 export default class Map {
     tiles: Tile[];
@@ -57,6 +85,7 @@ export default class Map {
         // actual tiles + 1 since there is tile 0
         this.createTiles(103);
         this.connectMap()
+        this.assignPathDirections();
         this.eventMap()
         this.setPlayerPosAll(0, this.countPlayers(playerCount));
         this.updateMap()
@@ -138,6 +167,56 @@ export default class Map {
         console.log(`Connected map${EOL}`)
     }
 
+    private assignPathDirections() {
+
+        this.assignStraightPath(0, 5);
+        this.assignStraightPath(5, 13, true);
+        this.assignStraightPath(13, 28, true);
+        this.assignStraightPath(28, 43, true);
+        
+        this.assignStraightPath(44, 53);
+        this.assignStraightPath(55, 56);
+        this.assignStraightPath(67, 72);
+        this.assignStraightPath(74, 78);
+        this.assignStraightPath(83, 87);
+        this.assignStraightPath(91, 96);
+        this.assignStraightPath(100, 102);
+        this.assignStraightPath(63, 66);
+        
+        // special cases
+        Object.entries(tilePaths).forEach(([tileIndex, paths]) => {
+            const index = parseInt(tileIndex);
+            this.tiles[index].setBack(paths.b);
+            this.tiles[index].setFront(paths.f);
+        });
+        
+        console.log(`Assigned path directions${EOL}`);
+    }
+
+    // skipStart is only for intersections
+    private assignStraightPath(start: number, end: number, skipStart: boolean = false) {
+        
+        for (let i = skipStart ? start + 1 : start; i <= end; i++) {
+            
+            // Starting tile, omly set front
+            if (i === start && !skipStart) {
+                this.tiles[i].setFront([i + 1]);
+                continue;
+            }
+            
+            // Last tile, only set back
+            if (i === end) {
+                this.tiles[i].setBack([i - 1]);
+                continue;
+            }
+            
+            // Rest, set both
+            this.tiles[i].setBack([i - 1]);
+            this.tiles[i].setFront([i + 1]);
+        }
+    }
+
+    // EVENTS RELATED METHODS
 
     private createEventOfType(type: number, tileIndex: number) {
         let tile = this.tiles[tileIndex];

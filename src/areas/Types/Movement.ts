@@ -56,6 +56,10 @@ export default class Movement {
         }
     }
 
+    public front(playerId: number, by: number): void {
+        const startTile = this.game.map.findPlayer(playerId);
+        
+    }
 
     
 }
