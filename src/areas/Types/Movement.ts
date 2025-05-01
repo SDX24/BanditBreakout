@@ -14,12 +14,14 @@ export default class Movement {
      * @param tile - The tile index
      */
     public playerTo(playerId: number, tile: number): void {
+        const currentPos = this.game.map.findPlayer(playerId);
         
-        const player = this.game.players[playerId];
-        let currentPos = this.game.map.findPlayer(playerId)
         if (currentPos !== -1) {
             this.game.map.tiles[currentPos].removePlayer(playerId);
             this.game.map.tiles[tile].addPlayer(playerId);
+            
+            this.game.map.tiles[tile].getEvent().onStep(playerId, this.game);
+            
             console.log(`Moved player ${playerId} to tile ${tile}`);
         } else {
             console.error(`Player ${playerId} not found on the map. Dead or not in the game.`);
@@ -54,6 +56,6 @@ export default class Movement {
         }
     }
 
-    
+
     
 }
