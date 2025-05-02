@@ -1,6 +1,5 @@
-    import Game from "./Game";
-import Inventory from "./Inventory";
 import Player from "./Player";
+
     /**
      * An Item interface standart
      * 
@@ -20,9 +19,9 @@ export interface IItem {
     effect: string;
     isBattleItem: boolean;
     isUsable: boolean;
-    inventory: Inventory;
+    player: Player;
 
-    use(itemId: number): void;
+    use(): void;
 }
 export class LassoItem implements IItem {
     id: number = 0;
@@ -30,13 +29,13 @@ export class LassoItem implements IItem {
     effect: string = "Pick a player and catch them with the lasso, making them unable to move for 1 round.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
+    public use(): void {
 
     }
 }
@@ -48,14 +47,14 @@ export class ShovelItem implements IItem {
     effect: string = "Pick a player and dig an underground tunnel to them.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+
     }
 }
 
@@ -65,14 +64,14 @@ export class VestItem implements IItem {
     effect: string = "This item will grant immunity to you the next time you are targeted by another item from a player. It will activate automatically and will be removed once used.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+
     }
 }
 
@@ -82,14 +81,14 @@ export class PoisonCrossbowItem implements IItem {
     effect: string = "Pick a player and shoot them with a poison dart. This stuns them for 1 round.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+
     }
 }
 
@@ -99,14 +98,14 @@ export class MirageTeleporterItem implements IItem {
     effect: string = "Pick a player and instantly swap places with them. You cannot roll their dice after using this item.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+
     }
 }
 
@@ -116,14 +115,14 @@ export class CursedCoffinItem implements IItem {
     effect: string = "You dig up a cursed coffin. The next player who passes this tile will be forced into the cursed tomb. This leaves them stuck there for 2 rounds.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+
     }
 }
 
@@ -133,14 +132,14 @@ export class RiggedDiceItem implements IItem {
     effect: string = "Upon use, you can assign your desired value to your dice roll. You cannot roll their dice after using this item.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+
     }
 }
 
@@ -150,14 +149,14 @@ export class VSItem implements IItem {
     effect: string = "Pick a player to battle with! Winner gets to move 1 space forward, while the loser moves 2 spaces back.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+
     }
 }
 
@@ -167,14 +166,14 @@ export class TumbleweedItem implements IItem {
     effect: string = "Ride a tumbleweed and move forward 3 spaces.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+        this.player.move.front(3);
     }
 }
 
@@ -184,14 +183,14 @@ export class MagicCarpetItem implements IItem {
     effect: string = "Carries you over to any region on the map. The user cannot roll their dice after using this item.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+
     }
 }
 
@@ -201,14 +200,14 @@ export class WindStaffItem implements IItem {
     effect: string = "Pick a player to target and blow them back 3 spaces.";
     isBattleItem: boolean = false;
     isUsable: boolean = true;
-    inventory: Inventory;
+    player: Player;
 
-    constructor(inventory: Inventory) {
-        this.inventory = inventory;
+    constructor(player: Player) {
+        this.player = player;
     }
 
-    public use(itemId: number): void {
-        
+    public use(): void {
+
     }
 }
 
@@ -231,9 +230,9 @@ export class WindStaffItem implements IItem {
 //   * @returns An instance of the appropriate item class
 //   */
 export class ItemFactory {
-    public static createItem(type: number, inventory: Inventory): IItem {
+    public static createItem(type: number, player: Player): IItem {
         switch (type) {
-            // case 0: return new LassoItem();
+            case 0: return new LassoItem(player);
             // case 1: return new ShovelItem();
             // case 2: return new VestItem();
             // case 3: return new PoisonCrossbowItem();
@@ -241,10 +240,10 @@ export class ItemFactory {
             // case 5: return new CursedCoffinItem();
             // case 6: return new RiggedDiceItem();
             // case 7: return new VSItem();
-            case 8: return new TumbleweedItem(inventory);
+            case 8: return new TumbleweedItem(player);
             // case 9: return new MagicCarpetItem();
             // case 10: return new WindStaffItem();
-            default: return new TumbleweedItem(inventory);
+            default: return new TumbleweedItem(player);
         }
     }
 }
