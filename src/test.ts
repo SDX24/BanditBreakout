@@ -50,6 +50,13 @@ console.log(game.map.tiles[28])
 console.log("Tile with 1 front:")
 console.log(game.map.tiles[1])
 
+console.log("****************************")
+console.log("Dice roll")
+console.log(game.map.findPlayer(p1.id))
+p1.move.diceRoll()
+console.log(game.map.findPlayer(p1.id))
+
+
 // console.log("Game started with players:")
 // console.log(game.players)
 
