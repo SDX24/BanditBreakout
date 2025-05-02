@@ -1,47 +1,54 @@
 import Player from "./Player";
 
-    /**
-     * An Item interface standart
-     * 
-     * @param id - Unique identifier
-     * @param name - Display name
-     * @param description - Detailed description
-     * @param effect - Effect when used
-     * 
-     * @param isBattleItem - Is it made for battles (defaults to false)
-     * @param isBattleItem - If true, BattleItem. If false, MapItem
-     * 
-     * @param isUsable - Can be used 
-     */
-export interface IItem {
+/**
+ * Base interface for all items
+ */
+export interface IBaseItem {
     id: number;
     name: string;
     effect: string;
     isBattleItem: boolean;
     isUsable: boolean;
     player: Player;
+}
 
+/**
+ * Interface for standard map items
+ */
+export interface IMapItem extends IBaseItem {
     use(): void;
 }
-export class LassoItem implements IItem {
+
+/**
+ * Interface for items that target other players
+ */
+export interface IBattleItem extends IBaseItem {
+    opponent: Player;
+    useAgainst(opponent: Player): void;
+}
+
+export class LassoItem implements IBattleItem {
     id: number = 0;
     name: string = "Lasso";
     effect: string = "Pick a player and catch them with the lasso, making them unable to move for 1 round.";
-    isBattleItem: boolean = false;
+    isBattleItem: boolean = true;
     isUsable: boolean = true;
     player: Player;
+    opponent: Player;
 
     constructor(player: Player) {
         this.player = player;
+        this.opponent = player; // THIS IS PLACEHOLDER. OPPONENT WILL BE SET ON USE
     }
 
-    public use(): void {
-
+    public useAgainst(opponent: Player): void {
+        
     }
+
 }
 
 
-export class ShovelItem implements IItem {
+export class ShovelItem implements IMapItem {
     id: number = 1;
     name: string = "Shovel";
     effect: string = "Pick a player and dig an underground tunnel to them.";
@@ -58,7 +65,7 @@ export class ShovelItem implements IItem {
     }
 }
 
-export class VestItem implements IItem {
+export class VestItem implements IMapItem {
     id: number = 2;
     name: string = "Vest";
     effect: string = "This item will grant immunity to you the next time you are targeted by another item from a player. It will activate automatically and will be removed once used.";
@@ -75,7 +82,7 @@ export class VestItem implements IItem {
     }
 }
 
-export class PoisonCrossbowItem implements IItem {
+export class PoisonCrossbowItem implements IMapItem {
     id: number = 3;
     name: string = "Poison Crossbow";
     effect: string = "Pick a player and shoot them with a poison dart. This stuns them for 1 round.";
@@ -92,7 +99,7 @@ export class PoisonCrossbowItem implements IItem {
     }
 }
 
-export class MirageTeleporterItem implements IItem {
+export class MirageTeleporterItem implements IMapItem {
     id: number = 4;
     name: string = "Mirage Teleporter";
     effect: string = "Pick a player and instantly swap places with them. You cannot roll their dice after using this item.";
@@ -109,7 +116,7 @@ export class MirageTeleporterItem implements IItem {
     }
 }
 
-export class CursedCoffinItem implements IItem {
+export class CursedCoffinItem implements IMapItem {
     id: number = 5;
     name: string = "Cursed Coffin";
     effect: string = "You dig up a cursed coffin. The next player who passes this tile will be forced into the cursed tomb. This leaves them stuck there for 2 rounds.";
@@ -126,7 +133,7 @@ export class CursedCoffinItem implements IItem {
     }
 }
 
-export class RiggedDiceItem implements IItem {
+export class RiggedDiceItem implements IMapItem {
     id: number = 6;
     name: string = "Rigged Dice";
     effect: string = "Upon use, you can assign your desired value to your dice roll. You cannot roll their dice after using this item.";
@@ -143,7 +150,7 @@ export class RiggedDiceItem implements IItem {
     }
 }
 
-export class VSItem implements IItem {
+export class VSItem implements IMapItem {
     id: number = 7;
     name: string = "V.S.";
     effect: string = "Pick a player to battle with! Winner gets to move 1 space forward, while the loser moves 2 spaces back.";
@@ -160,7 +167,7 @@ export class VSItem implements IItem {
     }
 }
 
-export class TumbleweedItem implements IItem {
+export class TumbleweedItem implements IMapItem {
     id: number = 8;
     name: string = "Tumbleweed";
     effect: string = "Ride a tumbleweed and move forward 3 spaces.";
@@ -177,7 +184,7 @@ export class TumbleweedItem implements IItem {
     }
 }
 
-export class MagicCarpetItem implements IItem {
+export class MagicCarpetItem implements IMapItem {
     id: number = 9;
     name: string = "Magic Carpet";
     effect: string = "Carries you over to any region on the map. The user cannot roll their dice after using this item.";
@@ -194,7 +201,7 @@ export class MagicCarpetItem implements IItem {
     }
 }
 
-export class WindStaffItem implements IItem {
+export class WindStaffItem implements IMapItem {
     id: number = 10;
     name: string = "Wind Staff";
     effect: string = "Pick a player to target and blow them back 3 spaces.";
@@ -230,7 +237,7 @@ export class WindStaffItem implements IItem {
 //   * @returns An instance of the appropriate item class
 //   */
 export class ItemFactory {
-    public static createItem(type: number, player: Player): IItem {
+    public static createItem(type: number, player: Player): IBaseItem {
         switch (type) {
             case 0: return new LassoItem(player);
             // case 1: return new ShovelItem();
