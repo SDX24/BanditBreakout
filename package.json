@@ -5,9 +5,8 @@
   "main": "index.tsx",
   "scripts": {
     "test": "jest",
-    "start": "tsx src/app.ts",
     "test:cache": "tsx src/tests/cacheTest.ts",
-    "test:assets": "jest src/tests/assetsOpsTest.ts"
+    "test:assets": "jest src/tests/assetsOpsTest.ts",
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
