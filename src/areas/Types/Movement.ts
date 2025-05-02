@@ -2,7 +2,7 @@ import { EOL } from 'os';
 import Game from './Game';
 import Player from './Player';
 
-export default class Movement {
+export default class Move {
     private player: Player;
     private game: Game;
     
