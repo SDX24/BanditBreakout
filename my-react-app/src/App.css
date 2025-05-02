@@ -6,6 +6,7 @@
 }
 
 /* this to stop the horizontal and vertical scroll */
+
 body {
   overflow: hidden;
 }
@@ -22,6 +23,50 @@ body {
   left: 0;
 }
 
+.title-background {
+  width: 100vw;
+  height: 100vh;
+}
+
+.title-container {
+  position: relative;
+}
+
+.pole {
+  height: 100vh;
+  position: absolute;
+  left: 0.001em;
+  z-index: 49;
+}
+
+.title-card {
+  height: 90vh;
+  position: absolute;
+  right: 200px;
+  z-index: 50;
+}
+
+.start {
+  height: 100vh;
+  position: absolute;
+  right: 80px;
+  z-index: 50;
+}
+
+.options {
+  height: 100vh;
+  position: absolute;
+  right: 80px;
+  z-index: 48;
+}
+
+.quit {
+  height: 100vh;
+  position: absolute;
+  right: 80px;
+  z-index: 50;
+}
+
 .black-bg {
   background-color: black;
 }
@@ -31,7 +76,7 @@ body {
 }
 
 .logo {
-  max-width: 200px;
+  max-width: 400px;
   opacity: 0;
   animation: fadeIn 1s ease forwards;
 }

@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 import cmdZLogo from "./assets/CMD Z Logo.svg";
 import banditLogo from "./assets/Bandit Logo Circle.svg";
 import titleBackground from "./assets/title background.png";
+import pole from "./assets/pole.png";
+import quit from "./assets/quit.png";
+import start from "./assets/start.png";
+import titleCard from "./assets/title card.png";
+import options from "./assets/options.png";
 
 import "./App.css";
 
@@ -39,11 +44,23 @@ function App() {
       )}
 
       {currentScreen === 4 && (
-        <img
-          src={titleBackground}
-          className="title-background"
-          alt="Title Background"
-        />
+        <div className="title-containter">
+          <img
+            src={titleBackground}
+            className="title-background"
+            alt="Title Background"
+          />
+
+          <img src={pole} className="pole" alt="Pole" />
+
+          <img src={titleCard} className="title-card" alt="Title Card" />
+
+          <img src={start} className="start" alt="Start" />
+
+          <img src={options} className="options" alt="Options" />
+
+          <img src={quit} className="quit" alt="Quit" />
+        </div>
       )}
     </div>
   );
