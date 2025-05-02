@@ -102,5 +102,14 @@ public back(by: number): void {
     }
 }
 
-    
+
+private rollDiceNum(): number {
+    return Math.floor(Math.random() * 6) + 1;
+}
+
+public diceRoll(): void {
+    const dice = this.rollDiceNum();
+    console.log(`Player ${this.player.id} rolled a ${dice}!`);
+    this.player.move.front(dice);
+}
 }
