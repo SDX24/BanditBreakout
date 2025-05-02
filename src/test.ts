@@ -17,6 +17,9 @@ console.log(game.map.tiles[0])
 console.log("Map tile 3 players:")
 console.log(game.map.tiles[3].playersOnTile)
 
+
+
+
 p1.move.to(3)
 p2.move.front(3)
 
