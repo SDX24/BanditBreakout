@@ -42,29 +42,73 @@ body {
 .title-card {
   height: 90vh;
   position: absolute;
-  right: 200px;
+  right: 24em;
   z-index: 50;
 }
 
 .start {
   height: 100vh;
   position: absolute;
-  right: 80px;
+  right: 15em;
   z-index: 50;
 }
 
 .options {
   height: 100vh;
   position: absolute;
-  right: 80px;
+  right: 15em;
   z-index: 48;
 }
 
 .quit {
   height: 100vh;
   position: absolute;
-  right: 80px;
+  right: 15em;
   z-index: 50;
+}
+
+.titlecard-text {
+  font-family: "Western Bang Bang", sans-serif;
+  font-size: 12em;
+  color: rgb(73, 40, 7);
+  position: absolute;
+  height: 100vh;
+  z-index: 51;
+  top: 0.6em;
+  left: 2em;
+}
+
+.start-text {
+  font-family: "Western Bang Bang", sans-serif;
+  font-size: 5em;
+  color: rgb(73, 40, 7);
+  position: absolute;
+  z-index: 51;
+  height: 100vh;
+  top: 7.2em;
+  left: 6em;
+}
+
+.options-text {
+  font-family: "Western Bang Bang", sans-serif;
+  font-size: 5em;
+  color: rgb(73, 40, 7);
+  position: absolute;
+  height: 100vh;
+  z-index: 51;
+  top: 8.9em;
+  left: 7em;
+}
+
+.quit-text {
+  font-family: "Western Bang Bang", sans-serif;
+  font-size: 5em;
+  color: rgb(73, 40, 7);
+  position: absolute;
+  z-index: 51;
+  height: 100vh;
+  top: 10em;
+  left: 1.8em;
 }
 
 .black-bg {
@@ -88,4 +132,12 @@ body {
   to {
     opacity: 1;
   }
+}
+
+@font-face {
+  font-family: "Western Bang Bang";
+  src: url("../public/fonts/WesternBangBang-Regular.ttf") format("truetype");
+  /* Add additional formats if available */
+  font-weight: normal;
+  font-style: normal;
 }

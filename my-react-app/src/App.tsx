@@ -54,12 +54,24 @@ function App() {
           <img src={pole} className="pole" alt="Pole" />
 
           <img src={titleCard} className="title-card" alt="Title Card" />
+          <a href="">
+            <p className="titlecard-text">Bandit Breakout</p>
+          </a>
 
           <img src={start} className="start" alt="Start" />
+          <a href="">
+            <p className="start-text">Start</p>
+          </a>
 
           <img src={options} className="options" alt="Options" />
+          <a href="">
+            <p className="options-text">Settings</p>
+          </a>
 
           <img src={quit} className="quit" alt="Quit" />
+          <a href="">
+            <p className="quit-text">Quit</p>
+          </a>
         </div>
       )}
     </div>
