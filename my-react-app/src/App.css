@@ -42,34 +42,34 @@ body {
 .title-card {
   height: 90vh;
   position: absolute;
-  right: 24em;
+  right: 12em;
   z-index: 50;
 }
 
 .start {
   height: 100vh;
   position: absolute;
-  right: 15em;
+  right: 5em;
   z-index: 50;
 }
 
 .options {
   height: 100vh;
   position: absolute;
-  right: 15em;
+  right: 6em;
   z-index: 48;
 }
 
 .quit {
   height: 100vh;
   position: absolute;
-  right: 15em;
+  right: 5em;
   z-index: 50;
 }
 
 .titlecard-text {
   font-family: "Western Bang Bang", sans-serif;
-  font-size: 12em;
+  font-size: 10em;
   color: rgb(73, 40, 7);
   position: absolute;
   height: 100vh;
@@ -85,8 +85,8 @@ body {
   position: absolute;
   z-index: 51;
   height: 100vh;
-  top: 7.2em;
-  left: 6em;
+  top: 5.8em;
+  left: 5em;
 }
 
 .options-text {
@@ -96,8 +96,8 @@ body {
   position: absolute;
   height: 100vh;
   z-index: 51;
-  top: 8.9em;
-  left: 7em;
+  top: 7.1em;
+  left: 5em;
 }
 
 .quit-text {
@@ -107,8 +107,8 @@ body {
   position: absolute;
   z-index: 51;
   height: 100vh;
-  top: 10em;
-  left: 1.8em;
+  top: 8em;
+  left: 1.5em;
 }
 
 .black-bg {
