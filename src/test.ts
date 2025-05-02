@@ -40,8 +40,8 @@ p1.move.back(1)
 console.log("map tile 4 players:")
 console.log(game.map.tiles[4].playersOnTile)
 
-
-
+p1.inventory.obtain(8)
+p1.inventory.items[0].inventory
 
 
 
