@@ -113,7 +113,6 @@ public useItem(itemId: number, targetPlayer?: Player): void {
             return;
         }
         
-        battleItem.opponent = targetPlayer;
         battleItem.useAgainst(targetPlayer);
         console.log(`Player ${this.player.id} used ${item.name} against Player ${targetPlayer.id}`);
     } else {
