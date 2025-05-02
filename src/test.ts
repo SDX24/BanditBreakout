@@ -1,33 +1,54 @@
-import Map from "./areas/Map/Map";
 import Game from "./areas/Types/Game";
-import Player from "./areas/Types/Player";
+
+// GAME START
 
 const game = new Game();
-
 game.startGame(4, "ABC123");
 
 let p1 = game.players[0]
+let p2 = game.players[1]
+let p3 = game.players[2]
+let p4 = game.players[3]
 
-let tile0 = game.map.tiles[0]
-let tile3 = game.map.tiles[3]
-let tile6 = game.map.tiles[6]
-console.log("Map tile 3:")
-console.log(tile3.playersOnTile)
-    
-p1.inventory.obtain(8)
-p1.inventory.useItem(8)
+console.log("****************************")
+console.log("Map tile 0:")
+console.log(game.map.tiles[0])
 
-console.log("Map tile 3:")
-console.log(tile3.playersOnTile)
+console.log("Map tile 3 players:")
+console.log(game.map.tiles[3].playersOnTile)
 
-console.log("Map tile 6:")
-console.log(tile6.playersOnTile)
+p1.move.to(3)
+p2.move.front(3)
 
-p1.inventory.obtain(8)
-p1.inventory.useItem(8)
+p3.inventory.obtain(8)
+p3.inventory.useItem(8)
 
-console.log("Map tile 6:")
-console.log(tile6.playersOnTile)
+console.log("Map tile 3 players:")
+console.log(game.map.tiles[3].playersOnTile)
+
+console.log("****************************")
+console.log("Player 1's gold before change:")
+console.log(p1.getGold())
+
+p1.gold('+3')
+
+console.log("Player 1's gold after:")
+console.log(p1.getGold())
+
+console.log("Player 1's health before change:")
+console.log(p1.getHealth())
+p1.health('=101')
+
+console.log("Player 1's health after:")
+console.log(p1.getHealth())
+
+console.log("****************************")
+
+console.log("Tile with 2 front:")
+console.log(game.map.tiles[28])
+
+console.log("Tile with 1 front:")
+console.log(game.map.tiles[1])
 
 // console.log("Game started with players:")
 // console.log(game.players)
