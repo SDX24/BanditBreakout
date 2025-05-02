@@ -68,8 +68,16 @@ function App() {
             <p className="options-text">Settings</p>
           </a>
 
-          <img src={quit} className="quit" alt="Quit" />
-          <a href="">
+          <a
+            href=""
+            onClick={(e) => {
+              e.preventDefault();
+              if (window.confirm("Are you sure you want to quit?")) {
+                window.close();
+              }
+            }}
+          >
+            <img src={quit} className="quit" alt="Quit" />
             <p className="quit-text">Quit</p>
           </a>
         </div>
