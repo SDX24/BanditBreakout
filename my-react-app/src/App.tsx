@@ -59,7 +59,7 @@ function App() {
           </a>
 
           <img src={start} className="start" alt="Start" />
-          <a href="">
+          <a href="/host">
             <p className="start-text">Start</p>
           </a>
 
@@ -68,16 +68,8 @@ function App() {
             <p className="options-text">Settings</p>
           </a>
 
-          <a
-            href=""
-            onClick={(e) => {
-              e.preventDefault();
-              if (window.confirm("Are you sure you want to quit?")) {
-                window.close();
-              }
-            }}
-          >
-            <img src={quit} className="quit" alt="Quit" />
+          <img src={quit} className="quit" alt="Quit" />
+          <a>
             <p className="quit-text">Quit</p>
           </a>
         </div>
