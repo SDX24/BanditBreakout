@@ -107,6 +107,26 @@ These scripts delete assets previously uploaded by `assets.sh` or `assets.ps1` f
 - It will delete corresponding documents (small files) from the collection and large files from GridFS.
 - Console output will show deletion actions (e.g., "🗑️ [Doc] Deleting" or "🗑️ [GridFS] Deleting").
 
+#### 3.3. Listing Assets (`list_assets.sh`)
+
+This script lists all filenames stored in the MongoDB collection and GridFS bucket, displaying counts and filenames for both storage types.
+
+- **Unix/Linux/MacOS (`list_assets.sh`)**:
+  **Command:**
+  ```bash
+  ./src/tests/list_assets.sh [MONGO_URI] [DB] [COLL] [GRIDFS_BUCKET]
+  ```
+  **Example:**
+  ```bash
+  ./src/tests/list_assets.sh mongodb://localhost:27017 game_assets assets assets_fs
+  ```
+
+**Expected Outcome:**
+- The script will connect to the specified MongoDB database.
+- It will list all filenames stored in the specified collection for small files.
+- It will list all filenames stored in the GridFS bucket for large files.
+- Console output will show the database, collection, and bucket names, along with the total count of files in the collection and the filenames for both storage types (e.g., "Total files in collection: 347", "Filenames: - battle/victory.png").
+
 ### 4. Large File Scanner (`16M.sh`)
 
 This script scans a directory for files larger than 16 MiB, useful for identifying assets that would be stored in GridFS by the asset management scripts.
