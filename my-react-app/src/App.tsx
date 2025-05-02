@@ -54,22 +54,20 @@ function App() {
           <img src={pole} className="pole" alt="Pole" />
 
           <img src={titleCard} className="title-card" alt="Title Card" />
-          <a href="">
-            <p className="titlecard-text">Bandit Breakout</p>
-          </a>
+          <p className="titlecard-text">Bandit Breakout</p>
 
           <img src={start} className="start" alt="Start" />
-          <a href="/host">
+          <a href="" className="clickable">
             <p className="start-text">Start</p>
           </a>
 
           <img src={options} className="options" alt="Options" />
-          <a href="">
+          <a href="" className="clickable">
             <p className="options-text">Settings</p>
           </a>
 
           <img src={quit} className="quit" alt="Quit" />
-          <a>
+          <a href="" className="clickable">
             <p className="quit-text">Quit</p>
           </a>
         </div>
