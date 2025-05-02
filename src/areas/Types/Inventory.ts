@@ -48,6 +48,13 @@ export default class Inventory {
         }
     }
 
+    public obtainRandom() {
+        let randomId = Math.floor(Math.random() * 11);
+        const item = this.makeItem(randomId);
+        this.addItem(item);
+        console.log(`Player ${this.player.id} obtained item: ${item.name}`);
+    }
+
     /**
   * @param itemId - item id
   * - 0: LassoItem

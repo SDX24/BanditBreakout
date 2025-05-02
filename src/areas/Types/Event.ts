@@ -69,6 +69,7 @@ export class BattleEvent implements IEvent {
 
     public onStep(playerId: number, game: Game): void {
         console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
+
     }
 }
 
@@ -86,6 +87,12 @@ export class BattleEffectEvent implements IEvent {
 
     public onStep(playerId: number, game: Game): void {
         console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
+
+        const player = game.players.find(player => player.id === playerId);
+         if (player) {
+             player.effectAdd("battle_buff");
+             console.log(`Player ${playerId} gained a battle buff!`);
+         }
     }
 }
 
@@ -102,7 +109,13 @@ export class ItemEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
+        const player = game.players.find(player => player.id === playerId);
+         if (player) {
+             player.inventory.obtainRandom()
+             let latestAddition = player.inventory.items.length
+             let newItem = player.inventory.items[latestAddition]
+             console.log(`Player ${playerId} found an item: ${newItem}`);
+         }
     }
 }
 
@@ -136,6 +149,19 @@ export class SlotsEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
+        // TODO FIX LATER
+        // const player = game.players.find(player => player.id === playerId);
+        // if (player) {
+        //     const amount = Math.floor(Math.random() * 61) - 10;
+        //     if (amount >= 0) {
+        //         player.gold(`+${amount}`)
+        //     } else {
+        //         for (let i = 0; player.getGold() > 0; i++) {
+        //             player.gold(`-${i}`)
+        //         }
+        //     }
+        //     console.log(`Player ${playerId} played slots and ${amount >= 0 ? 'won' : 'lost'} ${Math.abs(amount)} gold.`);
+        // }
         console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
     }
 }
