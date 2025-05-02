@@ -174,6 +174,26 @@ export class DecisionEvent implements IEvent {
     }
 }
 
+// CURSED COFFIN EVENT (TYPE 9) (COMES FROM ITEMS)
+export class CursedCoffinEvent implements IEvent {
+    name = "Cursed Coffin";
+    type = 9;
+    description = "You dig up a cursed coffin.";
+    effect = "You are forced into the cursed tomb. You are stuck here for 2 rounds!";
+    tile: Tile;
+
+    constructor(tile: Tile) {
+        this.tile = tile;
+    }
+
+    public onStep(playerId: number, game: Game): void {
+        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
+        let player = game.players[playerId]
+        player.effectAdd("cursedCoffin")
+        //remove the event
+    }
+}
+
 // Factory
     /**
       * Creates a new event based on the given type
@@ -202,6 +222,7 @@ export class EventFactory {
             case 6: return new SlotsEvent(tile);
             case 7: return new MiningEvent(tile);
             case 8: return new DecisionEvent(tile);
+            case 9: return new CursedCoffinEvent(tile);
             default: return new NothingEvent(tile);
         }
     }

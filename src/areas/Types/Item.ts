@@ -23,7 +23,6 @@ export interface IMapItem extends IBaseItem {
  * Interface for items that target other players
  */
 export interface IBattleItem extends IBaseItem {
-    opponent: Player;
     useAgainst(opponent: Player): void;
 }
 
@@ -34,21 +33,19 @@ export class LassoItem implements IBattleItem {
     isBattleItem: boolean = true;
     isUsable: boolean = true;
     player: Player;
-    opponent: Player;
 
     constructor(player: Player) {
         this.player = player;
-        this.opponent = player; // THIS IS PLACEHOLDER. OPPONENT WILL BE SET ON USE
     }
 
     public useAgainst(opponent: Player): void {
-        
+        opponent.effectAdd("lassoStun")
     }
 
 }
 
 
-export class ShovelItem implements IMapItem {
+export class ShovelItem implements IBattleItem {
     id: number = 1;
     name: string = "Shovel";
     effect: string = "Pick a player and dig an underground tunnel to them.";
@@ -60,8 +57,9 @@ export class ShovelItem implements IMapItem {
         this.player = player;
     }
 
-    public use(): void {
-
+    public useAgainst(opponent: Player): void {
+        let opponentPos = this.player.game.map.findPlayer(opponent.id);
+        this.player.move.to(opponentPos);
     }
 }
 
@@ -78,11 +76,11 @@ export class VestItem implements IMapItem {
     }
 
     public use(): void {
-
+        this.player.effectAdd("vest");
     }
 }
 
-export class PoisonCrossbowItem implements IMapItem {
+export class PoisonCrossbowItem implements IBattleItem {
     id: number = 3;
     name: string = "Poison Crossbow";
     effect: string = "Pick a player and shoot them with a poison dart. This stuns them for 1 round.";
@@ -94,12 +92,12 @@ export class PoisonCrossbowItem implements IMapItem {
         this.player = player;
     }
 
-    public use(): void {
-
+    public useAgainst(opponent: Player): void {
+        opponent.effectAdd("poisonStun");
     }
 }
 
-export class MirageTeleporterItem implements IMapItem {
+export class MirageTeleporterItem implements IBattleItem {
     id: number = 4;
     name: string = "Mirage Teleporter";
     effect: string = "Pick a player and instantly swap places with them. You cannot roll their dice after using this item.";
@@ -111,8 +109,9 @@ export class MirageTeleporterItem implements IMapItem {
         this.player = player;
     }
 
-    public use(): void {
-
+    public useAgainst(opponent: Player): void {
+        this.player.move.swap(opponent);
+        console.log('There shoudl be an end trun fucntion here');
     }
 }
 
@@ -129,7 +128,9 @@ export class CursedCoffinItem implements IMapItem {
     }
 
     public use(): void {
-
+        let map = this.player.game.map
+        let playerTileId = map.findPlayer(this.player.id)
+        let cursedCoffin = map.createEventOfType(9, playerTileId)
     }
 }
 
@@ -146,11 +147,11 @@ export class RiggedDiceItem implements IMapItem {
     }
 
     public use(): void {
-
+        // TODO
     }
 }
 
-export class VSItem implements IMapItem {
+export class VSItem implements IBattleItem {
     id: number = 7;
     name: string = "V.S.";
     effect: string = "Pick a player to battle with! Winner gets to move 1 space forward, while the loser moves 2 spaces back.";
@@ -162,8 +163,9 @@ export class VSItem implements IMapItem {
         this.player = player;
     }
 
-    public use(): void {
-
+    public useAgainst(opponent: Player): void {
+        // TODO
+        // this.player.game.battle(this.player, opponent);
     }
 }
 
@@ -197,11 +199,12 @@ export class MagicCarpetItem implements IMapItem {
     }
 
     public use(): void {
-
+        // TODO
+        // I think this is too op, need to be adjacent region
     }
 }
 
-export class WindStaffItem implements IMapItem {
+export class WindStaffItem implements IBattleItem {
     id: number = 10;
     name: string = "Wind Staff";
     effect: string = "Pick a player to target and blow them back 3 spaces.";
@@ -213,8 +216,8 @@ export class WindStaffItem implements IMapItem {
         this.player = player;
     }
 
-    public use(): void {
-
+    public useAgainst(opponent: Player): void {
+        opponent.move.back(3);
     }
 }
 
