@@ -1,11 +1,11 @@
 import Player from "./Player";
 import Game from "./Game";
-import { IItem, ItemFactory } from "./Item";
+import { IBaseItem, IBattleItem, IMapItem, ItemFactory } from "./Item";
 
 export default class Inventory {
     private player: Player;
     private game: Game;
-    items: IItem[]
+    items: IBaseItem[]
     
     constructor(player: Player) {
         this.player = player;
@@ -13,20 +13,55 @@ export default class Inventory {
         this.items = [];
     }
 
+    /**
+  * @param itemId - item id
+  * - 0: LassoItem
+  * - 1: ShovelItem
+  * - 2: VestItem
+  * - 3: PoisonCrossbowItem
+  * - 4: MirageTeleporterItem
+  * - 5: CursedCoffinItem
+  * - 6: RiggedDiceItem
+  * - 7: VSItem
+  * - 8: TumbleweedItem
+  * - 9: MagicCarpetItem
+  * - 10: WindStaffItem
+  */
     public obtain(itemId: number) {
         const item = this.makeItem(itemId);
         this.addItem(item);
         console.log(`Player ${this.player.id} obtained item: ${item.name}`);
     }
 
-    private makeItem(itemId: number): IItem {
+    private makeItem(itemId: number): IBaseItem {
         return ItemFactory.createItem(itemId, this.player);
     }
 
-    private addItem(item: IItem): void {
+    private addItem(item: IBaseItem): void {
         this.items.push(item);
     }
 
+    public removeItem(item: IBaseItem): void {
+        const index = this.items.findIndex(itemIndex => itemIndex === item);
+        if (index !== -1) {
+            this.items.splice(index, 1);
+        }
+    }
+
+    /**
+  * @param itemId - item id
+  * - 0: LassoItem
+  * - 1: ShovelItem
+  * - 2: VestItem
+  * - 3: PoisonCrossbowItem
+  * - 4: MirageTeleporterItem
+  * - 5: CursedCoffinItem
+  * - 6: RiggedDiceItem
+  * - 7: VSItem
+  * - 8: TumbleweedItem
+  * - 9: MagicCarpetItem
+  * - 10: WindStaffItem
+  */
     public hasItem(itemId: number): boolean {
         if (this.items.find(item => item.id === itemId)) {
             return true;
@@ -34,7 +69,7 @@ export default class Inventory {
         return false;
     }
 
-    private findItem(itemId: number): IItem | null {
+    private findItem(itemId: number): IBaseItem | null {
         const item = this.items.find(item => item.id === itemId);
         if (item) {
             return item;
@@ -49,6 +84,7 @@ export default class Inventory {
   * Uses an item from the inventory
   * 
   * @param itemId - item id to use (If they have it)
+  * @param targetPlayer - optional target player for battle items
   * - 0: LassoItem
   * - 1: ShovelItem
   * - 2: VestItem
@@ -61,12 +97,33 @@ export default class Inventory {
   * - 9: MagicCarpetItem
   * - 10: WindStaffItem
   */
-    public useItem(itemId: number): void {
-        const item = this.findItem(itemId);
-        if (item) {
-            item.use();
-            console.log(`Player ${this.player.id} used item: ${item.name}`);
-        } else {
-        }
+public useItem(itemId: number, targetPlayer?: Player): void {
+    const item = this.findItem(itemId);
+    
+    if (!item) {
+        console.log(`Item with ID ${itemId} not found in inventory.`);
+        return;
     }
+    
+    if (item.isBattleItem) {
+        const battleItem = item as IBattleItem;
+        
+        if (!targetPlayer) {
+            console.log(`Battle item ${item.name} requires a target player.`);
+            return;
+        }
+        
+        battleItem.opponent = targetPlayer;
+        battleItem.useAgainst(targetPlayer);
+        console.log(`Player ${this.player.id} used ${item.name} against Player ${targetPlayer.id}`);
+    } else {
+        
+        const mapItem = item as IMapItem;
+        mapItem.use();
+        console.log(`Player ${this.player.id} used item: ${item.name}`);
+    }
+    
+    this.removeItem(item);
+}
+
 }

@@ -15,7 +15,7 @@ console.log("Map tile 3:")
 console.log(tile3.playersOnTile)
     
 p1.inventory.obtain(8)
-p1.inventory.items[0].use()
+p1.inventory.useItem(8)
 
 console.log("Map tile 3:")
 console.log(tile3.playersOnTile)
