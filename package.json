@@ -9,6 +9,7 @@
     "test:assets": "jest src/tests/assetsOpsTest.ts",
     "dev": "vite",
     "start": "vite",
+    "server": "tsx src/server.ts",
     "build": "vite build",
     "preview": "vite preview"
   },
