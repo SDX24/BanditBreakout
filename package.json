@@ -9,6 +9,7 @@
     "test:assets": "jest src/tests/assetsOpsTest.ts",
     "test:client": "tsx src/tests/test-client.ts",
     "test:simple-client": "tsx src/tests/simple-test-client.ts",
+    "test:db": "tsx src/tests/dbTest.ts",
     "dev": "vite",
     "start": "vite",
     "server": "tsx src/server.ts",
