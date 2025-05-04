@@ -7,6 +7,8 @@
     "test": "jest",
     "test:cache": "tsx src/tests/cacheTest.ts",
     "test:assets": "jest src/tests/assetsOpsTest.ts",
+    "test:client": "tsx src/tests/test-client.ts",
+    "test:simple-client": "tsx src/tests/simple-test-client.ts",
     "dev": "vite",
     "start": "vite",
     "server": "tsx src/server.ts",
@@ -40,6 +42,7 @@
     "mongoose": "^8.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   }
 }
