@@ -28,13 +28,14 @@ io.on('connection', (socket) => {
   socket.on('createGame', async (gameId: string, name: string, playerCount: number) => {
     try {
       // Database operation removed: const newGame = await createGame(gameId, name);
+      console.log(`Attempting to create game with ID: ${gameId}, Name: ${name}, Player Count: ${playerCount}`);
       activeGames[gameId] = new Game();
       activeGames[gameId].startGame(playerCount, gameId);
       socket.join(gameId);
       socket.emit('gameCreated', { gameId, name });
       console.log(`Game created: ${gameId}`);
     } catch (error) {
-      socket.emit('error', { message: 'Failed to create game' });
+      socket.emit('error', { message: 'Failed to create game', details: error.message || 'Unknown error' });
       console.error('Error creating game:', error);
     }
   });
