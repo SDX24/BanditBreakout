@@ -2,9 +2,10 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import { Game } from './areas/Types/Game';
-import { connectToDatabase } from './db/mongoose';
-import { createGame, addPlayerToGame } from './db/operations/gameOps';
-import { createPlayer, updatePlayerPosition, updatePlayerStatus } from './db/operations/playerOps';
+// Database imports removed for testing purposes
+// import { connectToDatabase } from './db/mongoose';
+// import { createGame, addPlayerToGame } from './db/operations/gameOps';
+// import { createPlayer, updatePlayerPosition, updatePlayerStatus } from './db/operations/playerOps';
 
 const app = express();
 const server = http.createServer(app);
@@ -26,7 +27,7 @@ io.on('connection', (socket) => {
   // Handle game creation
   socket.on('createGame', async (gameId: string, name: string, playerCount: number) => {
     try {
-      const newGame = await createGame(gameId, name);
+      // Database operation removed: const newGame = await createGame(gameId, name);
       activeGames[gameId] = new Game();
       activeGames[gameId].startGame(playerCount, gameId);
       socket.join(gameId);
@@ -45,8 +46,8 @@ io.on('connection', (socket) => {
       return;
     }
     try {
-      await addPlayerToGame(gameId, playerId);
-      await createPlayer(gameId, playerId);
+      // Database operations removed: await addPlayerToGame(gameId, playerId);
+      // Database operations removed: await createPlayer(gameId, playerId);
       socket.join(gameId);
       socket.emit('joinedGame', { gameId, playerId });
       io.to(gameId).emit('playerJoined', { playerId });
@@ -67,7 +68,7 @@ io.on('connection', (socket) => {
       const player = activeGames[gameId].players.find(p => p.id === playerId);
       if (player) {
         player.move.to(position);
-        await updatePlayerPosition(playerId, position);
+        // Database operation removed: await updatePlayerPosition(playerId, position);
         io.to(gameId).emit('playerMoved', { playerId, position });
         console.log(`Player ${playerId} moved to position ${position} in game ${gameId}`);
         // Check for tile event
@@ -94,7 +95,7 @@ io.on('connection', (socket) => {
       if (player) {
         player.move.front(steps);
         const newPosition = activeGames[gameId].map.findPlayer(playerId);
-        await updatePlayerPosition(playerId, newPosition);
+        // Database operation removed: await updatePlayerPosition(playerId, newPosition);
         io.to(gameId).emit('playerMoved', { playerId, position: newPosition });
         console.log(`Player ${playerId} moved forward ${steps} steps to position ${newPosition} in game ${gameId}`);
         // Check for tile event
@@ -121,7 +122,7 @@ io.on('connection', (socket) => {
       if (player) {
         player.move.diceRoll();
         const newPosition = activeGames[gameId].map.findPlayer(playerId);
-        await updatePlayerPosition(playerId, newPosition);
+        // Database operation removed: await updatePlayerPosition(playerId, newPosition);
         io.to(gameId).emit('playerMoved', { playerId, position: newPosition });
         console.log(`Player ${playerId} moved by dice roll to position ${newPosition} in game ${gameId}`);
         // Check for tile event
@@ -171,7 +172,7 @@ io.on('connection', (socket) => {
         // If item usage affects position (like Tumbleweed), update position
         const newPosition = activeGames[gameId].map.findPlayer(playerId);
         if (newPosition !== -1) {
-          await updatePlayerPosition(playerId, newPosition);
+          // Database operation removed: await updatePlayerPosition(playerId, newPosition);
           io.to(gameId).emit('playerMoved', { playerId, position: newPosition });
         }
       }
@@ -196,7 +197,7 @@ io.on('connection', (socket) => {
         } else if (resource === 'health') {
           value = player.health(action);
         }
-        await updatePlayerStatus(playerId, { [resource]: value });
+        // Database operation removed: await updatePlayerStatus(playerId, { [resource]: value });
         io.to(gameId).emit('resourceUpdated', { playerId, resource, value });
         console.log(`Player ${playerId} updated ${resource} to ${value} in game ${gameId}`);
       }
@@ -218,7 +219,8 @@ server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
 
+// Database connection removed for testing purposes
 // Connect to MongoDB
-connectToDatabase().catch(err => {
-  console.error('Failed to connect to database:', err);
-});
+// connectToDatabase().catch(err => {
+//   console.error('Failed to connect to database:', err);
+// });
