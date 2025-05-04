@@ -24,10 +24,11 @@ io.on('connection', (socket) => {
   console.log('New client connected:', socket.id);
 
   // Handle game creation
-  socket.on('createGame', async (gameId: string, name: string) => {
+  socket.on('createGame', async (gameId: string, name: string, playerCount: number) => {
     try {
       const newGame = await createGame(gameId, name);
       activeGames[gameId] = new Game();
+      activeGames[gameId].startGame(playerCount, gameId);
       socket.join(gameId);
       socket.emit('gameCreated', { gameId, name });
       console.log(`Game created: ${gameId}`);
@@ -56,35 +57,152 @@ io.on('connection', (socket) => {
     }
   });
 
-  // Handle player movement
-  socket.on('movePlayer', async (gameId: string, playerId: number, position: number) => {
+  // Handle player movement to a specific position
+  socket.on('movePlayerTo', async (gameId: string, playerId: number, position: number) => {
     if (!activeGames[gameId]) {
       socket.emit('error', { message: 'Game does not exist' });
       return;
     }
     try {
-      await updatePlayerPosition(playerId, position);
-      io.to(gameId).emit('playerMoved', { playerId, position });
-      console.log(`Player ${playerId} moved to position ${position} in game ${gameId}`);
+      const player = activeGames[gameId].players.find(p => p.id === playerId);
+      if (player) {
+        player.move.to(position);
+        await updatePlayerPosition(playerId, position);
+        io.to(gameId).emit('playerMoved', { playerId, position });
+        console.log(`Player ${playerId} moved to position ${position} in game ${gameId}`);
+        // Check for tile event
+        const tile = activeGames[gameId].map.tiles[position];
+        if (tile.event.type !== 0) { // Assuming 0 is 'NothingEvent'
+          tile.event.onStep(playerId, activeGames[gameId]);
+          io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type });
+        }
+      }
     } catch (error) {
       socket.emit('error', { message: 'Failed to move player' });
       console.error('Error moving player:', error);
     }
   });
 
-  // Handle player status update
-  socket.on('updateStatus', async (gameId: string, playerId: number, status: any) => {
+  // Handle player movement forward by steps
+  socket.on('movePlayerFront', async (gameId: string, playerId: number, steps: number) => {
     if (!activeGames[gameId]) {
       socket.emit('error', { message: 'Game does not exist' });
       return;
     }
     try {
-      await updatePlayerStatus(playerId, status);
-      io.to(gameId).emit('statusUpdated', { playerId, status });
-      console.log(`Player ${playerId} status updated in game ${gameId}`);
+      const player = activeGames[gameId].players.find(p => p.id === playerId);
+      if (player) {
+        player.move.front(steps);
+        const newPosition = activeGames[gameId].map.findPlayer(playerId);
+        await updatePlayerPosition(playerId, newPosition);
+        io.to(gameId).emit('playerMoved', { playerId, position: newPosition });
+        console.log(`Player ${playerId} moved forward ${steps} steps to position ${newPosition} in game ${gameId}`);
+        // Check for tile event
+        const tile = activeGames[gameId].map.tiles[newPosition];
+        if (tile.event.type !== 0) {
+          tile.event.onStep(playerId, activeGames[gameId]);
+          io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type });
+        }
+      }
     } catch (error) {
-      socket.emit('error', { message: 'Failed to update status' });
-      console.error('Error updating status:', error);
+      socket.emit('error', { message: 'Failed to move player' });
+      console.error('Error moving player:', error);
+    }
+  });
+
+  // Handle player movement by dice roll
+  socket.on('movePlayerDiceRoll', async (gameId: string, playerId: number) => {
+    if (!activeGames[gameId]) {
+      socket.emit('error', { message: 'Game does not exist' });
+      return;
+    }
+    try {
+      const player = activeGames[gameId].players.find(p => p.id === playerId);
+      if (player) {
+        player.move.diceRoll();
+        const newPosition = activeGames[gameId].map.findPlayer(playerId);
+        await updatePlayerPosition(playerId, newPosition);
+        io.to(gameId).emit('playerMoved', { playerId, position: newPosition });
+        console.log(`Player ${playerId} moved by dice roll to position ${newPosition} in game ${gameId}`);
+        // Check for tile event
+        const tile = activeGames[gameId].map.tiles[newPosition];
+        if (tile.event.type !== 0) {
+          tile.event.onStep(playerId, activeGames[gameId]);
+          io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type });
+        }
+      }
+    } catch (error) {
+      socket.emit('error', { message: 'Failed to move player' });
+      console.error('Error moving player:', error);
+    }
+  });
+
+  // Handle item obtain
+  socket.on('obtainItem', async (gameId: string, playerId: number, itemId: number) => {
+    if (!activeGames[gameId]) {
+      socket.emit('error', { message: 'Game does not exist' });
+      return;
+    }
+    try {
+      const player = activeGames[gameId].players.find(p => p.id === playerId);
+      if (player) {
+        player.inventory.obtain(itemId);
+        io.to(gameId).emit('itemObtained', { playerId, itemId });
+        console.log(`Player ${playerId} obtained item ${itemId} in game ${gameId}`);
+      }
+    } catch (error) {
+      socket.emit('error', { message: 'Failed to obtain item' });
+      console.error('Error obtaining item:', error);
+    }
+  });
+
+  // Handle item usage
+  socket.on('useItem', async (gameId: string, playerId: number, itemId: number) => {
+    if (!activeGames[gameId]) {
+      socket.emit('error', { message: 'Game does not exist' });
+      return;
+    }
+    try {
+      const player = activeGames[gameId].players.find(p => p.id === playerId);
+      if (player) {
+        player.inventory.useItem(itemId);
+        io.to(gameId).emit('itemUsed', { playerId, itemId });
+        console.log(`Player ${playerId} used item ${itemId} in game ${gameId}`);
+        // If item usage affects position (like Tumbleweed), update position
+        const newPosition = activeGames[gameId].map.findPlayer(playerId);
+        if (newPosition !== -1) {
+          await updatePlayerPosition(playerId, newPosition);
+          io.to(gameId).emit('playerMoved', { playerId, position: newPosition });
+        }
+      }
+    } catch (error) {
+      socket.emit('error', { message: 'Failed to use item' });
+      console.error('Error using item:', error);
+    }
+  });
+
+  // Handle resource update (gold and health)
+  socket.on('updateResource', async (gameId: string, playerId: number, resource: string, action: string) => {
+    if (!activeGames[gameId]) {
+      socket.emit('error', { message: 'Game does not exist' });
+      return;
+    }
+    try {
+      const player = activeGames[gameId].players.find(p => p.id === playerId);
+      if (player) {
+        let value;
+        if (resource === 'gold') {
+          value = player.gold(action);
+        } else if (resource === 'health') {
+          value = player.health(action);
+        }
+        await updatePlayerStatus(playerId, { [resource]: value });
+        io.to(gameId).emit('resourceUpdated', { playerId, resource, value });
+        console.log(`Player ${playerId} updated ${resource} to ${value} in game ${gameId}`);
+      }
+    } catch (error) {
+      socket.emit('error', { message: 'Failed to update resource' });
+      console.error('Error updating resource:', error);
     }
   });
 
