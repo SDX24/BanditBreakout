@@ -3,3 +3,4 @@ node_modules
 .env
 dist/
 tempAssets
+fullcutscenewithaudio.mp4
