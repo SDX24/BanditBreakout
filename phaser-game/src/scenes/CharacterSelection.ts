@@ -17,16 +17,16 @@ export class CharacterSelection extends Phaser.Scene {
     "buckshot": { crop: true, amount: 0.9 },  
     "serpy": { crop: false,},     
     "grit": { crop: true, amount: 0.9 },                  
-    "scout": { crop: true, amount: 0.9 },    
-    "solstice": { crop: false }               
+    "solstice": { crop: true, amount: 0.9 },      
+    "scout": { crop: true, amount: 0.8 }    
   };
   // this is for positioning chars more center-ly
   private characterPositionSettings: { [key: string]: { x: number; y: number; width: number; height: number } } = {
     "buckshot": { x: 50, y: 50, width: 0.26, height: 0.26 },
     "serpy": { x: -50, y: 50, width: 0.3, height: 0.3 },
     "grit": { x: 0, y: 50, width: 0.25, height: 0.25 },
-    "scout": { x: -200, y: 0, width: 0.28, height: 0.28 },
-    "solstice": { x: -200, y: 0, width: 0.24, height: 0.24 }
+    "solstice": { x: 0, y: 100, width: 0.3, height: 0.3 },
+    "scout": { x: -20, y: 120, width: 0.28, height: 0.28 }
   };
 
 
