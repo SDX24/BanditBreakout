@@ -174,7 +174,7 @@ export class CharacterSelection extends Phaser.Scene {
 
     this.createCharacterCircles(containerBottom);
   
-    this.updateCharacterDisplay(0);
+    this.updateCharacterDisplay(0)
     
   }
 
