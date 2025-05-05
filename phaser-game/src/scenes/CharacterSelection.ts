@@ -28,6 +28,13 @@ export class CharacterSelection extends Phaser.Scene {
     "solstice": { x: 0, y: 100, width: 0.3, height: 0.3 },
     "scout": { x: -20, y: 120, width: 0.28, height: 0.28 }
   };
+  private headSettings: { [key: string]: { x: number; y: number; scale: number } } = {
+    "buckshot": { x: 20, y: 100, scale: 250 },
+    "serpy": { x: -30, y: 70, scale: 200 },
+    "grit": { x: 0, y: 80, scale: 210 },
+    "solstice": { x: -5, y: 50, scale: 170 },
+    "scout": { x: -10, y: 80, scale: 200 },
+  };
 
 
 
@@ -196,7 +203,7 @@ export class CharacterSelection extends Phaser.Scene {
 
   // make character circles and add updateCharDisplay func on click
   private createCharacterCircles(parent: Phaser.GameObjects.Container) {
-    const circleSpacing = 120;
+    const circleSpacing = 200;
     const startX = -((Characters.length - 1) * circleSpacing) / 2;
     
     for (let i = 0; i < Characters.length; i++) {
@@ -206,16 +213,25 @@ export class CharacterSelection extends Phaser.Scene {
       // background circle
       const charCircle = this.add.graphics()
         .fillStyle(0xB7B7B7)
-        .fillCircle(0, 0, 50);
+        .fillCircle(0, 0, 70);
       
       //characters
       const charName = Characters[i].name.toLowerCase()
-      const charHead = this.add.image(0, 0, Characters[i].name.toLowerCase());
+      const headSettings = this.headSettings[charName];
+      const charHead: Phaser.GameObjects.Image = this.add.image(0, 0, charName)
+          .setTint(0x676767)
+          .setDisplaySize(
+              headSettings.scale,
+              headSettings.scale * 1.3
+          )
+          .setPosition(headSettings.x, headSettings.y);
 
-      charHead.setDisplaySize(100, 100);
-      charHead.setOrigin(0.5, 0.5);
+      const maskCircle = this.add.circle(startX + i * circleSpacing + 960, 980, 70, 0x000000).setVisible(false);
+      const mask = maskCircle.createGeometryMask();
+      charHead.setMask(mask);
+
       
-      const hitArea = new Phaser.Geom.Circle(0, 0, 50);
+      const hitArea = new Phaser.Geom.Circle(0, 0, 70);
       containerCharIcon.setInteractive(hitArea, Phaser.Geom.Circle.Contains);
       
       containerCharIcon.add(charCircle);
@@ -239,10 +255,19 @@ export class CharacterSelection extends Phaser.Scene {
     
     this.characterCircles.forEach((container, i) => {
       const circle = container.getAt(0) as Phaser.GameObjects.Graphics;
+      const charHead = container.getAt(1) as Phaser.GameObjects.Image;
+
       circle.clear();
-      circle.fillStyle(i === index ? 0xB7B7B7 : 0x575757);
-      circle.fillCircle(0, 0, 50);
+      circle.fillStyle(i === index ? 0xD7D7D7 : 0x676767);
+      circle.fillCircle(0, 0, 70);
+
+      if (i === index) {
+        charHead.setTint(0xD7D7D7); // Apply a gold tint to the selected character
+      } else {
+        charHead.setTint(0x676767)
+      }
     });
+
   }
 
 
