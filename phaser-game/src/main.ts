@@ -13,7 +13,7 @@ const config = {
   pixelArt: false,
   scene: [
     Start,
-    // CharacterSelection,
+    CharacterSelection,
     SettingsMenu,
   ],
   scale: {

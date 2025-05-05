@@ -86,7 +86,7 @@ export class Start extends Phaser.Scene {
     
 
     this.time.delayedCall(6000, () => {
-        this.scene.start('MainMenu');
+        this.scene.start('CharacterSelection');
       }
     );
   }
