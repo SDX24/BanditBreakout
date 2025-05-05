@@ -62,12 +62,26 @@ export class CharacterSelection extends Phaser.Scene {
     const background = this.add.graphics().fillStyle(0x573912).fillRect(0, 0, 1920, 1080);
     screen.add(background);
 
-    const overlayBackSign = this.add.image(0, 0, "ovelayBackSign");
-    screen.add(overlayBackSign);
-
+    
     const containerMain = this.add.container(960, 540);
     screen.add(containerMain);
+    
 
+    //containerBackButton
+    const containerBackButton = this.add.container(-900, -350);
+    const overlayBackSign = this.add.image(0, 0, "ovelayBackSign");
+    overlayBackSign.setDisplaySize(overlayBackSign.width * 0.3, overlayBackSign.height * 0.32);
+    containerBackButton.add(overlayBackSign);
+    const backButtonText = this.add.text(0, -140, "Back", {
+        fontFamily: "WBB",
+        fontSize: 120,
+        color: "#492807",
+    });
+    backButtonText.setRotation(-0.05);
+    containerBackButton.add(backButtonText);
+
+
+    containerMain.add(containerBackButton);
 
 
 
