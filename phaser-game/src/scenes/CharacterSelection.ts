@@ -3,11 +3,6 @@ import { Characters, ICharacter } from "backend/areas/Types/Character"
 import WebFontLoader from "webfontloader";
 
 export class CharacterSelection extends Phaser.Scene {
-  private overlayBacking!: Phaser.GameObjects.Image;
-  private overlayFrame!: Phaser.GameObjects.Image;
-  private overlayPage!: Phaser.GameObjects.Image;
-  private overlayBackSign!: Phaser.GameObjects.Image;
-  private charSign!: Phaser.GameObjects.Image;
   private charNameText!: Phaser.GameObjects.Text;
   private charDescriptionText!: Phaser.GameObjects.Text;
   private charIndex: number = 0;
@@ -16,6 +11,24 @@ export class CharacterSelection extends Phaser.Scene {
   private aKey!: Phaser.Input.Keyboard.Key;
   private dKey!: Phaser.Input.Keyboard.Key;
   private characterCircles: Phaser.GameObjects.Container[] = [];
+  private characterFront!: Phaser.GameObjects.Image;
+  // this is needed for cropping chars
+  private characterCropSettings: {[key: string]: {crop: boolean, amount?: number}} = {
+    "buckshot": { crop: true, amount: 0.9 },  
+    "serpy": { crop: false,},     
+    "grit": { crop: true, amount: 0.9 },                  
+    "scout": { crop: true, amount: 0.9 },    
+    "solstice": { crop: false }               
+  };
+  // this is for positioning chars more center-ly
+  private characterPositionSettings: { [key: string]: { x: number; y: number; width: number; height: number } } = {
+    "buckshot": { x: 50, y: 50, width: 0.26, height: 0.26 },
+    "serpy": { x: -50, y: 50, width: 0.3, height: 0.3 },
+    "grit": { x: 0, y: 50, width: 0.25, height: 0.25 },
+    "scout": { x: -200, y: 0, width: 0.28, height: 0.28 },
+    "solstice": { x: -200, y: 0, width: 0.24, height: 0.24 }
+  };
+
 
 
   constructor() {
@@ -28,6 +41,11 @@ export class CharacterSelection extends Phaser.Scene {
     this.load.image("overlayPage", "tempAssets/page.png");
     this.load.image("ovelayBackSign", "tempAssets/backSign.png");
     this.load.image("charSign", "tempAssets/charSign.png");
+    this.load.svg("buckshot", "tempAssets/buckshotFront.svg");
+    this.load.svg("serpy", "tempAssets/serpyFront.svg");
+    this.load.svg("grit", "tempAssets/gritFront.svg");
+    this.load.svg("scout", "tempAssets/scoutFront.svg");
+    this.load.svg("solstice", "tempAssets/solsticeFront.svg");
 
     WebFontLoader.load({
       custom: {
@@ -50,16 +68,45 @@ export class CharacterSelection extends Phaser.Scene {
     const containerMain = this.add.container(960, 540);
     screen.add(containerMain);
 
+
+
+
     //containerMain
-    const overlayBackground = this.add.image(0, 0, "overlayBacking");
-    containerMain.add(overlayBackground);
 
-    //containerLeft
-    const containerLeft = this.add.container(-450, 0);
-    containerMain.add(containerLeft);
+  //containerLeft
+  const containerLeft = this.add.container(-450, 0);
 
-    const overlayFrame = this.add.image(0, 0, "overlayFrame");
-    containerLeft.add(overlayFrame);
+  // from here until container right its weird, because of how phaser works with depth
+  this.characterFront = this.add.image(0, 0, Characters[this.charIndex].name.toLowerCase());
+  const charName = Characters[this.charIndex].name.toLowerCase();
+  const originalWidth = this.characterFront.width;
+  const originalHeight = this.characterFront.height;
+
+  const cropSettings = this.characterCropSettings[charName];
+  if (cropSettings && cropSettings.crop) {
+    const cropHeight = Math.floor(originalHeight * (cropSettings.amount || 1));
+    const cropRect = new Phaser.Geom.Rectangle(
+      0,
+      0,
+      originalWidth,
+      cropHeight
+    );
+    this.characterFront.setCrop(cropRect);
+  }
+  this.characterFront.setDisplaySize(this.characterFront.width * 0.26, this.characterFront.height * 0.26);
+  containerLeft.add(this.characterFront);
+  
+  containerMain.add(containerLeft);
+  
+  const overlayBackground = this.add.image(0, 0, "overlayBacking");
+  containerMain.add(overlayBackground);
+  
+  const overlayFrame = this.add.image(-450, 0, "overlayFrame");
+  containerMain.add(overlayFrame);
+
+
+
+
 
     //containerRight
     const containerRight = this.add.container(400, 0);
@@ -68,41 +115,46 @@ export class CharacterSelection extends Phaser.Scene {
     const overlayPage = this.add.image(0, 0, "overlayPage");
     containerRight.add(overlayPage);
 
+
     //containerCharDescription
     const containerCharDescription = this.add.container(-200, -100);
-    containerCharDescription.setScale(0.5);
     containerRight.add(containerCharDescription);
 
-    this.charNameText = this.add.text(100, -370, "charName", {
+    this.charNameText = this.add.text(200, -180, "charName", {
         fontFamily: "WBB",
-        fontSize: 220,
+        fontSize: 120,
         color: "#000000",
     });
+    this.charNameText.setOrigin(0.5, 0);
     containerCharDescription.add(this.charNameText);
 
-    this.charDescriptionText = this.add.text(0, -200, "charDesc", {
+    this.charDescriptionText = this.add.text(-20, -50, "charDesc", {
         fontFamily: "Wellfleet",
-        fontSize: 50,
+        fontSize: 24,
         color: "#000000",
-        wordWrap: { width: 800, useAdvancedWrap: true,  },
+        wordWrap: { width: 480, useAdvancedWrap: true,  },
         align: "center",
     });
     containerCharDescription.add(this.charDescriptionText);
 
+
     //containerCharSign
     const containerCharSign = this.add.container(0, 220);
-    containerCharSign.setScale(0.5);
     containerRight.add(containerCharSign);
     
     const overlayCharSign = this.add.image(0, 0, "charSign");
+    overlayCharSign.setDisplaySize(overlayCharSign.width * 0.45, overlayCharSign.height * 0.45);
     containerCharSign.add(overlayCharSign);
     
-    const charSignText = this.add.text(-200, -230, "Select", {
+    const charSignText = this.add.text(-100, -110, "Select", {
         fontFamily: "WBB",
-        fontSize: 250,
+        fontSize: 120,
         color: "#492807",
     });
     containerCharSign.add(charSignText);
+
+
+
 
     //containerBottom
     const containerBottom = this.add.container(960, 980);
@@ -110,6 +162,9 @@ export class CharacterSelection extends Phaser.Scene {
 
     const containerCharIcon = this.add.container(0, 0);
     containerBottom.add(containerCharIcon);
+
+
+
 
     // Interactions
     this.leftKey = this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -120,7 +175,10 @@ export class CharacterSelection extends Phaser.Scene {
     this.createCharacterCircles(containerBottom);
   
     this.updateCharacterDisplay(0);
+    
   }
+
+
 
   // make character circles and add updateCharDisplay func on click
   private createCharacterCircles(parent: Phaser.GameObjects.Container) {
@@ -131,14 +189,23 @@ export class CharacterSelection extends Phaser.Scene {
       const containerCharIcon = this.add.container(startX + i * circleSpacing, 0);
       parent.add(containerCharIcon);
       
+      // background circle
       const charCircle = this.add.graphics()
         .fillStyle(0xB7B7B7)
         .fillCircle(0, 0, 50);
+      
+      //characters
+      const charName = Characters[i].name.toLowerCase()
+      const charHead = this.add.image(0, 0, Characters[i].name.toLowerCase());
+
+      charHead.setDisplaySize(100, 100);
+      charHead.setOrigin(0.5, 0.5);
       
       const hitArea = new Phaser.Geom.Circle(0, 0, 50);
       containerCharIcon.setInteractive(hitArea, Phaser.Geom.Circle.Contains);
       
       containerCharIcon.add(charCircle);
+      containerCharIcon.add(charHead);
       
       containerCharIcon.on('pointerdown', () => {
         this.updateCharacterDisplay(i);
@@ -150,6 +217,9 @@ export class CharacterSelection extends Phaser.Scene {
     this.highlightSelectedCircle(0);
   }
   
+
+
+
   // highlight selected (darken others)
   private highlightSelectedCircle(index: number) {
     
@@ -161,6 +231,9 @@ export class CharacterSelection extends Phaser.Scene {
     });
   }
 
+
+
+
   // update text for char and highlight
   private updateCharacterDisplay(index: number) {
     if (index >= 0 && index < Characters.length) {
@@ -169,10 +242,49 @@ export class CharacterSelection extends Phaser.Scene {
  
       this.charNameText.setText(Characters[index].name);
       this.charDescriptionText.setText(Characters[index].description);
+
+      const charName = Characters[index].name.toLowerCase();
+
+      // character switching animation + adding heads
+      this.tweens.add({
+        targets: this.characterFront,
+        alpha: 0,
+        duration: 150,
+        onComplete: () => {
+          this.characterFront.setTexture(charName);
+          // cropping is also done here, because of idk why, thats how phaser works
+          this.characterFront.setCrop();
+          
+          const cropSettings = this.characterCropSettings[charName];
+          if (cropSettings && cropSettings.crop) {
+            const originalWidth = this.characterFront.width;
+            const originalHeight = this.characterFront.height;
+            const cropHeight = Math.floor(originalHeight * (cropSettings.amount || 1));
+            this.characterFront.setCrop(0, 0, originalWidth, cropHeight);
+          }
+
+        // position and size
+        const posSettings = this.characterPositionSettings[charName];
+        this.characterFront.setPosition(posSettings.x, posSettings.y);
+        this.characterFront.setDisplaySize(
+          this.characterFront.width * posSettings.width,
+          this.characterFront.height * posSettings.height
+        );
+          
+          this.tweens.add({
+            targets: this.characterFront,
+            alpha: 1,
+            duration: 150
+          });
+        }
+      });
       
       this.highlightSelectedCircle(index);
     }
   }
+
+
+
 
 // this is for going to 0 after end and vise versa
   private changeCharacter(direction: number) {
@@ -180,6 +292,9 @@ export class CharacterSelection extends Phaser.Scene {
     const newIndex = (this.charIndex + direction + Characters.length) % Characters.length;
     this.updateCharacterDisplay(newIndex);
   }
+
+
+
 
   update() {
     
