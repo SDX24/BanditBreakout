@@ -1,15 +1,19 @@
 import { Start } from "./scenes/Start";
+import { CharacterSelection } from "./scenes/CharacterSelection";
 
 const config = {
   type: Phaser.AUTO,
   title: "Bandit Breakout",
   description: "Turn-based RGP",
   parent: "game-container",
-  width: 1280,
-  height: 720,
+  width: 1920,
+  height: 1080,
   backgroundColor: "#000000",
   pixelArt: false,
-  scene: [Start],
+  scene: [
+    // Start,
+    CharacterSelection,
+  ],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,

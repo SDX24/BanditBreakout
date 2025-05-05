@@ -23,8 +23,9 @@ console.log(game.map.tiles[3].playersOnTile)
 p1.move.to(3)
 p2.move.front(3)
 
-p3.inventory.obtain(8)
-p3.inventory.useItem(8)
+p3.inventory.obtain(4)
+p3.inventory.useItem(4, p1)
+
 
 console.log("Map tile 3 players:")
 console.log(game.map.tiles[3].playersOnTile)
