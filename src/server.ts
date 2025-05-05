@@ -3,6 +3,7 @@ import http from 'http';
 import { Server } from 'socket.io';
 import Game from './areas/Types/Game';
 import { getAssetByFilename } from './db/operations/assetsOps';
+import { MongoClient, GridFSBucket } from 'mongodb';
 // Database imports removed for testing purposes
 // import { connectToDatabase } from './db/mongoose';
 // import { createGame, addPlayerToGame } from './db/operations/gameOps';
@@ -18,6 +19,8 @@ const io = new Server(server, {
 });
 
 const PORT = process.env.PORT || 3000;
+const DB_NAME = process.env.DB_NAME || 'game_assets';
+const GRIDFS_BUCKET = process.env.GRIDFS_BUCKET || 'assets_fs';
 
 // Store active games in memory for quick access
 const activeGames: { [key: string]: Game } = {};
@@ -261,9 +264,24 @@ app.get('/assets/:filename', async (req, res) => {
       if (asset.data) {
         res.send(asset.data.buffer);
       } else {
-        // For GridFS, we would need to stream the content
-        // This is a placeholder - actual implementation depends on how GridFS data is returned
-        res.send('GridFS streaming not implemented');
+        // ── Stream large assets directly from GridFS ──
+        const client = new MongoClient(process.env.MONGODB_URI || 'mongodb://localhost:27017');
+        await client.connect();
+        const db = client.db(DB_NAME);
+        const bucket = new GridFSBucket(db, { bucketName: GRIDFS_BUCKET });
+
+        const downloadStream = bucket.openDownloadStreamByName(filename);
+
+        downloadStream.on('error', (err) => {
+          console.error('GridFS stream error:', err);
+          if (!res.headersSent) res.status(404).send('Asset not found');
+          client.close();
+        });
+
+        downloadStream.on('end', () => client.close());
+
+        // Pipe the file contents straight to the HTTP response
+        return downloadStream.pipe(res);
       }
     } else {
       res.status(404).send('Asset not found');
