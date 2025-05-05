@@ -2,5 +2,4 @@ node_modules
 .aider*
 .env
 dist/
-tempAssets
 fullcutscenewithaudio.mp4
