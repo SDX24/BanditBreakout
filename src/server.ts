@@ -254,6 +254,7 @@ app.get('/assets/:filename', async (req, res) => {
       if (filename.endsWith('.png')) contentType = 'image/png';
       else if (filename.endsWith('.jpg') || filename.endsWith('.jpeg')) contentType = 'image/jpeg';
       else if (filename.endsWith('.gif')) contentType = 'image/gif';
+      else if (filename.endsWith('.svg')) contentType = 'image/svg+xml';
       else if (filename.endsWith('.mp3')) contentType = 'audio/mpeg';
       else if (filename.endsWith('.wav')) contentType = 'audio/wav';
       else if (filename.endsWith('.json')) contentType = 'application/json';
