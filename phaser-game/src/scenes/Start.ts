@@ -1,7 +1,5 @@
 import Phaser from "phaser";
 export class Start extends Phaser.Scene {
-  private backgroundBlack!: Phaser.GameObjects.Image;
-  private backgroundWhite!: Phaser.GameObjects.Image;
   private logoGame!: Phaser.GameObjects.Image;
   private logoTeam!: Phaser.GameObjects.Image;
 
@@ -10,7 +8,6 @@ export class Start extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("backgroundBlack", "assets/black-background.png");
     this.load.image("backgroundWhite", "assets/white.jpg");
     this.load.svg("logoTeam", "assets/CMD Z Logo.svg");
     this.load.svg("logoGame", "assets/Bandit Logo Circle.svg");
@@ -18,30 +15,28 @@ export class Start extends Phaser.Scene {
 
   create() {
 
-    this.backgroundBlack = this.add.image(640, 360, "backgroundBlack");
-    this.backgroundBlack.setOrigin(0.5);
+    const backgroundBlack = this.add.graphics().fillStyle(0x000000).fillRect(0, 0, 1920, 1080);
+    const backgroundWhite = this.add.graphics().fillStyle(0xffffff).fillRect(0, 0, 1920, 1080);
     
-    this.backgroundWhite = this.add.image(640, 360, "backgroundWhite");
-    this.backgroundWhite.setOrigin(0.5);
-    this.backgroundWhite.setAlpha(0);
+    backgroundWhite.setAlpha(0);
     
-    this.logoTeam = this.add.image(640, 360, "logoTeam");
-    this.logoTeam.setOrigin(0.5);
+    this.logoTeam = this.add.image(960, 540, "logoTeam");
+    this.logoTeam.setDisplaySize(300, 300);
     this.logoTeam.setAlpha(0);
     
-    this.logoGame = this.add.image(640, 360, "logoGame");
-    this.logoGame.setOrigin(0.5);
+    this.logoGame = this.add.image(960, 540, "logoGame");
+    this.logoGame.setDisplaySize(300, 300);
     this.logoGame.setAlpha(0);
     
     this.tweens.add({
-      targets: this.backgroundBlack,
+      targets: backgroundBlack,
       alpha: 1,
       duration: 2000,
       delay: 0,
     });
 
     this.tweens.add({
-      targets: this.backgroundWhite,
+      targets: backgroundWhite,
       alpha: 1,
       duration: 1000,
       delay: 2000,
@@ -63,7 +58,7 @@ export class Start extends Phaser.Scene {
       });
     
       this.tweens.add({
-        targets: this.backgroundWhite,
+        targets: backgroundWhite,
         alpha: 0,
         duration: 1000,
         delay: 3000,
