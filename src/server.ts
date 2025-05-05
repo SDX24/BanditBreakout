@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import Game from './areas/Types/Game';
+import { getAssetByFilename } from './db/operations/assetsOps';
 // Database imports removed for testing purposes
 // import { connectToDatabase } from './db/mongoose';
 // import { createGame, addPlayerToGame } from './db/operations/gameOps';
@@ -237,6 +238,40 @@ io.on('connection', (socket) => {
     console.log('Client disconnected:', socket.id);
     // Optionally, handle player disconnection from game
   });
+});
+
+// Asset serving endpoint for Phaser
+app.get('/assets/:filename', async (req, res) => {
+  const filename = req.params.filename;
+  try {
+    const asset = await getAssetByFilename(filename);
+    if (asset) {
+      // Set appropriate content type based on asset metadata or filename extension
+      let contentType = 'application/octet-stream';
+      if (filename.endsWith('.png')) contentType = 'image/png';
+      else if (filename.endsWith('.jpg') || filename.endsWith('.jpeg')) contentType = 'image/jpeg';
+      else if (filename.endsWith('.gif')) contentType = 'image/gif';
+      else if (filename.endsWith('.mp3')) contentType = 'audio/mpeg';
+      else if (filename.endsWith('.wav')) contentType = 'audio/wav';
+      else if (filename.endsWith('.json')) contentType = 'application/json';
+      
+      res.setHeader('Content-Type', contentType);
+      
+      // Check if asset.data exists (from regular collection) or if we need to stream from GridFS
+      if (asset.data) {
+        res.send(asset.data.buffer);
+      } else {
+        // For GridFS, we would need to stream the content
+        // This is a placeholder - actual implementation depends on how GridFS data is returned
+        res.send('GridFS streaming not implemented');
+      }
+    } else {
+      res.status(404).send('Asset not found');
+    }
+  } catch (error) {
+    console.error('Error serving asset:', error);
+    res.status(500).send('Error retrieving asset');
+  }
 });
 
 // Start the server
