@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { Characters, ICharacter } from "backend/areas/Types/Character"
+import WebFontLoader from "webfontloader";
 
 export class CharacterSelection extends Phaser.Scene {
   private overlayBacking!: Phaser.GameObjects.Image;
@@ -27,7 +28,13 @@ export class CharacterSelection extends Phaser.Scene {
     this.load.image("overlayPage", "tempAssets/page.png");
     this.load.image("ovelayBackSign", "tempAssets/backSign.png");
     this.load.image("charSign", "tempAssets/charSign.png");
-    this.load.font("WBB", "fonts/WesternBangBang-Regular.ttf");
+
+    WebFontLoader.load({
+      custom: {
+        families: ['Wellfleet', 'WBB'],
+        urls: ['/fonts.css']
+      }
+    });
 }
 
   create() {
@@ -55,7 +62,7 @@ export class CharacterSelection extends Phaser.Scene {
     containerLeft.add(overlayFrame);
 
     //containerRight
-    const containerRight = this.add.container(450, 0);
+    const containerRight = this.add.container(400, 0);
     containerMain.add(containerRight);
 
     const overlayPage = this.add.image(0, 0, "overlayPage");
@@ -66,17 +73,19 @@ export class CharacterSelection extends Phaser.Scene {
     containerCharDescription.setScale(0.5);
     containerRight.add(containerCharDescription);
 
-    this.charNameText = this.add.text(0, 0, "charName", {
+    this.charNameText = this.add.text(100, -370, "charName", {
         fontFamily: "WBB",
-        fontSize: 250,
-        color: "#492807",
+        fontSize: 220,
+        color: "#000000",
     });
     containerCharDescription.add(this.charNameText);
 
-    this.charDescriptionText = this.add.text(0, 0, "charDesc", {
-        fontFamily: "WBB",
-        fontSize: 100,
-        color: "#492807",
+    this.charDescriptionText = this.add.text(0, -200, "charDesc", {
+        fontFamily: "Wellfleet",
+        fontSize: 50,
+        color: "#000000",
+        wordWrap: { width: 800, useAdvancedWrap: true,  },
+        align: "center",
     });
     containerCharDescription.add(this.charDescriptionText);
 
