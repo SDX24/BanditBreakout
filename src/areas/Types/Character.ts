@@ -26,14 +26,14 @@ export const Characters: ICharacter[] = [
     },
     {
         id: 4,
-        name: "Scout",
-        description: "Scout is the town's cheerful protector, always on patrol with a wagging tail. His keen senses and quick reflexes keep Mirage Creek safe, and he’s always ready for the next adventure with a smile on his face. But something is hiding beneath the surface…",
-        goal: "Protect Buckshot and defeat Spindle."
-    },
-    {
-        id: 5,
         name: "Solstice",
         description: "Solstice is a mysterious thief who moves like a shadow, never caught and always elusive. Known for stealing ancient artifacts for the thrill, she’s become a desert legend, with a knack for uncovering lost treasures.",
         goal: "Collect the bounty on Spindle."
+    },
+    {
+        id: 5,
+        name: "Scout",
+        description: "Scout is the town's cheerful protector, always on patrol with a wagging tail. His keen senses and quick reflexes keep Mirage Creek safe, and he’s always ready for the next adventure with a smile on his face. But something is hiding beneath the surface…",
+        goal: "Protect Buckshot and defeat Spindle."
     }
 ];
