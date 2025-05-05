@@ -21,6 +21,26 @@ const PORT = process.env.PORT || 3000;
 // Store active games in memory for quick access
 const activeGames: { [key: string]: Game } = {};
 
+// Quick-and-dirty snapshot of everything the client UI needs to render
+function serializeGame(game: Game) {
+  return {
+    players: game.players.map(p => ({
+      id: p.id,
+      position: game.map.findPlayer(p.id),
+      status: {
+        gold: p.status.gold,
+        health: p.status.health,
+        effects: p.status.effects
+      }
+    })),
+    tiles: game.map.tiles.map(t => ({
+      index: t.index,
+      eventType: t.event.type,
+      players: t.playersOnTile
+    }))
+  };
+}
+
 io.on('connection', (socket) => {
   console.log('New client connected:', socket.id);
 
@@ -33,6 +53,8 @@ io.on('connection', (socket) => {
       activeGames[gameId].startGame(playerCount, gameId);
       socket.join(gameId);
       socket.emit('gameCreated', { gameId, name });
+      // Send the freshly-built game state to everyone already in the room (just the host for now)
+      io.to(gameId).emit('gameState', serializeGame(activeGames[gameId]));
       console.log(`Game created: ${gameId}`);
     } catch (error) {
       socket.emit('error', { message: 'Failed to create game', details: error.message || 'Unknown error' });
@@ -52,6 +74,8 @@ io.on('connection', (socket) => {
       socket.join(gameId);
       socket.emit('joinedGame', { gameId, playerId });
       io.to(gameId).emit('playerJoined', { playerId });
+      // Give the joining client the current snapshot
+      socket.emit('gameState', serializeGame(activeGames[gameId]));
       console.log(`Player ${playerId} joined game ${gameId}`);
     } catch (error) {
       socket.emit('error', { message: 'Failed to join game' });
