@@ -25,14 +25,4 @@ export class Settings implements ISettings {
     setVoicesVolume(vol: number) {
         this.voicesVolume = Math.max(0, Math.min(1, vol));
     }
-
-    toggleMusic() {
-        this.musicEnabled = !this.musicEnabled;
-    }
-    toggleSfx() {
-        this.sfxEnabled = !this.sfxEnabled;
-    }
-    toggleVoices() {
-        this.voicesEnabled = !this.voicesEnabled;
-    }
 }
