@@ -1,5 +1,6 @@
 import { Start } from "./scenes/Start";
 import { CharacterSelection } from "./scenes/CharacterSelection";
+import { MainScreen } from "./scenes/MainScreen";
 
 const config = {
   type: Phaser.AUTO,
@@ -11,8 +12,9 @@ const config = {
   backgroundColor: "#000000",
   pixelArt: false,
   scene: [
-    Start,
-    CharacterSelection,
+    // Start,
+    // CharacterSelection,
+    MainScreen,
   ],
   scale: {
     mode: Phaser.Scale.FIT,
