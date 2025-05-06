@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import { Characters, ICharacter } from "backend/areas/Types/Character"
 import WebFontLoader from "webfontloader";
+import { settingsListener } from "../middleware/settingsListener";
 
 export class CharacterSelection extends Phaser.Scene {
   private charNameText!: Phaser.GameObjects.Text;
@@ -197,6 +198,9 @@ export class CharacterSelection extends Phaser.Scene {
   
     this.updateCharacterDisplay(0)
     
+    //esc -> settings
+    
+    settingsListener(this);
   }
 
 
