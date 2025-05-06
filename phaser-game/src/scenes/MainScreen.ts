@@ -43,6 +43,7 @@ export class MainScreen extends Phaser.Scene {
       color: "#492807",
     });
     optionsContainer.add(options);
+    optionsContainer.add(optionsText);
 
     const poleContainer = this.add.container(0, 0);
     const pole = this.add.image(860, 540, "pole");
