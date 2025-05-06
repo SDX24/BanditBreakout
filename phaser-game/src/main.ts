@@ -1,6 +1,7 @@
 import { Start } from "./scenes/Start";
 import { CharacterSelection } from "./scenes/CharacterSelection";
 import { SettingsMenu } from "./scenes/Settings";
+import { EmptyTest } from "./scenes/EmptyTest";
 
 const config = {
   type: Phaser.AUTO,
@@ -13,7 +14,8 @@ const config = {
   pixelArt: false,
   scene: [
     // Start,
-    CharacterSelection,
+    // CharacterSelection,
+    EmptyTest,
     SettingsMenu,
   ],
   scale: {
