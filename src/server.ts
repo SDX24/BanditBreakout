@@ -243,10 +243,11 @@ io.on('connection', (socket) => {
 });
 
 app.use('/assets/', async (req, res) => {
-  const filename = req.originalUrl.replace('/assets/', '');
-  console.log(`Asset request: ${filename}`);
+  const filename = decodeURIComponent(req.originalUrl.replace('/assets/', ''));
+  const fullPath = `assets/${filename}`;
+  console.log(`Asset request: ${filename}, Full path: ${fullPath}`);
   try {
-    const asset = await getAssetByFilename(filename);
+    const asset = await getAssetByFilename(fullPath);
     if (asset) {
       // Set appropriate content type based on asset metadata or filename extension
       let contentType = 'application/octet-stream';
