@@ -243,8 +243,8 @@ io.on('connection', (socket) => {
 });
 
 // Asset serving endpoint for Phaser
-app.get('/assets/:filename(.*)', async (req, res) => {
-  const filename = req.params.filename;
+app.get('/assets/*', async (req, res) => {
+  const filename = req.params[0];
   console.log(`${filename}`);
   try {
     const asset = await getAssetByFilename(filename);
