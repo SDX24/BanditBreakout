@@ -242,7 +242,7 @@ io.on('connection', (socket) => {
   });
 });
 
-app.get('/assets/:path(*)', async (req, res) => {
+app.get('/assets/:path', async (req, res) => {
   const filename = req.params.path;
   console.log(`${filename}`);
   try {
