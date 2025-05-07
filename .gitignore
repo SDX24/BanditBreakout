@@ -5,3 +5,4 @@ dist/
 fullcutscenewithaudio.mp4
 .env
 phaser-game/.DS_Store
+.env
