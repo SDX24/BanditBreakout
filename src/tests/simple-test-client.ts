@@ -28,7 +28,7 @@ socket.on('connect', () => {
 // Add connection error handling
 socket.on('connect_error', (error) => {
   console.error('Connection error:', error.message);
-  console.log('Please ensure the server is running on port 6006 before running this test.');
+  console.log('Please ensure the server is running on port 3000 before running this test.');
   socket.disconnect();
   process.exit(1);
 });
