@@ -1,7 +1,7 @@
 import { io, Socket } from 'socket.io-client';
 import readline from 'readline';
 
-const SOCKET_URL = 'http://localhost:3000'; // Adjust if your server runs on a different port
+const SOCKET_URL = 'http://localhost:6006'; // Adjust if your server runs on a different port
 
 // Create a readline interface for command-line input
 const rl = readline.createInterface({
