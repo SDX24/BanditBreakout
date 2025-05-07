@@ -242,9 +242,9 @@ io.on('connection', (socket) => {
   });
 });
 
-app.get('/assets/*', async (req, res) => {
-  const filename = req.params[0];
-  console.log(`${filename}`);
+app.use('/assets/', async (req, res) => {
+  const filename = req.originalUrl.replace('/assets/', '');
+  console.log(`Asset request: ${filename}`);
   try {
     const asset = await getAssetByFilename(filename);
     if (asset) {
