@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-const SOCKET_URL = 'http://localhost:6006';
+const SOCKET_URL = 'http://localhost:3000';
 const socket = io(SOCKET_URL, {
   reconnection: false, // Don't keep trying to reconnect
   timeout: 5000 // Timeout after 5 seconds if can't connect
