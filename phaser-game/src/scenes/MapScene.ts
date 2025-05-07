@@ -7,12 +7,14 @@ export class MapScene extends Phaser.Scene {
     preload() {
       // this.load.image('background', 'tempAssets/background.png');
       const filename = 'board/background.png';
-      let url = `http://localhost:3000/assets/${encodeURIComponent(filename)}`;
+      const encodedFilename = encodeURIComponent(filename);
+      const url = `http://localhost:3000/assets/${encodedFilename}`;
+      console.log(`Loading background image from: ${url}`);
       this.load.image('background', url);   
-      this.load.svg('mapOverlay','tempAssets/Board with Bridges.svg', {
+      this.load.svg('mapOverlay', 'tempAssets/Board with Bridges.svg', {
         width: 1920,
         height: 1080
-    });
+      });
 
 
 
