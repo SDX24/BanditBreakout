@@ -74,7 +74,6 @@ io.on('connection', (socket) => {
     }
     try {
       // Database operations removed: await addPlayerToGame(gameId, playerId);
-      // Database operations removed: await createPlayer(gameId, playerId);
       socket.join(gameId);
       socket.emit('joinedGame', { gameId, playerId });
       io.to(gameId).emit('playerJoined', { playerId });
@@ -246,6 +245,7 @@ io.on('connection', (socket) => {
 // Asset serving endpoint for Phaser
 app.get('/assets/:filename', async (req, res) => {
   const filename = req.params.filename;
+  console.log(`${filename}`);
   try {
     const asset = await getAssetByFilename(filename);
     if (asset) {
@@ -263,8 +263,23 @@ app.get('/assets/:filename', async (req, res) => {
       
       // Check if asset.data exists (from regular collection) or if we need to stream from GridFS
       if (asset.data) {
-        res.send(asset.data.buffer);
+
+        console.log('asset.data instanceof Buffer?', Buffer.isBuffer(asset.data));
+        console.log('  asset.data.length           =', (asset.data as Buffer).length);
+        console.log('asset.data.buffer byteLength=', (asset.data as any)?.buffer?.byteLength);
+
+        console.log('typeof asset.data =', typeof asset.data);
+
+        const buf = Buffer.from(asset.data as string, 'base64');
+
+        // (optional) set length so clients know when the stream ends
+        res.setHeader('Content-Length', buf.length);
+
+        return res.send(buf);
+
+
       } else {
+
         // ── Stream large assets directly from GridFS ──
         const client = new MongoClient(process.env.MONGODB_URI || 'mongodb://localhost:27017');
         await client.connect();
