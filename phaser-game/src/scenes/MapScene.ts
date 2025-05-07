@@ -5,7 +5,11 @@ export class MapScene extends Phaser.Scene {
     private dragStartY  = 0;
   
     preload() {
-      this.load.image('background', 'tempAssets/background.png');
+      // this.load.image('background', 'tempAssets/background.png');
+      const filename = 'board/background.png';
+      //url encoded the url, ai!
+      let url = "http://localhost:3000/assets/${filename}";
+      this.load.image('background', url);   
       this.load.svg('mapOverlay','tempAssets/Board with Bridges.svg', {
         width: 1920,
         height: 1080
