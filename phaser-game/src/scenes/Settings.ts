@@ -5,10 +5,43 @@ import WebFontLoader from "webfontloader";
 
 export class SettingsMenu extends Phaser.Scene {
   private settings: Settings;
+  private rulebookTexts: { index: number; label: string; description: string }[];
 
   constructor() {
     super("Settings");
     this.settings = new Settings();
+    this.rulebookTexts = [
+      { index: 0, label: "Moving on the board", description: "Roll a dice. Whatever value you get will determine the amount of tiles you get to advance." },
+      { index: 1, label: "Gold", description: 
+        `1. Each safe spot will grant you 3 gold, collect gold to
+    gain benefits later down the line
+
+2. Each Time you enter into a new city/area, players
+    can enter the shop`
+      },
+      { index: 2, label: "HP & Combat", description: 
+        `1. Each side starts with 10 HP
+
+2. Each turn, the player and the opponent both roll a
+    dice to determine amount of bullets they are able to
+    shoot, each bullet deals 1 HP of damage
+
+3. Whoever gets the opposing side to drop below 0 HP
+    wins
+
+4. Winning a battle will give you 3 gold
+
+5. If you lose all your HP, you will be sent back 2 tiles
+    and take away 3 gold. ` },
+      { index: 3, label: "Safe Tile", description: "This tile is a safe space. Gain +3 gold!" },
+      { index: 4, label: "Decision Tile", description: "This tile unlocks cool dialogue and determines your path moving forward." },
+      { index: 5, label: "Mining Tile", description: "This tile grants player a random amount of gold between 10–30." },
+      { index: 6, label: "Event Tile", description: "This tile unlocks cool events that may grant rewards and lore." },
+      { index: 7, label: "Treasure Tile", description: "This tile gives player a random one-time use item." },
+      { index: 8, label: "Effect Tile", description: "This tile grants player a random one-time combat buff." },
+      { index: 9, label: "Slots Tile", description: "This tile grants player a random amount of gold between 20–50." },
+      { index: 10, label: "Battle Tile", description: "You are ambushed by an enemy. Fight for your survival!" },
+    ];
   }
 
   preload() {
@@ -19,6 +52,20 @@ export class SettingsMenu extends Phaser.Scene {
     this.load.svg("soundIcon", "tempAssets/settingsOverlay/Sound.svg");
     this.load.svg("backboard", "tempAssets/settingsOverlay/backboard.svg")
     this.load.image("ovelayBackSign", "tempAssets/settingsOverlay/backSign.png");
+    this.load.image("page", "tempAssets/settingsOverlay/page.png");
+    this.load.image("pagePinned", "tempAssets/settingsOverlay/pagePinned.png");
+    this.load.svg("arrow", "tempAssets/settingsOverlay/arrow.svg");
+
+    this.load.svg("safe", "tempAssets/tiles/safe.svg");
+    this.load.svg("decision", "tempAssets/tiles/decision.svg");
+    this.load.svg("mining", "tempAssets/tiles/mining.svg");
+    this.load.svg("event", "tempAssets/tiles/event.svg");
+    this.load.svg("treasure", "tempAssets/tiles/treasure.svg");
+    this.load.svg("effect", "tempAssets/tiles/effect.svg");
+    this.load.svg("slots", "tempAssets/tiles/slots.svg");
+    this.load.svg("battle", "tempAssets/tiles/battle.svg");
+
+
 
 
     WebFontLoader.load({
@@ -41,8 +88,9 @@ export class SettingsMenu extends Phaser.Scene {
     
     const board = this.add.image(0, 0, "board")
     containerMain.add(board);
+    
 
-    const backboardTexts = ["Close options", "Legend", "Settings"];
+    const backboardTexts = ["Close options", "Rulebook", "Settings"];
     //this should be something like checkInGame()
     const checkInGame = () => {
       backboardTexts.push("Leave game");
@@ -75,11 +123,11 @@ backboardTexts.forEach((text, index) => {
     containerMain.add(backboard);
     containerMain.add(backboardText);
 
-    backboard.setInteractive(new Phaser.Geom.Rectangle(0, 20, backboard.displayWidth, backboard.displayHeight), Phaser.Geom.Rectangle.Contains);
-    backboard.on("pointerdown", () => {
+    backboardText.setInteractive()
+    backboardText.on("pointerdown", () => {
         if (text === "Close options") {
             closeSettings();
-        } else if (text === "Legend") {
+        } else if (text === "Rulebook") {
             openLayout(text);
         } else if (text === "Settings") {
             openLayout(text);
@@ -102,10 +150,196 @@ const openLayout = (layoutName: string) => {
 
 
 
-  if (layoutName === "Legend") {
 
-      layoutContainer.add([]);
+  if (layoutName === "Rulebook") {
 
+    const rulesLabelContainer = this.add.container(0, 0);
+  
+    // left Page
+    const leftPage = this.add.image(-550, 0, "page");
+    leftPage.setOrigin(0.5);
+    leftPage.setDisplaySize(leftPage.width * 0.9, leftPage.height * 0.9);
+    let leftLabel = this.add.text(-550, 0, "Rules", {
+      fontFamily: "WBB",
+      fontSize: 125,
+      color: "#000000",
+      align: "center",
+    }).setOrigin(0.5);
+  
+    // middle Page
+    const middlePage = this.add.image(0, 0, "pagePinned");
+    middlePage.setOrigin(0.5);
+    middlePage.setDisplaySize(leftPage.displayWidth, leftPage.displayHeight);
+    let middleLabel1 = this.add.text(0, -150, this.rulebookTexts[0].label, {
+      fontFamily: "Wellfleet",
+      fontSize: 31,
+      color: "#462406",
+      align: "center",
+    }).setOrigin(0.5);
+    let middleDescription1 = this.add.text(0, -100, this.rulebookTexts[0].description, {
+      fontFamily: "Wellfleet",
+      fontSize: 16,
+      color: "#462406",
+      align: "center",
+      wordWrap: { width: middlePage.displayWidth * 0.8 },
+    }).setOrigin(0.5);
+
+    let middleLabel2 = this.add.text(0, 0, this.rulebookTexts[1].label, {
+      fontFamily: "Wellfleet",
+      fontSize: 31,
+      color: "#462406",
+      align: "center",
+    }).setOrigin(0.5);
+    let middleDescription2 = this.add.text(0, 75, this.rulebookTexts[1].description, {
+      fontFamily: "Wellfleet",
+      fontSize: 16,
+      color: "#462406",
+      wordWrap: { width: middlePage.displayWidth * 0.8 },
+    }).setOrigin(0.5);
+  
+    // Right Page
+    const rightPage = this.add.image(550, 0, "pagePinned");
+    rightPage.setOrigin(0.5);
+    rightPage.setDisplaySize(leftPage.displayWidth, leftPage.displayHeight);
+    let rightLabel = this.add.text(550, -150, this.rulebookTexts[2].label, {
+      fontFamily: "Wellfleet",
+      fontSize: 31,
+      color: "#462406",
+      align: "center",
+    }).setOrigin(0.5);
+    let rightDescription = this.add.text(550, 0, this.rulebookTexts[2].description, {
+      fontFamily: "Wellfleet",
+      fontSize: 16,
+      color: "#462406",
+      wordWrap: { width: rightPage.displayWidth * 0.8 },
+    }).setOrigin(0.5);
+  
+    rulesLabelContainer.add([
+      leftPage,
+      leftLabel,
+      middlePage,
+      middleLabel1,
+      middleLabel2,
+      middleDescription1,
+      middleDescription2,
+      rightPage,
+      rightLabel,
+      rightDescription,
+    ]);
+  
+    layoutContainer.add(rulesLabelContainer);
+  
+    // left arrow (hidden on rules)
+    const leftArrow = this.add.image(-900, 0, "arrow")
+    .setOrigin(0.5)
+    .setDisplaySize(100, 100)
+    .setInteractive()
+    leftArrow.setVisible(false); // hide on rules
+  
+    // right arrow (hidden on tiles)
+    const rightArrow = this.add.image(900, 0, "arrow")
+    .setOrigin(0.5)
+    .setDisplaySize(100, 100)
+    .setFlipX(true)
+    .setInteractive()
+
+    const tilesGuideTexts: Phaser.GameObjects.Text[] = [];
+    const tilesGuideImages: Phaser.GameObjects.Image[] = [];
+    const tileImageKeys: { [key: string]: string } = {
+      "Safe Tile": "safe",
+      "Decision Tile": "decision",
+      "Mining Tile": "mining",
+      "Event Tile": "event",
+      "Treasure Tile": "treasure",
+      "Effect Tile": "effect",
+      "Slots Tile": "slots",
+      "Battle Tile": "battle",
+    };
+    
+    let yOffsetStart = -175;
+    let yOffset = yOffsetStart;
+    const createTilesGuideTexts = (i: number, yOffsetStart: number, xOffset: number) => {
+      const label = this.add.text(xOffset -50, yOffset, this.rulebookTexts[i].label, {
+        fontFamily: "Wellfleet",
+        fontSize: 25,
+        color: "#462406",
+        align: "left",
+        wordWrap: { width: middlePage.displayWidth * 0.5 }
+      }).setOrigin(0.5).setVisible(false);
+    
+      const description = this.add.text(xOffset, yOffset + 50, this.rulebookTexts[i].description, {
+        fontFamily: "Wellfleet",
+        fontSize: 16,
+        color: "#462406",
+        wordWrap: { width: middlePage.displayWidth * 0.5 },
+      }).setOrigin(0.5).setVisible(false);
+
+
+      const imageKey = tileImageKeys[this.rulebookTexts[i].label];
+        const tileImage = this.add.image(xOffset + 780, yOffset + 570, imageKey)
+        .setOrigin(0.5)
+        tileImage.setDisplaySize(tileImage.width * 0.5, tileImage.height * 0.5)
+        .setVisible(false)
+
+        if (tileImageKeys[this.rulebookTexts[i].label] === "slots") {
+          tileImage.setDisplaySize(tileImage.width * 0.35, tileImage.height * 0.35)
+        }
+
+        rulesLabelContainer.add([label, description]);
+        tilesGuideImages.push(tileImage);
+        tilesGuideTexts.push(label, description);
+    
+      yOffset += 100;
+    }
+
+    for (let i = 3; i < 7; i++) {
+      createTilesGuideTexts(i, yOffset, 20);
+    }
+
+    yOffset = yOffsetStart;
+    for (let i = 7; i < 11; i++) {
+      createTilesGuideTexts(i, yOffset, 600);
+    }
+    
+    rightArrow.on("pointerdown", () => {
+      leftLabel.setText("Tiles Guide");
+    
+      [middleLabel1, middleDescription1, middleLabel2, middleDescription2, rightLabel, rightDescription].forEach((text) => {
+        text.setVisible(false);
+      });
+    
+      tilesGuideTexts.forEach((text) => {
+        text.setVisible(true);
+      });
+
+      tilesGuideImages.forEach((image) => {
+        image.setVisible(true);
+      });
+    
+      rightArrow.setVisible(false);
+      leftArrow.setVisible(true);
+    });
+    
+    leftArrow.on("pointerdown", () => {
+      leftLabel.setText("Rules");
+    
+      tilesGuideTexts.forEach((text) => {
+        text.setVisible(false);
+      });
+
+      tilesGuideImages.forEach((image) => {
+        image.setVisible(false);
+      });
+    
+      [middleLabel1, middleDescription1, middleLabel2, middleDescription2, rightLabel, rightDescription].forEach((text) => {
+        text.setVisible(true);
+      });
+    
+      leftArrow.setVisible(false);
+      rightArrow.setVisible(true);
+    });
+  
+    layoutContainer.add([leftArrow, rightArrow]);
 
 
 
@@ -206,12 +440,7 @@ const openLayout = (layoutName: string) => {
 
 
 
-  } else if (layoutName === "Rules") {
-
-      layoutContainer.add([]);
-  }
-
-
+  } 
 
   const containerBackButton = this.add.container(-900, -350);
   const overlayBackSign = this.add.image(0, 0, "ovelayBackSign");
