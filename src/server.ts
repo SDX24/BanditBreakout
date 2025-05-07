@@ -243,6 +243,11 @@ io.on('connection', (socket) => {
 });
 
 app.use('/assets/', async (req, res) => {
+  // Add CORS headers to allow requests from any origin
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  
   const filename = decodeURIComponent(req.originalUrl.replace('/assets/', ''));
   console.log(`Asset request: ${filename}`);
   try {
