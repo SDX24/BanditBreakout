@@ -15,7 +15,7 @@ const config = {
   scene: [
     // Start,
     // CharacterSelection,
-    EmptyTest,
+    // EmptyTest,
     SettingsMenu,
   ],
   scale: {
