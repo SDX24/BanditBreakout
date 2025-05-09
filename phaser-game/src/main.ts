@@ -1,9 +1,6 @@
 import { Start } from "./scenes/Start";
 import { CharacterSelection } from "./scenes/CharacterSelection";
-import { MainScreen } from "./scenes/MainScreen";
-import { Host } from "./scenes/Host";
-import { Code } from "./scenes/Code";
-import { Room } from "./scenes/Room";
+import { MainScreen, Host, Code, Room } from "./scenes/MainScreen";
 
 const config = {
   type: Phaser.AUTO,
@@ -17,6 +14,10 @@ const config = {
   scene: [
     // Start,
     // CharacterSelection,
+
+    MainScreen,
+    Host,
+    Code,
     Room,
   ],
   scale: {
