@@ -1,6 +1,5 @@
 import { settingsListener } from "../middleware/settingsListener";
 export class MapScene extends Phaser.Scene {
-    private mapContainer!: Phaser.GameObjects.Container;
   
     constructor() {
       super("MapScene");
@@ -25,7 +24,7 @@ export class MapScene extends Phaser.Scene {
       const bg      = this.add.image(0,0,'background').setOrigin(0);
       const overlay = this.add.image(0,0,'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
  
-      this.mapContainer = this.add.container(0,0,[ bg, overlay ]);
+      const mapContainer = this.add.container(0,0,[ bg, overlay ]);
 
       settingsListener(this);
     }
