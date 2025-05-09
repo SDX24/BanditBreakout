@@ -9,8 +9,8 @@ export class Start extends Phaser.Scene {
 
   preload() {
     useDb(this);
-    this.load.svg("logoTeam", "assets/CMD Z Logo.svg");
-    this.load.svg("logoGame", "assets/Bandit Logo Circle.svg");
+    this.load.svg("logoTeam", "company__group__logo/CMD Z Logo.svg");
+    this.load.svg("logoGame", "game_logo/Bandit Logo Circle.svg");
   }
 
   create() {
