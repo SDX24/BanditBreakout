@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { Characters, ICharacter } from "backend/areas/Types/Character"
+import { Characters, ICharacter } from "../../../backend/areas/Types/Character"
 import WebFontLoader from "webfontloader";
 import { settingsListener } from "../middleware/settingsListener";
 

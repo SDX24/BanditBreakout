@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Settings from "backend/areas/Types/Settings"
+import Settings from "../../../backend/areas/Types/Settings"
 import WebFontLoader from "webfontloader";
 
 
