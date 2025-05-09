@@ -1,6 +1,6 @@
 import Player from "./Player"
 import Map from "../Map/Map"
-import { Settings } from "./Settings";
+import Settings from "./Settings";
 
 export default class Game {
     players: Player[]
