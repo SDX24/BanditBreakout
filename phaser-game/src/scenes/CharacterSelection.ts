@@ -44,11 +44,11 @@ export class CharacterSelection extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("overlayBacking", "tempAssets/charSelection/backing.png");
-    this.load.image("overlayFrame", "tempAssets/charSelection/frame.png");
-    this.load.image("overlayPage", "tempAssets/charSelection/page.png");
+    this.load.image("overlayBacking", "character_selection/backing.png");
+    this.load.image("overlayFrame", "character_selection/frame.png");
+    this.load.image("overlayPage", "character_selection/page.png");
     this.load.image("ovelayBackSign", "tempAssets/charSelection/backSign.png");
-    this.load.image("charSign", "tempAssets/charSelection/charSign.png");
+    this.load.image("charSign", "character_selection/select button.png");
     this.load.svg("buckshot", "tempAssets/charSelection/buckshotFront.svg");
     this.load.svg("serpy", "tempAssets/charSelection/serpyFront.svg");
     this.load.svg("grit", "tempAssets/charSelection/gritFront.svg");
