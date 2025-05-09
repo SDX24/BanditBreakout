@@ -15,7 +15,7 @@ export class MainScreen extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("background", "assets/background.png");
+    this.load.image("background", "assets/backDesert.png");
     this.load.image("pole", "assets/pole.png");
     this.load.image("title-card", "assets/title card.png");
     this.load.image("start", "assets/start.png");
@@ -115,7 +115,7 @@ export class Host extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("background", "assets/background.png");
+    this.load.image("background", "assets/backDesert.png");
     this.load.image("post", "assets/post.png");
     this.load.image("host", "assets/host.png");
     this.load.image("code", "assets/code.png");
@@ -228,7 +228,7 @@ export class Code extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("background", "assets/background.png");
+    this.load.image("background", "assets/backDesert.png");
     this.load.image("post", "assets/post.png");
     this.load.image("host", "assets/host.png");
     this.load.image("code", "assets/code.png");
@@ -342,7 +342,7 @@ export class Room extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("background", "assets/background.png");
+    this.load.image("background", "assets/backDesert.png");
     this.load.image("post", "assets/post.png");
     this.load.image("host", "assets/host.png");
     this.load.image("code", "assets/code.png");
