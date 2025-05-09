@@ -14,9 +14,9 @@ export class LoadingScreen extends Phaser.Scene {
 
   create() {
     const screen = this.add.container(0, 0);
-    const loadingScene = this.add.video(960, 540, "loading");
+    const loadingScreen = this.add.video(960, 540, "loading");
 
-    loadingScene.play(true);
-    screen.add(loadingScene);
+    loadingScreen.play(true);
+    screen.add(loadingScreen);
   }
 }
