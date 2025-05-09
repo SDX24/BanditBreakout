@@ -5,8 +5,9 @@
 #  - skips Voice lines & BanditBreakout_hifi.mov
 #  - embeds small files via mongosh (fs.readFileSync)
 #  - streams large files via mongofiles (--prefix)
+#  - guarantees exactly ONE copy per filename (last write wins)
 
-# --- USAGE & PARAMETER PARSING ↓──────────────────────────────────────
+# --- USAGE & PARAMETER PARSING ──────────────────────────────────────
 if [[ $# -lt 1 ]]; then
   echo "Usage: $0 <ASSETS_DIR> [MONGO_URI] [DB] [COLL] [GRIDFS_BUCKET] [THRESHOLD_MiB]"
   echo
@@ -25,11 +26,10 @@ MONGO_URI="${2:-mongodb://localhost:27017}"
 DB="${3:-game_assets}"
 COLL="${4:-assets}"
 GRIDFS_BUCKET="${5:-assets_fs}"
-# threshold in bytes (default 16 MiB)
+# threshold in bytes (default 16 MiB)
 THRESHOLD=$(( ${6:-16} * 1024 * 1024 ))
 
 # -------------------------------------------------------------------
-
 # ensure mongosh + mongofiles are available
 for cmd in mongosh mongofiles; do
   if ! command -v $cmd &>/dev/null; then
@@ -38,7 +38,17 @@ for cmd in mongosh mongofiles; do
   fi
 done
 
-# helper: get filesize in bytes (macOS stat)
+# -------------------------------------------------------------------
+# one‑off: enforce uniqueness on filename for the small‑file collection
+mongosh "$MONGO_URI/$DB" --quiet <<'EOF'
+db.getCollection("'"$COLL"'").createIndex(
+  { filename: 1 },
+  { unique: true }
+)
+EOF
+# -------------------------------------------------------------------
+
+# helper: get filesize in bytes (macOS / BSD stat)
 filesize() {
   stat -f%z "$1"
 }
@@ -50,28 +60,34 @@ find "$ASSETS_DIR" \
                -o -iname '*.wav' -o -iname '*.mp4' \) -print0 \
 | while IFS= read -r -d '' file; do
     size=$(filesize "$file")
-    rel="${file#"$ASSETS_DIR"/}"               # DB filename
+    rel="${file#"$ASSETS_DIR"/}"          # filename to store in DB
     mime=$(file --brief --mime-type "$file")
 
     if (( size > THRESHOLD )); then
-      echo "🎥 [GridFS] $rel  ($(printf '%.2f' "$((size/1024/1024.0))") MiB)"
+      # ---------------- LARGE FILE → GridFS -------------------------
+      # --replace guarantees we always keep just the newest copy
+      echo "🎥 [GridFS] $rel  ($(printf '%.2f' "$((size/1024/1024.0))") MiB)"
       mongofiles \
         --uri="$MONGO_URI/$DB" \
         --prefix="$GRIDFS_BUCKET" \
         put "$rel" --local "$file" --replace
     else
-      echo "📄 [Doc]    $rel  ($(printf '%.2f' "$((size/1024/1024.0))") MiB)"
+      # ---------------- SMALL FILE → regular collection -------------
+      echo "📄 [Doc]    $rel  ($(printf '%.2f' "$((size/1024/1024.0))") MiB)"
       mongosh "$MONGO_URI/$DB" --quiet <<EOF
-const fs = require('fs');
-const buf = fs.readFileSync("$file");
-db.getSiblingDB("$DB").getCollection("$COLL").insertOne({
-  filename: "$rel",
-  data: new BinData(0, buf.toString('base64')),
-  contentType: "$mime",
-  size: buf.length,
-  uploadedAt: new Date()
-});
+const fs   = require('fs');
+const data = fs.readFileSync("$file");     // read file as Buffer
+db.getCollection("$COLL").replaceOne(
+  { filename: "$rel" },                    // match on filename
+  {
+    filename:    "$rel",
+    data:        new BinData(0, data.toString('base64')),
+    contentType: "$mime",
+    size:        data.length,
+    uploadedAt:  new Date()
+  },
+  { upsert: true }                         // overwrite or insert atomically
+);
 EOF
     fi
   done
-

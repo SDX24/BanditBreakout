@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-dotenv.config(); // Load environment variables
+dotenv.config({ override: true }); // Load environment variables
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/banditbreakout';
 
 export async function connectToDatabase() {
     try {
         await mongoose.connect(MONGODB_URI);
-        console.log('Connected to MongoDB database');
+        console.log(`Connected to MongoDB database ${MONGODB_URI}`);
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
         throw error;

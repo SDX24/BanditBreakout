@@ -2,6 +2,8 @@ import { Start } from "./scenes/Start";
 import { CharacterSelection } from "./scenes/CharacterSelection";
 import { SettingsMenu } from "./scenes/Settings";
 import { EmptyTest } from "./scenes/EmptyTest";
+import { MainScreen } from "./scenes/MainScreen";
+import { MapScene } from "./scenes/MapScene";
 
 const config = {
   type: Phaser.AUTO,
@@ -17,6 +19,8 @@ const config = {
     // CharacterSelection,
     // EmptyTest,
     SettingsMenu,
+    MapScene,
+    // MainScreen,
   ],
   scale: {
     mode: Phaser.Scale.FIT,
