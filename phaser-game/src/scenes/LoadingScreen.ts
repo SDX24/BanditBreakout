@@ -20,6 +20,7 @@ export class LoadingScreen extends Phaser.Scene {
 
 
         skipTo(this, 'MainScreen', () => {
+          this.scene.stop(this);
         });
   }
 }
