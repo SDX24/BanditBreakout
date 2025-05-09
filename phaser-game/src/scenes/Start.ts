@@ -1,4 +1,4 @@
-import Phaser from "phaser";
+import useDb from "../middleware/useDb";
 export class Start extends Phaser.Scene {
   private logoGame!: Phaser.GameObjects.Image;
   private logoTeam!: Phaser.GameObjects.Image;
@@ -8,9 +8,9 @@ export class Start extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("backgroundWhite", "assets/white.jpg");
-    this.load.svg("logoTeam", "assets/CMD Z Logo.svg");
-    this.load.svg("logoGame", "assets/Bandit Logo Circle.svg");
+    useDb(this);
+    this.load.svg("logoTeam", encodeURIComponent("company__group__logo/CMD Z Logo.svg"));
+    this.load.svg("logoGame", encodeURIComponent("game_logo/Bandit Logo Circle.svg"));
   }
 
   create() {
@@ -27,13 +27,6 @@ export class Start extends Phaser.Scene {
     this.logoGame = this.add.image(960, 540, "logoGame");
     this.logoGame.setDisplaySize(300, 300);
     this.logoGame.setAlpha(0);
-    
-    this.tweens.add({
-      targets: backgroundBlack,
-      alpha: 1,
-      duration: 2000,
-      delay: 0,
-    });
 
     this.tweens.add({
       targets: backgroundWhite,

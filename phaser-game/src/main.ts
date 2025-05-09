@@ -3,6 +3,9 @@ import { CharacterSelection } from "./scenes/CharacterSelection";
 import { MainScreen, Host, Code, Room } from "./scenes/MainScreen";
 import { LoadingScreen } from "./scenes/LoadingScreen";
 import { CutScene } from "./scenes/CutScene";
+import { SettingsMenu } from "./scenes/Settings";
+import { EmptyTest } from "./scenes/EmptyTest";
+import { MapScene } from "./scenes/MapScene";
 
 const config = {
   type: Phaser.AUTO,
@@ -22,6 +25,12 @@ const config = {
     // Room,
     // LoadingScreen,
     CutScene,
+    Start,
+    CharacterSelection,
+    // EmptyTest,
+    SettingsMenu,
+    MapScene,
+    // MainScreen,
   ],
   scale: {
     mode: Phaser.Scale.FIT,
