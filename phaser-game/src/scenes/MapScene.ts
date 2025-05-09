@@ -1,10 +1,11 @@
 import { settingsListener } from "../middleware/settingsListener";
 export class MapScene extends Phaser.Scene {
     private mapContainer!: Phaser.GameObjects.Container;
-    private isDragging  = false;
-    private dragStartX  = 0;
-    private dragStartY  = 0;
   
+    constructor() {
+      super("MapScene");
+    }
+
     preload() {
 
       this.load.setBaseURL('http://localhost:3000');          
@@ -28,6 +29,8 @@ export class MapScene extends Phaser.Scene {
       this.mapContainer = this.add.container(0,0,[ bg, overlay ]);
 
       settingsListener(this);
+      console.log('Background exists:', this.textures.exists('background'));
+console.log('MapOverlay exists:', this.textures.exists('mapOverlay'));
     }
   }
   
