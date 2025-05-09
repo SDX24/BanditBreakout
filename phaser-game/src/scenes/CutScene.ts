@@ -18,5 +18,16 @@ export class CutScene extends Phaser.Scene {
 
     cutScene.play(true);
     screen.add(cutScene);
+    //skip on ESC and SPACE
+    this.input.keyboard!.on('keydown-ESC', (event: Event) => {
+      event.preventDefault();
+      this.scene.launch('MainScreen')
+  });
+    this.input.keyboard!.on('keydown-SPACE', (event: Event) => {
+      event.preventDefault();
+      this.scene.launch('MainScreen')
+  });
+
   }
 }
+

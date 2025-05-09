@@ -1,4 +1,3 @@
-import { settingsListener } from "../middleware/settingsListener";
 export class MapScene extends Phaser.Scene {
   
     constructor() {
@@ -26,7 +25,6 @@ export class MapScene extends Phaser.Scene {
  
       const mapContainer = this.add.container(0,0,[ bg, overlay ]);
 
-      settingsListener(this);
     }
   }
   

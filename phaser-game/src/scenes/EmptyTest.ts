@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { settingsListener } from "../middleware/settingsListener";
+import settingsListener from "../middleware/settingsListener";
 
 export class EmptyTest extends Phaser.Scene {
 
