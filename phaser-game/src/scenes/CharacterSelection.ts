@@ -174,7 +174,19 @@ export class CharacterSelection extends Phaser.Scene {
         color: "#492807",
     });
     containerCharSign.add(charSignText);
+    // need to add the character selection for player here, 
+    // but we need game to work. for which we need mainscreen. TODO
 
+const selectInteractive = this.add.graphics();
+selectInteractive.fillStyle(0x000000, 0)
+.fillRect(overlayCharSign.x - 200, -110, 400, 110)
+.setInteractive(new Phaser.Geom.Rectangle(overlayCharSign.x - 200, -110, 400, 110), Phaser.Geom.Rectangle.Contains);
+
+containerCharSign.add(selectInteractive);
+
+selectInteractive.on('pointerdown', () => {
+    this.scene.start("MapScene");
+});
 
 
 

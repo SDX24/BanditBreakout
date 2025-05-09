@@ -276,9 +276,10 @@ const openLayout = (layoutName: string) => {
 
 
       const imageKey = tileImageKeys[this.rulebookTexts[i].label];
-        const tileImage = this.add.image(xOffset + 780, yOffset + 570, imageKey)
-        .setOrigin(0.5)
-        tileImage.setDisplaySize(tileImage.width * 0.5, tileImage.height * 0.5)
+        const tileImage = this.add.image(xOffset -180, yOffset +20, imageKey)
+        layoutContainer.add(tileImage);
+        
+        tileImage.setOrigin(0.5).setDisplaySize(tileImage.width * 0.5, tileImage.height * 0.5)
         .setVisible(false)
 
         if (tileImageKeys[this.rulebookTexts[i].label] === "slots") {
@@ -463,6 +464,9 @@ const openLayout = (layoutName: string) => {
   containerBackButton.on("pointerdown", () => {
       layoutContainer.setVisible(false);
       containerMain.setVisible(true);
+
+      // remove the tiles Guide if user quit using back button
+      
   });
 
   containerScene.add(layoutContainer);

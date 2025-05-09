@@ -1,3 +1,4 @@
+import { settingsListener } from "../middleware/settingsListener";
 export class MapScene extends Phaser.Scene {
     private mapContainer!: Phaser.GameObjects.Container;
     private isDragging  = false;
@@ -25,7 +26,8 @@ export class MapScene extends Phaser.Scene {
       const overlay = this.add.image(0,0,'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
  
       this.mapContainer = this.add.container(0,0,[ bg, overlay ]);
-  
+
+      settingsListener(this);
     }
   }
   

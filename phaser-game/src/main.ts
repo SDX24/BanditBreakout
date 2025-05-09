@@ -16,7 +16,7 @@ const config = {
   pixelArt: false,
   scene: [
     // Start,
-    // CharacterSelection,
+    CharacterSelection,
     // EmptyTest,
     SettingsMenu,
     MapScene,
