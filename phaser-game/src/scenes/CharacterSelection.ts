@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import { Characters, ICharacter } from "backend/areas/Types/Character"
 import WebFontLoader from "webfontloader";
+import { settingsListener } from "../middleware/settingsListener";
 
 export class CharacterSelection extends Phaser.Scene {
   private charNameText!: Phaser.GameObjects.Text;
@@ -43,16 +44,16 @@ export class CharacterSelection extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("overlayBacking", "tempAssets/backing.png");
-    this.load.image("overlayFrame", "tempAssets/frame.png");
-    this.load.image("overlayPage", "tempAssets/page.png");
-    this.load.image("ovelayBackSign", "tempAssets/backSign.png");
-    this.load.image("charSign", "tempAssets/charSign.png");
-    this.load.svg("buckshot", "tempAssets/buckshotFront.svg");
-    this.load.svg("serpy", "tempAssets/serpyFront.svg");
-    this.load.svg("grit", "tempAssets/gritFront.svg");
-    this.load.svg("scout", "tempAssets/scoutFront.svg");
-    this.load.svg("solstice", "tempAssets/solsticeFront.svg");
+    this.load.image("overlayBacking", "tempAssets/charSelection/backing.png");
+    this.load.image("overlayFrame", "tempAssets/charSelection/frame.png");
+    this.load.image("overlayPage", "tempAssets/charSelection/page.png");
+    this.load.image("ovelayBackSign", "tempAssets/charSelection/backSign.png");
+    this.load.image("charSign", "tempAssets/charSelection/charSign.png");
+    this.load.svg("buckshot", "tempAssets/charSelection/buckshotFront.svg");
+    this.load.svg("serpy", "tempAssets/charSelection/serpyFront.svg");
+    this.load.svg("grit", "tempAssets/charSelection/gritFront.svg");
+    this.load.svg("scout", "tempAssets/charSelection/scoutFront.svg");
+    this.load.svg("solstice", "tempAssets/charSelection/solsticeFront.svg");
 
     WebFontLoader.load({
       custom: {
@@ -197,6 +198,9 @@ export class CharacterSelection extends Phaser.Scene {
   
     this.updateCharacterDisplay(0)
     
+    //esc -> settings
+    
+    settingsListener(this);
   }
 
 
