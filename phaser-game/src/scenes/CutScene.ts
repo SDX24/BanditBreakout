@@ -17,11 +17,12 @@ export class CutScene extends Phaser.Scene {
     const screen = this.add.container(0, 0);
     const cutScene = this.add.video(960, 540, "cut-scene");
 
-    cutScene.play(true);
+    cutScene.play(false);
     screen.add(cutScene);
 
-    skipTo(this, 'MainScreen', () => {
+    skipTo(this, 'LoadingScreen', () => {
       cutScene.stop();
+      cutScene.destroy();
     });
   }
 }

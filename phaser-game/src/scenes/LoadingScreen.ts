@@ -1,8 +1,7 @@
-import Phaser from "phaser";
+import skipTo from "../middleware/skipWithEscSpace";
 import WebFontLoader from "webfontloader";
 
 export class LoadingScreen extends Phaser.Scene {
-  private loadingScene!: Phaser.GameObjects.Video;
 
   constructor() {
     super("LoadingScreen");
@@ -18,5 +17,9 @@ export class LoadingScreen extends Phaser.Scene {
 
     loadingScreen.play(true);
     screen.add(loadingScreen);
+
+
+        skipTo(this, 'MainScreen', () => {
+        });
   }
 }

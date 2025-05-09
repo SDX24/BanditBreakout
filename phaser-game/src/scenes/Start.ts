@@ -71,12 +71,15 @@ export class Start extends Phaser.Scene {
         alpha: 0,
         duration: 1000,
         delay: 5000,
+        onComplete: () => {
+          this.scene.start('CutScene');
+        }
       });
     
+    skipTo(this, 'CutScene', () => {
+      this.tweens.killAll();
+      this.scene.stop(this)
 
-    this.time.delayedCall(7000, () => {
-        this.scene.start('MainScreen');
-      }
-    );
+    });
   }
 }
