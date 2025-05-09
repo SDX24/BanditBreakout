@@ -18,7 +18,7 @@ const config = {
     Start,
     CharacterSelection,
     // EmptyTest,
-    // SettingsMenu,
+    SettingsMenu,
     MapScene,
     // MainScreen,
   ],

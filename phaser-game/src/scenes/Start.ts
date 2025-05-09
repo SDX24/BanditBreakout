@@ -27,13 +27,6 @@ export class Start extends Phaser.Scene {
     this.logoGame = this.add.image(960, 540, "logoGame");
     this.logoGame.setDisplaySize(300, 300);
     this.logoGame.setAlpha(0);
-    
-    this.tweens.add({
-      targets: backgroundBlack,
-      alpha: 1,
-      duration: 2000,
-      delay: 0,
-    });
 
     this.tweens.add({
       targets: backgroundWhite,
