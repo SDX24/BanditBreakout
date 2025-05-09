@@ -1,0 +1,3018 @@
+📄 [Doc]    pause/backboard.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f48fdcd0c71cfd040f9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    pause/board.png  (0.85 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f49914c5aac3889639e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    pause/pause.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f4baeb31276f00afdb9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    battle_tiles/Battle tile sound .wav  (0.26 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f4d19d2758cec1db810')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    entering_board_map_view/EnterBoardMapSounds.wav  (0.10 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f4fa7006b76a2a8fb4a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    wood/wood.mp3  (0.13 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f511e99156dc6a250a9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    hover_on_item_weapon/Page Turn Sound Effect! Flip Sound Effect!.mp3  (0.11 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f53f96893c036c5d9e3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    hover_on_item_weapon/Hover on item .wav  (0.12 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f55c4f879e00b2954f2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    settings/Sound.svg  (0.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f573acfa4550b3e386d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    settings/settings.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f5877bcf6ba3210ad03')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    settings/Slider.svg  (0.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f5ae43498d751e00869')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    settings/Mute.svg  (0.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f5cc72a21ab47504be0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    settings/board.png  (0.85 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f5ea74ffdff75da4f0f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    settings/Slider button.svg  (0.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f60adce5b02b7de22d4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_start/tiger 1.png  (0.22 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f61eb6a780408f4d457')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_start/event1cards 1.png  (0.86 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f631bfa02fae68c9f29')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    oasis/oasisisis.png  (0.71 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f65df141f40df34e5b5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    oasis/eventoasis.mp4  (1.39 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f671c46fc4f90bf9e5c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    battle_sound_track_during_shootout/Battle sound track during shooting.wav  (6.43 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f693247c27c3d1364b2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    enter_game_confirm_sound_effect/Enter Game Sound Effect .wav  (0.15 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f6c89389fcff4af13a7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cactus/cactus icon.png  (0.22 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f6ebdb40e945c321512')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cactus/cactus desc..svg  (0.34 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f6fcefa6720e2f10d37')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rich_manor_house_soundscape/Rich Manor House Soundscape.wav  (5.07 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f7152c027c198475169')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    sunscreen/sunscreen desc..svg  (0.25 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f736b9655f8e5cb8f80')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    sunscreen/sunscreen icon.png  (0.15 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f75a0fe8ea260876ea5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    wind_staff_sound_effect/Wind Staff Sound Effect .wav  (0.25 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f771670df3784ef523a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    company__group__logo/CMD Z Logo.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f79fb1347c9e7a3cfac')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tumbleweed/tumbleweed.mp3  (0.28 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f7bdf4d9d23770af0a8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tumbleweed/tumbleweed desc..svg  (0.27 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f7d0f8640fd7e645a3c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tumbleweed/tumbleweed zoom.svg  (1.56 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f7ff3c4c368da2072d7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    player_overlay/banner.svg  (0.04 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f81efbf874a91edc678')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    player_overlay/backing.svg  (0.03 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f83f5000624b5e2f205')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    player_overlay/coin icon.png  (0.26 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f8414e84d761cdac3e5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    player_overlay/frame.svg  (0.07 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f869ad04e00d9f613f0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    player_overlay/board.svg  (0.04 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f887be5aaf82d74d1e1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    sunscreen_battle_sound_effect/Sunscreen Item Sound Effect .wav  (0.22 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f8a4ac47f977c738ea8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    battle_dice_roll_background_music/Battle dice roll background music .wav  (3.80 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f8c261a9a955b9e0ae6')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cursed_coffin_sound_effect/Cursed Coffin Sound Effect .wav  (0.25 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f8ed162d0991f0668fc')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    shovel/shovel desc..svg  (0.04 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f9096904c301ab84bed')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    shovel/shovel zoom.svg  (0.16 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f9187b0cd6f7d0f86bf')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/argue.wav  (2.15 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f9389107ff52cbb0191')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/hurt.wav  (0.16 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f95de001791fb216427')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/sigh.wav  (0.51 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f97056eb1d038c479b1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/characterselect1.wav  (0.72 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f99ab624f76a1dd8a0e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/confused.wav  (0.56 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f9b1c4f8e603f3945fb')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/catspace.wav  (1.43 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f9d06448b7b74538a74')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/characterselect2.wav  (0.35 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1f9f320714b151bf78cc')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/move.wav  (0.54 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fa1d38338051ad9c783')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/yikes.wav  (0.35 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fa366e382aa99a93c77')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/excited.wav  (0.44 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fa595ffc8e472613a09')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/end3.wav  (0.88 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fa73fd983e48cbbeb5b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/saddefeated.wav  (0.56 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fa9c285283e55eed278')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/tile.wav  (0.63 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fab5eeb9cd56d23b313')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/errrr.wav  (0.59 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fad820af129464844d9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/wonthegame.wav  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1faf8ef48f9ab98c1694')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/end2.wav  (0.93 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fb1373287df60034dda')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/end1.wav  (0.35 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fb2077252a293a2c7cc')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/end5.wav  (1.12 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fb4751ba9acf05fa554')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/yay.wav  (0.44 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fb67967f77337ec011a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/grossedout.wav  (0.59 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fb8f91f70ed7b8f060b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/growl.wav  (0.38 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fba79f9b2050b8c036b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/oh.wav  (0.47 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fbc0cb385cfb26ceb3a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/nahhjh.wav  (0.41 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fbefa0807fa12818682')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/aw.wav  (0.42 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fc01e06fdd14b4a9c36')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/scoutprinted.png  (3.65 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fc1a46818868857ac00')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/lostthegame.wav  (0.56 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fc4072f0763133ad82c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/angry.wav  (0.47 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fc5198568398c80c033')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/attack.wav  (0.25 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fc7e67f7e90b49537e8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/winnoise.wav  (0.70 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fc9a31f6ad23dac7bef')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/yeah.wav  (0.43 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fcb0836acbbb48b5c82')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout__dog_/dead.wav  (0.97 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fcd17ba99a251cfe43c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    game_logo/Bandit Logo Circle.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fcf76f09d650c8f2124')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    game_logo/Bandit Base Logo.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fd1f5520b86169bc873')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    scout_ending/Scout end.mp4  (8.14 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fd260172bf1f8eaf85b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/002.png  (1.12 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fd550954e8983ae90d3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/10.wav  (1.37 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fd75bf04553494ed8c7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/11.wav  (2.62 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fd9154c2663d5043993')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/13.wav  (1.09 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fdbf9191fbc4a8f20c5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/12.wav  (0.76 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fdd00aee2ec9f160557')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/9.wav  (0.60 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fdf1eca131299d2465f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/8.wav  (2.48 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fe1749a60fd81c932a7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/6.wav  (0.62 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fe30adb0ccfd4556c8b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/7.wav  (1.43 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fe5c85bb96b67676cb1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/5.wav  (1.25 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fe74a6c003c79c5d0d8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/4.wav  (1.68 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fe951251842758758b2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/1.wav  (0.28 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1feb828bca0412501a2f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/3.wav  (0.57 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fed7c890ed3de139bda')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_giraffe/2.wav  (0.56 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1fef20ea21463bf81b38')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    mirage_teleporter_sound_effect/Mirage Teleporter Sound Effect .wav  (0.27 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1ff015954476b8a2ab61')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    board/bridge.png  (0.14 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1ff23ad281aa13b684ff')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    board/Game Board.svg  (9.76 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1ff4ca0fb5d9ad38419e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    board/background.png  (1.06 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1ff72823ac7110ef188d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    v.s_sound_effect/VS Sound Effect .wav  (0.19 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1ff81d04907a118ae1ef')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_ferret/003.png  (1.03 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1ffa9c9cee54d4bfc4e8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_ferret/9.wav  (1.32 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1ffc940ada792f8d75df')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_ferret/8.wav  (0.69 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a1ffe0765fa17680c3e64')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_ferret/7.wav  (1.79 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a200057f01b15a7c149a7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_ferret/5.wav  (1.11 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20024f7be7814582dca1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_ferret/4.wav  (0.39 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2004c3439ef08ad25ad2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_ferret/1.wav  (1.18 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20062ba0d220913053ca')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_ferret/3.wav  (1.77 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2008af1072ceb829e470')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_ferret/2.wav  (1.85 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a200a61bc43db0237f0d9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    v.s./vs desc..svg  (0.06 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a200cf3c4bf73345625fa')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    v.s./vs zoom.svg  (0.36 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a200e1e4993c7a7fd47db')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    card_played/use item.png  (0.12 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2010236ffed738feb769')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    movement_walking/Walking sound on wooden floor.wav  (0.42 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20123ab34cae4f4b85a1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    casino_soundscape/CasinoBackgroundSounds.wav  (3.03 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2014d4b73083d9997997')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    casino_soundscape/casino.mp3  (4.23 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2016cc23a3081c4fc964')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    magic_carpet/carpet desc..svg  (0.05 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2018f47bd65952f2386a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    magic_carpet/carpet zoom.svg  (0.20 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a201aac0c210e607252c5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    poison_crossbow/crossbow desc..svg  (0.07 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a201c6060ee0b6e5c2aa6')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    poison_crossbow/Poison Crossbow Sound Effect .wav  (0.31 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a201ddbfd1aca0b0aa053')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    poison_crossbow/crossbow zoom.svg  (0.38 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a201f91eb57e890e0ef32')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    host_screen/lobby.png  (0.20 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2021939a092d7f7f592f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    host_screen/code.png  (0.09 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2023f2545f9ad97261de')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    host_screen/post.png  (0.08 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20258a23046139666041')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    host_screen/numbers.png  (0.09 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2027dd28dd50b105cf2f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    host_screen/background.png  (0.54 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a202884dff9723f1dea34')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    host_screen/player icon.svg  (0.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a202af38700c9296de393')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    host_screen/start.png  (0.04 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a202cdd501c4dfed322d4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cowboy_vest_sound_effect/Vest Sound Effect .wav  (0.07 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a202ef94ccbe7dd672c58')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    character_selection/backing.png  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20304bc1e62ec2de0e9d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    character_selection/frame.png  (0.10 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20320eb72031674dbd02')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    character_selection/select button.png  (0.12 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2034edf1f64e9289057d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    character_selection/page.png  (0.18 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a203683d5b3be3f349b5c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rigged_dice_sound_effect/Rigged dice refined Sound Effect .wav  (0.45 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a203899a9c33f092806f2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    dice_roll/dice.mp3  (0.09 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a203a9ed08a5337793174')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    pause_settings_background_music/Pause:settings sound track.wav  (0.77 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a203c9b48bbdaa9ccacf9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    join_screen/join.png  (0.12 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a203eb45679637aa2db3e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    join_screen/post.png  (0.09 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2040963b68584ce42212')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    join_screen/background.png  (0.54 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a204219e3e678648bc319')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    join_screen/input.png  (0.13 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a204440cd6e9760913811')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    join_screen/start.png  (0.04 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2046e0d031cda5ee8c94')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/hurt.wav  (0.35 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2048e2ba6064e3be13b1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/sigh.wav  (0.46 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a204ad77801521d215fb2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/characterselect1.wav  (0.64 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a204cc5cc9057612284d7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/win.wav  (0.51 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a204e6a901b539073a984')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/catspace.wav  (0.75 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2052f8ac40300f87a178')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/move.wav  (0.36 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20547183c1aa1341e7d3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/hey.wav  (0.31 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2055fba1044e136ce5c9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/yeahh.wav  (0.44 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a205747e22e72204bbdd7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/solsticeprinted.png  (2.76 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2059e20a02d325c90543')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/excited.wav  (0.48 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a205bc37ffe5089a37d1c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/wonthegame.wav  (0.81 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a205d51fbbd99e323bddf')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/first1.wav  (0.49 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a205fab196d68f17f842b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/uppset.wav  (0.59 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20617bbf2587d7bc21d7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/grossedout.wav  (0.47 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2063c89f7054d281ab8c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/space.wav  (0.45 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20657863f8965573acfc')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/no.wav  (0.42 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2067b74eae70dd393ab7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/aw.wav  (0.64 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2069de68ec64f72ab63f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/final1.wav  (0.41 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a206b4170382c1e39245f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/defeated.wav  (0.34 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a206dba61c84fdd09ce4b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/lostthegame.wav  (0.43 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a206faf90091a32715ebf')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/final2.wav  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2070a6198a06f38f8abc')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/winbattle.wav  (0.42 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20722e4588cec6d0df65')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/angry.wav  (0.47 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a207400bb5f1a7643c62f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/attack.wav  (0.36 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2076c507b6c55357fa07')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/hmmm.wav  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20782564ac382d0493c9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    solstice__crow_/dead.wav  (0.78 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a207a136bf2f9ceed3d57')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    revolver/revolver icon.png  (0.14 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a207c706ca57ff92a1d78')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    revolver/revolver desc..svg  (0.23 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a207e5f9a31285630315b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    item__effect_being_played/Effect being used Sound Effect .wav  (0.29 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20805850de6acc1ae70a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    casino/casinoscsdfene1.mp4  (1.99 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a208147bc8d22b8c623ca')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    casino/casinofight_1.mp4  (0.66 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20846ca7eeeb1895c09c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    casino/casino1.png  (1.60 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2086fa99a5a6b9da9bf4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_casino/006 2.png  (0.26 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20885a6566353d41f3a0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_casino/cacasino 1.png  (1.78 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a208a088fa3c6bf1df63c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_prarie_dog/004.png  (0.57 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a208ca0dba892fa60ed28')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_prarie_dog/1.wav  (0.80 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a208e66108526ba866a38')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_prarie_dog/2.wav  (1.71 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20903ec14e563c1d8ba0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    desert_sandstorm_soundscape/Desert Soundscape.wav  (6.46 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20921109a38839369585')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    desert_tiles/event1cards.mp4  (0.99 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2095107ac8af26e3ec92')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    desert_tiles/scorpion jumpscare.png  (0.99 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20986be03abf6ab19aa3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    desert_tiles/event1.png  (0.85 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a209a0d64b675f9b973d4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    desert_tiles/event1 scorpionfar.mp4  (0.45 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a209cb71272bb04afed46')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    desert_tiles/scorpion 2.png  (0.79 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a209e59683a53edffecf9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    dice/dice3.mp4  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20a09ebd964f2e5bb02f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    dice/dice2.mp4  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20a2bb03b6c0c35704e9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    dice/dice1.mp4  (0.50 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20a41aa1b4626cedf323')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    dice/dice5.mp4  (0.54 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20a76777aedc7147b489')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    dice/dice4.mp4  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20a9473a2a4a70d6046e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    dice/dice6.mp4  (0.51 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20abffb7f6dbc70d014c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    crow/crow.mp3  (0.19 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20ad0c1ee92c59bd26cd')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    wind/wind.mp3  (0.21 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20afa3b0bb4a679ca254')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cowboy_boots_battle_sound_effect/Cowboy boots Item Sound Effect.wav  (0.12 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20b19e1f71a2c71ffe2a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decisions_oasis_mine/oasis.png  (0.82 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20b32b4a438bed6f2396')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decisions_oasis_mine/006 1.png  (0.28 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20b52c5e7b104e77ca1d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    lasso_sound_effect/Lasso Sound Effect .wav  (0.22 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20b6feac8782f588e4cf')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    chicken_leg_battle_sound_effect/Chicken Lg Item Sound Effect .wav  (0.14 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20b8a2215abcf78c823f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    turn_start/turn_start.mp3  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20ba66ea00250b0c1473')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    win_battle/Win Battle Sound Effect .wav  (0.17 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20bca6cb439423901664')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/pant.wav  (1.66 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20be15d0bd54b739dc0c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/scream.wav  (0.48 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20c0b80a814119864d92')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/sure.wav  (0.71 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20c2b5baf26d6b4bb9a8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/mercy.wav  (0.69 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20c4a9ba719ee36e0de2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/huh.wav  (0.27 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20c5e56cce46b7cce700')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/villainprinted.png  (3.37 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20c73b51474a4295d1af')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/leavenmealone.wav  (0.59 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20c9c29641301318ff06')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/what.wav  (0.34 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20cb3e281ad4782045ea')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/plz.wav  (0.80 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20cd170ddbdf4204052a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/spareme.wav  (0.63 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20cf7b700af8ccce1eb4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    spindle__spider_/o-oh.wav  (0.83 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20d1608e7f801a5db208')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    slums/slums1.png  (0.81 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20d3290bafd685acecb5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    slums/slumseventshadycrowd.mp4  (0.37 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20d48bf3b58da24036f5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    slums/slumsnegotiate.mp4  (1.23 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20d696da62de60fae220')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    slums/lost.png  (0.77 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20d82cb1751779f438cd')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    slums/slumsfightt.mp4  (0.22 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20da248f15d67547fd93')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    slums/negotiate.png  (1.02 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20dcecfd9aff6a5af8b3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rigged_dice/dice zoom.svg  (0.27 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20def56f2abbb49a192b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rigged_dice/dice desc..svg  (0.05 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20e0729eb277b278803a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tile_legend/backboard.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20e1c9fad264bb82b379')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tile_legend/board.png  (0.85 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20e3974d9611f2c0bc19')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tile_legend/page.png  (0.20 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20e5e8bbf69588fac0a3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/hurt.wav  (0.42 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20e782386ecb87721588')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/sigh.wav  (0.42 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20e9b63dce53cd6df1c9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/lost.wav  (0.56 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20ea0402e21681ffc79c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/move.wav  (0.13 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20ecd0cb9cd9318effe3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/excited.wav  (0.48 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20ee52e00852dcbe1597')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/heythere.wav  (0.28 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20f0bb6e0595eb75d674')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/goodchoice.wav  (0.71 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20f22033d4cf2cf9f09c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/scene1sigh.wav  (0.37 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20f4ba8273e3e3d2e358')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/scene1listenup.wav  (0.37 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20f50c34030979c05e88')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/struggling.wav  (0.69 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20f7b8b3df738c5ce5b6')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/happy.wav  (0.41 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20f99ff86e3d70ea1c56')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/yay.wav  (0.39 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20fbfcf20665d93683a1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/letsgo.wav  (0.37 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20fd7eea3151569945b4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/sad.wav  (0.64 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a20ff7347d450616a33eb')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/oh.wav  (0.74 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2101eb02cce2b3be21aa')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/imwatching.wav  (0.92 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2102340605d4395ba929')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/winner.wav  (0.61 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21045a35971ad784c210')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/MADGROWLSAAA.wav  (1.11 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21062732d051ecd90705')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/no.wav  (0.54 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a210801716690011794f5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/sure.wav  (0.39 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a210a88e1df4d79269619')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/gritprinted.png  (2.88 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a210ca2b16c20fbdae9bb')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/sighs.wav  (0.32 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a210e2437e104f5ea3f2a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/grossed out.wav  (0.42 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21105bd81195e6404a8b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/withmenow.wav  (0.66 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2112f5984fafe0ae4f36')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/dissapointed.wav  (0.63 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2114ffeac73ed6ef89ac')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/attack.wav  (0.46 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a211681a109f9123d0ba8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/hmmm.wav  (0.22 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21174be3b2bcc7800dd8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/heybuddy.wav  (0.77 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a211952c3103a51996782')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/firstscenesigh.wav  (0.66 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a211b89cde8f6e451e86d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/dead.wav  (0.50 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a211d1719a76d1336b582')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    grit__capybara_/come.wav  (0.38 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a211f2951639c4c330546')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tiles/slots.svg  (0.12 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2121baafc1045a3f29e5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tiles/safe.svg  (0.08 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2123015b3a9b8b75f034')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tiles/decison.svg  (0.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2125f2171b7fb009f6a0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tiles/effect.svg  (0.07 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2127a05c1911a1ba7007')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tiles/event.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2128c6837b8444593971')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tiles/battle.svg  (0.14 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a212acb0f34c26b12e1ca')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tiles/mining.svg  (0.04 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a212cb48b56b6ea20c039')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tiles/item.svg  (0.19 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a212e2334cd75c62fcf96')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    gameboard_soundscape/GameBoard View Soundscape.wav  (9.91 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21309aa7c367aaeb611d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cowboy_vest/vest zoom.svg  (0.20 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2132a75915c157b46bf1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cowboy_vest/vest desc..svg  (0.05 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a213450be9adbca4d49c7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    character_moves_on_board/sand footsteps .wav  (0.41 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2136378d2132be05bf89')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    money/money.mp3  (0.07 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a213808480ab6b50417cd')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    shovel_sound_effect/Shovel Sound Effect .wav  (0.06 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a213aa77bc6761b1e16b4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    revolver_battle_sound_effect/Revolver Sound effect .wav  (0.09 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a213c8f8db0e6953abceb')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_rich_town/004 1.png  (0.17 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a213d2335115b9e2c3716')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_rich_town/mansionscene.png  (1.40 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a213f138a9deda2ec45f0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    food/food icon.png  (0.28 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21413070c3710c2087f9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    food/food desc..svg  (0.41 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2143dcd2d51b66ccf1c1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    gun/gun.mp3  (0.07 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2145356c51ec25ce1fda')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    lose_battle/Lose Duel.wav  (0.08 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2147e7a06470f5fa6cff')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/argue.wav  (0.87 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2148771b54432d5d0478')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/sigh.wav  (0.47 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a214a0b67fd37b82cdccb')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/lost.wav  (0.47 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a214ccba5384625b43aab')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/characterselect1.wav  (0.90 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a214ecfc958fd70a9a88b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/owwww.wav  (0.58 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21507bd58bf5229c9be7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/wonbattle.wav  (0.35 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2152b47230010d0f477d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/characterselect2.wav  (0.57 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2154dfd87fc601b533c3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/capyspace.wav  (0.74 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a215623a393353be3a6d0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/move.wav  (1.07 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2158ebf71b062aadf3d2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/aww.wav  (0.47 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a215acde99b565bbe65b9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/abrgy.wav  (0.45 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a215b0ba9f4ee3c9297c4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/ehhhh.wav  (0.63 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a215d7a7e97e33adaf54b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/end3.wav  (0.87 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a215f762b7996b28e837e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/hIIIspace.wav  (0.36 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2161957c84682af6f9a4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/ermm.wav  (0.55 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a216383fbcf217bc7ae7d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/end2.wav  (0.51 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2165a27a8d7d186b0088')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/end1.wav  (0.48 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21675034940bea1cec60')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/end5.wav  (0.60 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21699e54a3dac339749d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/upseet.wav  (0.47 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a216b79820a66a2ed6470')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/yay.wav  (0.35 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a216d5a2972ce9a4d8627')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/grossedout.wav  (0.47 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a216f2026a4120545ea69')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/oh.wav  (0.58 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a217136c4c14f2eb8a4b4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/end6.wav  (0.97 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21733a4f10a43dd62a51')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/happywinwav.wav  (0.39 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a217589331a779e2b647c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/awwwwloist.wav  (0.60 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2177e1bcb0e495040cfd')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/NO.wav  (0.55 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2179c71cd9dfbebd822e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/aw.wav  (0.43 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a217b7f7c3c2ef4cb25dd')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/serpyprinted.png  (1.82 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a217d3f227aba773b2231')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/ssss.wav  (0.39 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a217fc0c3783ba531b41f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/nice.wav  (0.34 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a218178a143d515162407')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/veryhappywinner.wav  (0.85 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2183327c1b17237f64c3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/huh'.wav  (0.20 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2185299518b2ea8ec7ac')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/attack.wav  (0.85 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a218638ea80ca6dbc39f6')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/hmmm.wav  (0.34 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21887e9c4fd03a6a83e9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/yeaH.wav  (0.24 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a218afa0102bd464c9b39')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    serpy__snake_/dead.wav  (0.43 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a218c57bba77642bf7eaf')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rules/backboard.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a218e3d073e24a3fdff6d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rules/board.png  (0.85 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2190f13b8a7390e6673d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rules/rules (2).svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21923188350a3ba2c7a2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    character_selection_sound_track/Title Card Music .wav  (9.64 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a219325bd69dfa7b25745')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tumble_weed_sound_effect/Tumbleweed RefinedSound Effect .wav  (0.43 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a219694997f1b02e78bd0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    tumble_weed_sound_effect/Tumble weed Sound Effect .wav  (0.39 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21982b2f815fad70bf21')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_crime/005 1.png  (0.25 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a219ae668fffa058d765d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_crime/slumsnegotiate 1.png  (0.92 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a219ca4d9e8744dca806a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    wind_staff/staff desc..svg  (0.05 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a219eb84f382ea770be4b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    wind_staff/staff zoom.svg  (0.26 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a219f32eed9f45e905e5f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    lasso/lasso zoom.svg  (0.63 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21a16d24596c7b1c9fed')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    lasso/lasso desc..svg  (0.09 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21a37f41aaee4fc8c758')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/sigh.wav  (0.55 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21a5af1ae0cacd0f9e96')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/characterselect1.wav  (0.66 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21a7f2fa6638ce0e70e1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/characterselect2.wav  (0.36 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21a961f55df76122d928')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/move.wav  (0.16 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21ab70f1e9a1ed6cdfb9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/excited.wav  (0.33 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21ada549f9056a7e2d45')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/buckshotprint.png  (2.95 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21ae2e830b952f68b8bd')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/wonnnthegame.wav  (0.82 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21b136b471d07cf08c5f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/firstscene2.wav  (0.35 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21b233dfc48f8756a9c4')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/eugh.wav  (0.26 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21b5f4acde4f501a2083')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/angry1.wav  (0.43 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21b74e1f7acd414135a2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/dogtile.wav  (1.37 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21b85e557ac83aafcb3e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/angry2.wav  (0.86 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21ba8d1efbc7f3d941e0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/awww.wav  (0.26 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21bc8cda53446c3320b8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/yay.wav  (0.39 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21be5176a7e0c7606efe')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/oh.wav  (0.46 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21c0167ad538e186f856')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/ewgross.wav  (0.50 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21c219f13a43bc52ef21')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/no.wav  (0.41 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21c482bf8614a4c2b3fa')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/lostnoise.wav  (0.55 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21c6d8ebd59c4f2193c0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/ohhhhscene1.wav  (0.41 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21c86aa171001908968d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/final1.wav  (0.32 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21ca171ef904c867ebe3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/lostthegame.wav  (0.64 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21cb0d82b738bf0feab1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/final3.wav  (0.56 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21cd158e71f729818b51')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/final2.wav  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21cf5690dc0f940c023e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/final5.wav  (1.18 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21d11fa76454893cb117')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/what.wav  (0.37 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21d3e1458ab74ffe02b1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/final4.wav  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21d53d0ee4b468f53bf6')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/uhhhh.wav  (0.39 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21d7f36f17ba8a2d0da5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/hurtnoise.wav  (0.17 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21d9999eb5d733f96b3a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/landontilewithsomeone.wav  (0.51 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21db86e8eb1854b89d92')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/attack.wav  (0.26 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21dde3cb0e360270b79a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/firstscene.wav  (1.22 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21df2cac769e560c88fb')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/winnoise.wav  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21e1ed1c93c7ae1a5039')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/yeah.wav  (0.49 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21e3ba0577826c68dc9c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    buckshot__cat_/dead.wav  (0.48 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a21e52cb77fbbfd505afc')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    text_box___buttons/speed up.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a22024e63763f53c3ccca')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    text_box___buttons/Choice Button.png  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2204a19e289660bf5fdd')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    text_box___buttons/Name Card.png  (0.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a22068251f4fa5cfc835a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    text_box___buttons/next.png  (0.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2208beb4bb9688040469')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    text_box___buttons/Dialogue Box.png  (0.42 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a220a40abb74aa3c66c47')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    final_cutscene_soundscape/Final Boss Soundscape.wav  (7.76 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a220c1bd8dbacf9bd21e5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rich_manor/mansionsscene.mp4  (1.40 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23207a0ef0947262db7c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rich_manor/manbsionscene2.mp4  (0.30 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2322697618999213d0e3')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    rich_manor/mansion.png  (1.24 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a232461171be08e03c3bc')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    click_on_button/Click on button.wav  (0.08 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2326ed4c023b4bc0d316')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    oasis_soundscapes/Oasis Soundscape.wav  (7.71 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2328da46e1c3f959af93')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_desert/frog 1.png  (0.28 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a232ba2bd8b45c3a5c67a')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_desert/event1cards 1.png  (0.86 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a232d414e210ec3c86269')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    loading_screen/Loading Screen.mp4  (3.45 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a232f6e0b37b0b926ff39')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    menu_buttons/settings.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2331fae14488b3a2a068')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    menu_buttons/rules.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2334bfb29f75f7790b7e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    menu_buttons/pause.svg  (0.01 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23372ffa1e88e216b8c5')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cursed_coffin/coffin desc..svg  (0.06 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23396649195a0ab526d7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cursed_coffin/Coffin zoom.svg  (0.27 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a233bcb8e6601b518ea8e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_shopkeeper/shipkeeper.png  (0.08 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a233d7d8ccdd1fd0935f1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_shopkeeper/gunkeeper.png  (0.08 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a233f335d7aeee8def360')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    effect_tiles/Effect Tile Sound Effect .wav  (0.87 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23415b8dd58408f034a1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    obtain_item/item_get.mp3  (0.07 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23435a030668a9a23187')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    obtain_item/Obtain item.wav  (0.09 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2344b34963cb11700f4b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_slums/003 1.png  (0.16 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23469865e73a4779dbdd')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    decision_slums/slumsnegotiate 1.png  (0.92 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a234875c344912c2d4d39')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    slums_soundscapes/Slums Soundscape.wav  (3.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a234a8eb0df9e795fcd34')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    credits/Credits Soundscape.wav  (9.79 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a234cdb8ae39fb57aa949')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_borzoi/005.png  (0.67 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a234f5bc0a5b18e015ac6')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_borzoi/4.wav  (0.95 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a235193dedf4e52d6e393')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_borzoi/1.wav  (0.52 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2353a9c48878d86dc639')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_borzoi/3.wav  (0.95 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23556abc2b8e680404e2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_borzoi/2.wav  (0.64 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2357945bf76c541eb722')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cowboy_boots/boots icon.png  (0.09 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2359ecd42c9e5acd4b9e')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cowboy_boots/boots desc..svg  (0.17 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a235bf118cb0d9bb46a84')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_tiger/6.wav  (2.87 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a235db3fb26f0fcbab702')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_tiger/7.wav  (1.32 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a235ff98a27cc14c80622')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_tiger/4.wav  (2.34 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a236175f36262b52e96e1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_tiger/1.wav  (5.40 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23635d2e72c7c83b1f88')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_tiger/3.wav  (1.75 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23663882cf8576177a3c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_tiger/2.wav  (1.18 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2368375f6f419fc96383')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_tiger/008.png  (1.13 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a236abf672252a493682c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/007.png  (0.48 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a236df1de3ed4b430dd2b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/wtf.wav  (0.34 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a236f4e7b129d8e87f320')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/8.wav  (0.55 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a237069f48937e1d11dc6')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/6.wav  (0.14 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2372faf119efa1dc0b7b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/bulletgungun.wav  (0.51 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a237406c3d108b07d9114')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/7.wav  (0.85 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a237619a3e5d62f11b96f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/5.wav  (1.00 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2378d2974b3a940e020f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/4.wav  (0.88 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a237a7d9904c2ba22afdb')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/1.wav  (0.40 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a237ce66e5c662b88a6d0')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/3.wav  (0.45 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a237e93d5d7d913c2e9c1')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/2.wav  (0.65 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2380188a82cec2745048')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/attack1.wav  (0.19 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2382fc2c76f5b5356bc8')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_frog/attack2.wav  (0.25 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a238461177cdad96f8dc6')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    mirage_teleporter/teleporter zoom.svg  (0.32 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2386c4168465e0faaf69')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    mirage_teleporter/teleporter desc..svg  (0.05 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a238797de129f12fdd0fc')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    magic_carpet_sound_effect/Magic Carpet Sound Effect .wav  (0.92 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a238987f338ba2e33c8fa')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    title_screen/pole.png  (0.11 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a238bbe1199fe649e95b7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    title_screen/title.svg  (0.29 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a238d1265bcd40604d270')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    title_screen/quit.svg  (0.05 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a238f1c2211a51b34e11c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    title_screen/background.png  (0.54 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2391d3551ebca41e1ea2')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    title_screen/start.svg  (0.05 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23930c40121422d9e572')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    title_screen/start_blank.png  (0.03 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2394fb40d396d94b0aec')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    title_screen/Options.svg  (0.06 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2396672e3155106c05cc')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    title_screen/quit_blank.png  (0.03 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a2398dc3d5c02d0b3566d')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    battle_screen/shield.png  (0.33 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a239ad7fb50df80ff43e7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    battle_screen/victory.svg  (0.29 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a239c8f43466324e1ddff')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    battle_screen/background.png  (1.15 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a239edfe4d26c43eab2ce')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    battle_screen/defeat.svg  (0.30 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23a0fea73ac714fc886c')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    battle_screen/health backing.svg  (0.03 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23a2b3ff74c0a8c95a68')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    battle_screen/health bar.svg  (0.08 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23a422ac17d894953938')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/12.wav  (1.26 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23a5d1218e3488ffddcb')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/006.png  (0.91 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23a7c4717584dbb66991')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/9.wav  (1.50 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23a9d7547eee60dabd7f')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/8.wav  (1.23 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23abd1ecfdb07d3c028b')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/7.wav  (0.89 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23ad2d88a824c370da30')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/5.wav  (1.29 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23afb9090b62fe0f5b11')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/4.wav  (1.20 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23b1617917fbf1988032')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/1.wav  (0.51 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23b331f6db3c20f5eed7')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/3.wav  (2.93 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23b59f8018e15e34b359')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    npc_sheep/2.wav  (1.56 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23b70d83d5a851509b18')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    intro_cutscene/Intro cut scene music.mp3  (3.28 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23b9140ff8f329667df9')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 📄 [Doc]    cactus_battle_sound_effect/Cactus Item Sound Effect .wav  (0.15 MiB)
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('681a23bbda80e5a133369ccd')
+}
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
