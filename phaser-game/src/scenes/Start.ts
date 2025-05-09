@@ -1,4 +1,5 @@
 import useDb from "../middleware/useDb";
+import skipTo from "../middleware/skipWithEscSpace";
 export class Start extends Phaser.Scene {
   private logoGame!: Phaser.GameObjects.Image;
   private logoTeam!: Phaser.GameObjects.Image;
@@ -73,8 +74,8 @@ export class Start extends Phaser.Scene {
       });
     
 
-    this.time.delayedCall(6000, () => {
-        this.scene.start('Cutscene');
+    this.time.delayedCall(7000, () => {
+        this.scene.start('CutScene');
       }
     );
   }

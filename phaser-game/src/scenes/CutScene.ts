@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import WebFontLoader from "webfontloader";
+import skipTo from "../middleware/skipWithEscSpace";
 
 export class CutScene extends Phaser.Scene {
   private loadingScene!: Phaser.GameObjects.Video;
@@ -18,16 +19,8 @@ export class CutScene extends Phaser.Scene {
 
     cutScene.play(true);
     screen.add(cutScene);
-    //skip on ESC and SPACE
-    this.input.keyboard!.on('keydown-ESC', (event: Event) => {
-      event.preventDefault();
-      this.scene.launch('MainScreen')
-  });
-    this.input.keyboard!.on('keydown-SPACE', (event: Event) => {
-      event.preventDefault();
-      this.scene.launch('MainScreen')
-  });
 
+    skipTo(this, 'MainScreen');
   }
 }
 

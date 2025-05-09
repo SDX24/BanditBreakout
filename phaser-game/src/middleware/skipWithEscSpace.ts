@@ -1,6 +1,18 @@
-export default function skipTo(currentScene: Phaser.Scene, nextScene: string) {
+export default function skipTo(currentScene: Phaser.Scene, nextScene: string, beforeNext?: () => void) {
     currentScene.input.keyboard!.on('keydown-ESC', (event: Event) => {
-        event.preventDefault();
-        currentScene.scene.launch(nextScene)
+        launchNext(event, currentScene)
     });
+    currentScene.input.keyboard!.on('keydown-SPACE', (event: Event) => {
+        launchNext(event, currentScene)
+    });
+
+    
+    
+    const launchNext = (event: Event, currentScene: Phaser.Scene) => {
+        event.preventDefault();
+        if (beforeNext) {
+            beforeNext();
+          }
+        currentScene.scene.launch(nextScene)
+    }
 }
