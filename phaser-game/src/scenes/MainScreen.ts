@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import WebFontLoader from "webfontloader";
+import settingsListener from "../middleware/settingsListener";
 
 export class MainScreen extends Phaser.Scene {
   private background!: Phaser.GameObjects.Image;
@@ -44,6 +45,15 @@ export class MainScreen extends Phaser.Scene {
     });
     optionsContainer.add(options);
     optionsContainer.add(optionsText);
+    // doesnt work / works bad
+    // let optionsInteractive = this.add.graphics();
+    // optionsInteractive.fillStyle(0x000000, 0.5);
+    // optionsInteractive.fillRect(350, 800, 600, 130);
+    // optionsInteractive.setInteractive(new Phaser.Geom.Rectangle(350, 800, 600, 130), Phaser.Geom.Rectangle.Contains);
+    // optionsInteractive.on("pointerdown", () => {
+    //   this.scene.start("Settings", {previousSceneKey: this.scene.key});
+    // });
+    settingsListener(this);
 
     const poleContainer = this.add.container(0, 0);
     const pole = this.add.image(860, 540, "pole");
@@ -164,6 +174,13 @@ export class Host extends Phaser.Scene {
     codeContainer.add(code);
     codeContainer.add(codeText);
     postContainer.add(codeContainer);
+    let joinInteractive = this.add.graphics();
+    joinInteractive.fillStyle(0x000000, 0);
+    joinInteractive.fillRect(260, 850, 460, 200);
+    joinInteractive.setInteractive(new Phaser.Geom.Rectangle(260, 850, 460, 200), Phaser.Geom.Rectangle.Contains);
+    joinInteractive.on("pointerdown", () => {
+      this.scene.start("CharacterSelection");
+    });
 
     backContainer.setInteractive(
       new Phaser.Geom.Rectangle(
@@ -402,6 +419,13 @@ export class Room extends Phaser.Scene {
     startContainer.add(start);
     startContainer.add(startText);
     postContainer.add(startContainer);
+    let joinInteractive = this.add.graphics();
+    joinInteractive.fillStyle(0x000000, 0);
+    joinInteractive.fillRect(260, 850, 460, 200);
+    joinInteractive.setInteractive(new Phaser.Geom.Rectangle(260, 850, 460, 200), Phaser.Geom.Rectangle.Contains);
+    joinInteractive.on("pointerdown", () => {
+      this.scene.start("CharacterSelection");
+    });
 
     const lobbyContainer = this.add.container(0, 0);
     const lobby = this.add.image(1400, 650, "lobby");

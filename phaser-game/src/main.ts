@@ -18,8 +18,8 @@ const config = {
   pixelArt: false,
   scene: [
     // EmptyTest,
-    Start,
-    CutScene,
+    // Start,
+    // CutScene,
     MainScreen,
     Host,
     Code,

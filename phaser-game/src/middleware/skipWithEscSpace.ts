@@ -8,10 +8,10 @@ export default function skipTo(currentScene: Phaser.Scene, nextScene: string, be
 
     
     
-    const launchNext = (event: Event, currentScene: Phaser.Scene) => {
+    const launchNext = async (event: Event, currentScene: Phaser.Scene) => {
         event.preventDefault();
         if (beforeNext) {
-            beforeNext();
+            await beforeNext();
           }
         currentScene.scene.launch(nextScene)
     }

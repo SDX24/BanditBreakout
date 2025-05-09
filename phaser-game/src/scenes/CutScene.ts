@@ -20,7 +20,9 @@ export class CutScene extends Phaser.Scene {
     cutScene.play(true);
     screen.add(cutScene);
 
-    skipTo(this, 'MainScreen');
+    skipTo(this, 'MainScreen', () => {
+      cutScene.stop();
+    });
   }
 }
 

@@ -87,6 +87,13 @@ export class CharacterSelection extends Phaser.Scene {
     });
     backButtonText.setRotation(-0.05);
     containerBackButton.add(backButtonText);
+    const backButtonInteractive = this.add.graphics();
+    backButtonInteractive.fillStyle(0x000000, 0)
+    .fillRect(0, 30, 300, 130)
+    backButtonInteractive.setInteractive(new Phaser.Geom.Rectangle(0, 30, 300, 130), Phaser.Geom.Rectangle.Contains);
+    backButtonInteractive.on("pointerdown", () => {
+        this.scene.start("MainScreen")
+  });
 
 
     containerMain.add(containerBackButton);
