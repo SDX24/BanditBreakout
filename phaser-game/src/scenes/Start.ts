@@ -1,4 +1,4 @@
-import Phaser from "phaser";
+import useDb from "../middleware/useDb";
 export class Start extends Phaser.Scene {
   private logoGame!: Phaser.GameObjects.Image;
   private logoTeam!: Phaser.GameObjects.Image;
@@ -8,7 +8,7 @@ export class Start extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("backgroundWhite", "assets/white.jpg");
+    useDb(this);
     this.load.svg("logoTeam", "assets/CMD Z Logo.svg");
     this.load.svg("logoGame", "assets/Bandit Logo Circle.svg");
   }

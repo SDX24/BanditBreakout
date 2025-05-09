@@ -9,7 +9,6 @@ export class MapScene extends Phaser.Scene {
     preload() {
 
       this.load.setBaseURL('http://localhost:3000');          
-  
       this.load.setPath('assets');       
       
       this.load.image('background', encodeURIComponent('board/background.png'));   
@@ -29,8 +28,6 @@ export class MapScene extends Phaser.Scene {
       this.mapContainer = this.add.container(0,0,[ bg, overlay ]);
 
       settingsListener(this);
-      console.log('Background exists:', this.textures.exists('background'));
-console.log('MapOverlay exists:', this.textures.exists('mapOverlay'));
     }
   }
   

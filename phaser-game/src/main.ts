@@ -15,7 +15,7 @@ const config = {
   backgroundColor: "#000000",
   pixelArt: false,
   scene: [
-    // Start,
+    Start,
     CharacterSelection,
     // EmptyTest,
     // SettingsMenu,
