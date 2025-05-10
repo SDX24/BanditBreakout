@@ -8,7 +8,7 @@ GridFS Bucket (large files): assets_fs
 📄 Files in MongoDB Collection (assets):
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
-Atlas atlas-xnsupc-shard-0 [primary] game_assets> Total files in collection: 431
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> Total files in collection: 445
 
 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... ... Filenames:
@@ -443,6 +443,20 @@ Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... ... Fi
   - npc_sheep/2.wav
   - intro_cutscene/Intro cut scene music.mp3
   - cactus_battle_sound_effect/Cactus Item Sound Effect .wav
+  - board/Board with Bridges.svg
+  - settings/back.svg
+  - decision_start/Desert Soundscape.wav
+  - decision_casino/CasinoBackgroundSounds.wav
+  - decisions_oasis_mine/Oasis Soundscape.wav
+  - decision_rich_town/Rich Manor House Soundscape.wav
+  - decision_crime/Slums Soundscape.wav
+  - text_box___buttons/Click on button.wav
+  - decision_desert/Desert Soundscape.wav
+  - character_asset/solsticeFront.svg
+  - character_asset/scoutFront.svg
+  - character_asset/serpyFront.svg
+  - character_asset/buckshotFront.svg
+  - character_asset/gritFront.svg
 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
 🎥 Files in GridFS Bucket (assets_fs):
