@@ -36,6 +36,11 @@ export class MapScene extends Phaser.Scene {
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
       
       // Load the dice video
+      this.load.video('dice1', encodeURIComponent('dice/dice1.mp4'), 'loadeddata', false, true);
+      this.load.video('dice2', encodeURIComponent('dice/dice2.mp4'), 'loadeddata', false, true);
+      this.load.video('dice3', encodeURIComponent('dice/dice3.mp4'), 'loadeddata', false, true);
+      this.load.video('dice4', encodeURIComponent('dice/dice1.mp4'), 'loadeddata', false, true);
+      this.load.video('dice5', encodeURIComponent('dice/dice1.mp4'), 'loadeddata', false, true);
       this.load.video('dice6', encodeURIComponent('dice/dice6.mp4'), 'loadeddata', false, true);
     }
   
