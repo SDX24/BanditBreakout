@@ -309,7 +309,13 @@ export class MapScene extends Phaser.Scene {
         console.log('Requesting dice roll for movement');
         // Show dice roll animation immediately to give visual feedback
         this.playDiceRollAnimation(0); // 0 as a placeholder since we don't know the result yet
-        this.socket.emit('movePlayerDiceRoll', this.gameId, this.playerId);
+        this.socket.emit('movePlayerDiceRoll', this.gameId, this.playerId, (response: any) => {
+          if (response && response.success) {
+            console.log('Dice roll request sent successfully:', response);
+          } else {
+            console.error('Failed to send dice roll request:', response ? response.error : 'No response');
+          }
+        });
       } else {
         console.log('Cannot roll dice: not your turn');
       }
