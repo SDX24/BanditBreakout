@@ -40,7 +40,8 @@ export class MapScene extends Phaser.Scene {
 
       // Add video to the center of the mapContainer
       const video = this.add.video(bg.width / 2, bg.height / 2, 'dice6').setOrigin(0.5);
-      video.play(true); // Play the video t
+      video.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
+      video.play(false); // Play the video once, without looping
       mapContainer.add(video);
 
       // Parse the CSV data after it's loaded
