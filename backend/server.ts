@@ -261,6 +261,7 @@ app.use('/assets/', async (req, res) => {
       else if (filename.endsWith('.svg')) contentType = 'image/svg+xml';
       else if (filename.endsWith('.mp3')) contentType = 'audio/mpeg';
       else if (filename.endsWith('.wav')) contentType = 'audio/wav';
+      else if (filename.endsWith('.mp4')) contentType = 'video/mp4';
       else if (filename.endsWith('.json')) contentType = 'application/json';
       
       res.setHeader('Content-Type', contentType);
