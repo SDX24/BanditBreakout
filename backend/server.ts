@@ -142,16 +142,20 @@ io.on('connection', (socket) => {
   });
 
   // Handle player movement by dice roll
-  socket.on('movePlayerDiceRoll', async (gameId: string, playerId: number) => {
+  socket.on('movePlayerDiceRoll', async (gameId: string, playerId: number, callback: (response: any) => void) => {
     if (!activeGames[gameId]) {
+      const errorResponse = { success: false, error: 'Game does not exist' };
       socket.emit('error', { message: 'Game does not exist' });
+      if (callback) callback(errorResponse);
       console.log(`Game does not exist`);
       return;
     }
     try {
       const currentPlayer = activeGames[gameId].getCurrentPlayerTurn();
       if (playerId !== currentPlayer) {
+        const errorResponse = { success: false, error: 'It is not your turn' };
         socket.emit('error', { message: 'It is not your turn' });
+        if (callback) callback(errorResponse);
         console.log(`It is not your turn, ${playerId}`);
         return;
       }
@@ -169,9 +173,15 @@ io.on('connection', (socket) => {
           tile.event.onStep(playerId, activeGames[gameId]);
           io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type });
         }
+        if (callback) callback({ success: true, roll: steps, position: newPosition });
+      } else {
+        const errorResponse = { success: false, error: 'Player not found' };
+        if (callback) callback(errorResponse);
       }
     } catch (error) {
+      const errorResponse = { success: false, error: 'Failed to move player' };
       socket.emit('error', { message: 'Failed to move player' });
+      if (callback) callback(errorResponse);
       console.error('Error moving player:', error);
     }
   });
