@@ -57,6 +57,7 @@ export class MapScene extends Phaser.Scene {
       const bg = this.add.image(0, 0, 'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
       this.player = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+      this.playerSprites.set(this.playerId, this.player);
       
       const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
 
@@ -87,7 +88,7 @@ export class MapScene extends Phaser.Scene {
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
 
-      this.movePlayerTo(3);
+      // this.movePlayerTo(3);
       
       // Initialize socket connection
       this.initializeSocket();
@@ -179,6 +180,11 @@ export class MapScene extends Phaser.Scene {
         try {
           videoToPlay.play(false);
           console.log(`Playing dice roll animation for result: ${rollResult} using ${videoKey}`);
+          // Ensure onComplete is called even if video playback doesn't trigger 'complete' event                                                                                                
+          setTimeout(() => {                                                                                                                                                                    
+            console.log(`Fallback timeout for video completion: ${videoKey}`);                                                                                                                  
+            if (onComplete) onComplete();                                                                                                                                                       
+          }, 3000); // Assume video should complete within 3 seconds            
         } catch (error) {
           console.error(`Error playing video ${videoKey}:`, error);
           // Fallback to just completing the action without animation

@@ -107,9 +107,11 @@ private rollDiceNum(): number {
     return Math.floor(Math.random() * 6) + 1;
 }
 
-public diceRoll(): void {
+public diceRoll(): number {
     const dice = this.rollDiceNum();
     console.log(`Player ${this.player.id} rolled a ${dice}!`);
     this.player.move.front(dice);
+
+    return dice;
 }
 }
