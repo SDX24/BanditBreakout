@@ -43,11 +43,15 @@ export class MapScene extends Phaser.Scene {
       
       const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
 
+      // Add and play the dice6 video at the center of the container
+      const diceVideo = this.add.video(bg.width / 2, bg.height / 2, 'dice6').setOrigin(0.5, 0.5);
+      diceVideo.play(true); // Play the video and loop it
+      mapContainer.add(diceVideo);
+
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
 
       this.movePlayerTo(3);
-
     }
 
     // Parse the CSV file and store tile locations in a map
