@@ -55,7 +55,7 @@ export class MapScene extends Phaser.Scene {
       // Add video to the bottom-left corner of the mapContainer for dice rolling
       const video = this.add.video(50, bg.height - 50, 'dice6').setOrigin(0.5);
       video.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
-      video.setVisible(false); // Start hidden
+      video.setVisible(true); // Start hidden
       mapContainer.add(video);
       
       // Fade out the video after it finishes playing
