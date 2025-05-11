@@ -25,6 +25,14 @@ export class MapScene extends Phaser.Scene {
 
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
+
+      this.load.video("dice1", encodeURIComponent('dice/dice1.mp4'));
+      this.load.video("dice2", encodeURIComponent('dice/dice2.mp4'));
+      this.load.video("dice3", encodeURIComponent('dice/dice3.mp4'));
+      this.load.video("dice4", encodeURIComponent('dice/dice4.mp4'));
+      this.load.video("dice5", encodeURIComponent('dice/dice5.mp4'));
+      this.load.video("dice6", encodeURIComponent('dice/dice6.mp4')); 
+
     }
   
     create() {
@@ -37,6 +45,9 @@ export class MapScene extends Phaser.Scene {
 
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
+
+      this.movePlayerTo(3);
+
     }
 
     // Parse the CSV file and store tile locations in a map
