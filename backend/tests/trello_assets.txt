@@ -1,0 +1,466 @@
+📊 Listing assets in MongoDB database and GridFS...
+==============================================
+Database: game_assets
+Collection (small files): assets
+GridFS Bucket (large files): assets_fs
+==============================================
+
+📄 Files in MongoDB Collection (assets):
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> Total files in collection: 446
+
+
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... ... Filenames:
+  - pause/backboard.svg
+  - pause/board.png
+  - pause/pause.svg
+  - battle_tiles/Battle tile sound .wav
+  - entering_board_map_view/EnterBoardMapSounds.wav
+  - wood/wood.mp3
+  - hover_on_item_weapon/Page Turn Sound Effect! Flip Sound Effect!.mp3
+  - hover_on_item_weapon/Hover on item .wav
+  - settings/Sound.svg
+  - settings/settings.svg
+  - settings/Slider.svg
+  - settings/Mute.svg
+  - settings/board.png
+  - settings/Slider button.svg
+  - decision_start/tiger 1.png
+  - decision_start/event1cards 1.png
+  - oasis/oasisisis.png
+  - oasis/eventoasis.mp4
+  - battle_sound_track_during_shootout/Battle sound track during shooting.wav
+  - enter_game_confirm_sound_effect/Enter Game Sound Effect .wav
+  - cactus/cactus icon.png
+  - cactus/cactus desc..svg
+  - rich_manor_house_soundscape/Rich Manor House Soundscape.wav
+  - sunscreen/sunscreen desc..svg
+  - sunscreen/sunscreen icon.png
+  - wind_staff_sound_effect/Wind Staff Sound Effect .wav
+  - company__group__logo/CMD Z Logo.svg
+  - tumbleweed/tumbleweed.mp3
+  - tumbleweed/tumbleweed desc..svg
+  - tumbleweed/tumbleweed zoom.svg
+  - player_overlay/banner.svg
+  - player_overlay/backing.svg
+  - player_overlay/coin icon.png
+  - player_overlay/frame.svg
+  - player_overlay/board.svg
+  - sunscreen_battle_sound_effect/Sunscreen Item Sound Effect .wav
+  - battle_dice_roll_background_music/Battle dice roll background music .wav
+  - cursed_coffin_sound_effect/Cursed Coffin Sound Effect .wav
+  - shovel/shovel desc..svg
+  - shovel/shovel zoom.svg
+  - scout__dog_/argue.wav
+  - scout__dog_/hurt.wav
+  - scout__dog_/sigh.wav
+  - scout__dog_/characterselect1.wav
+  - scout__dog_/confused.wav
+  - scout__dog_/catspace.wav
+  - scout__dog_/characterselect2.wav
+  - scout__dog_/move.wav
+  - scout__dog_/yikes.wav
+  - scout__dog_/excited.wav
+  - scout__dog_/end3.wav
+  - scout__dog_/saddefeated.wav
+  - scout__dog_/tile.wav
+  - scout__dog_/errrr.wav
+  - scout__dog_/wonthegame.wav
+  - scout__dog_/end2.wav
+  - scout__dog_/end1.wav
+  - scout__dog_/end5.wav
+  - scout__dog_/yay.wav
+  - scout__dog_/grossedout.wav
+  - scout__dog_/growl.wav
+  - scout__dog_/oh.wav
+  - scout__dog_/nahhjh.wav
+  - scout__dog_/aw.wav
+  - scout__dog_/scoutprinted.png
+  - scout__dog_/lostthegame.wav
+  - scout__dog_/angry.wav
+  - scout__dog_/attack.wav
+  - scout__dog_/winnoise.wav
+  - scout__dog_/yeah.wav
+  - scout__dog_/dead.wav
+  - game_logo/Bandit Logo Circle.svg
+  - game_logo/Bandit Base Logo.svg
+  - scout_ending/Scout end.mp4
+  - npc_giraffe/002.png
+  - npc_giraffe/10.wav
+  - npc_giraffe/11.wav
+  - npc_giraffe/13.wav
+  - npc_giraffe/12.wav
+  - npc_giraffe/9.wav
+  - npc_giraffe/8.wav
+  - npc_giraffe/6.wav
+  - npc_giraffe/7.wav
+  - npc_giraffe/5.wav
+  - npc_giraffe/4.wav
+  - npc_giraffe/1.wav
+  - npc_giraffe/3.wav
+  - npc_giraffe/2.wav
+  - mirage_teleporter_sound_effect/Mirage Teleporter Sound Effect .wav
+  - board/bridge.png
+  - board/Game Board.svg
+  - board/background.png
+  - v.s_sound_effect/VS Sound Effect .wav
+  - npc_ferret/003.png
+  - npc_ferret/9.wav
+  - npc_ferret/8.wav
+  - npc_ferret/7.wav
+  - npc_ferret/5.wav
+  - npc_ferret/4.wav
+  - npc_ferret/1.wav
+  - npc_ferret/3.wav
+  - npc_ferret/2.wav
+  - v.s./vs desc..svg
+  - v.s./vs zoom.svg
+  - card_played/use item.png
+  - movement_walking/Walking sound on wooden floor.wav
+  - casino_soundscape/CasinoBackgroundSounds.wav
+  - casino_soundscape/casino.mp3
+  - magic_carpet/carpet desc..svg
+  - magic_carpet/carpet zoom.svg
+  - poison_crossbow/crossbow desc..svg
+  - poison_crossbow/Poison Crossbow Sound Effect .wav
+  - poison_crossbow/crossbow zoom.svg
+  - host_screen/lobby.png
+  - host_screen/code.png
+  - host_screen/post.png
+  - host_screen/numbers.png
+  - host_screen/background.png
+  - host_screen/player icon.svg
+  - host_screen/start.png
+  - cowboy_vest_sound_effect/Vest Sound Effect .wav
+  - character_selection/backing.png
+  - character_selection/frame.png
+  - character_selection/select button.png
+  - character_selection/page.png
+  - rigged_dice_sound_effect/Rigged dice refined Sound Effect .wav
+  - dice_roll/dice.mp3
+  - pause_settings_background_music/Pause:settings sound track.wav
+  - join_screen/join.png
+  - join_screen/post.png
+  - join_screen/background.png
+  - join_screen/input.png
+  - join_screen/start.png
+  - solstice__crow_/hurt.wav
+  - solstice__crow_/sigh.wav
+  - solstice__crow_/characterselect1.wav
+  - solstice__crow_/win.wav
+  - solstice__crow_/catspace.wav
+  - solstice__crow_/move.wav
+  - solstice__crow_/hey.wav
+  - solstice__crow_/yeahh.wav
+  - solstice__crow_/solsticeprinted.png
+  - solstice__crow_/excited.wav
+  - solstice__crow_/wonthegame.wav
+  - solstice__crow_/first1.wav
+  - solstice__crow_/uppset.wav
+  - solstice__crow_/grossedout.wav
+  - solstice__crow_/space.wav
+  - solstice__crow_/no.wav
+  - solstice__crow_/aw.wav
+  - solstice__crow_/final1.wav
+  - solstice__crow_/defeated.wav
+  - solstice__crow_/lostthegame.wav
+  - solstice__crow_/final2.wav
+  - solstice__crow_/winbattle.wav
+  - solstice__crow_/angry.wav
+  - solstice__crow_/attack.wav
+  - solstice__crow_/hmmm.wav
+  - solstice__crow_/dead.wav
+  - revolver/revolver icon.png
+  - revolver/revolver desc..svg
+  - item__effect_being_played/Effect being used Sound Effect .wav
+  - casino/casinoscsdfene1.mp4
+  - casino/casinofight_1.mp4
+  - casino/casino1.png
+  - decision_casino/006 2.png
+  - decision_casino/cacasino 1.png
+  - npc_prarie_dog/004.png
+  - npc_prarie_dog/1.wav
+  - npc_prarie_dog/2.wav
+  - desert_sandstorm_soundscape/Desert Soundscape.wav
+  - desert_tiles/event1cards.mp4
+  - desert_tiles/scorpion jumpscare.png
+  - desert_tiles/event1.png
+  - desert_tiles/event1 scorpionfar.mp4
+  - desert_tiles/scorpion 2.png
+  - dice/dice3.mp4
+  - dice/dice2.mp4
+  - dice/dice1.mp4
+  - dice/dice5.mp4
+  - dice/dice4.mp4
+  - dice/dice6.mp4
+  - crow/crow.mp3
+  - wind/wind.mp3
+  - cowboy_boots_battle_sound_effect/Cowboy boots Item Sound Effect.wav
+  - decisions_oasis_mine/oasis.png
+  - decisions_oasis_mine/006 1.png
+  - lasso_sound_effect/Lasso Sound Effect .wav
+  - chicken_leg_battle_sound_effect/Chicken Lg Item Sound Effect .wav
+  - turn_start/turn_start.mp3
+  - win_battle/Win Battle Sound Effect .wav
+  - spindle__spider_/pant.wav
+  - spindle__spider_/scream.wav
+  - spindle__spider_/sure.wav
+  - spindle__spider_/mercy.wav
+  - spindle__spider_/huh.wav
+  - spindle__spider_/villainprinted.png
+  - spindle__spider_/leavenmealone.wav
+  - spindle__spider_/what.wav
+  - spindle__spider_/plz.wav
+  - spindle__spider_/spareme.wav
+  - spindle__spider_/o-oh.wav
+  - slums/slums1.png
+  - slums/slumseventshadycrowd.mp4
+  - slums/slumsnegotiate.mp4
+  - slums/lost.png
+  - slums/slumsfightt.mp4
+  - slums/negotiate.png
+  - rigged_dice/dice zoom.svg
+  - rigged_dice/dice desc..svg
+  - tile_legend/backboard.svg
+  - tile_legend/board.png
+  - tile_legend/page.png
+  - grit__capybara_/hurt.wav
+  - grit__capybara_/sigh.wav
+  - grit__capybara_/lost.wav
+  - grit__capybara_/move.wav
+  - grit__capybara_/excited.wav
+  - grit__capybara_/heythere.wav
+  - grit__capybara_/goodchoice.wav
+  - grit__capybara_/scene1sigh.wav
+  - grit__capybara_/scene1listenup.wav
+  - grit__capybara_/struggling.wav
+  - grit__capybara_/happy.wav
+  - grit__capybara_/yay.wav
+  - grit__capybara_/letsgo.wav
+  - grit__capybara_/sad.wav
+  - grit__capybara_/oh.wav
+  - grit__capybara_/imwatching.wav
+  - grit__capybara_/winner.wav
+  - grit__capybara_/MADGROWLSAAA.wav
+  - grit__capybara_/no.wav
+  - grit__capybara_/sure.wav
+  - grit__capybara_/gritprinted.png
+  - grit__capybara_/sighs.wav
+  - grit__capybara_/grossed out.wav
+  - grit__capybara_/withmenow.wav
+  - grit__capybara_/dissapointed.wav
+  - grit__capybara_/attack.wav
+  - grit__capybara_/hmmm.wav
+  - grit__capybara_/heybuddy.wav
+  - grit__capybara_/firstscenesigh.wav
+  - grit__capybara_/dead.wav
+  - grit__capybara_/come.wav
+  - tiles/slots.svg
+  - tiles/safe.svg
+  - tiles/decison.svg
+  - tiles/effect.svg
+  - tiles/event.svg
+  - tiles/battle.svg
+  - tiles/mining.svg
+  - tiles/item.svg
+  - gameboard_soundscape/GameBoard View Soundscape.wav
+  - cowboy_vest/vest zoom.svg
+  - cowboy_vest/vest desc..svg
+  - character_moves_on_board/sand footsteps .wav
+  - money/money.mp3
+  - shovel_sound_effect/Shovel Sound Effect .wav
+  - revolver_battle_sound_effect/Revolver Sound effect .wav
+  - decision_rich_town/004 1.png
+  - decision_rich_town/mansionscene.png
+  - food/food icon.png
+  - food/food desc..svg
+  - gun/gun.mp3
+  - lose_battle/Lose Duel.wav
+  - serpy__snake_/argue.wav
+  - serpy__snake_/sigh.wav
+  - serpy__snake_/lost.wav
+  - serpy__snake_/characterselect1.wav
+  - serpy__snake_/owwww.wav
+  - serpy__snake_/wonbattle.wav
+  - serpy__snake_/characterselect2.wav
+  - serpy__snake_/capyspace.wav
+  - serpy__snake_/move.wav
+  - serpy__snake_/aww.wav
+  - serpy__snake_/abrgy.wav
+  - serpy__snake_/ehhhh.wav
+  - serpy__snake_/end3.wav
+  - serpy__snake_/hIIIspace.wav
+  - serpy__snake_/ermm.wav
+  - serpy__snake_/end2.wav
+  - serpy__snake_/end1.wav
+  - serpy__snake_/end5.wav
+  - serpy__snake_/upseet.wav
+  - serpy__snake_/yay.wav
+  - serpy__snake_/grossedout.wav
+  - serpy__snake_/oh.wav
+  - serpy__snake_/end6.wav
+  - serpy__snake_/happywinwav.wav
+  - serpy__snake_/awwwwloist.wav
+  - serpy__snake_/NO.wav
+  - serpy__snake_/aw.wav
+  - serpy__snake_/serpyprinted.png
+  - serpy__snake_/ssss.wav
+  - serpy__snake_/nice.wav
+  - serpy__snake_/veryhappywinner.wav
+  - serpy__snake_/huh'.wav
+  - serpy__snake_/attack.wav
+  - serpy__snake_/hmmm.wav
+  - serpy__snake_/yeaH.wav
+  - serpy__snake_/dead.wav
+  - rules/backboard.svg
+  - rules/board.png
+  - rules/rules (2).svg
+  - character_selection_sound_track/Title Card Music .wav
+  - tumble_weed_sound_effect/Tumbleweed RefinedSound Effect .wav
+  - tumble_weed_sound_effect/Tumble weed Sound Effect .wav
+  - decision_crime/005 1.png
+  - decision_crime/slumsnegotiate 1.png
+  - wind_staff/staff desc..svg
+  - wind_staff/staff zoom.svg
+  - lasso/lasso zoom.svg
+  - lasso/lasso desc..svg
+  - buckshot__cat_/sigh.wav
+  - buckshot__cat_/characterselect1.wav
+  - buckshot__cat_/characterselect2.wav
+  - buckshot__cat_/move.wav
+  - buckshot__cat_/excited.wav
+  - buckshot__cat_/buckshotprint.png
+  - buckshot__cat_/wonnnthegame.wav
+  - buckshot__cat_/firstscene2.wav
+  - buckshot__cat_/eugh.wav
+  - buckshot__cat_/angry1.wav
+  - buckshot__cat_/dogtile.wav
+  - buckshot__cat_/angry2.wav
+  - buckshot__cat_/awww.wav
+  - buckshot__cat_/yay.wav
+  - buckshot__cat_/oh.wav
+  - buckshot__cat_/ewgross.wav
+  - buckshot__cat_/no.wav
+  - buckshot__cat_/lostnoise.wav
+  - buckshot__cat_/ohhhhscene1.wav
+  - buckshot__cat_/final1.wav
+  - buckshot__cat_/lostthegame.wav
+  - buckshot__cat_/final3.wav
+  - buckshot__cat_/final2.wav
+  - buckshot__cat_/final5.wav
+  - buckshot__cat_/what.wav
+  - buckshot__cat_/final4.wav
+  - buckshot__cat_/uhhhh.wav
+  - buckshot__cat_/hurtnoise.wav
+  - buckshot__cat_/landontilewithsomeone.wav
+  - buckshot__cat_/attack.wav
+  - buckshot__cat_/firstscene.wav
+  - buckshot__cat_/winnoise.wav
+  - buckshot__cat_/yeah.wav
+  - buckshot__cat_/dead.wav
+  - text_box___buttons/speed up.svg
+  - text_box___buttons/Choice Button.png
+  - text_box___buttons/Name Card.png
+  - text_box___buttons/next.png
+  - text_box___buttons/Dialogue Box.png
+  - final_cutscene_soundscape/Final Boss Soundscape.wav
+  - rich_manor/mansionsscene.mp4
+  - rich_manor/manbsionscene2.mp4
+  - rich_manor/mansion.png
+  - click_on_button/Click on button.wav
+  - oasis_soundscapes/Oasis Soundscape.wav
+  - decision_desert/frog 1.png
+  - decision_desert/event1cards 1.png
+  - loading_screen/Loading Screen.mp4
+  - menu_buttons/settings.svg
+  - menu_buttons/rules.svg
+  - menu_buttons/pause.svg
+  - cursed_coffin/coffin desc..svg
+  - cursed_coffin/Coffin zoom.svg
+  - npc_shopkeeper/shipkeeper.png
+  - npc_shopkeeper/gunkeeper.png
+  - effect_tiles/Effect Tile Sound Effect .wav
+  - obtain_item/item_get.mp3
+  - obtain_item/Obtain item.wav
+  - decision_slums/003 1.png
+  - decision_slums/slumsnegotiate 1.png
+  - slums_soundscapes/Slums Soundscape.wav
+  - credits/Credits Soundscape.wav
+  - npc_borzoi/005.png
+  - npc_borzoi/4.wav
+  - npc_borzoi/1.wav
+  - npc_borzoi/3.wav
+  - npc_borzoi/2.wav
+  - cowboy_boots/boots icon.png
+  - cowboy_boots/boots desc..svg
+  - npc_tiger/6.wav
+  - npc_tiger/7.wav
+  - npc_tiger/4.wav
+  - npc_tiger/1.wav
+  - npc_tiger/3.wav
+  - npc_tiger/2.wav
+  - npc_tiger/008.png
+  - npc_frog/007.png
+  - npc_frog/wtf.wav
+  - npc_frog/8.wav
+  - npc_frog/6.wav
+  - npc_frog/bulletgungun.wav
+  - npc_frog/7.wav
+  - npc_frog/5.wav
+  - npc_frog/4.wav
+  - npc_frog/1.wav
+  - npc_frog/3.wav
+  - npc_frog/2.wav
+  - npc_frog/attack1.wav
+  - npc_frog/attack2.wav
+  - mirage_teleporter/teleporter zoom.svg
+  - mirage_teleporter/teleporter desc..svg
+  - magic_carpet_sound_effect/Magic Carpet Sound Effect .wav
+  - title_screen/pole.png
+  - title_screen/title.svg
+  - title_screen/quit.svg
+  - title_screen/background.png
+  - title_screen/start.svg
+  - title_screen/start_blank.png
+  - title_screen/Options.svg
+  - title_screen/quit_blank.png
+  - battle_screen/shield.png
+  - battle_screen/victory.svg
+  - battle_screen/background.png
+  - battle_screen/defeat.svg
+  - battle_screen/health backing.svg
+  - battle_screen/health bar.svg
+  - npc_sheep/12.wav
+  - npc_sheep/006.png
+  - npc_sheep/9.wav
+  - npc_sheep/8.wav
+  - npc_sheep/7.wav
+  - npc_sheep/5.wav
+  - npc_sheep/4.wav
+  - npc_sheep/1.wav
+  - npc_sheep/3.wav
+  - npc_sheep/2.wav
+  - intro_cutscene/Intro cut scene music.mp3
+  - cactus_battle_sound_effect/Cactus Item Sound Effect .wav
+  - board/Board with Bridges.svg
+  - settings/back.svg
+  - decision_start/Desert Soundscape.wav
+  - decision_casino/CasinoBackgroundSounds.wav
+  - decisions_oasis_mine/Oasis Soundscape.wav
+  - decision_rich_town/Rich Manor House Soundscape.wav
+  - decision_crime/Slums Soundscape.wav
+  - text_box___buttons/Click on button.wav
+  - decision_desert/Desert Soundscape.wav
+  - character_asset/solsticeFront.svg
+  - character_asset/scoutFront.svg
+  - character_asset/serpyFront.svg
+  - character_asset/buckshotFront.svg
+  - character_asset/gritFront.svg
+  - board/tilesLocation.csv
+
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
+🎥 Files in GridFS Bucket (assets_fs):
+
+==============================================
+Listing complete.
