@@ -35,12 +35,12 @@ export class MapScene extends Phaser.Scene {
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
       
-      // Load the dice video
+      // Load the dice videos
       this.load.video('dice1', encodeURIComponent('dice/dice1.mp4'), 'loadeddata', false, true);
       this.load.video('dice2', encodeURIComponent('dice/dice2.mp4'), 'loadeddata', false, true);
       this.load.video('dice3', encodeURIComponent('dice/dice3.mp4'), 'loadeddata', false, true);
-      this.load.video('dice4', encodeURIComponent('dice/dice1.mp4'), 'loadeddata', false, true);
-      this.load.video('dice5', encodeURIComponent('dice/dice1.mp4'), 'loadeddata', false, true);
+      this.load.video('dice4', encodeURIComponent('dice/dice4.mp4'), 'loadeddata', false, true);
+      this.load.video('dice5', encodeURIComponent('dice/dice5.mp4'), 'loadeddata', false, true);
       this.load.video('dice6', encodeURIComponent('dice/dice6.mp4'), 'loadeddata', false, true);
     }
   
@@ -148,11 +148,17 @@ export class MapScene extends Phaser.Scene {
     playDiceRollAnimation(rollResult: number, onComplete?: () => void) {
       const video = this.children.list.find(child => child.type === 'Video') as Phaser.GameObjects.Video;
       if (video) {
+        // Select the appropriate video based on rollResult
+        let videoKey = 'dice6'; // Default to dice6 if rollResult is unknown or 0
+        if (rollResult >= 1 && rollResult <= 6) {
+          videoKey = `dice${rollResult}`;
+        }
+        
         video.setAlpha(1);
         video.setVisible(true);
+        video.changeSource(videoKey);
         video.play(false);
-        // You might want to adjust the video to stop at a specific frame based on rollResult
-        console.log(`Playing dice roll animation, result: ${rollResult}`);
+        console.log(`Playing dice roll animation for result: ${rollResult} using ${videoKey}`);
         video.on('complete', () => {
           this.tweens.add({
             targets: video,
