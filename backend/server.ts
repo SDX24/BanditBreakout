@@ -75,11 +75,13 @@ io.on('connection', (socket) => {
     try {
       // Database operations removed: await addPlayerToGame(gameId, playerId);
       socket.join(gameId);
-      socket.emit('joinedGame', { gameId, playerId });
-      io.to(gameId).emit('playerJoined', { playerId });
+      // Roll for turn order when a player joins
+      const roll = activeGames[gameId].rollForTurnOrder(playerId);
+      socket.emit('joinedGame', { gameId, playerId, initialRoll: roll });
+      io.to(gameId).emit('playerJoined', { playerId, initialRoll: roll });
       // Give the joining client the current snapshot
       socket.emit('gameState', serializeGame(activeGames[gameId]));
-      console.log(`Player ${playerId} joined game ${gameId}`);
+      console.log(`Player ${playerId} joined game ${gameId} with initial roll ${roll}`);
     } catch (error) {
       socket.emit('error', { message: 'Failed to join game' });
       console.error('Error joining game:', error);
@@ -146,13 +148,19 @@ io.on('connection', (socket) => {
       return;
     }
     try {
+      const currentPlayer = activeGames[gameId].getCurrentPlayerTurn();
+      if (playerId !== currentPlayer) {
+        socket.emit('error', { message: 'It is not your turn' });
+        return;
+      }
+      
       const player = activeGames[gameId].players.find(p => p.id === playerId);
       if (player) {
-        player.move.diceRoll();
+        const steps = player.move.diceRoll();
         const newPosition = activeGames[gameId].map.findPlayer(playerId);
         // Database operation removed: await updatePlayerPosition(playerId, newPosition);
-        io.to(gameId).emit('playerMoved', { playerId, position: newPosition });
-        console.log(`Player ${playerId} moved by dice roll to position ${newPosition} in game ${gameId}`);
+        io.to(gameId).emit('playerMoved', { playerId, position: newPosition, roll: steps });
+        console.log(`Player ${playerId} moved by dice roll of ${steps} to position ${newPosition} in game ${gameId}`);
         // Check for tile event
         const tile = activeGames[gameId].map.tiles[newPosition];
         if (tile.event.type !== 0) {
@@ -232,6 +240,39 @@ io.on('connection', (socket) => {
     } catch (error) {
       socket.emit('error', { message: 'Failed to update resource' });
       console.error('Error updating resource:', error);
+    }
+  });
+
+  // Handle game start request (from host)
+  socket.on('startGame', async (gameId: string) => {
+    if (!activeGames[gameId]) {
+      socket.emit('error', { message: 'Game does not exist' });
+      return;
+    }
+    try {
+      const turnOrder = activeGames[gameId].determineTurnOrder();
+      const currentPlayer = activeGames[gameId].getCurrentPlayerTurn();
+      io.to(gameId).emit('gameStarted', { turnOrder, currentPlayer });
+      console.log(`Game ${gameId} started with turn order: ${turnOrder}, first player: ${currentPlayer}`);
+    } catch (error) {
+      socket.emit('error', { message: 'Failed to start game' });
+      console.error('Error starting game:', error);
+    }
+  });
+
+  // Handle end of turn to advance to the next player
+  socket.on('endTurn', async (gameId: string) => {
+    if (!activeGames[gameId]) {
+      socket.emit('error', { message: 'Game does not exist' });
+      return;
+    }
+    try {
+      const nextPlayer = activeGames[gameId].advanceTurn();
+      io.to(gameId).emit('turnAdvanced', { currentPlayer: nextPlayer });
+      console.log(`Turn advanced in game ${gameId}, next player: ${nextPlayer}`);
+    } catch (error) {
+      socket.emit('error', { message: 'Failed to advance turn' });
+      console.error('Error advancing turn:', error);
     }
   });
 
