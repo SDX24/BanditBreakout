@@ -43,6 +43,19 @@ export class MapScene extends Phaser.Scene {
       video.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
       video.play(false); // Play the video once, without looping
       mapContainer.add(video);
+      
+      // Fade out the video after it finishes playing
+      video.on('complete', () => {
+        this.tweens.add({
+          targets: video,
+          alpha: 0, // Fade to completely transparent
+          duration: 1000, // Duration of the fade in milliseconds (1 second)
+          ease: 'Power1', // Easing function for a smooth fade
+          onComplete: () => {
+            video.setVisible(false); // Hide the video after fade out
+          }
+        });
+      });
 
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
