@@ -25,7 +25,9 @@ export class MapScene extends Phaser.Scene {
 
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
-
+      
+      // Load the dice video
+      this.load.video('dice6', encodeURIComponent('dice/dice6.mp4'), 'loadeddata', false, true);
     }
   
     create() {
@@ -35,6 +37,12 @@ export class MapScene extends Phaser.Scene {
       this.player = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
       
       const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
+
+      // Add video to the center of the mapContainer
+      const video = this.add.video(bg.width / 2, bg.height / 2, 'dice6').setOrigin(0.5);
+      video.play(true); // Play the video and loop it
+
+      mapContainer.add(video);
 
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
