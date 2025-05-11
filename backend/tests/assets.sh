@@ -57,11 +57,12 @@ filesize() {
 find "$ASSETS_DIR" \
   \( -path "*/Voice lines/*" -o -name "BanditBreakout_hifi.mov" \) -prune \
   -o -type f \( -iname '*.png' -o -iname '*.svg' -o -iname '*.mp3' \
-               -o -iname '*.wav' -o -iname '*.mp4' \) -print0 \
+               -o -iname '*.wav' -o -iname '*.mp4' -o -iname '*.csv' \) -print0 \
 | while IFS= read -r -d '' file; do
     size=$(filesize "$file")
     rel="${file#"$ASSETS_DIR"/}"          # filename to store in DB
     mime=$(file --brief --mime-type "$file")
+    [[ $mime == text/plain || $mime == text/x-csv ]] && mime=text/csv
 
     if (( size > THRESHOLD )); then
       # ---------------- LARGE FILE → GridFS -------------------------

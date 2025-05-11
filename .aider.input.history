@@ -1785,3 +1785,122 @@
 
 # 2025-05-07 15:47:44.599045
 +/exit
+
+# 2025-05-10 20:27:49.055477
++/add phaser-game/src/scenes/MapScene.ts
+
+# 2025-05-10 20:32:03.832403
++/ask explain the modification
+
+# 2025-05-10 20:36:35.124562
++/ask how to implement a function, so I can move the player from [x1, y1] to [x2, y2]?
+
+# 2025-05-10 20:37:49.761896
++/code just do instant move
+
+# 2025-05-10 20:39:03.214983
++/ask
+
+# 2025-05-10 20:41:35.224496
++I also want to implement movePlayerTo using tile number as parameter: it would consult a tileLocation.csv file to find the x, y for it and move to there. the format for the csv file is: id,cx,cy,r
++60,832.23,486,34.9
++57,988.65,339.14,34.9
++ 
+
+# 2025-05-10 20:43:43.400029
++/code update for that
+
+# 2025-05-10 20:50:35.450698
++the csv file is not large, I want to use local file
+
+# 2025-05-10 20:51:45.463389
++just use tilesLocation.csv from local, other remain unchanged
+
+# 2025-05-10 20:52:49.961129
++but how this.load.text ensure it is not from http://localhost:3000
+
+# 2025-05-10 20:52:54.636586
++N
+
+# 2025-05-10 20:54:11.926976
++/code update for that
+
+# 2025-05-10 21:05:59.957606
++/undo
+
+# 2025-05-10 21:58:31.938414
++/git status
+
+# 2025-05-10 22:04:38.687393
++in create function, play video dice6 at the center of the container
+
+# 2025-05-10 22:05:32.964528
++/code update for that
+
+# 2025-05-10 22:14:32.170702
++explain: skipTo(this, 'MainScreen', () => {
++          this.scene.stop(this);
++        });
+
+# 2025-05-10 22:19:27.754782
++why the dice Video doesn't play and the background changed to black? 
+
+# 2025-05-10 22:20:04.713666
++/udpate for that
+
+# 2025-05-10 22:20:12.656939
++/code udpate for that
+
+# 2025-05-10 22:32:01.419364
++/add backend/server.ts
+
+# 2025-05-10 22:32:27.025581
++phaser.js:195835 Uncaught SecurityError: Failed to execute 'texImage2D' on 'WebGLRenderingContext': The video element contains cross-origin data, and may not be loaded.
++    at WebGLTextureWrapper._processTexture (phaser.js:195835:18)
++    at WebGLTextureWrapper.createResource (phaser.js:195686:18)
++    at new WebGLTextureWrapper (phaser.js:195650:18)
++    at WebGLRenderer.createTexture2D (phaser.js:183060:27)
++    at WebGLRenderer.videoToTexture (phaser.js:184112:27)
++    at WebGLRenderer.createVideoTexture (phaser.js:184163:25)
++    at TextureSource.init (phaser.js:218680:45)
++    at new TextureSource (phaser.js:218649:18)
++    at new Texture (phaser.js:216420:17)
++    at TextureManager.create (phaser.js:218024:25)
++_processTexture @ phaser.js:195835
++createResource @ phaser.js:195686
++WebGLTextureWrapper @ phaser.js:195650
++createTexture2D @ phaser.js:183060
++videoToTexture @ phaser.js:184112
++createVideoTexture @ phaser.js:184163
++init @ phaser.js:218680
++TextureSource @ phaser.js:218649
++Texture @ phaser.js:216420
++create @ phaser.js:218024
++requestVideoFrame @ phaser.js:86659
++
++
++
+
+# 2025-05-10 22:33:30.887278
++/code update for that
+
+# 2025-05-10 22:34:04.770499
++N
+
+# 2025-05-10 22:36:51.710401
++/undo
+
+# 2025-05-10 22:37:14.346390
++/git log --oneline
+
+# 2025-05-10 22:37:48.389360
++/undo
+
+# 2025-05-10 22:37:54.398305
++/git log --oneline
+
+# 2025-05-10 22:38:58.108230
++/undo
+
+# 2025-05-10 22:40:51.547578
++/commit
