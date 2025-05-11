@@ -25,9 +25,6 @@ export class MapScene extends Phaser.Scene {
 
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
-      
-      // Load the dice video
-      this.load.video('dice6', encodeURIComponent('dice/dice6.mp4'), 'loadeddata', false, true);
     }
   
     create() {
@@ -38,11 +35,30 @@ export class MapScene extends Phaser.Scene {
       
       const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
 
-      // Add video to the center of the mapContainer
-      const video = this.add.video(bg.width / 2, bg.height / 2, 'dice6').setOrigin(0.5);
-      video.play(true); // Play the video and loop it
+      // Manually create a video element with crossOrigin set to handle CORS for WebGL
+      const videoElement = document.createElement('video');
+      videoElement.src = 'http://localhost:3000/assets/dice/dice6.mp4';
+      videoElement.crossOrigin = 'anonymous';
+      videoElement.autoplay = true;
+      videoElement.loop = true;
+      videoElement.muted = true; // Mute if no audio is needed
 
-      mapContainer.add(video);
+      // Wait for the video to load metadata before adding it as a texture
+      videoElement.addEventListener('loadeddata', () => {
+        // Create a texture from the video element
+        const texture = this.textures.createCanvas('dice6', videoElement.videoWidth, videoElement.videoHeight);
+        const video = this.add.video(bg.width / 2, bg.height / 2, 'dice6').setOrigin(0.5);
+        video.refresh(); // Force refresh to use the texture
+        mapContainer.add(video);
+        console.log('Video loaded and added to scene');
+      }, { once: true });
+
+      videoElement.addEventListener('error', (e) => {
+        console.error('Error loading video:', e);
+      });
+
+      // Add the video element to the document (it won't be visible, just used for data)
+      document.body.appendChild(videoElement);
 
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
