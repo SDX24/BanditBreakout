@@ -32,8 +32,7 @@ export class MapScene extends Phaser.Scene {
       // … your existing background + overlay code …
       const bg      = this.add.image(0,0,'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0,0,'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
-      //set player original position to 1683,991 ai!
-      const player  = this.add.image(0,0,'player').setOrigin(1683, 991);
+      const player  = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
       
       const mapContainer = this.add.container(0,0,[ bg, overlay, player ]);
 
