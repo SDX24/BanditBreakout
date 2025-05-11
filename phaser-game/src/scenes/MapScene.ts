@@ -10,7 +10,9 @@ export class MapScene extends Phaser.Scene {
     private tileLocations: Map<number, { cx: number, cy: number, r: number }> = new Map();
     private socket: any; // Socket.io client
     private gameId: string = 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'); // Generate a random game ID
-    private playerId: number = Math.floor(Math.random() * 1000) + 1; // Generate a random player ID
+    //TODO, need to use random PlayerId to join Game, Now server side is 1-playercount
+    // private playerId: number = Math.floor(Math.random() * 1000) + 1; // Generate a random player ID
+    private playerId: number = 1;
     private turnOrder: number[] = [];
     private currentPlayerTurn: number = -1;
     private playerInitialRolls: Map<number, number> = new Map();
@@ -306,18 +308,12 @@ export class MapScene extends Phaser.Scene {
     // Request to roll dice for movement
     requestDiceRoll() {
       if (this.currentPlayerTurn === this.playerId) {
-        console.log('Requesting dice roll for movement', { gameId: this.gameId, playerId: this.playerId, currentPlayerTurn: this.currentPlayerTurn });
+        console.log('Requesting dice roll for movement');
         // Show dice roll animation immediately to give visual feedback
-        this.playDiceRollAnimation(0); // 0 as a placeholder since we don't know the result yet
-        this.socket.emit('movePlayerDiceRoll', this.gameId, this.playerId, (response: any) => {
-          if (response && response.success) {
-            console.log('Dice roll request sent successfully:', response);
-          } else {
-            console.error('Failed to send dice roll request:', response ? response.error : 'No response');
-          }
-        });
+        // this.playDiceRollAnimation(0); // 0 as a placeholder since we don't know the result yet
+        this.socket.emit('movePlayerDiceRoll', this.gameId, this.playerId);
       } else {
-        console.log('Cannot roll dice: not your turn', { currentPlayerTurn: this.currentPlayerTurn, playerId: this.playerId });
+        console.log('Cannot roll dice: not your turn');
       }
     }
     
