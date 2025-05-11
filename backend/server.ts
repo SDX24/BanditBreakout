@@ -75,6 +75,14 @@ io.on('connection', (socket) => {
     try {
       // Database operations removed: await addPlayerToGame(gameId, playerId);
       socket.join(gameId);
+      // Check if player already exists in the game
+      let player = activeGames[gameId].players.find(p => p.id === playerId);
+      if (!player) {
+        // Add the player to the game if not found
+        player = new Player(activeGames[gameId], playerId);
+        activeGames[gameId].players.push(player);
+        console.log(`Added new player ${playerId} to game ${gameId}`);
+      }
       // Roll for turn order when a player joins
       const roll = activeGames[gameId].rollForTurnOrder(playerId);
       socket.emit('joinedGame', { gameId, playerId, initialRoll: roll });
