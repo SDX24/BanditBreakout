@@ -4,6 +4,8 @@ export class MapScene extends Phaser.Scene {
       super("MapScene");
     }
 
+    private player: Phaser.GameObjects.Image;
+
     preload() {
 
       this.load.setBaseURL('http://localhost:3000');          
@@ -32,10 +34,16 @@ export class MapScene extends Phaser.Scene {
       // … your existing background + overlay code …
       const bg      = this.add.image(0,0,'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0,0,'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
-      const player  = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+      this.player  = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
       
-      const mapContainer = this.add.container(0,0,[ bg, overlay, player ]);
+      const mapContainer = this.add.container(0,0,[ bg, overlay, this.player ]);
 
+    }
+
+    // Instantly move the player to the specified coordinates
+    movePlayerTo(x: number, y: number) {
+      this.player.setPosition(x, y);
+      console.log(`Player moved to (${x}, ${y})`);
     }
   }
   
