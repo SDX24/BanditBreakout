@@ -45,10 +45,12 @@ export class MapScene extends Phaser.Scene {
 
       // Wait for the video to load metadata before adding it as a texture
       videoElement.addEventListener('loadeddata', () => {
-        // Create a texture from the video element
-        const texture = this.textures.createCanvas('dice6', videoElement.videoWidth, videoElement.videoHeight);
+        // Add the video element to Phaser's texture manager as a video texture
+        this.textures.addVideo('dice6', videoElement);
+        // Create a video game object using the texture key
         const video = this.add.video(bg.width / 2, bg.height / 2, 'dice6').setOrigin(0.5);
-        video.refresh(); // Force refresh to use the texture
+        // Play the video (since the element is already playing, this ensures sync)
+        video.play(true);
         mapContainer.add(video);
         console.log('Video loaded and added to scene');
       }, { once: true });
