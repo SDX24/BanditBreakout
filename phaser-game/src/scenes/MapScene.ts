@@ -15,7 +15,7 @@ export class MapScene extends Phaser.Scene {
     private currentPlayerTurn: number = -1;
     private playerInitialRolls: Map<number, number> = new Map();
     private playerSprites: Map<number, Phaser.GameObjects.Image> = new Map();
-    private diceVideo: Phaser.GameObjects.Video | null = null;
+    private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
 
     preload() {
       this.load.setBaseURL('http://localhost:3000');          
@@ -58,27 +58,29 @@ export class MapScene extends Phaser.Scene {
       
       const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
 
-      // Add video to the bottom-left corner of the mapContainer for dice rolling
-      this.diceVideo = this.add.video(50, bg.height - 50, 'dice6').setOrigin(0.5);
-      this.diceVideo.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
-      this.diceVideo.setVisible(false); // Start hidden
-      mapContainer.add(this.diceVideo);
-      console.log('Dice video element created:', this.diceVideo);
-      
-      // Fade out the video after it finishes playing
-      this.diceVideo.on('complete', () => {
-        this.tweens.add({
-          targets: this.diceVideo,
-          alpha: 0, // Fade to completely transparent
-          duration: 1000, // Duration of the fade in milliseconds (1 second)
-          ease: 'Power1', // Easing function for a smooth fade
-          onComplete: () => {
-            if (this.diceVideo) {
-              this.diceVideo.setVisible(false); // Hide the video after fade out
+      // Add videos for each dice result to the bottom-left corner of the mapContainer
+      for (let i = 1; i <= 6; i++) {
+        const videoKey = `dice${i}`;
+        const video = this.add.video(50, bg.height - 50, videoKey).setOrigin(0.5);
+        video.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
+        video.setVisible(false); // Start hidden
+        mapContainer.add(video);
+        this.diceVideos.set(videoKey, video);
+        console.log(`Dice video element created for ${videoKey}:`, video);
+        
+        // Fade out the video after it finishes playing
+        video.on('complete', () => {
+          this.tweens.add({
+            targets: video,
+            alpha: 0, // Fade to completely transparent
+            duration: 1000, // Duration of the fade in milliseconds (1 second)
+            ease: 'Power1', // Easing function for a smooth fade
+            onComplete: () => {
+              video.setVisible(false); // Hide the video after fade out
             }
-          }
+          });
         });
-      });
+      }
 
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
