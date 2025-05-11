@@ -307,7 +307,8 @@ export class MapScene extends Phaser.Scene {
       .setInteractive()
       .on('pointerdown', () => {
         this.requestDiceRoll();
-        button.destroy(); // Remove the button after clicking
+        // Do not destroy the button for single-player testing
+        // button.destroy(); // Remove the button after clicking
       });
     }
     
