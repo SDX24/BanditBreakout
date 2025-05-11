@@ -1,3 +1,5 @@
+import { io, Socket } from 'socket.io-client';
+
 export class MapScene extends Phaser.Scene {
   
     constructor() {
@@ -153,32 +155,28 @@ export class MapScene extends Phaser.Scene {
     
     // Initialize socket connection
     private initializeSocket() {
-      // Import socket.io-client
-      const io = (window as any).io;
-      if (io) {
-        // Connect to the server
-        this.socket = io('http://localhost:3000', {
-          autoConnect: true
-        });
-        console.log('Socket initialized', this.socket);
-        
-        // Handle connection events
-        this.socket.on('connect', () => {
-          console.log('Connected to server');
-          // Optionally join a game or perform other initialization
-          this.socket.emit('joinGame', this.gameId, this.playerId);
-        });
-        
-        this.socket.on('disconnect', () => {
-          console.log('Disconnected from server');
-        });
-        
-        this.socket.on('error', (error: any) => {
-          console.error('Socket error:', error);
-        });
-      } else {
-        console.error('Socket.io client not found. Make sure it is included in your project.');
-      }
+      
+      // Connect to the server
+      this.socket = io('http://localhost:3000', {
+        autoConnect: true
+      });
+      console.log('Socket initialized', this.socket);
+      
+      // Handle connection events
+      this.socket.on('connect', () => {
+        console.log('Connected to server');
+        // Optionally join a game or perform other initialization
+        this.socket.emit('joinGame', this.gameId, this.playerId);
+      });
+      
+      this.socket.on('disconnect', () => {
+        console.log('Disconnected from server');
+      });
+      
+      this.socket.on('error', (error: any) => {
+        console.error('Socket error:', error);
+      });
+      
     }
     
     // Setup socket listeners for multiplayer events
