@@ -157,20 +157,24 @@ export class MapScene extends Phaser.Scene {
     
     // Play dice roll animation
     playDiceRollAnimation(rollResult: number, onComplete?: () => void) {
-      if (this.diceVideo) {
-        // Select the appropriate video based on rollResult
-        let videoKey = 'dice6'; // Default to dice6 if rollResult is unknown or 0
-        if (rollResult >= 1 && rollResult <= 6) {
-          videoKey = `dice${rollResult}`;
-        }
-        
-        this.diceVideo.setAlpha(1);
-        this.diceVideo.setVisible(true);
+      // Hide all dice videos first
+      this.diceVideos.forEach(video => {
+        video.setVisible(false);
+        video.stop();
+      });
+      
+      // Select the appropriate video based on rollResult
+      let videoKey = 'dice6'; // Default to dice6 if rollResult is unknown or 0
+      if (rollResult >= 1 && rollResult <= 6) {
+        videoKey = `dice${rollResult}`;
+      }
+      
+      const videoToPlay = this.diceVideos.get(videoKey);
+      if (videoToPlay) {
+        videoToPlay.setAlpha(1);
+        videoToPlay.setVisible(true);
         try {
-          // Stop any current playback before changing source
-          this.diceVideo.stop();
-          this.diceVideo.changeSource(videoKey);
-          this.diceVideo.play(false);
+          videoToPlay.play(false);
           console.log(`Playing dice roll animation for result: ${rollResult} using ${videoKey}`);
         } catch (error) {
           console.error(`Error playing video ${videoKey}:`, error);
@@ -178,7 +182,7 @@ export class MapScene extends Phaser.Scene {
           if (onComplete) onComplete();
         }
       } else {
-        console.error('Dice video not found - reference is null');
+        console.error(`Dice video for ${videoKey} not found`);
         if (onComplete) onComplete();
       }
     }
