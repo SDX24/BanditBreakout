@@ -9,8 +9,8 @@ export class MapScene extends Phaser.Scene {
     private player: Phaser.GameObjects.Image;
     private tileLocations: Map<number, { cx: number, cy: number, r: number }> = new Map();
     private socket: any; // Socket.io client
-    private gameId: string = 'TEST_GAME'; // This should be set based on actual game ID
-    private playerId: number = 1; // This should be set based on actual player ID
+    private gameId: string = 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'); // Generate a random game ID
+    private playerId: number = Math.floor(Math.random() * 1000) + 1; // Generate a random player ID
     private turnOrder: number[] = [];
     private currentPlayerTurn: number = -1;
     private playerInitialRolls: Map<number, number> = new Map();
@@ -76,6 +76,19 @@ export class MapScene extends Phaser.Scene {
       
       // Setup socket listeners for multiplayer functionality
       this.setupSocketListeners();
+      
+      // For testing: Add a button to start the game
+      const startButton = this.add.text(100, 200, 'Start Game', { 
+        fontSize: '32px', 
+        backgroundColor: '#fff', 
+        color: '#000', 
+        padding: { x: 10, y: 5 }
+      })
+      .setInteractive()
+      .on('pointerdown', () => {
+        this.startGame();
+        startButton.destroy(); // Remove the button after clicking
+      });
     }
 
     // Parse the CSV file and store tile locations in a map
@@ -155,7 +168,6 @@ export class MapScene extends Phaser.Scene {
     
     // Initialize socket connection
     private initializeSocket() {
-      
       // Connect to the server
       this.socket = io('http://localhost:3000', {
         autoConnect: true
@@ -165,7 +177,16 @@ export class MapScene extends Phaser.Scene {
       // Handle connection events
       this.socket.on('connect', () => {
         console.log('Connected to server');
-        // Optionally join a game or perform other initialization
+        // Create a game first with only one player
+        console.log(`Creating game with ID: ${this.gameId}`);
+        this.socket.emit('createGame', this.gameId, 'Single Player Game', 1);
+      });
+      
+      // Listen for game creation confirmation before joining
+      this.socket.on('gameCreated', (data: { gameId: string, name: string }) => {
+        console.log(`Game created: ${data.gameId} - ${data.name}`);
+        // Now join the game after it's created
+        console.log(`Joining game ${this.gameId} as player ${this.playerId}`);
         this.socket.emit('joinGame', this.gameId, this.playerId);
       });
       
@@ -176,7 +197,6 @@ export class MapScene extends Phaser.Scene {
       this.socket.on('error', (error: any) => {
         console.error('Socket error:', error);
       });
-      
     }
     
     // Setup socket listeners for multiplayer events
@@ -205,6 +225,7 @@ export class MapScene extends Phaser.Scene {
           if (this.currentPlayerTurn === this.playerId) {
             console.log("It's your turn! Roll the dice!");
             // Show UI button or prompt to roll dice
+            this.showRollDiceButton();
           }
         });
         
@@ -217,6 +238,7 @@ export class MapScene extends Phaser.Scene {
           if (this.currentPlayerTurn === this.playerId) {
             console.log("It's your turn! Roll the dice!");
             // Show UI button or prompt to roll dice
+            this.showRollDiceButton();
           }
         });
         
@@ -232,6 +254,22 @@ export class MapScene extends Phaser.Scene {
       } else {
         console.error('Socket not initialized');
       }
+    }
+    
+    // Show roll dice button
+    private showRollDiceButton() {
+      // Create a simple button to roll the dice
+      const button = this.add.text(100, 100, 'Roll Dice', { 
+        fontSize: '32px', 
+        backgroundColor: '#fff', 
+        color: '#000', 
+        padding: { x: 10, y: 5 }
+      })
+      .setInteractive()
+      .on('pointerdown', () => {
+        this.requestDiceRoll();
+        button.destroy(); // Remove the button after clicking
+      });
     }
     
     // Request to roll dice for movement
@@ -251,6 +289,16 @@ export class MapScene extends Phaser.Scene {
         this.socket.emit('endTurn', this.gameId);
       } else {
         console.log('Cannot end turn: not your turn');
+      }
+    }
+    
+    // For testing purposes, add a method to start the game
+    startGame() {
+      if (this.socket) {
+        console.log(`Starting game ${this.gameId}`);
+        this.socket.emit('startGame', this.gameId);
+      } else {
+        console.error('Cannot start game: socket not initialized');
       }
     }
   }
