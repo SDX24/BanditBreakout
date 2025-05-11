@@ -245,10 +245,19 @@ export class MapScene extends Phaser.Scene {
         // Listen for player moved event
         this.socket.on('playerMoved', (data: { playerId: number, position: number, roll?: number }) => {
           console.log(`Player ${data.playerId} moved to position ${data.position}`);
-          this.movePlayerTo(data.position, undefined, data.playerId);
-          // If a roll value is provided (from dice roll), play animation
-          if (data.roll && data.playerId === this.playerId) {
-            this.playDiceRollAnimation(data.roll);
+          if (data.roll) {
+            // If a roll value is provided, play animation (or update if already playing)
+            console.log(`Dice roll result: ${data.roll}`);
+            // Move player to new position after animation if it's the local player
+            if (data.playerId === this.playerId) {
+              this.playDiceRollAnimation(data.roll, () => {
+                this.movePlayerTo(data.position, undefined, data.playerId);
+              });
+            } else {
+              this.movePlayerTo(data.position, undefined, data.playerId);
+            }
+          } else {
+            this.movePlayerTo(data.position, undefined, data.playerId);
           }
         });
       } else {
@@ -276,6 +285,8 @@ export class MapScene extends Phaser.Scene {
     requestDiceRoll() {
       if (this.currentPlayerTurn === this.playerId) {
         console.log('Requesting dice roll for movement');
+        // Show dice roll animation immediately to give visual feedback
+        this.playDiceRollAnimation(0); // 0 as a placeholder since we don't know the result yet
         this.socket.emit('movePlayerDiceRoll', this.gameId, this.playerId);
       } else {
         console.log('Cannot roll dice: not your turn');
