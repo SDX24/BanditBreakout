@@ -145,12 +145,14 @@ io.on('connection', (socket) => {
   socket.on('movePlayerDiceRoll', async (gameId: string, playerId: number) => {
     if (!activeGames[gameId]) {
       socket.emit('error', { message: 'Game does not exist' });
+      console.log(`Game does not exist`);
       return;
     }
     try {
       const currentPlayer = activeGames[gameId].getCurrentPlayerTurn();
       if (playerId !== currentPlayer) {
         socket.emit('error', { message: 'It is not your turn' });
+        console.log(`It is not your turn, ${playerId}`);
         return;
       }
       

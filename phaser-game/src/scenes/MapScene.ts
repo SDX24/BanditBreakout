@@ -163,8 +163,9 @@ export class MapScene extends Phaser.Scene {
         video.stop();
       });
       
+      console.log(`rollResult: ${rollResult}`);
       // Select the appropriate video based on rollResult
-      let videoKey = 'dice6'; // Default to dice6 if rollResult is unknown or 0
+      let videoKey = 'dice3'; // Default to dice6 if rollResult is unknown or 0
       if (rollResult >= 1 && rollResult <= 6) {
         videoKey = `dice${rollResult}`;
       }
@@ -265,7 +266,7 @@ export class MapScene extends Phaser.Scene {
         
         // Listen for player moved event
         this.socket.on('playerMoved', (data: { playerId: number, position: number, roll?: number }) => {
-          console.log(`Player ${data.playerId} moved to position ${data.position}`);
+          console.log(`Player ${data.playerId} moved to position ${data.position}, with roll is ${data.roll}`);
           if (data.roll) {
             // If a roll value is provided, play animation (or update if already playing)
             console.log(`Dice roll result: ${data.roll}`);
