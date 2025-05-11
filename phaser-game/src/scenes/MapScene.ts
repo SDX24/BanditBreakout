@@ -6,7 +6,7 @@ export class MapScene extends Phaser.Scene {
 
     private player: Phaser.GameObjects.Image;
     private tileLocations: Map<number, { cx: number, cy: number, r: number }> = new Map();
-    private socket: any; // You'll need to integrate socket.io client
+    private socket: any; // Socket.io client
     private gameId: string = 'TEST_GAME'; // This should be set based on actual game ID
     private playerId: number = 1; // This should be set based on actual player ID
     private turnOrder: number[] = [];
@@ -69,8 +69,10 @@ export class MapScene extends Phaser.Scene {
 
       this.movePlayerTo(3);
       
+      // Initialize socket connection
+      this.initializeSocket();
+      
       // Setup socket listeners for multiplayer functionality
-      // Note: You'll need to properly initialize the socket connection
       this.setupSocketListeners();
     }
 
@@ -149,14 +151,40 @@ export class MapScene extends Phaser.Scene {
       }
     }
     
+    // Initialize socket connection
+    private initializeSocket() {
+      // Import socket.io-client
+      const io = (window as any).io;
+      if (io) {
+        // Connect to the server
+        this.socket = io('http://localhost:3000', {
+          autoConnect: true
+        });
+        console.log('Socket initialized', this.socket);
+        
+        // Handle connection events
+        this.socket.on('connect', () => {
+          console.log('Connected to server');
+          // Optionally join a game or perform other initialization
+          this.socket.emit('joinGame', this.gameId, this.playerId);
+        });
+        
+        this.socket.on('disconnect', () => {
+          console.log('Disconnected from server');
+        });
+        
+        this.socket.on('error', (error: any) => {
+          console.error('Socket error:', error);
+        });
+      } else {
+        console.error('Socket.io client not found. Make sure it is included in your project.');
+      }
+    }
+    
     // Setup socket listeners for multiplayer events
     private setupSocketListeners() {
-      // This is a placeholder. You'll need to properly initialize socket.io client.
-      // For now, assuming 'socket' is available.
-      // You might need to use: this.socket = io('http://localhost:3000');
-      
-      // Listen for player joined event with initial roll
       if (this.socket) {
+        // Listen for player joined event with initial roll
         this.socket.on('playerJoined', (data: { playerId: number, initialRoll: number }) => {
           console.log(`Player ${data.playerId} joined with initial roll ${data.initialRoll}`);
           this.playerInitialRolls.set(data.playerId, data.initialRoll);
