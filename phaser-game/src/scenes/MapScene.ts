@@ -16,14 +16,26 @@ export class MapScene extends Phaser.Scene {
         height: 1080
       });
 
+      this.load.svg('player', encodeURIComponent('character_asset/solsticeFront.svg'), {
+        width: 64,
+        height: 64
+      });
+
+      
+
+      
+
+
     }
   
     create() {
       // … your existing background + overlay code …
       const bg      = this.add.image(0,0,'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0,0,'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
- 
-      const mapContainer = this.add.container(0,0,[ bg, overlay ]);
+      //set player original position to 1683,991 ai!
+      const player  = this.add.image(0,0,'player').setOrigin(1683, 991);
+      
+      const mapContainer = this.add.container(0,0,[ bg, overlay, player ]);
 
     }
   }
