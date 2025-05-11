@@ -24,7 +24,7 @@ export class MapScene extends Phaser.Scene {
       });
 
       // Load the tile locations CSV file
-      this.load.text('tileLocations', encodeURIComponent('board/tileLocation.csv'));
+      this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
     }
   
     create() {
