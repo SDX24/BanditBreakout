@@ -254,28 +254,33 @@ app.use('/assets/', async (req, res) => {
     const asset = await getAssetByFilename(filename);
     if (asset) {
       // Set appropriate content type based on asset metadata or filename extension
+      // Extract just the filename from the path for extension checking
+      const baseFilename = filename.split('/').pop() || filename;
       let contentType = 'application/octet-stream';
-      if (filename.endsWith('.png')) contentType = 'image/png';
-      else if (filename.endsWith('.jpg') || filename.endsWith('.jpeg')) contentType = 'image/jpeg';
-      else if (filename.endsWith('.gif')) contentType = 'image/gif';
-      else if (filename.endsWith('.svg')) contentType = 'image/svg+xml';
-      else if (filename.endsWith('.mp3')) contentType = 'audio/mpeg';
-      else if (filename.endsWith('.wav')) contentType = 'audio/wav';
-      else if (filename.endsWith('.mp4')) contentType = 'video/mp4';
-      else if (filename.endsWith('.json')) contentType = 'application/json';
+      if (baseFilename.toLowerCase().endsWith('.png')) contentType = 'image/png';
+      else if (baseFilename.toLowerCase().endsWith('.jpg') || baseFilename.toLowerCase().endsWith('.jpeg')) contentType = 'image/jpeg';
+      else if (baseFilename.toLowerCase().endsWith('.gif')) contentType = 'image/gif';
+      else if (baseFilename.toLowerCase().endsWith('.svg')) contentType = 'image/svg+xml';
+      else if (baseFilename.toLowerCase().endsWith('.mp3')) contentType = 'audio/mpeg';
+      else if (baseFilename.toLowerCase().endsWith('.wav')) contentType = 'audio/wav';
+      else if (baseFilename.toLowerCase().endsWith('.mp4')) contentType = 'video/mp4';
+      else if (baseFilename.toLowerCase().endsWith('.json')) contentType = 'application/json';
       
       res.setHeader('Content-Type', contentType);
       
       // Check if asset.data exists (from regular collection) or if we need to stream from GridFS
       if (asset.data) {
 
-        console.log('asset.data instanceof Buffer?', Buffer.isBuffer(asset.data));
-        console.log('  asset.data.length           =', (asset.data as Buffer).length);
-        console.log('asset.data.buffer byteLength=', (asset.data as any)?.buffer?.byteLength);
-
-        console.log('typeof asset.data =', typeof asset.data);
-
-        const buf = Buffer.from(asset.data as string, 'base64');
+        // Check if asset.data is a Buffer or needs conversion
+        let buf;
+        if (Buffer.isBuffer(asset.data)) {
+          buf = asset.data;
+        } else if (typeof asset.data === 'string') {
+          buf = Buffer.from(asset.data, 'base64');
+        } else {
+          console.error('Unexpected asset.data type:', typeof asset.data);
+          return res.status(500).send('Error processing asset data');
+        }
 
         // (optional) set length so clients know when the stream ends
         res.setHeader('Content-Length', buf.length);
