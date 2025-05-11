@@ -306,7 +306,7 @@ export class MapScene extends Phaser.Scene {
     // Request to roll dice for movement
     requestDiceRoll() {
       if (this.currentPlayerTurn === this.playerId) {
-        console.log('Requesting dice roll for movement');
+        console.log('Requesting dice roll for movement', { gameId: this.gameId, playerId: this.playerId, currentPlayerTurn: this.currentPlayerTurn });
         // Show dice roll animation immediately to give visual feedback
         this.playDiceRollAnimation(0); // 0 as a placeholder since we don't know the result yet
         this.socket.emit('movePlayerDiceRoll', this.gameId, this.playerId, (response: any) => {
@@ -317,7 +317,7 @@ export class MapScene extends Phaser.Scene {
           }
         });
       } else {
-        console.log('Cannot roll dice: not your turn');
+        console.log('Cannot roll dice: not your turn', { currentPlayerTurn: this.currentPlayerTurn, playerId: this.playerId });
       }
     }
     
