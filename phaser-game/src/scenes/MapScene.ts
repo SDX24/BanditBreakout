@@ -15,6 +15,7 @@ export class MapScene extends Phaser.Scene {
     private currentPlayerTurn: number = -1;
     private playerInitialRolls: Map<number, number> = new Map();
     private playerSprites: Map<number, Phaser.GameObjects.Image> = new Map();
+    private diceVideo: Phaser.GameObjects.Video | null = null;
 
     preload() {
       this.load.setBaseURL('http://localhost:3000');          
@@ -35,13 +36,18 @@ export class MapScene extends Phaser.Scene {
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
       
-      // Load the dice videos
-      this.load.video('dice1', encodeURIComponent('dice/dice1.mp4'), 'loadeddata', false, true);
-      this.load.video('dice2', encodeURIComponent('dice/dice2.mp4'), 'loadeddata', false, true);
-      this.load.video('dice3', encodeURIComponent('dice/dice3.mp4'), 'loadeddata', false, true);
-      this.load.video('dice4', encodeURIComponent('dice/dice4.mp4'), 'loadeddata', false, true);
-      this.load.video('dice5', encodeURIComponent('dice/dice5.mp4'), 'loadeddata', false, true);
-      this.load.video('dice6', encodeURIComponent('dice/dice6.mp4'), 'loadeddata', false, true);
+      // Load the dice videos with error handling
+      console.log('Loading dice videos...');
+      for (let i = 1; i <= 6; i++) {
+        const key = `dice${i}`;
+        this.load.video(key, encodeURIComponent(`dice/dice${i}.mp4`), 'loadeddata', false, true);
+        this.load.on(`filecomplete-video-${key}`, () => {
+          console.log(`Video ${key} loaded successfully`);
+        });
+        this.load.on(`fileerror-video-${key}`, (error: any) => {
+          console.error(`Error loading video ${key}:`, error);
+        });
+      }
     }
   
     create() {
@@ -53,20 +59,23 @@ export class MapScene extends Phaser.Scene {
       const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
 
       // Add video to the bottom-left corner of the mapContainer for dice rolling
-      const video = this.add.video(50, bg.height - 50, 'dice6').setOrigin(0.5);
-      video.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
-      video.setVisible(true); // Start hidden
-      mapContainer.add(video);
+      this.diceVideo = this.add.video(50, bg.height - 50, 'dice6').setOrigin(0.5);
+      this.diceVideo.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
+      this.diceVideo.setVisible(false); // Start hidden
+      mapContainer.add(this.diceVideo);
+      console.log('Dice video element created:', this.diceVideo);
       
       // Fade out the video after it finishes playing
-      video.on('complete', () => {
+      this.diceVideo.on('complete', () => {
         this.tweens.add({
-          targets: video,
+          targets: this.diceVideo,
           alpha: 0, // Fade to completely transparent
           duration: 1000, // Duration of the fade in milliseconds (1 second)
           ease: 'Power1', // Easing function for a smooth fade
           onComplete: () => {
-            video.setVisible(false); // Hide the video after fade out
+            if (this.diceVideo) {
+              this.diceVideo.setVisible(false); // Hide the video after fade out
+            }
           }
         });
       });
@@ -146,33 +155,26 @@ export class MapScene extends Phaser.Scene {
     
     // Play dice roll animation
     playDiceRollAnimation(rollResult: number, onComplete?: () => void) {
-      const video = this.children.list.find(child => child.type === 'Video') as Phaser.GameObjects.Video;
-      if (video) {
+      if (this.diceVideo) {
         // Select the appropriate video based on rollResult
         let videoKey = 'dice6'; // Default to dice6 if rollResult is unknown or 0
         if (rollResult >= 1 && rollResult <= 6) {
           videoKey = `dice${rollResult}`;
         }
         
-        video.setAlpha(1);
-        video.setVisible(true);
-        video.changeSource(videoKey);
-        video.play(false);
-        console.log(`Playing dice roll animation for result: ${rollResult} using ${videoKey}`);
-        video.on('complete', () => {
-          this.tweens.add({
-            targets: video,
-            alpha: 0,
-            duration: 1000,
-            ease: 'Power1',
-            onComplete: () => {
-              video.setVisible(false);
-              if (onComplete) onComplete();
-            }
-          });
-        });
+        this.diceVideo.setAlpha(1);
+        this.diceVideo.setVisible(true);
+        try {
+          this.diceVideo.changeSource(videoKey);
+          this.diceVideo.play(false);
+          console.log(`Playing dice roll animation for result: ${rollResult} using ${videoKey}`);
+        } catch (error) {
+          console.error(`Error playing video ${videoKey}:`, error);
+          // Fallback to just completing the action without animation
+          if (onComplete) onComplete();
+        }
       } else {
-        console.error('Dice video not found');
+        console.error('Dice video not found - reference is null');
         if (onComplete) onComplete();
       }
     }
