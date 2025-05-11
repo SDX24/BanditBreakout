@@ -165,6 +165,8 @@ export class MapScene extends Phaser.Scene {
         this.diceVideo.setAlpha(1);
         this.diceVideo.setVisible(true);
         try {
+          // Stop any current playback before changing source
+          this.diceVideo.stop();
           this.diceVideo.changeSource(videoKey);
           this.diceVideo.play(false);
           console.log(`Playing dice roll animation for result: ${rollResult} using ${videoKey}`);
