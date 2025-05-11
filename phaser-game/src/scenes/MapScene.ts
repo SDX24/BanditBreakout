@@ -38,8 +38,8 @@ export class MapScene extends Phaser.Scene {
       
       const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
 
-      // Add video to the center of the mapContainer
-      const video = this.add.video(bg.width / 2, bg.height / 2, 'dice6').setOrigin(0.5);
+      // Add video to the bottom-left corner of the mapContainer
+      const video = this.add.video(50, bg.height - 50, 'dice6').setOrigin(0.5);
       video.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
       video.play(false); // Play the video once, without looping
       mapContainer.add(video);
