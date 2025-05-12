@@ -280,6 +280,20 @@ export class MapScene extends Phaser.Scene {
           }
         });
         
+        // Listen for player disconnected event
+        this.socket.on('playerDisconnected', (data: { playerId: number }) => {
+          console.log(`Player ${data.playerId} disconnected`);
+          // Remove the player's sprite if it exists
+          const sprite = this.playerSprites.get(data.playerId);
+          if (sprite) {
+            sprite.destroy();
+            this.playerSprites.delete(data.playerId);
+          }
+          // Remove player from turn order and initial rolls
+          this.playerInitialRolls.delete(data.playerId);
+          this.turnOrder = this.turnOrder.filter(id => id !== data.playerId);
+        });
+        
         // Listen for game started event with turn order
         this.socket.on('gameStarted', (data: { turnOrder: number[], currentPlayer: number }) => {
           console.log(`Game started with turn order: ${data.turnOrder}`);

@@ -26,6 +26,9 @@ const GRIDFS_BUCKET = process.env.GRIDFS_BUCKET || 'assets_fs';
 // Store active games in memory for quick access
 const activeGames: { [key: string]: Game } = {};
 
+// Track socket to player mapping
+const socketToPlayerMap: { [socketId: string]: { gameId: string, playerId: number } } = {};
+
 // Quick-and-dirty snapshot of everything the client UI needs to render
 function serializeGame(game: Game) {
   return {
@@ -90,6 +93,8 @@ io.on('connection', (socket) => {
         activeGames[gameId].players.push(player);
         console.log(`Added new player ${playerId} to game ${gameId}`);
       }
+      // Store socket to player mapping
+      socketToPlayerMap[socket.id] = { gameId, playerId };
       // Roll for turn order when a player joins
       const roll = activeGames[gameId].rollForTurnOrder(playerId);
       //TO DO
@@ -312,7 +317,39 @@ io.on('connection', (socket) => {
   // Handle disconnection
   socket.on('disconnect', () => {
     console.log('Client disconnected:', socket.id);
-    // Optionally, handle player disconnection from game
+    // Check if this socket is associated with a player
+    const playerInfo = socketToPlayerMap[socket.id];
+    if (playerInfo) {
+      const { gameId, playerId } = playerInfo;
+      const game = activeGames[gameId];
+      if (game) {
+        // Remove player from game
+        const playerIndex = game.players.findIndex(p => p.id === playerId);
+        if (playerIndex !== -1) {
+          game.players.splice(playerIndex, 1);
+          // Remove player from map positions
+          game.map.playerPositions = game.map.playerPositions.filter(pos => pos !== playerId);
+          // Notify other players in the game
+          io.to(gameId).emit('playerDisconnected', { playerId });
+          // Update game state for remaining players
+          io.to(gameId).emit('gameState', serializeGame(game));
+          console.log(`Player ${playerId} removed from game ${gameId} due to disconnection`);
+          
+          // If no players left, clean up the game
+          if (game.players.length === 0) {
+            delete activeGames[gameId];
+            console.log(`Game ${gameId} removed as no players are left`);
+          } else if (game.getCurrentPlayerTurn() === playerId) {
+            // If it was the disconnected player's turn, advance to the next turn
+            const nextPlayer = game.advanceTurn();
+            io.to(gameId).emit('turnAdvanced', { currentPlayer: nextPlayer });
+            console.log(`Turn advanced in game ${gameId} due to player disconnection, next player: ${nextPlayer}`);
+          }
+        }
+      }
+      // Clean up the mapping
+      delete socketToPlayerMap[socket.id];
+    }
   });
 });
 
