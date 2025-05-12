@@ -9,7 +9,9 @@ export class MapScene extends Phaser.Scene {
     private player: Phaser.GameObjects.Image;
     private tileLocations: Map<number, { cx: number, cy: number, r: number }> = new Map();
     private socket: any; // Socket.io client
+    //TODO
     private gameId: string = 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'); // Generate a random game ID
+    //private gameId: string = 'game_multiple_user'; 
     //TODO, need to use random PlayerId to join Game, Now server side is 1-playercount
     private playerId: number = Math.floor(Math.random() * 1000) + 1; // Generate a random player ID
     // private playerId: number = 1;
@@ -138,7 +140,7 @@ export class MapScene extends Phaser.Scene {
       if (!targetSprite) {
         // Create a sprite for this player if it doesn't exist
         // targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-        
+        targetSprite = this.player;
         this.playerSprites.set(playerId, targetSprite);
         console.log(`Created sprite for player ${playerId}`);
       }
