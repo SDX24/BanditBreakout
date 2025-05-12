@@ -4,6 +4,15 @@ export class MapScene extends Phaser.Scene {
   
     constructor() {
       super("MapScene");
+      const storedPlayerId = localStorage.getItem('playerId');
+      if (storedPlayerId) {
+        this.playerId = parseInt(storedPlayerId, 10);
+        console.log(`Using stored playerId: ${this.playerId}`);
+      } else {
+        this.playerId = Math.floor(Math.random() * 1000) + 1;
+        localStorage.setItem('playerId', this.playerId.toString());
+        console.log(`Generated new playerId: ${this.playerId}`);
+      }
     }
 
     private player: Phaser.GameObjects.Image;
@@ -12,9 +21,7 @@ export class MapScene extends Phaser.Scene {
     //TODO
     //private gameId: string = 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'); // Generate a random game ID
     private gameId: string = 'game_multiple_user'; 
-    //TODO, need to use random PlayerId to join Game, Now server side is 1-playercount
-    private playerId: number = Math.floor(Math.random() * 1000) + 1; // Generate a random player ID
-    // private playerId: number = 1;
+    private playerId: number;
     private turnOrder: number[] = [];
     private currentPlayerTurn: number = -1;
     private playerInitialRolls: Map<number, number> = new Map();
