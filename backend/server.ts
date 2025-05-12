@@ -92,6 +92,8 @@ io.on('connection', (socket) => {
       }
       // Roll for turn order when a player joins
       const roll = activeGames[gameId].rollForTurnOrder(playerId);
+      //TO DO
+      // activeGames[gameId].determineTurnOrder();
       socket.emit('joinedGame', { gameId, playerId, initialRoll: roll });
       io.to(gameId).emit('playerJoined', { playerId, initialRoll: roll });
       // Give the joining client the current snapshot

@@ -10,8 +10,8 @@ export class MapScene extends Phaser.Scene {
     private tileLocations: Map<number, { cx: number, cy: number, r: number }> = new Map();
     private socket: any; // Socket.io client
     //TODO
-    private gameId: string = 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'); // Generate a random game ID
-    //private gameId: string = 'game_multiple_user'; 
+    //private gameId: string = 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'); // Generate a random game ID
+    private gameId: string = 'game_multiple_user'; 
     //TODO, need to use random PlayerId to join Game, Now server side is 1-playercount
     private playerId: number = Math.floor(Math.random() * 1000) + 1; // Generate a random player ID
     // private playerId: number = 1;
@@ -212,7 +212,7 @@ export class MapScene extends Phaser.Scene {
         console.log('Connected to server');
         // Create a game first with only one player
         console.log(`Creating game with ID: ${this.gameId}`);
-        this.socket.emit('createGame', this.gameId, 'Single Player Game', 1);
+        this.socket.emit('createGame', this.gameId, 'Single Player Game', 2);
       });
       
       // Listen for game creation confirmation before joining
@@ -317,6 +317,7 @@ export class MapScene extends Phaser.Scene {
             if (data.playerId === this.playerId) {
               this.playDiceRollAnimation(data.roll, () => {
                 this.movePlayerTo(data.position, undefined, data.playerId);
+                this.endTurn();
               });
             } else {
               this.movePlayerTo(data.position, undefined, data.playerId);
@@ -342,10 +343,11 @@ export class MapScene extends Phaser.Scene {
       .setInteractive()
       .on('pointerdown', () => {
         this.requestDiceRoll();
+        button.destroy();
         // Only destroy the button if there are multiple players
-        if (this.turnOrder.length > 1) {
-          button.destroy(); // Remove the button after clicking for multiplayer
-        }
+        // if (this.turnOrder.length > 1) {
+        //   button.destroy(); // Remove the button after clicking for multiplayer
+        // }
       });
     }
     
