@@ -54,13 +54,17 @@ io.on('connection', (socket) => {
     try {
       // Database operation removed: const newGame = await createGame(gameId, name);
       console.log(`Attempting to create game with ID: ${gameId}, Name: ${name}, Player Count: ${playerCount}`);
-      activeGames[gameId] = new Game();
-      activeGames[gameId].startGame(playerCount, gameId);
+      if (!activeGames[gameId]) {
+        activeGames[gameId] = new Game();
+        activeGames[gameId].startGame(playerCount, gameId);
+        console.log(`Game created: ${gameId}`);
+      } else {
+        console.log(`Game with ID ${gameId} already exists, not overwriting.`);
+      }
       socket.join(gameId);
       socket.emit('gameCreated', { gameId, name });
       // Send the freshly-built game state to everyone already in the room (just the host for now)
       io.to(gameId).emit('gameState', serializeGame(activeGames[gameId]));
-      console.log(`Game created: ${gameId}`);
     } catch (error) {
       socket.emit('error', { message: 'Failed to create game', details: error.message || 'Unknown error' });
       console.error('Error creating game:', error);
