@@ -235,6 +235,38 @@ export class MapScene extends Phaser.Scene {
     // Setup socket listeners for multiplayer events
     private setupSocketListeners() {
       if (this.socket) {
+        // Listen for game state updates
+        this.socket.on('gameState', (gameState: any) => {
+          console.log('Received game state update:', gameState);
+          
+          // Update all player positions based on the game state
+          gameState.players.forEach((playerData: any) => {
+            const { id, position, status } = playerData;
+            
+            // Ensure a sprite exists for this player
+            if (!this.playerSprites.has(id)) {
+              const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+              this.playerSprites.set(id, newPlayerSprite);
+              console.log(`Created sprite for player ${id}`);
+            }
+            
+            // Move player to the correct position
+            this.movePlayerTo(position, undefined, id);
+            
+            // Optionally, update UI elements related to player status (gold, health, effects)
+            console.log(`Player ${id} status - Gold: ${status.gold}, Health: ${status.health}, Effects: ${status.effects}`);
+            // TODO: Update UI elements for gold, health, and effects if needed
+          });
+          
+          // Optionally, process tile information if needed for UI updates
+          gameState.tiles.forEach((tileData: any) => {
+            // TODO: Update tile UI if necessary, e.g., highlight tiles with events or players
+            if (tileData.players.length > 0) {
+              console.log(`Tile ${tileData.index} has players: ${tileData.players}, event type: ${tileData.eventType}`);
+            }
+          });
+        });
+        
         // Listen for player joined event with initial roll
         this.socket.on('playerJoined', (data: { playerId: number, initialRoll: number }) => {
           console.log(`Player ${data.playerId} joined with initial roll ${data.initialRoll}`);
