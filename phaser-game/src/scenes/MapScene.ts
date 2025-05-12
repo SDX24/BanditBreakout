@@ -308,7 +308,10 @@ export class MapScene extends Phaser.Scene {
       .setInteractive()
       .on('pointerdown', () => {
         this.requestDiceRoll();
-        button.destroy(); // Remove the button after clicking
+        // Only destroy the button if there are multiple players
+        if (this.turnOrder.length > 1) {
+          button.destroy(); // Remove the button after clicking for multiplayer
+        }
       });
     }
     
