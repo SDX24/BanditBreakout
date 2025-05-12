@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import Game from './areas/Types/Game';
+import Player from './areas/Types/Player';
 import { getAssetByFilename } from './db/operations/assetsOps';
 import { MongoClient, GridFSBucket } from 'mongodb';
 // Database imports removed for testing purposes
