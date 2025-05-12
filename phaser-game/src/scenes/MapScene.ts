@@ -138,7 +138,7 @@ export class MapScene extends Phaser.Scene {
       if (!targetSprite) {
         // Create a sprite for this player if it doesn't exist
         // targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-        targetSprite = this.player; 
+        
         this.playerSprites.set(playerId, targetSprite);
         console.log(`Created sprite for player ${playerId}`);
       }
