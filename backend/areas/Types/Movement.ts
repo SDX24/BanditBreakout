@@ -59,6 +59,9 @@ export default class Move {
 
     public front(by: number): void {
         let currentTile = this.game.map.findPlayer(this.player.id);
+        if (currentTile === -1) {
+            console.log(`Wrong tile, ${currentTile}`);
+        }
         for (let i = 0; i < by; i++) {
 
             const frontArray = this.game.map.tiles[currentTile].getFront();

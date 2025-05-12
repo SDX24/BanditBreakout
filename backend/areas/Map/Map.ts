@@ -118,6 +118,14 @@ export default class Map {
         playerIds.forEach(player_Id => tile.addPlayer(player_Id))
         console.log(`Set player positions to start${EOL}`)
     }
+
+    public setPlayerPos(pos: number, playerId: number) {
+        let tile = this.tiles[pos];
+        tile.hasPlayerOnTile = true;
+
+        tile.addPlayer(playerId);
+        console.log(`Set player ${playerId} positions to start${EOL}`);
+    }
     
     // helper for looking up player position
     public findPlayer(playerId: number): number {

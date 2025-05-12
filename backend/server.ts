@@ -81,6 +81,8 @@ io.on('connection', (socket) => {
       if (!player) {
         // Add the player to the game if not found
         player = new Player(activeGames[gameId], playerId);
+        activeGames[gameId].map.setPlayerPos(0, playerId);
+        
         activeGames[gameId].players.push(player);
         console.log(`Added new player ${playerId} to game ${gameId}`);
       }

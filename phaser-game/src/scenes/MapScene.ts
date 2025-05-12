@@ -11,8 +11,8 @@ export class MapScene extends Phaser.Scene {
     private socket: any; // Socket.io client
     private gameId: string = 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'); // Generate a random game ID
     //TODO, need to use random PlayerId to join Game, Now server side is 1-playercount
-    // private playerId: number = Math.floor(Math.random() * 1000) + 1; // Generate a random player ID
-    private playerId: number = 1;
+    private playerId: number = Math.floor(Math.random() * 1000) + 1; // Generate a random player ID
+    // private playerId: number = 1;
     private turnOrder: number[] = [];
     private currentPlayerTurn: number = -1;
     private playerInitialRolls: Map<number, number> = new Map();
@@ -57,9 +57,9 @@ export class MapScene extends Phaser.Scene {
       const bg = this.add.image(0, 0, 'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
       this.player = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-      this.playerSprites.set(this.playerId, this.player);
       
-      const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
+      // const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
+      const mapContainer = this.add.container(0, 0, [bg, overlay]);
 
       // Add videos for each dice result to the bottom-left corner of the mapContainer
       for (let i = 1; i <= 6; i++) {
@@ -137,7 +137,8 @@ export class MapScene extends Phaser.Scene {
       let targetSprite = this.playerSprites.get(playerId);
       if (!targetSprite) {
         // Create a sprite for this player if it doesn't exist
-        targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+        // targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+        targetSprite = this.player; 
         this.playerSprites.set(playerId, targetSprite);
         console.log(`Created sprite for player ${playerId}`);
       }
@@ -307,8 +308,7 @@ export class MapScene extends Phaser.Scene {
       .setInteractive()
       .on('pointerdown', () => {
         this.requestDiceRoll();
-        // Do not destroy the button for single-player testing
-        // button.destroy(); // Remove the button after clicking
+        button.destroy(); // Remove the button after clicking
       });
     }
     
