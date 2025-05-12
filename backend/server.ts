@@ -16,7 +16,9 @@ const io = new Server(server, {
   cors: {
     origin: "*", // Allow any origin for now, restrict in production
     methods: ["GET", "POST"]
-  }
+  },
+  pingInterval: 10000, // Send ping every 10 seconds
+  pingTimeout: 5000    // Disconnect if no pong received within 5 seconds
 });
 
 const PORT = process.env.PORT || 3000;
@@ -26,8 +28,9 @@ const GRIDFS_BUCKET = process.env.GRIDFS_BUCKET || 'assets_fs';
 // Store active games in memory for quick access
 const activeGames: { [key: string]: Game } = {};
 
-// Track socket to player mapping
+// Track socket to player mapping and vice versa for cleanup on reconnect
 const socketToPlayerMap: { [socketId: string]: { gameId: string, playerId: number } } = {};
+const playerToSocketMap: { [playerId: number]: string } = {};
 
 // Quick-and-dirty snapshot of everything the client UI needs to render
 function serializeGame(game: Game) {
@@ -83,6 +86,22 @@ io.on('connection', (socket) => {
     try {
       // Database operations removed: await addPlayerToGame(gameId, playerId);
       socket.join(gameId);
+      // Check if this player ID is already associated with another socket
+      const oldSocketId = playerToSocketMap[playerId];
+      if (oldSocketId && oldSocketId !== socket.id) {
+        console.log(`Player ${playerId} reconnected, cleaning up old socket ${oldSocketId}`);
+        // Clean up the old socket mapping
+        delete socketToPlayerMap[oldSocketId];
+        delete playerToSocketMap[playerId];
+        // Disconnect the old socket if it still exists
+        const oldSocket = io.sockets.sockets.get(oldSocketId);
+        if (oldSocket) {
+          oldSocket.disconnect(true);
+        }
+      }
+      // Update mappings for the new connection
+      socketToPlayerMap[socket.id] = { gameId, playerId };
+      playerToSocketMap[playerId] = socket.id;
       // Check if player already exists in the game
       let player = activeGames[gameId].players.find(p => p.id === playerId);
       if (!player) {
@@ -93,8 +112,6 @@ io.on('connection', (socket) => {
         activeGames[gameId].players.push(player);
         console.log(`Added new player ${playerId} to game ${gameId}`);
       }
-      // Store socket to player mapping
-      socketToPlayerMap[socket.id] = { gameId, playerId };
       // Roll for turn order when a player joins
       const roll = activeGames[gameId].rollForTurnOrder(playerId);
       //TO DO

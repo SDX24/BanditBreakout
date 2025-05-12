@@ -223,8 +223,8 @@ export class MapScene extends Phaser.Scene {
         this.socket.emit('joinGame', this.gameId, this.playerId);
       });
       
-      this.socket.on('disconnect', () => {
-        console.log('Disconnected from server');
+      this.socket.on('disconnect', (reason) => {
+        console.log(`Disconnected from server, reason: ${reason}`);
       });
       
       this.socket.on('error', (error: any) => {
