@@ -334,6 +334,7 @@ export class MapScene extends Phaser.Scene {
           if (data.roll) {
             // If a roll value is provided, play animation (or update if already playing)
             console.log(`Dice roll result: ${data.roll}`);
+            console.log(`${data.playerId}, ${this.playerId}`);
             // Move player to new position after animation if it's the local player
             if (data.playerId === this.playerId) {
               this.playDiceRollAnimation(data.roll, () => {
@@ -365,10 +366,6 @@ export class MapScene extends Phaser.Scene {
       .on('pointerdown', () => {
         this.requestDiceRoll();
         button.destroy();
-        // Only destroy the button if there are multiple players
-        // if (this.turnOrder.length > 1) {
-        //   button.destroy(); // Remove the button after clicking for multiplayer
-        // }
       });
     }
     

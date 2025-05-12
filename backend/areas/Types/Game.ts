@@ -21,9 +21,10 @@ export default class Game {
         console.log("Game started!")
 
         // create players
-        for (let player = 1; player <= playerCount; player++) {
-            this.players.push(new Player(this, player))
-        }
+        // TODO
+        // for (let player = 1; player <= playerCount; player++) {
+        //     this.players.push(new Player(this, player))
+        // }
         
         // create map
         this.map.initializeMap(playerCount)
@@ -95,6 +96,8 @@ export default class Game {
             this.currentTurnIndex = 0;
         }
         console.log(`Turn advanced to player ${this.turnOrder[this.currentTurnIndex]}`);
+        console.log(`${this.turnOrder.length}`);
+        console.log(`${this.turnOrder}`);
         return this.turnOrder[this.currentTurnIndex];
     }
 }
