@@ -166,10 +166,9 @@ export class MapScene extends Phaser.Scene {
         if (playerId === this.playerId) {
           targetSprite = this.player; // Use the pre-created player sprite with tint and pulse
         } else {
-          // Create a new sprite for other players without tint/pulse or with a different tint
+          // Create a new sprite for other players without any tint or pulse
           targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-          // Optionally, apply a different tint for other players
-          targetSprite.setTint(0xFF0000); // Red tint for other players
+          // No tint or effects for other players
         }
         this.playerSprites.set(playerId, targetSprite);
         console.log(`Created sprite for player ${playerId}`);
@@ -279,7 +278,7 @@ export class MapScene extends Phaser.Scene {
                 this.playerSprites.set(id, this.player); // Use the existing tinted and pulsing sprite for local player
               } else {
                 const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-                newPlayerSprite.setTint(0xFF0000); // Red tint for other players
+                // No tint for other players
                 newPlayerSprite.setDepth(5); // Set depth lower than local player
                 this.playerSprites.set(id, newPlayerSprite);
                 console.log(`Created sprite for player ${id}`);
@@ -314,7 +313,7 @@ export class MapScene extends Phaser.Scene {
               this.playerSprites.set(data.playerId, this.player); // Use the existing tinted and pulsing sprite
             } else {
               const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-              newPlayerSprite.setTint(0xFF0000); // Red tint for other players
+              // No tint for other players
               newPlayerSprite.setDepth(5); // Set depth lower than local player
               this.playerSprites.set(data.playerId, newPlayerSprite);
               console.log(`Created sprite for player ${data.playerId}`);
