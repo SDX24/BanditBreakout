@@ -203,6 +203,9 @@ io.on('connection', (socket) => {
         return;
       }
       
+      const currentPosition = activeGames[gameId].map.findPlayer(playerId);
+      console.log(`Player ${playerId} starting position before movement: ${currentPosition}`);
+      
       const player = activeGames[gameId].players.find(p => p.id === playerId);
       if (player) {
         const result = player.move.diceRoll();
@@ -356,7 +359,8 @@ io.on('connection', (socket) => {
     const player = game.players.find(p => p.id === playerId);
     if (!player || !player.pendingMove) return;
 
-    console.log(`Player ${playerId} chose path to tile ${chosenTile} with ${player.pendingMove.stepsRemaining} steps remaining`);
+    const currentPosition = game.map.findPlayer(playerId);
+    console.log(`Player ${playerId} at position ${currentPosition} chose path to tile ${chosenTile} with ${player.pendingMove.stepsRemaining} steps remaining`);
 
     // First move onto the selected branch
     player.move.to(chosenTile);
