@@ -68,6 +68,7 @@ export default class Move {
             console.log(`Forward options from tile ${currentTile}: [${frontArray.join(', ')}]`);
 
             if (frontArray.length === 0) {
+                // log currentTile to check if it is actually boss battle, ai!
                 console.log(`THIS SHOULD CONNECT THE BOSS BATTLE - No forward connections found at tile ${currentTile}. Moving to tile 43.`); // TODO
                 this.player.move.to(43)
                 currentTile = 43
