@@ -92,50 +92,13 @@ export default class Map {
         this.updateMap()
 
         console.log(`Map initialized${EOL}`)
-// check the following tiles info is correctly configured using to  this.tiles[index].getFront(), this.tiles[index].getBack(), ai!
-//         5
-// Back: 4
-// Front: 6, 44
-
-// 13
-// Back: 12
-// Front: 62, 14
-
-// 60
-// Back: 61
-// Front: 63, 61
-
-// 54
-// Back: 53
-// Front: 55, 67
-
-// 57
-// Back: 56
-// Front: 90, 58
-
-// 73
-// Back: 72
-// Front: 82, 74
-
-// 79
-// Back: 78, 80
-// Front: 83
-
-// 88
-// Back: 87, 89
-// Front: 91
-
-// 97
-// Back: 98, 96
-// Front: 100
-
-// 39
-// Back: 38, 102
-// Front: 40
-
-// 28
-// Back: 66, 27
-// Front: 99, 29
+        // Log forward and backward connections for specified tiles after initialization
+        const tilesToCheck = [5, 13, 60, 54, 57, 73, 79, 88, 97, 39, 28, 53];
+        tilesToCheck.forEach(tileIndex => {
+            const forward = this.tiles[tileIndex].getFront();
+            const backward = this.tiles[tileIndex].getBack();
+            console.log(`Tile ${tileIndex} connections - Back: [${backward.join(', ')}], Front: [${forward.join(', ')}]`);
+        });
         // Log forward tiles for tile 53 after initialization
         const tile53Forward = this.tiles[53].getFront();
         console.log(`Tile 53 forward connections after initialization: [${tile53Forward.join(', ')}]`);
