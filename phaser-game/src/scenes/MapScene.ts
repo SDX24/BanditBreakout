@@ -408,22 +408,35 @@ export class MapScene extends Phaser.Scene {
     
     // Update visual effect for the next player to move
     private updateNextPlayerEffect() {
-      // Remove any existing effects from all players except the local player
+      // Remove any existing effects from all players
       this.playerSprites.forEach((sprite, playerId) => {
+        this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
+        sprite.scaleX = 1; // Reset scale
+        sprite.scaleY = 1;
         if (playerId !== this.playerId) {
-          this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
-          sprite.scaleX = 1; // Reset scale
-          sprite.scaleY = 1;
-          sprite.clearTint(); // Remove any tint
+          sprite.clearTint(); // Remove tint only for non-local players
         }
       });
       
-      // If the current player is not the local player, apply a red tint effect
+      // Apply pulsing effect to all players
+      this.playerSprites.forEach((sprite, playerId) => {
+        const isLocalPlayer = playerId === this.playerId;
+        this.tweens.add({
+          targets: sprite,
+          scaleX: 1.2, // Same scale for consistency
+          scaleY: 1.2,
+          yoyo: true,
+          repeat: -1,
+          duration: isLocalPlayer ? 500 : 1500, // Faster for local player (500ms), slower for others (1500ms)
+          ease: 'Sine.easeInOut'
+        });
+      });
+      
+      // Apply red tint to the current turn player if it's not the local player
       if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
         const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
         if (nextPlayerSprite) {
-          // Apply a red tint to indicate the current turn player
-          nextPlayerSprite.setTint(0xFF0000); // Red tint
+          nextPlayerSprite.setTint(0xFF0000); // Red tint for other players on their turn
         }
       }
     }
