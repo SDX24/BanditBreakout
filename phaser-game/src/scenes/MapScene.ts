@@ -388,13 +388,17 @@ export class MapScene extends Phaser.Scene {
     
     // Show roll dice button
     private showRollDiceButton() {
-      // Create a simple button to roll the dice
-      const button = this.add.text(100, 100, 'Roll Dice', { 
+      // Get the scene dimensions
+      const { width, height } = this.scale;
+      
+      // Create a simple button to roll the dice at the bottom-left corner of the scene
+      const button = this.add.text(50, height - 50, 'Roll Dice', { 
         fontSize: '32px', 
         backgroundColor: '#fff', 
         color: '#000', 
         padding: { x: 10, y: 5 }
       })
+      .setOrigin(0, 1) // Set origin to top-left for precise positioning
       .setInteractive()
       .on('pointerdown', () => {
         this.requestDiceRoll();
