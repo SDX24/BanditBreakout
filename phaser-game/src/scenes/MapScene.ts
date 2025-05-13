@@ -401,8 +401,8 @@ export class MapScene extends Phaser.Scene {
       .setOrigin(0, 1) // Set origin to top-left for precise positioning
       .setInteractive()
       .on('pointerdown', () => {
-        this.requestDiceRoll();
         button.destroy();
+        this.requestDiceRoll();
       });
     }
     
