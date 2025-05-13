@@ -92,6 +92,9 @@ export default class Map {
         this.updateMap()
 
         console.log(`Map initialized${EOL}`)
+        // Log forward tiles for tile 53 after initialization
+        const tile53Forward = this.tiles[53].getFront();
+        console.log(`Tile 53 forward connections after initialization: [${tile53Forward.join(', ')}]`);
     }
 
     // UPDATING MAP (REFRESH)
