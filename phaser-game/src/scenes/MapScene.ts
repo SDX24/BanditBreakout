@@ -160,15 +160,14 @@ export class MapScene extends Phaser.Scene {
       let targetSprite = this.playerSprites.get(playerId);
       if (!targetSprite) {
         // Create a sprite for this player if it doesn't exist
-        // targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
         if (playerId === this.playerId) {
-          
-          targetSprite = this.player;
+          targetSprite = this.player; // Use the pre-created player sprite with tint and pulse
         } else {
-          targetSprite = this.player;
-          // targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5); 
+          // Create a new sprite for other players without tint/pulse or with a different tint
+          targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+          // Optionally, apply a different tint for other players
+          targetSprite.setTint(0xFF0000); // Red tint for other players
         }
-        
         this.playerSprites.set(playerId, targetSprite);
         console.log(`Created sprite for player ${playerId}`);
       }
