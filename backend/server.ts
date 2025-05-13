@@ -214,6 +214,7 @@ io.on('connection', (socket) => {
         // If there’s a fork, pause and ask the client
         if (result.pendingChoice) {
           player.pendingMove = { stepsRemaining: result.pendingChoice.stepsRemaining };
+          console.log(`Player ${playerId} encountered fork at tile ${newPosition}, options: ${result.pendingChoice.options}, steps remaining: ${result.pendingChoice.stepsRemaining}`);
           socket.emit('pathChoiceRequired', {
             playerId,
             options: result.pendingChoice.options,
@@ -355,16 +356,20 @@ io.on('connection', (socket) => {
     const player = game.players.find(p => p.id === playerId);
     if (!player || !player.pendingMove) return;
 
+    console.log(`Player ${playerId} chose path to tile ${chosenTile} with ${player.pendingMove.stepsRemaining} steps remaining`);
+
     // First move onto the selected branch
     player.move.to(chosenTile);
 
     // Finish the remaining steps, honouring *new* forks along the way
     const followUp = player.move.front(player.pendingMove.stepsRemaining - 1);
     const newPos = game.map.findPlayer(playerId);
+    console.log(`Player ${playerId} moved to tile ${newPos} after choosing path`);
     io.to(gameId).emit('playerMoved', { playerId, position: newPos });
 
     if (followUp.pendingChoice) {
       player.pendingMove.stepsRemaining = followUp.pendingChoice.stepsRemaining;
+      console.log(`Player ${playerId} encountered another fork at tile ${newPos}, options: ${followUp.pendingChoice.options}, steps remaining: ${followUp.pendingChoice.stepsRemaining}`);
       socket.emit('pathChoiceRequired', {
         playerId,
         options: followUp.pendingChoice.options,
@@ -372,6 +377,7 @@ io.on('connection', (socket) => {
       });
     } else {
       delete player.pendingMove;            // finished this move
+      console.log(`Player ${playerId} completed movement at tile ${newPos}`);
     }
   });
 
