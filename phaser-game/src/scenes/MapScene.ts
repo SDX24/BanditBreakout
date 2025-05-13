@@ -337,7 +337,8 @@ export class MapScene extends Phaser.Scene {
           console.log(`Game started with turn order: ${data.turnOrder}`);
           this.turnOrder = data.turnOrder;
           this.currentPlayerTurn = data.currentPlayer;
-          // Update UI to show turn order
+          // Update UI to show turn order and highlight next player
+          this.updateNextPlayerEffect();
           // If it's this player's turn, prompt for actions
           if (this.currentPlayerTurn === this.playerId) {
             console.log("It's your turn! Roll the dice!");
@@ -351,6 +352,7 @@ export class MapScene extends Phaser.Scene {
           console.log(`Turn advanced to player ${data.currentPlayer}`);
           this.currentPlayerTurn = data.currentPlayer;
           // Update UI to highlight current player
+          this.updateNextPlayerEffect();
           // If it's this player's turn, prompt for actions
           if (this.currentPlayerTurn === this.playerId) {
             console.log("It's your turn! Roll the dice!");
@@ -398,6 +400,34 @@ export class MapScene extends Phaser.Scene {
         this.requestDiceRoll();
         button.destroy();
       });
+    }
+    
+    // Update visual effect for the next player to move
+    private updateNextPlayerEffect() {
+      // Remove pulsing effect from all players except the local player
+      this.playerSprites.forEach((sprite, playerId) => {
+        if (playerId !== this.playerId) {
+          this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
+          sprite.scaleX = 1; // Reset scale
+          sprite.scaleY = 1;
+        }
+      });
+      
+      // If the current player is not the local player, apply a distinct pulsing effect
+      if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
+        const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
+        if (nextPlayerSprite) {
+          this.tweens.add({
+            targets: nextPlayerSprite,
+            scaleX: 1.1, // Smaller pulse than local player (1.2)
+            scaleY: 1.1,
+            yoyo: true,
+            repeat: -1,
+            duration: 800, // Faster pulse than local player (1000)
+            ease: 'Sine.easeInOut'
+          });
+        }
+      }
     }
     
     // Request to roll dice for movement
