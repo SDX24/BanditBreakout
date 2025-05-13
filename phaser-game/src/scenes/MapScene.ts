@@ -400,6 +400,13 @@ export class MapScene extends Phaser.Scene {
             this.movePlayerTo(data.position, undefined, data.playerId);
           }
         });
+
+        this.socket.on('pathChoiceRequired', (data: { playerId: number; options: number[]; stepsRemaining: number }) => {
+          if (data.playerId !== this.playerId) return;
+          this.showPathChoiceUI(data.options, (chosen) => {
+            this.socket.emit('choosePath', this.gameId, this.playerId, chosen);
+          });
+        });
       } else {
         console.error('Socket not initialized');
       }
@@ -447,6 +454,17 @@ export class MapScene extends Phaser.Scene {
       }
     }
     
+    // Show path choice UI
+    private showPathChoiceUI(options: number[], onSelect: (tile: number) => void) {
+      // quick & dirty choice prompt – swap out for prettier buttons later
+      const chosen = parseInt(prompt(`Choose your next tile:\n${options.join(', ')}`) || '', 10);
+      if (!isNaN(chosen) && options.includes(chosen)) {
+        onSelect(chosen);
+      } else {
+        alert('Invalid choice – try again!');
+      }
+    }
+
     // Request to roll dice for movement
     requestDiceRoll() {
       if (this.currentPlayerTurn === this.playerId) {

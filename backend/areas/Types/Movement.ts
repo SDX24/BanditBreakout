@@ -57,7 +57,7 @@ export default class Move {
         }
     }
 
-    public front(by: number): void {
+    public front(by: number): { success: boolean; pendingChoice?: { options: number[]; stepsRemaining: number } } {
         let currentTile = this.game.map.findPlayer(this.player.id);
         if (currentTile === -1) {
             console.log(`Wrong tile, ${currentTile}`);
@@ -72,16 +72,18 @@ export default class Move {
                 currentTile = 43
 
             } else if (frontArray.length > 1) {
-                console.log('this should start decision event') // TODO
-                // REMOVE NEXT LINE AND REPALCE WITH DECISION EVENT WHEN IMPLEMENTED
-                this.player.move.to(frontArray[0])
-                currentTile = frontArray[0];
+                // Stop here and let the caller ask the player which path to take
+                return {
+                    success: false,
+                    pendingChoice: { options: frontArray, stepsRemaining: by - i }
+                };
 
             } else {
                 this.player.move.to(frontArray[0])
                 currentTile = frontArray[0];
             }
         }
+        return { success: true };
     }
 
 public back(by: number): void {
@@ -110,11 +112,13 @@ private rollDiceNum(): number {
     return Math.floor(Math.random() * 6) + 1;
 }
 
-public diceRoll(): number {
+public diceRoll(): { roll: number; pendingChoice?: { options: number[]; stepsRemaining: number } } {
     const dice = this.rollDiceNum();
     console.log(`Player ${this.player.id} rolled a ${dice}!`);
-    this.player.move.front(dice);
-
-    return dice;
+    const frontResult = this.front(dice);
+    if (!frontResult.success) {
+        return { roll: dice, pendingChoice: frontResult.pendingChoice };
+    }
+    return { roll: dice };
 }
 }

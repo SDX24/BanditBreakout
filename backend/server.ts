@@ -205,11 +205,24 @@ io.on('connection', (socket) => {
       
       const player = activeGames[gameId].players.find(p => p.id === playerId);
       if (player) {
-        const steps = player.move.diceRoll();
+        const result = player.move.diceRoll();
         const newPosition = activeGames[gameId].map.findPlayer(playerId);
-        // Database operation removed: await updatePlayerPosition(playerId, newPosition);
-        io.to(gameId).emit('playerMoved', { playerId, position: newPosition, roll: steps });
-        console.log(`Player ${playerId} moved by dice roll of ${steps} to position ${newPosition} in game ${gameId}`);
+
+        // Always show the first chunk of movement
+        io.to(gameId).emit('playerMoved', { playerId, position: newPosition, roll: result.roll });
+
+        // If there’s a fork, pause and ask the client
+        if (result.pendingChoice) {
+          player.pendingMove = { stepsRemaining: result.pendingChoice.stepsRemaining };
+          socket.emit('pathChoiceRequired', {
+            playerId,
+            options: result.pendingChoice.options,
+            stepsRemaining: result.pendingChoice.stepsRemaining
+          });
+          return; // Wait for the client’s response
+        }
+
+        console.log(`Player ${playerId} moved by dice roll of ${result.roll} to position ${newPosition} in game ${gameId}`);
         // Check for tile event
         const tile = activeGames[gameId].map.tiles[newPosition];
         if (tile.event.type !== 0) {
@@ -217,7 +230,7 @@ io.on('connection', (socket) => {
           io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type });
           console.log(`Tile event triggered for player ${playerId}: type ${tile.event.type}`);
         }
-        if (callback) callback({ success: true, roll: steps, position: newPosition });
+        if (callback) callback({ success: true, roll: result.roll, position: newPosition });
       } else {
         const errorResponse = { success: false, error: 'Player not found' };
         if (callback) callback(errorResponse);
@@ -330,6 +343,35 @@ io.on('connection', (socket) => {
     } catch (error) {
       socket.emit('error', { message: 'Failed to advance turn' });
       console.error('Error advancing turn:', error);
+    }
+  });
+
+  // ──────────────────────────────────────────────────────────────
+  // Client picks a branch when `pathChoiceRequired` fires
+  socket.on('choosePath', (gameId: string, playerId: number, chosenTile: number) => {
+    const game = activeGames[gameId];
+    if (!game) return;
+
+    const player = game.players.find(p => p.id === playerId);
+    if (!player || !player.pendingMove) return;
+
+    // First move onto the selected branch
+    player.move.to(chosenTile);
+
+    // Finish the remaining steps, honouring *new* forks along the way
+    const followUp = player.move.front(player.pendingMove.stepsRemaining - 1);
+    const newPos = game.map.findPlayer(playerId);
+    io.to(gameId).emit('playerMoved', { playerId, position: newPos });
+
+    if (followUp.pendingChoice) {
+      player.pendingMove.stepsRemaining = followUp.pendingChoice.stepsRemaining;
+      socket.emit('pathChoiceRequired', {
+        playerId,
+        options: followUp.pendingChoice.options,
+        stepsRemaining: followUp.pendingChoice.stepsRemaining
+      });
+    } else {
+      delete player.pendingMove;            // finished this move
     }
   });
 
