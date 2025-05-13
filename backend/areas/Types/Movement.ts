@@ -63,26 +63,30 @@ export default class Move {
             console.log(`Wrong tile, ${currentTile}`);
         }
         for (let i = 0; i < by; i++) {
-
+            console.log(`Step ${i+1}/${by}: Player ${this.player.id} at tile ${currentTile}`);
             const frontArray = this.game.map.tiles[currentTile].getFront();
+            console.log(`Forward options from tile ${currentTile}: [${frontArray.join(', ')}]`);
 
             if (frontArray.length === 0) {
-                console.log(`THIS SHOULD CONNECT THE BOSS BATTLE`); // TODO
+                console.log(`THIS SHOULD CONNECT THE BOSS BATTLE - No forward connections found at tile ${currentTile}. Moving to tile 43.`); // TODO
                 this.player.move.to(43)
                 currentTile = 43
 
             } else if (frontArray.length > 1) {
                 // Stop here and let the caller ask the player which path to take
+                console.log(`Fork encountered at tile ${currentTile} with options [${frontArray.join(', ')}]`);
                 return {
                     success: false,
                     pendingChoice: { options: frontArray, stepsRemaining: by - i }
                 };
 
             } else {
+                console.log(`Moving player ${this.player.id} from tile ${currentTile} to tile ${frontArray[0]}`);
                 this.player.move.to(frontArray[0])
                 currentTile = frontArray[0];
             }
         }
+        console.log(`Completed ${by} steps for player ${this.player.id}, final position: tile ${currentTile}`);
         return { success: true };
     }
 
