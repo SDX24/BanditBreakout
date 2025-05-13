@@ -28,6 +28,23 @@ export class MapScene extends Phaser.Scene {
     private playerSprites: Map<number, Phaser.GameObjects.Image> = new Map();
     private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
 
+    // test for multiple user
+    async init() {
+      if (this.gameId === 'game_multiple_user') {
+
+        try {
+          const res = await fetch('https://api.ipify.org?format=json');
+          const { ip } = await res.json();
+          this.gameId = ip;
+        } catch (err) {
+          console.error('IP lookup failed:', err);
+        }
+
+      }
+      
+    }
+  
+
     preload() {
       this.load.setBaseURL('http://localhost:3000');          
       this.load.setPath('assets');       
@@ -63,6 +80,8 @@ export class MapScene extends Phaser.Scene {
   
     create() {
       // … your existing background + overlay code …
+      console.log('Using gameId:', this.gameId);
+
       const bg = this.add.image(0, 0, 'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
       this.player = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
@@ -408,33 +427,24 @@ export class MapScene extends Phaser.Scene {
     
     // Update visual effect for the next player to move
     private updateNextPlayerEffect() {
-      // Remove any existing effects from all players
+      // Remove any existing effects from all players except the local player
       this.playerSprites.forEach((sprite, playerId) => {
-        this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
-        sprite.scaleX = 1; // Reset scale
-        sprite.scaleY = 1;
-        sprite.clearTint(); // Remove tint for all players initially
+        if (playerId !== this.playerId) {
+          this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
+          sprite.scaleX = 1; // Reset scale
+          sprite.scaleY = 1;
+          sprite.clearTint(); // Remove any tint
+        }
       });
       
-      // Apply red tint to local player
-      const localPlayerSprite = this.playerSprites.get(this.playerId);
-      if (localPlayerSprite) {
-        localPlayerSprite.setTint(0xFF0000); // Red tint for local player
+      // If the current player is not the local player, apply a red tint effect
+      if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
+        const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
+        if (nextPlayerSprite) {
+          // Apply a red tint to indicate the current turn player
+          nextPlayerSprite.setTint(0xFF0000); // Red tint
+        }
       }
-      
-      // Apply pulsing effect to all players, with fast pulse for current turn player
-      this.playerSprites.forEach((sprite, playerId) => {
-        const isCurrentTurn = playerId === this.currentPlayerTurn;
-        this.tweens.add({
-          targets: sprite,
-          scaleX: 1.2, // Same scale for consistency
-          scaleY: 1.2,
-          yoyo: true,
-          repeat: -1,
-          duration: isCurrentTurn ? 500 : 1000, // Fast for current turn player (500ms), normal for others (1000ms)
-          ease: 'Sine.easeInOut'
-        });
-      });
     }
     
     // Request to roll dice for movement
