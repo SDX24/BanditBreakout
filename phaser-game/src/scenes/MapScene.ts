@@ -81,6 +81,9 @@ export class MapScene extends Phaser.Scene {
         ease: 'Sine.easeInOut' // Smooth easing for the pulse
       });
 
+      // Set depth to ensure the player sprite is above background and overlay
+      this.player.setDepth(10);
+
       // const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
       const mapContainer = this.add.container(0, 0, [bg, overlay]);
 
@@ -270,11 +273,17 @@ export class MapScene extends Phaser.Scene {
           gameState.players.forEach((playerData: any) => {
             const { id, position, status } = playerData;
             
-            // Ensure a sprite exists for this player
+            // Ensure a sprite exists for this player, but don't recreate if it exists
             if (!this.playerSprites.has(id)) {
-              const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-              this.playerSprites.set(id, newPlayerSprite);
-              console.log(`Created sprite for player ${id}`);
+              if (id === this.playerId) {
+                this.playerSprites.set(id, this.player); // Use the existing tinted and pulsing sprite for local player
+              } else {
+                const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+                newPlayerSprite.setTint(0xFF0000); // Red tint for other players
+                newPlayerSprite.setDepth(5); // Set depth lower than local player
+                this.playerSprites.set(id, newPlayerSprite);
+                console.log(`Created sprite for player ${id}`);
+              }
             }
             
             // Move player to the correct position
@@ -299,11 +308,17 @@ export class MapScene extends Phaser.Scene {
           console.log(`Player ${data.playerId} joined with initial roll ${data.initialRoll}`);
           this.playerInitialRolls.set(data.playerId, data.initialRoll);
           // Update UI to show player and their roll
-          // Create sprite for new player if needed
+          // Create sprite for new player if needed, but don't recreate for local player
           if (!this.playerSprites.has(data.playerId)) {
-            const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-            this.playerSprites.set(data.playerId, newPlayerSprite);
-            console.log(`Created sprite for player ${data.playerId}`);
+            if (data.playerId === this.playerId) {
+              this.playerSprites.set(data.playerId, this.player); // Use the existing tinted and pulsing sprite
+            } else {
+              const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+              newPlayerSprite.setTint(0xFF0000); // Red tint for other players
+              newPlayerSprite.setDepth(5); // Set depth lower than local player
+              this.playerSprites.set(data.playerId, newPlayerSprite);
+              console.log(`Created sprite for player ${data.playerId}`);
+            }
           }
         });
         
