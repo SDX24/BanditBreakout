@@ -413,32 +413,28 @@ export class MapScene extends Phaser.Scene {
         this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
         sprite.scaleX = 1; // Reset scale
         sprite.scaleY = 1;
-        if (playerId !== this.playerId) {
-          sprite.clearTint(); // Remove tint only for non-local players
-        }
+        sprite.clearTint(); // Remove tint for all players initially
       });
       
-      // Apply pulsing effect to all players
+      // Apply red tint to local player
+      const localPlayerSprite = this.playerSprites.get(this.playerId);
+      if (localPlayerSprite) {
+        localPlayerSprite.setTint(0xFF0000); // Red tint for local player
+      }
+      
+      // Apply pulsing effect to all players, with fast pulse for current turn player
       this.playerSprites.forEach((sprite, playerId) => {
-        const isLocalPlayer = playerId === this.playerId;
+        const isCurrentTurn = playerId === this.currentPlayerTurn;
         this.tweens.add({
           targets: sprite,
           scaleX: 1.2, // Same scale for consistency
           scaleY: 1.2,
           yoyo: true,
           repeat: -1,
-          duration: isLocalPlayer ? 500 : 1500, // Faster for local player (500ms), slower for others (1500ms)
+          duration: isCurrentTurn ? 500 : 1000, // Fast for current turn player (500ms), normal for others (1000ms)
           ease: 'Sine.easeInOut'
         });
       });
-      
-      // Apply red tint to the current turn player if it's not the local player
-      if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
-        const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
-        if (nextPlayerSprite) {
-          nextPlayerSprite.setTint(0xFF0000); // Red tint for other players on their turn
-        }
-      }
     }
     
     // Request to roll dice for movement
