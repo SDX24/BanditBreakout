@@ -67,6 +67,20 @@ export class MapScene extends Phaser.Scene {
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
       this.player = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
       
+      // Add tint to distinguish your player
+      this.player.setTint(0x00FF00); // Green tint for your player
+
+      // Add pulsing effect
+      this.tweens.add({
+        targets: this.player,
+        scaleX: 1.2,
+        scaleY: 1.2,
+        yoyo: true, // Makes the tween go back and forth
+        repeat: -1, // Repeat indefinitely
+        duration: 1000, // Duration of one pulse cycle in milliseconds
+        ease: 'Sine.easeInOut' // Smooth easing for the pulse
+      });
+
       // const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
       const mapContainer = this.add.container(0, 0, [bg, overlay]);
 
