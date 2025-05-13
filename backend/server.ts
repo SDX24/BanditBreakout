@@ -111,16 +111,18 @@ io.on('connection', (socket) => {
         
         activeGames[gameId].players.push(player);
         console.log(`Added new player ${playerId} to game ${gameId}`);
+      
+        // Roll for turn order when a player joins
+        const roll = activeGames[gameId].rollForTurnOrder(playerId);
+        //TO DO
+        // activeGames[gameId].determineTurnOrder();
+        socket.emit('joinedGame', { gameId, playerId, initialRoll: roll });
+        io.to(gameId).emit('playerJoined', { playerId, initialRoll: roll });
+        // Give the joining client the current snapshot
+        socket.emit('gameState', serializeGame(activeGames[gameId]));
+        console.log(`Player ${playerId} joined game ${gameId} with initial roll ${roll}`);
+
       }
-      // Roll for turn order when a player joins
-      const roll = activeGames[gameId].rollForTurnOrder(playerId);
-      //TO DO
-      // activeGames[gameId].determineTurnOrder();
-      socket.emit('joinedGame', { gameId, playerId, initialRoll: roll });
-      io.to(gameId).emit('playerJoined', { playerId, initialRoll: roll });
-      // Give the joining client the current snapshot
-      socket.emit('gameState', serializeGame(activeGames[gameId]));
-      console.log(`Player ${playerId} joined game ${gameId} with initial roll ${roll}`);
     } catch (error) {
       socket.emit('error', { message: 'Failed to join game' });
       console.error('Error joining game:', error);
