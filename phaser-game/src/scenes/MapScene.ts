@@ -456,13 +456,66 @@ export class MapScene extends Phaser.Scene {
     
     // Show path choice UI
     private showPathChoiceUI(options: number[], onSelect: (tile: number) => void) {
-      // quick & dirty choice prompt – swap out for prettier buttons later
-      const chosen = parseInt(prompt(`Choose your next tile:\n${options.join(', ')}`) || '', 10);
-      if (!isNaN(chosen) && options.includes(chosen)) {
-        onSelect(chosen);
-      } else {
-        alert('Invalid choice – try again!');
-      }
+      // Create a non-blocking UI for path selection using Phaser elements
+      const { width, height } = this.scale;
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      // Create a semi-transparent background for the modal
+      const modal = this.add.rectangle(centerX, centerY, width * 0.6, height * 0.4, 0x000000, 0.7);
+      modal.setStrokeStyle(4, 0xFFFFFF);
+      modal.setDepth(100);
+
+      // Add a title text
+      const title = this.add.text(centerX, centerY - height * 0.15, 'Choose Your Path', {
+        fontSize: '28px',
+        color: '#FFFFFF'
+      }).setOrigin(0.5);
+      title.setDepth(101);
+
+      // Add instruction text
+      const instruction = this.add.text(centerX, centerY - height * 0.05, `Select a tile to move to: ${options.join(', ')}`, {
+        fontSize: '20px',
+        color: '#FFFFFF',
+        align: 'center',
+        wordWrap: { width: width * 0.5 }
+      }).setOrigin(0.5);
+      instruction.setDepth(101);
+
+      // Create buttons for each option
+      const buttonSpacing = height * 0.05;
+      const startY = centerY + height * 0.05;
+      const buttons = options.map((tile, index) => {
+        const yPosition = startY + index * buttonSpacing;
+        const button = this.add.text(centerX, yPosition, `Tile ${tile}`, {
+          fontSize: '24px',
+          backgroundColor: '#4CAF50',
+          color: '#FFFFFF',
+          padding: { x: 20, y: 10 }
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+        
+        button.on('pointerdown', () => {
+          // Destroy all UI elements when a choice is made
+          modal.destroy();
+          title.destroy();
+          instruction.destroy();
+          buttons.forEach(btn => btn.destroy());
+          onSelect(tile);
+        });
+
+        button.on('pointerover', () => {
+          button.setBackgroundColor('#45a049');
+        });
+
+        button.on('pointerout', () => {
+          button.setBackgroundColor('#4CAF50');
+        });
+
+        button.setDepth(101);
+        return button;
+      });
+
+      console.log(`Path choice UI displayed for options: ${options.join(', ')}`);
     }
 
     // Request to roll dice for movement
