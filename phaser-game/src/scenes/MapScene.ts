@@ -452,7 +452,7 @@ export class MapScene extends Phaser.Scene {
       if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
         const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
         if (nextPlayerSprite) {
-          // Apply a red tint to indicate the current turn player
+          // not apply more tint for nextPlayerSprite, keep what it is, ai!
           nextPlayerSprite.setTint(0xFF0000); // Red tint
           // Add fast pulsing effect for the current turn player
           this.tweens.add({
