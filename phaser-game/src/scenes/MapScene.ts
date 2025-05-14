@@ -437,14 +437,24 @@ export class MapScene extends Phaser.Scene {
     
     // Update visual effect for the next player to move
     private updateNextPlayerEffect() {
-      //check the following logic, make sure next turn player with fast pulse, and other players with normal pulse, ai!
       this.playerSprites.forEach((sprite, playerId) => {
+        this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
+        sprite.scaleX = 1; // Reset scale
+        sprite.scaleY = 1;
         
-          this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
-          sprite.scaleX = 1; // Reset scale
-          sprite.scaleY = 1;
-          
-          // Add normal pulsing effect for non-turn players
+        if (playerId === this.currentPlayerTurn && playerId !== this.playerId) {
+          // Add fast pulsing effect for the current turn player (if not local player)
+          this.tweens.add({
+            targets: sprite,
+            scaleX: 1.2,
+            scaleY: 1.2,
+            yoyo: true, // Makes the tween go back and forth
+            repeat: -1, // Repeat indefinitely
+            duration: 500, // Fast pulse with 0.5 second duration
+            ease: 'Sine.easeInOut' // Smooth easing for the pulse
+          });
+        } else if (playerId !== this.playerId) {
+          // Add normal pulsing effect for non-turn players (if not local player)
           this.tweens.add({
             targets: sprite,
             scaleX: 1.1,
@@ -454,25 +464,9 @@ export class MapScene extends Phaser.Scene {
             duration: 1000, // Normal pulse with 1 second duration
             ease: 'Sine.easeInOut' // Smooth easing for the pulse
           });
-        
-      });
-      
-
-      if (this.currentPlayerTurn !== -1) {
-        const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
-        if (nextPlayerSprite) {
-          // Add fast pulsing effect for the current turn player
-          this.tweens.add({
-            targets: nextPlayerSprite,
-            scaleX: 1.2,
-            scaleY: 1.2,
-            yoyo: true, // Makes the tween go back and forth
-            repeat: -1, // Repeat indefinitely
-            duration: 500, // Fast pulse with 0.5 second duration
-            ease: 'Sine.easeInOut' // Smooth easing for the pulse
-          });
         }
-      }
+        // Local player retains the original effect from create()
+      });
     }
     
     // Show path choice UI
