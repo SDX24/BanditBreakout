@@ -75,7 +75,22 @@ export default class Move {
             } else if (frontArray.length > 1) {
                 // Stop here and let the caller ask the player which path to take
                 console.log(`Fork encountered at tile ${currentTile} with options [${frontArray.join(', ')}]`);
-                //also log the possible paths from this tile to destination tiles from this tile, ai!
+                // Log possible paths from this tile to potential destination tiles
+                frontArray.forEach((option, index) => {
+                    let path = [option];
+                    let nextTile = option;
+                    // Look ahead a few steps to see potential paths (limited to 3 steps for brevity)
+                    for (let step = 0; step < 3; step++) {
+                        const nextFront = this.game.map.tiles[nextTile].getFront();
+                        if (nextFront.length > 0) {
+                            nextTile = nextFront[0]; // Take the first option for simplicity
+                            path.push(nextTile);
+                        } else {
+                            break;
+                        }
+                    }
+                    console.log(`Possible path ${index + 1} from tile ${currentTile} via option ${option}: [${path.join(', ')}]`);
+                });
 
                 return {
                     success: false,
