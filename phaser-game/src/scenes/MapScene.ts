@@ -442,7 +442,7 @@ export class MapScene extends Phaser.Scene {
         sprite.scaleX = 1; // Reset scale
         sprite.scaleY = 1;
         
-        if (playerId === this.currentPlayerTurn && playerId !== this.playerId) {
+        if (playerId === this.currentPlayerTurn) {
           // Add fast pulsing effect for the current turn player (if not local player)
           this.tweens.add({
             targets: sprite,
@@ -453,7 +453,7 @@ export class MapScene extends Phaser.Scene {
             duration: 500, // Fast pulse with 0.5 second duration
             ease: 'Sine.easeInOut' // Smooth easing for the pulse
           });
-        } else if (playerId !== this.playerId) {
+        } else {
           // Add normal pulsing effect for non-turn players (if not local player)
           this.tweens.add({
             targets: sprite,
@@ -465,7 +465,7 @@ export class MapScene extends Phaser.Scene {
             ease: 'Sine.easeInOut' // Smooth easing for the pulse
           });
         }
-        // Local player retains the original effect from create()
+        
       });
     }
     
