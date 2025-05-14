@@ -46,7 +46,8 @@ export class MapScene extends Phaser.Scene {
   
 
     preload() {
-      this.load.setBaseURL('http://localhost:3000');          
+      const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
+      this.load.setBaseURL(serverUrl);          
       this.load.setPath('assets');       
       
       this.load.image('backgroundMap', encodeURIComponent('board/background.png'));   
@@ -249,8 +250,9 @@ export class MapScene extends Phaser.Scene {
     
     // Initialize socket connection
     private initializeSocket() {
+      const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
       // Connect to the server
-      this.socket = io('http://localhost:3000', {
+      this.socket = io(serverUrl, {
         autoConnect: true
       });
       console.log('Socket initialized', this.socket);
