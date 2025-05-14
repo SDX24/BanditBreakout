@@ -22,6 +22,7 @@ export class MapScene extends Phaser.Scene {
     //private gameId: string = 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'); // Generate a random game ID
     private gameId: string = 'game_multiple_user'; 
     private playerId: number;
+    private characterAsset: string = 'character_asset/solsticeFront.svg'; // Default character
     private turnOrder: number[] = [];
     private currentPlayerTurn: number = -1;
     private playerInitialRolls: Map<number, number> = new Map();
@@ -29,9 +30,8 @@ export class MapScene extends Phaser.Scene {
     private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
 
     // test for multiple user
-    async init() {
+    async init(data: { characterAsset?: string } = {}) {
       if (this.gameId === 'game_multiple_user') {
-
         try {
           const res = await fetch('https://api.ipify.org?format=json');
           const { ip } = await res.json();
@@ -39,9 +39,12 @@ export class MapScene extends Phaser.Scene {
         } catch (err) {
           console.error('IP lookup failed:', err);
         }
-
       }
       
+      if (data.characterAsset) {
+        this.characterAsset = data.characterAsset;
+        console.log(`Using character asset from data: ${this.characterAsset}`);
+      }
     }
   
 
@@ -58,7 +61,8 @@ export class MapScene extends Phaser.Scene {
         height: 1080
       });
 
-      this.load.svg('player', encodeURIComponent('character_asset/solsticeFront.svg'), {
+      // Dynamically load the player sprite based on the selected character
+      this.load.svg('player', encodeURIComponent(this.characterAsset), {
         width: 64,
         height: 64
       });
@@ -292,18 +296,25 @@ export class MapScene extends Phaser.Scene {
           
           // Update all player positions based on the game state
           gameState.players.forEach((playerData: any) => {
-            const { id, position, status } = playerData;
+            const { id, position, status, character_id } = playerData;
             
             // Ensure a sprite exists for this player, but don't recreate if it exists
             if (!this.playerSprites.has(id)) {
               if (id === this.playerId) {
                 this.playerSprites.set(id, this.player); // Use the existing tinted and pulsing sprite for local player
               } else {
-                const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+                // For other players, load their character sprite if character_id is provided
+                let spriteKey = 'player'; // Default key
+                if (character_id) {
+                  const assetPath = this.getCharacterAssetPath(character_id);
+                  spriteKey = `player_${id}`; // Unique key for each player
+                  this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
+                }
+                const newPlayerSprite = this.add.image(1683, 991, spriteKey).setOrigin(0.5, 0.5);
                 // No tint for other players
                 newPlayerSprite.setDepth(5); // Set depth lower than local player
                 this.playerSprites.set(id, newPlayerSprite);
-                console.log(`Created sprite for player ${id}`);
+                console.log(`Created sprite for player ${id} with key ${spriteKey}`);
               }
             }
             
@@ -534,6 +545,19 @@ export class MapScene extends Phaser.Scene {
       });
 
       console.log(`Path choice UI displayed for options: ${options.join(', ')}`);
+    }
+
+    // Utility to map character IDs to asset paths
+    private getCharacterAssetPath(characterId: number): string {
+      const characterMap: { [key: number]: string } = {
+        1: 'character_asset/solsticeFront.svg',
+        2: 'character_asset/buckshotFront.svg',
+        3: 'character_asset/serpyFront.svg',
+        4: 'character_asset/gritFront.svg',
+        5: 'character_asset/scoutFront.svg'
+        // Add other character mappings here
+      };
+      return characterMap[characterId] || 'character_asset/solsticeFront.svg'; // Default to Solstice if ID not found
     }
 
     // Request to roll dice for movement

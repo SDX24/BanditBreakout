@@ -38,6 +38,7 @@ function serializeGame(game: Game) {
     players: game.players.map(p => ({
       id: p.id,
       position: game.map.findPlayer(p.id),
+      character_id: p.character_id,
       status: {
         gold: p.status.gold,
         health: p.status.health,
