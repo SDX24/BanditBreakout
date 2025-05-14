@@ -86,7 +86,7 @@ export class MapScene extends Phaser.Scene {
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
       this.player = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
       
-      // Add pulsing effect and red tint, ai!
+      // Add pulsing effect
       this.tweens.add({
         targets: this.player,
         scaleX: 1.2,
@@ -96,6 +96,9 @@ export class MapScene extends Phaser.Scene {
         duration: 1000, // Duration of one pulse cycle in milliseconds
         ease: 'Sine.easeInOut' // Smooth easing for the pulse
       });
+      
+      // Add red tint to the local player
+      this.player.setTint(0xFF0000);
 
       // Set depth to ensure the player sprite is above background and overlay
       this.player.setDepth(10);
