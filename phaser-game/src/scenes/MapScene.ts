@@ -441,6 +441,7 @@ export class MapScene extends Phaser.Scene {
       this.playerSprites.forEach((sprite, playerId) => {
         if (playerId !== this.playerId) {
                 
+          //
           this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
           sprite.scaleX = 1; // Reset scale
           sprite.scaleY = 1;
@@ -449,6 +450,7 @@ export class MapScene extends Phaser.Scene {
         }
       });
       
+      //all next turn player should use fast pulsing, ai!
       if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
         const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
         if (nextPlayerSprite) {
