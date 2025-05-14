@@ -449,12 +449,21 @@ export class MapScene extends Phaser.Scene {
         }
       });
       
-      // for any next turn player, use fast pulse to indicate, ai!
       if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
         const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
         if (nextPlayerSprite) {
           // Apply a red tint to indicate the current turn player
           nextPlayerSprite.setTint(0xFF0000); // Red tint
+          // Add fast pulsing effect for the current turn player
+          this.tweens.add({
+            targets: nextPlayerSprite,
+            scaleX: 1.2,
+            scaleY: 1.2,
+            yoyo: true, // Makes the tween go back and forth
+            repeat: -1, // Repeat indefinitely
+            duration: 500, // Fast pulse with 0.5 second duration
+            ease: 'Sine.easeInOut' // Smooth easing for the pulse
+          });
         }
       }
     }
