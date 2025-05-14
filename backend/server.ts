@@ -500,9 +500,42 @@ app.use('/assets/', async (req, res) => {
   }
 });
 
+// List of critical assets to preload (adjust based on your needs)
+const criticalAssets = [
+  'board/background.png',
+  'board/Board with Bridges.svg',
+  'character_asset/solsticeFront.svg',
+  'board/tilesLocation.csv',
+  'dice/dice1.mp4',
+  'dice/dice2.mp4',
+  'dice/dice3.mp4',
+  'dice/dice4.mp4',
+  'dice/dice5.mp4',
+  'dice/dice6.mp4'
+];
+
+// Function to preload assets into Redis
+async function preloadAssets() {
+  console.log('Preloading assets into Redis...');
+  for (const assetPath of criticalAssets) {
+    try {
+      const asset = await getAssetByFilename(assetPath);
+      if (asset) {
+        console.log(`Asset ${assetPath} preloaded and cached in Redis.`);
+      } else {
+        console.warn(`Asset ${assetPath} not found during preload.`);
+      }
+    } catch (error) {
+      console.error(`Error preloading asset ${assetPath}:`, error);
+    }
+  }
+  console.log('Asset preloading complete.');
+}
+
 // Start the server
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
   console.log(`Server listening on port ${PORT}`);
+  await preloadAssets(); // Preload assets into Redis
 });
 
 // Database connection removed for testing purposes
