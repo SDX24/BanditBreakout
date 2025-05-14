@@ -75,6 +75,8 @@ export default class Move {
             } else if (frontArray.length > 1) {
                 // Stop here and let the caller ask the player which path to take
                 console.log(`Fork encountered at tile ${currentTile} with options [${frontArray.join(', ')}]`);
+                //also log the possible paths from this tile to destination tiles from this tile, ai!
+
                 return {
                     success: false,
                     pendingChoice: { options: frontArray, stepsRemaining: by - i }
