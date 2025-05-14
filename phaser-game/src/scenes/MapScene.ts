@@ -439,7 +439,23 @@ export class MapScene extends Phaser.Scene {
     private updateNextPlayerEffect() {
       // Remove any existing effects from all players except the local player
       this.playerSprites.forEach((sprite, playerId) => {
-        //if it is not next turn player, set its pulse speed to normal,ai!
+        if (playerId !== this.playerId) {
+          this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
+          sprite.scaleX = 1; // Reset scale
+          sprite.scaleY = 1;
+          sprite.clearTint(); // Remove any tint
+          
+          // Add normal pulsing effect for non-turn players
+          this.tweens.add({
+            targets: sprite,
+            scaleX: 1.1,
+            scaleY: 1.1,
+            yoyo: true, // Makes the tween go back and forth
+            repeat: -1, // Repeat indefinitely
+            duration: 1000, // Normal pulse with 1 second duration
+            ease: 'Sine.easeInOut' // Smooth easing for the pulse
+          });
+        }
       });
       
 
