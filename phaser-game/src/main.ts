@@ -25,7 +25,7 @@ const config = {
     // Host,
     // Code,
     // Room,
-    // CharacterSelection,
+    CharacterSelection,
     // SettingsMenu,
     MapScene,
   ],
