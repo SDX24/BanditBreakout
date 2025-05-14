@@ -52,14 +52,14 @@ export class CharacterSelection extends Phaser.Scene {
     this.load.image("overlayBacking", encodeURIComponent("character_selection/backing.png"));
     this.load.image("overlayFrame", encodeURIComponent("character_selection/frame.png"));
     this.load.image("overlayPage", encodeURIComponent("character_selection/page.png"));
-    this.load.image("ovelayBackSign", "character_selection/backSign.png");
-    this.load.image("charSign", "character_selection/charSign.png");
+    this.load.image("ovelayBackSign", encodeURIComponent("character_selection/backSign.png"));
+    this.load.image("charSign", encodeURIComponent("character_selection/charSign.png"));
 
-    this.load.svg("buckshot", "character_asset/buckshotFront.svg");
-    this.load.svg("serpy", "character_asset/serpyFront.svg");
-    this.load.svg("grit", "character_asset/gritFront.svg");
-    this.load.svg("scout", "character_asset/scoutFront.svg");
-    this.load.svg("solstice", "character_asset/solsticeFront.svg");
+    this.load.svg("buckshot", encodeURIComponent("character_asset/buckshotFront.svg"));
+    this.load.svg("serpy", encodeURIComponent("character_asset/serpyFront.svg"));
+    this.load.svg("grit", encodeURIComponent("character_asset/gritFront.svg"));
+    this.load.svg("scout", encodeURIComponent("character_asset/scoutFront.svg"));
+    this.load.svg("solstice", encodeURIComponent("character_asset/solsticeFront.svg"));
 
     WebFontLoader.load({
       custom: {
