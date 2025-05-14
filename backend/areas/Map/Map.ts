@@ -105,6 +105,9 @@ export default class Map {
                 const backOfFwd = this.tiles[fwdTile].getBack();                                                                                                                                
                 if (!backOfFwd.includes(tileIndex)) {                                                                                                                                           
                     console.log(`Warning: Tile ${fwdTile} (forward of ${tileIndex}) does not have ${tileIndex} in its back connections: [${backOfFwd.join(', ')}]`);                            
+                    // Fix the connection by adding tileIndex to back connections of fwdTile                                                                                                       
+                    this.tiles[fwdTile].setBack([...backOfFwd, tileIndex]);                                                                                                                     
+                    console.log(`Fixed: Added tile ${tileIndex} to back connections of tile ${fwdTile}`);                                                                                       
                 }                                                                                                                                                                               
             });                                                                                                                                                                                 
                                                                                                                                                                                                 
@@ -113,6 +116,9 @@ export default class Map {
                 const frontOfBck = this.tiles[bckTile].getFront();                                                                                                                              
                 if (!frontOfBck.includes(tileIndex)) {                                                                                                                                          
                     console.log(`Warning: Tile ${bckTile} (backward of ${tileIndex}) does not have ${tileIndex} in its front connections: [${frontOfBck.join(', ')}]`);                         
+                    // Fix the connection by adding tileIndex to front connections of bckTile                                                                                                      
+                    this.tiles[bckTile].setFront([...frontOfBck, tileIndex]);                                                                                                                   
+                    console.log(`Fixed: Added tile ${tileIndex} to front connections of tile ${bckTile}`);                                                                                      
                 }                                                                                                                                                                               
             });                                                                                                                                                                                 
         }); 
