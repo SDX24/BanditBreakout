@@ -52,7 +52,8 @@ export class MapScene extends Phaser.Scene {
       
       this.load.image('backgroundMap', encodeURIComponent('board/background.png'));   
 
-      this.load.svg('mapOverlay', encodeURIComponent('board/Board with Bridges.svg'), {
+      //board/BoardWithBridgesNumbered.svg, board/Board with Bridges.svg 
+      this.load.svg('mapOverlay', encodeURIComponent('board/BoardWithBridgesNumbered.svg'), {
         width: 1920,
         height: 1080
       });

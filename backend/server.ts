@@ -504,6 +504,7 @@ app.use('/assets/', async (req, res) => {
 const criticalAssets = [
   'board/background.png',
   'board/Board with Bridges.svg',
+  'board/BoardWithBridgesNumbered.svg',
   'character_asset/solsticeFront.svg',
   'board/tilesLocation.csv',
   'dice/dice1.mp4',
