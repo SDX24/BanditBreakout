@@ -440,9 +440,12 @@ export class MapScene extends Phaser.Scene {
       // Remove any existing effects from all players except the local player
       this.playerSprites.forEach((sprite, playerId) => {
         if (playerId !== this.playerId) {
+          
+          //Apply pulse to this sprite with 1s interval, ai!
           this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
           sprite.scaleX = 1; // Reset scale
           sprite.scaleY = 1;
+
           sprite.clearTint(); // Remove any tint
         }
       });
