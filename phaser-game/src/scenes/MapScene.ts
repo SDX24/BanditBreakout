@@ -440,8 +440,7 @@ export class MapScene extends Phaser.Scene {
       // Remove any existing effects from all players except the local player
       this.playerSprites.forEach((sprite, playerId) => {
         if (playerId !== this.playerId) {
-          
-          //Apply pulse to this sprite with 1s interval, ai!
+                
           this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
           sprite.scaleX = 1; // Reset scale
           sprite.scaleY = 1;
@@ -450,7 +449,7 @@ export class MapScene extends Phaser.Scene {
         }
       });
       
-      // If the current player is not the local player, apply a red tint effect
+      // for any next turn player, use fast pulse to indicate, ai!
       if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
         const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
         if (nextPlayerSprite) {
