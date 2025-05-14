@@ -439,17 +439,10 @@ export class MapScene extends Phaser.Scene {
     private updateNextPlayerEffect() {
       // Remove any existing effects from all players except the local player
       this.playerSprites.forEach((sprite, playerId) => {
-        if (playerId !== this.playerId) {
-                
-          //
-          this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
-          sprite.scaleX = 1; // Reset scale
-          sprite.scaleY = 1;
-
-          sprite.clearTint(); // Remove any tint
-        }
+        //if it is not next turn player, set its pulse speed to normal,ai!
       });
       
+
       if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
         const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
         if (nextPlayerSprite) {
