@@ -86,7 +86,7 @@ export class MapScene extends Phaser.Scene {
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
       this.player = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
       
-      // Add pulsing effect only (no tint)
+      // Add pulsing effect and red tint, ai!
       this.tweens.add({
         targets: this.player,
         scaleX: 1.2,
