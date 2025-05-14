@@ -93,13 +93,27 @@ export default class Map {
 
         console.log(`Map initialized${EOL}`)
         // Log forward and backward connections for specified tiles after initialization
-
-        //the following tiles'back and forward connections are correctly, check the tiles connected to them properly point to these tiles,ai!
         const tilesToCheck = [5, 13, 60, 54, 57, 73, 79, 88, 97, 39, 28];
         tilesToCheck.forEach(tileIndex => {
             const forward = this.tiles[tileIndex].getFront();
             const backward = this.tiles[tileIndex].getBack();
             console.log(`Tile ${tileIndex} connections - Back: [${backward.join(', ')}], Front: [${forward.join(', ')}]`);
+            
+            // Check if forward tiles point back to this tile
+            forward.forEach(fwdTile => {
+                const backOfFwd = this.tiles[fwdTile].getBack();
+                if (!backOfFwd.includes(tileIndex)) {
+                    console.log(`Warning: Tile ${fwdTile} (forward of ${tileIndex}) does not have ${tileIndex} in its back connections: [${backOfFwd.join(', ')}]`);
+                }
+            });
+            
+            // Check if backward tiles point forward to this tile
+            backward.forEach(bckTile => {
+                const frontOfBck = this.tiles[bckTile].getFront();
+                if (!frontOfBck.includes(tileIndex)) {
+                    console.log(`Warning: Tile ${bckTile} (backward of ${tileIndex}) does not have ${tileIndex} in its front connections: [${frontOfBck.join(', ')}]`);
+                }
+            });
         });
 
 
