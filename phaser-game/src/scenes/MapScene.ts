@@ -437,13 +437,12 @@ export class MapScene extends Phaser.Scene {
     
     // Update visual effect for the next player to move
     private updateNextPlayerEffect() {
-      // Remove any existing effects from all players except the local player
+      //check the following logic, make sure next turn player with fast pulse, and other players with normal pulse, ai!
       this.playerSprites.forEach((sprite, playerId) => {
-        if (playerId !== this.playerId) {
+        
           this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
           sprite.scaleX = 1; // Reset scale
           sprite.scaleY = 1;
-          sprite.clearTint(); // Remove any tint
           
           // Add normal pulsing effect for non-turn players
           this.tweens.add({
@@ -455,11 +454,11 @@ export class MapScene extends Phaser.Scene {
             duration: 1000, // Normal pulse with 1 second duration
             ease: 'Sine.easeInOut' // Smooth easing for the pulse
           });
-        }
+        
       });
       
 
-      if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
+      if (this.currentPlayerTurn !== -1) {
         const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
         if (nextPlayerSprite) {
           // Add fast pulsing effect for the current turn player
