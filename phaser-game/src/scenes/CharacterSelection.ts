@@ -199,7 +199,11 @@ selectInteractive.fillStyle(0x000000, 0)
 containerCharSign.add(selectInteractive);
 
 selectInteractive.on('pointerdown', () => {
-    this.scene.start("MapScene");
+    // Get the asset path for the selected character
+    const assetPath = this.getCharacterAssetPath(Characters[this.charIndex].id);
+    console.log(`Starting MapScene with character asset: ${assetPath}`);
+    // Start MapScene and pass the character asset path as data
+    this.scene.start("MapScene", { characterAsset: assetPath });
 });
 
 
@@ -377,6 +381,19 @@ selectInteractive.on('pointerdown', () => {
       this.changeCharacter(1);
     }
     
+  }
+
+  // Utility to map character IDs to asset paths
+  private getCharacterAssetPath(characterId: number): string {
+    const characterMap: { [key: number]: string } = {
+      1: 'character_asset/solsticeFront.svg',
+      2: 'character_asset/buckshotFront.svg',
+      3: 'character_asset/serpyFront.svg',
+      4: 'character_asset/gritFront.svg',
+      5: 'character_asset/scoutFront.svg'
+      // Add other character mappings here
+    };
+    return characterMap[characterId] || 'character_asset/solsticeFront.svg'; // Default to Solstice if ID not found
   }
 
 
