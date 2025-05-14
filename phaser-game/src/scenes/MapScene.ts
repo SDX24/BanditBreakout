@@ -450,7 +450,6 @@ export class MapScene extends Phaser.Scene {
         }
       });
       
-      //all next turn player should use fast pulsing, ai!
       if (this.currentPlayerTurn !== this.playerId && this.currentPlayerTurn !== -1) {
         const nextPlayerSprite = this.playerSprites.get(this.currentPlayerTurn);
         if (nextPlayerSprite) {
