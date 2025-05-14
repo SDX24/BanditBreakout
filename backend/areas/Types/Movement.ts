@@ -79,8 +79,8 @@ export default class Move {
                 frontArray.forEach((option, index) => {
                     let path = [option];
                     let nextTile = option;
-                    // Look ahead a few steps to see potential paths (limited to 3 steps for brevity)
-                    for (let step = 0; step < 3; step++) {
+                    // Look ahead a few steps to see potential paths (limited to 6 steps for brevity)
+                    for (let step = 0; step < 6; step++) {
                         const nextFront = this.game.map.tiles[nextTile].getFront();
                         if (nextFront.length > 0) {
                             nextTile = nextFront[0]; // Take the first option for simplicity
