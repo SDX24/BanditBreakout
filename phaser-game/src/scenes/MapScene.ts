@@ -416,13 +416,15 @@ export class MapScene extends Phaser.Scene {
             // Move player to new position after animation if it's the local player
             if (data.playerId === this.playerId) {
               this.movePlayerTo(data.position, undefined, data.playerId);
-              this.playDiceRollAnimation(data.roll, () => {
-                // Only end turn if there is no pending move (e.g., no fork requiring further input)
+              // Only end turn if there is no pending move (e.g., no fork requiring further input)
                 if (!data.isPendingMove) {
                   this.endTurn();
                 } else {
                   console.log(`Turn not ended for player ${data.playerId} due to pending move (e.g., fork).`);
                 }
+                
+              this.playDiceRollAnimation(data.roll, () => {
+                
               });
             } else {
               this.movePlayerTo(data.position, undefined, data.playerId);
