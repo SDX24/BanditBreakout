@@ -1,4 +1,5 @@
-import { io, Socket } from 'socket.io-client';
+import { Socket } from 'socket.io-client';
+import { SocketService } from '../services/SocketService';
 
 export class MapScene extends Phaser.Scene {
   
@@ -264,12 +265,9 @@ export class MapScene extends Phaser.Scene {
     
     // Initialize socket connection
     private initializeSocket() {
-      const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
-      // Connect to the server
-      this.socket = io(serverUrl, {
-        autoConnect: true
-      });
-      console.log('Socket initialized', this.socket);
+      // reuse the singleton socket across all scenes
+      this.socket = SocketService.getInstance();
+      console.log('Shared socket initialized', this.socket);
       
       // Handle connection events
       this.socket.on('connect', () => {
