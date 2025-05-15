@@ -455,7 +455,7 @@ export class MapScene extends Phaser.Scene {
       const { width, height } = this.scale;
       
       // Create a simple button to roll the dice at the bottom-left corner of the scene
-      const button = this.add.text(50, height - 50, 'Roll Dice', { 
+      const button = this.add.text(50, height - 120, 'Roll Dice', { 
         fontSize: '32px', 
         backgroundColor: '#fff', 
         color: '#000', 
