@@ -407,8 +407,8 @@ export class MapScene extends Phaser.Scene {
         });
         
         // Listen for player moved event
-        this.socket.on('playerMoved', (data: { playerId: number, position: number, roll?: number }) => {
-          console.log(`Player ${data.playerId} moved to position ${data.position}, with roll is ${data.roll}`);
+        this.socket.on('playerMoved', (data: { playerId: number, position: number, roll?: number, isPendingMove?: boolean }) => {
+          console.log(`Player ${data.playerId} moved to position ${data.position}, with roll is ${data.roll}, pending move: ${data.isPendingMove}`);
           if (data.roll) {
             // If a roll value is provided, play animation (or update if already playing)
             console.log(`Dice roll result: ${data.roll}`);
@@ -417,7 +417,12 @@ export class MapScene extends Phaser.Scene {
             if (data.playerId === this.playerId) {
               this.playDiceRollAnimation(data.roll, () => {
                 this.movePlayerTo(data.position, undefined, data.playerId);
-                this.endTurn();
+                // Only end turn if there is no pending move (e.g., no fork requiring further input)
+                if (!data.isPendingMove) {
+                  this.endTurn();
+                } else {
+                  console.log(`Turn not ended for player ${data.playerId} due to pending move (e.g., fork).`);
+                }
               });
             } else {
               this.movePlayerTo(data.position, undefined, data.playerId);

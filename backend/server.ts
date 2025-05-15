@@ -212,8 +212,13 @@ io.on('connection', (socket) => {
         const result = player.move.diceRoll();
         const newPosition = activeGames[gameId].map.findPlayer(playerId);
 
-        // Always show the first chunk of movement
-        io.to(gameId).emit('playerMoved', { playerId, position: newPosition, roll: result.roll });
+        // Always show the first chunk of movement, with a flag if move is pending due to a fork
+        io.to(gameId).emit('playerMoved', { 
+          playerId, 
+          position: newPosition, 
+          roll: result.roll, 
+          isPendingMove: !!result.pendingChoice 
+        });
 
         // If there’s a fork, pause and ask the client
         if (result.pendingChoice) {
@@ -370,7 +375,11 @@ io.on('connection', (socket) => {
     const followUp = player.move.front(player.pendingMove.stepsRemaining - 1);
     const newPos = game.map.findPlayer(playerId);
     console.log(`Player ${playerId} moved to tile ${newPos} after choosing path`);
-    io.to(gameId).emit('playerMoved', { playerId, position: newPos });
+    io.to(gameId).emit('playerMoved', { 
+      playerId, 
+      position: newPos, 
+      isPendingMove: !!followUp.pendingChoice 
+    });
 
     if (followUp.pendingChoice) {
       player.pendingMove.stepsRemaining = followUp.pendingChoice.stepsRemaining;
@@ -381,7 +390,7 @@ io.on('connection', (socket) => {
         stepsRemaining: followUp.pendingChoice.stepsRemaining
       });
     } else {
-      delete player.pendingMove;            // finished this move
+      delete player.pendingMove; // finished this move
       console.log(`Player ${playerId} completed movement at tile ${newPos}`);
     }
   });
