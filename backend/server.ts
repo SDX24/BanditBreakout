@@ -347,9 +347,17 @@ io.on('connection', (socket) => {
       return;
     }
     try {
-      const nextPlayer = activeGames[gameId].advanceTurn();
+      const game = activeGames[gameId];
+      let nextPlayer;
+      // Special handling for single-player game to always return turn to the same player
+      if (game.players.length === 1) {
+        nextPlayer = game.players[0].id;
+        console.log(`Single-player game ${gameId}, turn remains with player: ${nextPlayer}`);
+      } else {
+        nextPlayer = game.advanceTurn();
+        console.log(`Turn advanced in multiplayer game ${gameId}, next player: ${nextPlayer}`);
+      }
       io.to(gameId).emit('turnAdvanced', { currentPlayer: nextPlayer });
-      console.log(`Turn advanced in game ${gameId}, next player: ${nextPlayer}`);
     } catch (error) {
       socket.emit('error', { message: 'Failed to advance turn' });
       console.error('Error advancing turn:', error);
@@ -392,6 +400,11 @@ io.on('connection', (socket) => {
     } else {
       delete player.pendingMove; // finished this move
       console.log(`Player ${playerId} completed movement at tile ${newPos}`);
+      // Ensure turn remains with single player after move completion
+      if (game.players.length === 1) {
+        io.to(gameId).emit('turnAdvanced', { currentPlayer: playerId });
+        console.log(`Single-player game ${gameId}, turn remains with player: ${playerId} after move completion`);
+      }
     }
   });
 

@@ -398,8 +398,12 @@ export class MapScene extends Phaser.Scene {
           this.currentPlayerTurn = data.currentPlayer;
           // Update UI to highlight current player
           this.updateNextPlayerEffect();
-          // If it's this player's turn, prompt for actions
-          if (this.currentPlayerTurn === this.playerId) {
+          // If it's a single-player game, ensure it's always this player's turn
+          if (this.playerSprites.size === 1 && this.currentPlayerTurn !== this.playerId) {
+            console.warn("Single-player game, forcing turn back to local player");
+            this.currentPlayerTurn = this.playerId;
+            this.showRollDiceButton();
+          } else if (this.currentPlayerTurn === this.playerId) {
             console.log("It's your turn! Roll the dice!");
             // Show UI button or prompt to roll dice
             this.showRollDiceButton();
