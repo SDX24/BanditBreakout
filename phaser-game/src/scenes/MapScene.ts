@@ -52,6 +52,15 @@ export class MapScene extends Phaser.Scene {
       const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
       this.load.setBaseURL(serverUrl);          
       this.load.setPath('assets');       
+
+      // Access the passed data directly in preload                                                                                                                                             
+      const data = this.scene.settings.data as { characterAsset?: string };                                                                                                                     
+      if (data && data.characterAsset) {                                                                                                                                                        
+        this.characterAsset = data.characterAsset;                                                                                                                                              
+        console.warn(`Set character asset from scene data in preload: ${this.characterAsset}`);                                                                                                 
+      } else {                                                                                                                                                                                  
+        console.warn('No character asset provided in preload, using default:', this.characterAsset);                                                                                            
+      }                  
       
       this.load.image('backgroundMap', encodeURIComponent('board/background.png'));   
 
