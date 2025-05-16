@@ -1,9 +1,11 @@
 import Phaser from "phaser";
-import { socket } from "../middleware/socket";
+// import { socket } from "../middleware/socket";
+import { Socket } from 'socket.io-client';
+import { SocketService } from '../services/SocketService';
 
 
 export class HostJoinWorkaround extends Phaser.Scene {
-  private socket = socket;
+  private socket = SocketService.getInstance();;
   private playerListText!: Phaser.GameObjects.Text;
   private gameStateText!: Phaser.GameObjects.Text;
   private gameCode!: Phaser.GameObjects.Text;
@@ -32,8 +34,9 @@ export class HostJoinWorkaround extends Phaser.Scene {
 
       });
 
-      this.socket.on("gameStarted", (data: { gameId: string }) => {
-        this.scene.start("MapScene", { gameId: data.gameId });
+      this.socket.on("gameStarted", (data: { gameId: string, turnOrder: number[], currentPlayer: number }) => {
+        console.log(`Game started with turn order: ${data.turnOrder}`)
+        this.scene.start("MapScene", { gameId: data.gameId,  currentPlayer: data.currentPlayer});
       });
   }
 
@@ -95,6 +98,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
     });
   
     // Register the 'gameId' listener once
+    //update the following according to this: socket.emit('gameId', { gameId, playerId });, ai!
     this.socket.on('gameId', (gameId) => {
       this.updateGameCode(gameId);
       this.updateGameState(`Game ID: ${gameId}`);
