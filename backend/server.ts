@@ -67,7 +67,8 @@ io.on('connection', (socket) => {
         game.addPlayer();
         console.log(`Player 1 added!`);
         socket.join(gameId);
-        socket.emit('gameId', gameId);
+        const playerId = 1;
+        socket.emit('gameId',  {gameId, playerId});
         // Update mappings for the new connection
         socketToPlayerMap[socket.id] = { gameId, playerId: 1 };
         playerToSocketMap[1] = socket.id;
@@ -113,8 +114,25 @@ io.on('connection', (socket) => {
           if (activeGames[gameId]) {
             const game = activeGames[gameId];
             const playerCount = game.players.length;
-            socket.emit('createGame', gameId, playerCount)
-            io.to(gameId).emit('gameStarted', { gameId });
+            // socket.emit('createGame', gameId, playerCount)
+
+            console.log(`Attempting to create game with ID: ${gameId}, Player Count: ${playerCount}`);
+      
+            activeGames[gameId].startGame();
+        
+            socket.join(gameId);
+            socket.emit('gameCreated', { gameId });
+            // Send the freshly-built game state to everyone already in the room (just the host for now)
+            io.to(gameId).emit('gameState', serializeGame(activeGames[gameId]));
+            console.log(`Game created: ${gameId}`);
+
+
+
+            // io.to(gameId).emit('gameStarted', { gameId });
+            const turnOrder = game.determineTurnOrder();
+            const currentPlayer = game.getCurrentPlayerTurn();
+            io.to(gameId).emit('gameStarted', { gameId, turnOrder, currentPlayer });
+            console.log(`gameStarted: ${gameId}, ${currentPlayer}`);
           }
         } catch (error) {
           socket.emit('error', { message: 'Failed to start game', details: error || 'Unknown error' });

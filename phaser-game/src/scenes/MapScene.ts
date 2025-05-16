@@ -25,7 +25,7 @@ export class MapScene extends Phaser.Scene {
     private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
 
     // Initialize with data passed from another scene
-    async init(data: { gameId?: string; playerId?: number, characterAsset?: string; currentPlayer?: number } = {}) {
+    async init(data: { gameId?: string; playerId?: number, characterAsset?: string; currentPlayerTurn?: number } = {}) {
       if (data.gameId) {
         this.gameId = data.gameId; // Set gameId from passed data
         console.log(`Using gameId from data: ${this.gameId}`);
@@ -45,8 +45,8 @@ export class MapScene extends Phaser.Scene {
         console.log(`No playerId provided, using default: ${this.playerId}`);
       } 
       
-      if (data.currentPlayer !== undefined) {
-        this.currentPlayerTurn = data.currentPlayer; // Set currentPlayer from passed data
+      if (data.currentPlayerTurn !== undefined) {
+        this.currentPlayerTurn = data.currentPlayerTurn; // Set currentPlayer from passed data
         console.log(`Using currentPlayerTurn from data: ${this.currentPlayerTurn}`);
       } else {
         console.log(`No currentPlayer provided, using default: ${this.currentPlayerTurn}`);
@@ -66,7 +66,8 @@ export class MapScene extends Phaser.Scene {
       this.load.setPath('assets');       
 
       // Access the passed data directly in preload                                                                                                                                             
-      const data = this.scene.settings.data as { characterAsset?: string };                                                                                                                     
+      const data = this.scene.settings.data as any;                                                                                                                     
+ 
       if (data && data.characterAsset) {                                                                                                                                                        
         this.characterAsset = data.characterAsset;                                                                                                                                              
         console.warn(`Set character asset from scene data in preload: ${this.characterAsset}`);                                                                                                 
@@ -177,6 +178,7 @@ export class MapScene extends Phaser.Scene {
     //     startButton.destroy(); // Remove the button after clicking
     //   });
 
+      console.log(`${this.playerId}, ${this.currentPlayerTurn}`);
       if (this.playerId === this.currentPlayerTurn) {
         this.showRollDiceButton();
       }
