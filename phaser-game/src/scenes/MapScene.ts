@@ -24,9 +24,14 @@ export class MapScene extends Phaser.Scene {
     private playerSprites: Map<number, Phaser.GameObjects.Image> = new Map();
     private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
 
-    // test for multiple user
-    async init(data: { characterAsset?: string } = {}) {
-
+    // Initialize with data passed from another scene
+    async init(data: { gameId?: string; characterAsset?: string } = {}) {
+      if (data.gameId) {
+        this.gameId = data.gameId; // Set gameId from passed data
+        console.log(`Using gameId from data: ${this.gameId}`);
+      } else {
+        console.log(`No gameId provided, using default: ${this.gameId}`);
+      }
       
       if (data.characterAsset) {
         this.characterAsset = data.characterAsset;
