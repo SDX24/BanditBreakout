@@ -199,11 +199,16 @@ selectInteractive.fillStyle(0x000000, 0)
 containerCharSign.add(selectInteractive);
 
 selectInteractive.on('pointerdown', () => {
-    // Get the asset path for the selected character
-    const assetPath = this.getCharacterAssetPath(Characters[this.charIndex].id);
-    console.log(`Starting MapScene with character asset: ${assetPath}`);
-    // Start MapScene and pass the character asset path as data
-    this.scene.start("MapScene", { characterAsset: assetPath });
+    // Get the gameId and return scene from the data passed to this scene
+    const data = this.scene.settings.data as any;
+    const returnScene = data.returnScene || "HostJoinWorkaround";
+    const gameId = data.gameId || "";
+    console.log(`Returning to ${returnScene} with selected character ID: ${Characters[this.charIndex].id} and game ID: ${gameId}`);
+    // Return to the specified scene with the selected character ID and game ID
+    this.scene.start(returnScene, { 
+        gameId: gameId, 
+        selectedCharacterId: Characters[this.charIndex].id
+    });
 });
 
 
