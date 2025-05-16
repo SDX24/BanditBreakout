@@ -25,7 +25,7 @@ export class MapScene extends Phaser.Scene {
     private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
 
     // Initialize with data passed from another scene
-    async init(data: { gameId?: string; characterAsset?: string } = {}) {
+    async init(data: { gameId?: string; characterAsset?: string; currentPlayer?: number } = {}) {
       if (data.gameId) {
         this.gameId = data.gameId; // Set gameId from passed data
         console.log(`Using gameId from data: ${this.gameId}`);
@@ -36,6 +36,13 @@ export class MapScene extends Phaser.Scene {
       if (data.characterAsset) {
         this.characterAsset = data.characterAsset;
         console.log(`Using character asset from data: ${this.characterAsset}`);
+      }
+      
+      if (data.currentPlayer !== undefined) {
+        this.currentPlayerTurn = data.currentPlayer; // Set currentPlayer from passed data
+        console.log(`Using currentPlayer from data: ${this.currentPlayerTurn}`);
+      } else {
+        console.log(`No currentPlayer provided, using default: ${this.currentPlayerTurn}`);
       }
     }
   
