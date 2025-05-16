@@ -5,10 +5,11 @@ import { SocketService } from '../services/SocketService';
 
 
 export class HostJoinWorkaround extends Phaser.Scene {
-  private socket = SocketService.getInstance();;
+  private socket = SocketService.getInstance();
   private playerListText!: Phaser.GameObjects.Text;
   private gameStateText!: Phaser.GameObjects.Text;
   private gameCode!: Phaser.GameObjects.Text;
+  private playerId!: number;
 
   constructor() {
     super("HostJoinWorkaround");
@@ -19,6 +20,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
     // Listen for server events
     this.socket.on("joinedLobby", (data: { gameId: string; playerId: number }) => {
       this.updateGameState(`Joined Lobby: Game ID = ${data.gameId}, Player ID = ${data.playerId}`);
+      this.playerId = data.playerId;
     });
 
     this.socket.on("playerJoined", (data: { playerId: number }) => {
@@ -36,7 +38,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
 
       this.socket.on("gameStarted", (data: { gameId: string, turnOrder: number[], currentPlayer: number }) => {
         console.log(`Game started with turn order: ${data.turnOrder}`)
-        this.scene.start("MapScene", { gameId: data.gameId,  currentPlayer: data.currentPlayer});
+        this.scene.start("MapScene", { gameId: data.gameId,  playerId: this.playerId, currentPlayerTurn: data.currentPlayer});
       });
   }
 
@@ -99,10 +101,11 @@ export class HostJoinWorkaround extends Phaser.Scene {
   
     // Register the 'gameId' listener once
     //update the following according to this: socket.emit('gameId', { gameId, playerId });, ai!
-    this.socket.on('gameId', (gameId) => {
-      this.updateGameCode(gameId);
-      this.updateGameState(`Game ID: ${gameId}`);
-    });
+    this.socket.on('gameId', (data: { gameId: string, playerId: number }) => {                                                                                                                      
+      this.updateGameCode(data.gameId);                                                                                                                                                             
+      this.updateGameState(`Game ID: ${data.gameId}, Player ID: ${data.playerId}`);                                                                                                                 
+    });                                                                                                                                                                                             
+              
   
 
   this.socket.on('gameState', (gameState) => {

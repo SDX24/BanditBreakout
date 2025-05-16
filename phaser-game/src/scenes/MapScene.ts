@@ -25,7 +25,7 @@ export class MapScene extends Phaser.Scene {
     private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
 
     // Initialize with data passed from another scene
-    async init(data: { gameId?: string; characterAsset?: string; currentPlayer?: number } = {}) {
+    async init(data: { gameId?: string; playerId?: number, characterAsset?: string; currentPlayer?: number } = {}) {
       if (data.gameId) {
         this.gameId = data.gameId; // Set gameId from passed data
         console.log(`Using gameId from data: ${this.gameId}`);
@@ -37,13 +37,26 @@ export class MapScene extends Phaser.Scene {
         this.characterAsset = data.characterAsset;
         console.log(`Using character asset from data: ${this.characterAsset}`);
       }
+
+      if (data.playerId !== undefined) {
+        this.playerId = data.playerId; // Set currentPlayer from passed data
+        console.log(`Using playerId from data: ${this.playerId}`);
+      } else {
+        console.log(`No playerId provided, using default: ${this.playerId}`);
+      } 
       
       if (data.currentPlayer !== undefined) {
         this.currentPlayerTurn = data.currentPlayer; // Set currentPlayer from passed data
-        console.log(`Using currentPlayer from data: ${this.currentPlayerTurn}`);
+        console.log(`Using currentPlayerTurn from data: ${this.currentPlayerTurn}`);
       } else {
         console.log(`No currentPlayer provided, using default: ${this.currentPlayerTurn}`);
       }
+
+      // Initialize socket connection
+      this.initializeSocket();
+      
+      // Setup socket listeners for multiplayer functionality
+      this.setupSocketListeners();
     }
   
 
@@ -53,6 +66,7 @@ export class MapScene extends Phaser.Scene {
       this.load.setPath('assets');       
 
       // Access the passed data directly in preload                                                                                                                                             
+      //changed to using characterAsset based on this.playerId, ai! 
       const data = this.scene.settings.data as { characterAsset?: string };                                                                                                                     
       if (data && data.characterAsset) {                                                                                                                                                        
         this.characterAsset = data.characterAsset;                                                                                                                                              
@@ -149,11 +163,7 @@ export class MapScene extends Phaser.Scene {
 
       // this.movePlayerTo(3);
       
-      // Initialize socket connection
-      this.initializeSocket();
       
-      // Setup socket listeners for multiplayer functionality
-      this.setupSocketListeners();
       
       // For testing: Add a button to start the game
     //   const startButton = this.add.text(100, 200, 'Start Game', { 
@@ -167,6 +177,11 @@ export class MapScene extends Phaser.Scene {
     //     this.startGame();
     //     startButton.destroy(); // Remove the button after clicking
     //   });
+
+      if (this.playerId === this.currentPlayerTurn) {
+        this.showRollDiceButton();
+      }
+    
     }
 
     // Parse the CSV file and store tile locations in a map
@@ -274,10 +289,12 @@ export class MapScene extends Phaser.Scene {
         //console.log(`Creating game with ID: ${this.gameId}`);
         //this.socket.emit('createGame', this.gameId, 'Single Player Game', 2);
       });
+
+      
       
       // Listen for game creation confirmation before joining
-      this.socket.on('gameCreated', (data: { gameId: string, name: string }) => {
-        console.log(`Game created: ${data.gameId} - ${data.name}`);
+      this.socket.on('gameCreated', (data: { gameId: string }) => {
+        console.log(`Game created: ${data.gameId}`);
         // Now join the game after it's created
         //console.log(`Joining game ${this.gameId} as player ${this.playerId}`);
         //this.socket.emit('joinGame', this.gameId, this.playerId);
@@ -338,6 +355,7 @@ export class MapScene extends Phaser.Scene {
               console.log(`Tile ${tileData.index} has players: ${tileData.players}, event type: ${tileData.eventType}`);
             }
           });
+
         });
         
         // Listen for player joined event with initial roll
@@ -386,6 +404,7 @@ export class MapScene extends Phaser.Scene {
             // Show UI button or prompt to roll dice
             this.showRollDiceButton();
           }
+          this.showRollDiceButton();
         });
         
         // Listen for turn advanced event
