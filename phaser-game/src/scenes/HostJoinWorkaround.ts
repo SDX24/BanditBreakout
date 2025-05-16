@@ -171,6 +171,10 @@ private updateGameCode(gameId: string) {
     });
   }
 
+  private generateGameId(): string {
+    return 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+  }
+
   private updateGameState(message: string) {
     this.gameStateText.setText(`Game State:\n${message}`);
   }
