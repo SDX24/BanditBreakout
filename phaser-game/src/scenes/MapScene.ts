@@ -357,6 +357,11 @@ export class MapScene extends Phaser.Scene {
             }
           });
 
+          // Check if it's the local player's turn to show or hide the dice roll button
+          if (this.currentPlayerTurn === this.playerId) {
+            console.log("It's your turn! Roll the dice!");
+            this.showRollDiceButton();
+          }
         });
         
         // Listen for player joined event with initial roll
