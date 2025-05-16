@@ -100,7 +100,6 @@ export class HostJoinWorkaround extends Phaser.Scene {
     });
   
     // Register the 'gameId' listener once
-    //update the following according to this: socket.emit('gameId', { gameId, playerId });, ai!
     this.socket.on('gameId', (data: { gameId: string, playerId: number }) => {                                                                                                                      
       this.updateGameCode(data.gameId);                                                                                                                                                             
       this.updateGameState(`Game ID: ${data.gameId}, Player ID: ${data.playerId}`);                                                                                                                 

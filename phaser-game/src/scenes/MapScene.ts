@@ -66,7 +66,6 @@ export class MapScene extends Phaser.Scene {
       this.load.setPath('assets');       
 
       // Access the passed data directly in preload                                                                                                                                             
-      //changed to using characterAsset based on this.playerId, ai! 
       const data = this.scene.settings.data as { characterAsset?: string };                                                                                                                     
       if (data && data.characterAsset) {                                                                                                                                                        
         this.characterAsset = data.characterAsset;                                                                                                                                              
