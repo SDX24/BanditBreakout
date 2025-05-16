@@ -87,8 +87,7 @@ export default class Map {
         this.connectMap()
         this.assignPathDirections();
         this.eventMap()
-        //TODO
-        // this.setPlayerPosAll(0, this.countPlayers(playerCount));
+        this.setPlayerPosAll(0, this.countPlayers(playerCount));
         this.updateMap()
 
         console.log(`Map initialized${EOL}`)

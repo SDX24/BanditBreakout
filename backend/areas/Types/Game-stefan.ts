@@ -27,6 +27,7 @@ export default class Game {
 
     public startGame(): void {
         console.log("Game started!")
+        
 
         // create map
         this.map.initializeMap(this.players.length)

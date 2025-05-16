@@ -306,6 +306,10 @@ io.on('connection', (socket) => {
         socket.emit('error', { message: 'It is not your turn' });
         if (callback) callback(errorResponse);
         console.log(`It is not your turn, player ${playerId}, current turn is for player ${currentPlayer}`);
+
+        //Just in case lost current player turn and avoid deadlock
+        io.to(gameId).emit('turnAdvanced', { currentPlayer: currentPlayer });
+
         return;
       }
       
@@ -335,7 +339,17 @@ io.on('connection', (socket) => {
             stepsRemaining: result.pendingChoice.stepsRemaining
           });
           return; // Wait for the client’s response
+        } else {
+              // const game = activeGames[gameId];
+
+              // if (game.players.length === 1) {
+              //   console.log(`Single player ${playerId} moving`);
+              // }
+              // const nextPlayer = game.players.length === 1 ? playerId : game.advanceTurn();
+              // io.to(gameId).emit('turnAdvanced', { currentPlayer: nextPlayer });
+              // console.log(`Turn advanced to player ${nextPlayer} after move completion in game ${gameId}`);
         }
+        
 
         console.log(`Player ${playerId} moved by dice roll of ${result.roll} to position ${newPosition} in game ${gameId}`);
         // Check for tile event
@@ -506,9 +520,13 @@ io.on('connection', (socket) => {
       delete player.pendingMove; // finished this move
       console.log(`Player ${playerId} completed movement at tile ${newPos}`);
       // Automatically advance turn or keep it with the player in single-player mode
-      const nextPlayer = game.players.length === 1 ? playerId : game.advanceTurn();
-      io.to(gameId).emit('turnAdvanced', { currentPlayer: nextPlayer });
-      console.log(`Turn advanced to player ${nextPlayer} after move completion in game ${gameId}`);
+
+      // if (game.players.length === 1) {
+      //   console.log(`Single player ${playerId} moving`);
+      // }
+      // const nextPlayer = game.players.length === 1 ? playerId : game.advanceTurn();
+      // io.to(gameId).emit('turnAdvanced', { currentPlayer: nextPlayer });
+      // console.log(`Turn advanced to player ${nextPlayer} after move completion in game ${gameId}`);
     }
   });
 
