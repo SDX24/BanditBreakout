@@ -146,6 +146,12 @@ io.on('connection', (socket) => {
       // Database operation removed: const newGame = await createGame(gameId, name);
       console.log(`Attempting to create game with ID: ${gameId}, Name: ${name}, Player Count: ${playerCount}`);
       
+      // Create a new game if it doesn't exist in activeGames
+      if (!activeGames[gameId]) {
+        activeGames[gameId] = new Game(gameId);
+        console.log(`Created new game with ID: ${gameId} as it did not exist.`);
+      }
+      
       activeGames[gameId].startGame();
         
       socket.join(gameId);
