@@ -5,15 +5,9 @@ export class MapScene extends Phaser.Scene {
   
     constructor() {
       super("MapScene");
-      const storedPlayerId = localStorage.getItem('playerId');
-      if (storedPlayerId) {
-        this.playerId = parseInt(storedPlayerId, 10);
-        console.log(`Using stored playerId: ${this.playerId}`);
-      } else {
-        this.playerId = Math.floor(Math.random() * 1000) + 1;
-        localStorage.setItem('playerId', this.playerId.toString());
-        console.log(`Generated new playerId: ${this.playerId}`);
-      }
+
+      this.playerId = 1;
+      
     }
 
     private player: Phaser.GameObjects.Image;
@@ -32,15 +26,7 @@ export class MapScene extends Phaser.Scene {
 
     // test for multiple user
     async init(data: { characterAsset?: string } = {}) {
-      if (this.gameId === 'game_multiple_user') {
-        try {
-          const res = await fetch('https://api.ipify.org?format=json');
-          const { ip } = await res.json();
-          this.gameId = ip;
-        } catch (err) {
-          console.error('IP lookup failed:', err);
-        }
-      }
+
       
       if (data.characterAsset) {
         this.characterAsset = data.characterAsset;
@@ -273,16 +259,16 @@ export class MapScene extends Phaser.Scene {
       this.socket.on('connect', () => {
         console.log('Connected to server');
         // Create a game first with only one player
-        console.log(`Creating game with ID: ${this.gameId}`);
-        this.socket.emit('createGame', this.gameId, 'Single Player Game', 2);
+        //console.log(`Creating game with ID: ${this.gameId}`);
+        //this.socket.emit('createGame', this.gameId, 'Single Player Game', 2);
       });
       
       // Listen for game creation confirmation before joining
       this.socket.on('gameCreated', (data: { gameId: string, name: string }) => {
         console.log(`Game created: ${data.gameId} - ${data.name}`);
         // Now join the game after it's created
-        console.log(`Joining game ${this.gameId} as player ${this.playerId}`);
-        this.socket.emit('joinGame', this.gameId, this.playerId);
+        //console.log(`Joining game ${this.gameId} as player ${this.playerId}`);
+        //this.socket.emit('joinGame', this.gameId, this.playerId);
       });
       
       this.socket.on('disconnect', (reason) => {
