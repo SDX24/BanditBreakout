@@ -11,6 +11,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
   private gameCode!: Phaser.GameObjects.Text;
   private playerId!: number;
 
+
   constructor() {
     super("HostJoinWorkaround");
   }
@@ -37,7 +38,8 @@ export class HostJoinWorkaround extends Phaser.Scene {
       });
 
       this.socket.on("gameStarted", (data: { gameId: string, turnOrder: number[], currentPlayer: number }) => {
-        console.log(`Game started with turn order: ${data.turnOrder}`)
+        console.log(`Game started with turn order: ${data.turnOrder}`);
+        console.log(`${this.playerId}, ${data.currentPlayer}`);
         this.scene.start("MapScene", { gameId: data.gameId,  playerId: this.playerId, currentPlayerTurn: data.currentPlayer});
       });
   }
@@ -102,6 +104,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
     // Register the 'gameId' listener once
     this.socket.on('gameId', (data: { gameId: string, playerId: number }) => {                                                                                                                      
       this.updateGameCode(data.gameId);                                                                                                                                                             
+      this.playerId = data.playerId;
       this.updateGameState(`Game ID: ${data.gameId}, Player ID: ${data.playerId}`);                                                                                                                 
     });                                                                                                                                                                                             
               
