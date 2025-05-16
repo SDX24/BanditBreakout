@@ -149,17 +149,17 @@ export class MapScene extends Phaser.Scene {
       this.setupSocketListeners();
       
       // For testing: Add a button to start the game
-      const startButton = this.add.text(100, 200, 'Start Game', { 
-        fontSize: '32px', 
-        backgroundColor: '#fff', 
-        color: '#000', 
-        padding: { x: 10, y: 5 }
-      })
-      .setInteractive()
-      .on('pointerdown', () => {
-        this.startGame();
-        startButton.destroy(); // Remove the button after clicking
-      });
+    //   const startButton = this.add.text(100, 200, 'Start Game', { 
+    //     fontSize: '32px', 
+    //     backgroundColor: '#fff', 
+    //     color: '#000', 
+    //     padding: { x: 10, y: 5 }
+    //   })
+    //   .setInteractive()
+    //   .on('pointerdown', () => {
+    //     this.startGame();
+    //     startButton.destroy(); // Remove the button after clicking
+    //   });
     }
 
     // Parse the CSV file and store tile locations in a map
@@ -367,7 +367,7 @@ export class MapScene extends Phaser.Scene {
         });
         
         // Listen for game started event with turn order
-        this.socket.on('gameStarted', (data: { turnOrder: number[], currentPlayer: number }) => {
+        this.socket.on('gameStarted', (data: { gameId: string, turnOrder: number[], currentPlayer: number }) => {
           console.log(`Game started with turn order: ${data.turnOrder}`);
           this.turnOrder = data.turnOrder;
           this.currentPlayerTurn = data.currentPlayer;
@@ -595,7 +595,7 @@ export class MapScene extends Phaser.Scene {
     startGame() {
       if (this.socket) {
         console.log(`Starting game ${this.gameId}`);
-        this.socket.emit('startGame', this.gameId);
+        // this.socket.emit('startGame', this.gameId);
       } else {
         console.error('Cannot start game: socket not initialized');
       }
