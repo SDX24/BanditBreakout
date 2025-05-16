@@ -691,6 +691,17 @@ async function preloadAssets() {
 server.listen(PORT, async () => {
   console.log(`Server listening on port ${PORT}`);
   await preloadAssets(); // Preload assets into Redis
+  
+  // Periodically synchronize game state for all active games
+  setInterval(() => {
+    Object.keys(activeGames).forEach(gameId => {
+      const game = activeGames[gameId];
+      if (game) {
+        io.to(gameId).emit('gameState', serializeGame(game));
+        console.log(`Periodic game state sync sent for game ${gameId}`);
+      }
+    });
+  }, 10000); // Sync every 10 seconds
 });
 
 // Database connection removed for testing purposes
