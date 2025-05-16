@@ -119,6 +119,26 @@ export class HostJoinWorkaround extends Phaser.Scene {
 
 private updateGameCode(gameId: string) {
     this.gameCode.setText(gameId ? `${gameId}` : "Game Code:\n");
+    this.gameCode.setInteractive();
+    this.gameCode.on('pointerdown', () => {
+      // Double-click to copy
+      if (this.time.now - (this.gameCode.lastClickTime || 0) < 300) { // 300ms for double-click detection
+        navigator.clipboard.writeText(gameId)
+          .then(() => {
+            console.log(`Game code ${gameId} copied to clipboard`);
+            // Optional: Visual feedback
+            const originalColor = this.gameCode.style.color;
+            this.gameCode.setStyle({ color: '#00ff00' });
+            this.time.delayedCall(500, () => {
+              this.gameCode.setStyle({ color: originalColor });
+            }, [], this);
+          })
+          .catch(err => {
+            console.error('Failed to copy game code to clipboard:', err);
+          });
+      }
+      this.gameCode.lastClickTime = this.time.now;
+    });
   }
 
   private updateGameState(message: string) {
