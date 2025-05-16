@@ -505,12 +505,10 @@ io.on('connection', (socket) => {
     } else {
       delete player.pendingMove; // finished this move
       console.log(`Player ${playerId} completed movement at tile ${newPos}`);
-      // Ensure turn remains with single player after move completion
-      //make turnAdvanced also applied to multiple players game, ai!
-      if (game.players.length === 1) {
-        io.to(gameId).emit('turnAdvanced', { currentPlayer: playerId });
-        console.log(`Single-player game ${gameId}, turn remains with player: ${playerId} after move completion`);
-      }
+      // Automatically advance turn or keep it with the player in single-player mode
+      const nextPlayer = game.players.length === 1 ? playerId : game.advanceTurn();
+      io.to(gameId).emit('turnAdvanced', { currentPlayer: nextPlayer });
+      console.log(`Turn advanced to player ${nextPlayer} after move completion in game ${gameId}`);
     }
   });
 
