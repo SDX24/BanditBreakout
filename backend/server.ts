@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
     try {
       if (activeGames[gameId]) {
         const game = activeGames[gameId];
-        const playerId = game.players.length;
+        const playerId = game.players.length + 1;
         game.addPlayer();
         console.log(`Player ${playerId} added!`);
         socket.join(gameId);
@@ -106,40 +106,53 @@ io.on('connection', (socket) => {
   });
 
   // Handle game start from lobby
+
+
   socket.on('startGame', async (gameId) => {
-    try {
-      if (activeGames[gameId]) {
-        const game = activeGames[gameId];
-        const playerCount = game.players.length;
-        game.startGame(playerCount, gameId);
-        io.to(gameId).emit('gameStarted', { gameId });
-        const turnOrder = game.determineTurnOrder();
-        const currentPlayer = game.getCurrentPlayerTurn();
-        io.to(gameId).emit('gameStarted', { turnOrder, currentPlayer });
-        console.log(`Game ${gameId} started with turn order: ${turnOrder}, first player: ${currentPlayer}`);
-      }
-    } catch (error) {
-      socket.emit('error', { message: 'Failed to start game', details: error || 'Unknown error' });
-      console.error('Error starting game:', error);
-    }
-  });
+        try {
+          if (activeGames[gameId]) {
+            const game = activeGames[gameId];
+            const playerCount = game.players.length;
+            socket.emit('createGame', gameId, playerCount)
+            io.to(gameId).emit('gameStarted', { gameId });
+          }
+        } catch (error) {
+          socket.emit('error', { message: 'Failed to start game', details: error || 'Unknown error' });
+          console.error('Error starting game:', error);
+        }
+  })
+
+  // socket.on('startGameDemo', async (gameId) => {
+  //   try {
+  //     if (activeGames[gameId]) {
+  //       const game = activeGames[gameId];
+  //       const playerCount = game.players.length;
+  //       game.startGame(playerCount, gameId);
+  //       io.to(gameId).emit('gameStarted', { gameId });
+  //       const turnOrder = game.determineTurnOrder();
+  //       const currentPlayer = game.getCurrentPlayerTurn();
+  //       io.to(gameId).emit('gameStarted', { turnOrder, currentPlayer });
+  //       console.log(`Game ${gameId} started with turn order: ${turnOrder}, first player: ${currentPlayer}`);
+  //     }
+  //   } catch (error) {
+  //     socket.emit('error', { message: 'Failed to start game', details: error || 'Unknown error' });
+  //     console.error('Error starting game:', error);
+  //   }
+  // });
 
   // Handle game creation
   socket.on('createGame', async (gameId: string, name: string, playerCount: number) => {
     try {
       // Database operation removed: const newGame = await createGame(gameId, name);
       console.log(`Attempting to create game with ID: ${gameId}, Name: ${name}, Player Count: ${playerCount}`);
-      if (!activeGames[gameId]) {
-        activeGames[gameId] = new Game(gameId);
-        activeGames[gameId].startGame(playerCount, gameId);
-        console.log(`Game created: ${gameId}`);
-      } else {
-        console.log(`Game with ID ${gameId} already exists, not overwriting.`);
-      }
+      
+      activeGames[gameId].startGame();
+        
       socket.join(gameId);
-      socket.emit('gameCreated', { gameId, name });
+      socket.emit('gameCreated', { gameId });
       // Send the freshly-built game state to everyone already in the room (just the host for now)
       io.to(gameId).emit('gameState', serializeGame(activeGames[gameId]));
+      console.log(`Game created: ${gameId}`);
     } catch (error) {
       socket.emit('error', { message: 'Failed to create game', details: error.message || 'Unknown error' });
       console.error('Error creating game:', error);
@@ -392,21 +405,21 @@ io.on('connection', (socket) => {
   });
 
   // Handle game start request (from host)
-  socket.on('startGame', async (gameId: string) => {
-    if (!activeGames[gameId]) {
-      socket.emit('error', { message: 'Game does not exist' });
-      return;
-    }
-    try {
-      const turnOrder = activeGames[gameId].determineTurnOrder();
-      const currentPlayer = activeGames[gameId].getCurrentPlayerTurn();
-      io.to(gameId).emit('gameStarted', { turnOrder, currentPlayer });
-      console.log(`Game ${gameId} started with turn order: ${turnOrder}, first player: ${currentPlayer}`);
-    } catch (error) {
-      socket.emit('error', { message: 'Failed to start game' });
-      console.error('Error starting game:', error);
-    }
-  });
+  // socket.on('startGameFromHost', async (gameId: string) => {
+  //   if (!activeGames[gameId]) {
+  //     socket.emit('error', { message: 'Game does not exist' });
+  //     return;
+  //   }
+  //   try {
+  //     const turnOrder = activeGames[gameId].determineTurnOrder();
+  //     const currentPlayer = activeGames[gameId].getCurrentPlayerTurn();
+  //     io.to(gameId).emit('gameStarted', { turnOrder, currentPlayer });
+  //     console.log(`Game ${gameId} started with turn order: ${turnOrder}, first player: ${currentPlayer}`);
+  //   } catch (error) {
+  //     socket.emit('error', { message: 'Failed to start game' });
+  //     console.error('Error starting game:', error);
+  //   }
+  // });
 
   // Handle end of turn to advance to the next player
   socket.on('endTurn', async (gameId: string) => {
