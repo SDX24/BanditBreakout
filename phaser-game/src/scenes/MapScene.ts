@@ -323,26 +323,26 @@ export class MapScene extends Phaser.Scene {
             
             // Ensure a sprite exists for this player, but don't recreate if it exists
             if (!this.playerSprites.has(id)) {
-              if (id === this.playerId) {
-                this.playerSprites.set(id, this.player); // Use the existing tinted and pulsing sprite for local player
-              } else {
-                // For other players, load their character sprite if character_id is provided
-                let spriteKey = 'player'; // Default key
-                if (character_id) {
-                  const assetPath = this.getCharacterAssetPath(character_id);
-                  spriteKey = `player_${id}`; // Unique key for each player
-                  // Load the SVG asset if not already loaded
-                  if (!this.textures.exists(spriteKey)) {
-                    this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
-                    this.load.start(); // Start loading if not already started
-                  }
+              // Load character sprite based on character_id for all players
+              let spriteKey = 'player'; // Default key
+              if (character_id) {
+                const assetPath = this.getCharacterAssetPath(character_id);
+                spriteKey = `player_${id}`; // Unique key for each player
+                // Load the SVG asset if not already loaded
+                if (!this.textures.exists(spriteKey)) {
+                  this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
+                  this.load.start(); // Start loading if not already started
                 }
-                const newPlayerSprite = this.add.image(1683, 991, spriteKey).setOrigin(0.5, 0.5);
-                // No tint for other players
-                newPlayerSprite.setDepth(5); // Set depth lower than local player
-                this.playerSprites.set(id, newPlayerSprite);
-                console.log(`Created sprite for player ${id} with key ${spriteKey}`);
               }
+              const newPlayerSprite = this.add.image(1683, 991, spriteKey).setOrigin(0.5, 0.5);
+              // Set depth based on whether it's the local player or not
+              newPlayerSprite.setDepth(id === this.playerId ? 10 : 5);
+              // Add red tint only for the local player
+              if (id === this.playerId) {
+                newPlayerSprite.setTint(0xFF0000);
+              }
+              this.playerSprites.set(id, newPlayerSprite);
+              console.log(`Created sprite for player ${id} with key ${spriteKey}`);
             } else {
               // If sprite exists but character_id has changed or is now available, update the texture
               const sprite = this.playerSprites.get(id);
@@ -388,17 +388,17 @@ export class MapScene extends Phaser.Scene {
           console.log(`Player ${data.playerId} joined with initial roll ${data.initialRoll}`);
           this.playerInitialRolls.set(data.playerId, data.initialRoll);
           // Update UI to show player and their roll
-          // Create sprite for new player if needed, but don't recreate for local player
+          // Create sprite for new player if needed
           if (!this.playerSprites.has(data.playerId)) {
+            const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+            // Set depth based on whether it's the local player or not
+            newPlayerSprite.setDepth(data.playerId === this.playerId ? 10 : 5);
+            // Add red tint only for the local player
             if (data.playerId === this.playerId) {
-              this.playerSprites.set(data.playerId, this.player); // Use the existing tinted and pulsing sprite
-            } else {
-              const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-              // No tint for other players
-              newPlayerSprite.setDepth(5); // Set depth lower than local player
-              this.playerSprites.set(data.playerId, newPlayerSprite);
-              console.log(`Created sprite for player ${data.playerId}`);
+              newPlayerSprite.setTint(0xFF0000);
             }
+            this.playerSprites.set(data.playerId, newPlayerSprite);
+            console.log(`Created sprite for player ${data.playerId}`);
           }
         });
         
