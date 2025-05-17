@@ -320,6 +320,8 @@ export class MapScene extends Phaser.Scene {
           // Update all player positions based on the game state
           gameState.players.forEach((playerData: any) => {
             const { id, position, status, character_id } = playerData;
+
+            console.log(`character_id: ${character_id}`);
             
             // Ensure a sprite exists for this player, but don't recreate if it exists
             if (!this.playerSprites.has(id)) {
@@ -327,7 +329,7 @@ export class MapScene extends Phaser.Scene {
               let spriteKey = 'player'; // Default key
               if (character_id) {
                 const assetPath = this.getCharacterAssetPath(character_id);
-                spriteKey = `player_${id}`; // Unique key for each player
+                spriteKey = id; // Unique key for each player
                 // Load the SVG asset if not already loaded
                 if (!this.textures.exists(spriteKey)) {
                   this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
@@ -348,7 +350,7 @@ export class MapScene extends Phaser.Scene {
               const sprite = this.playerSprites.get(id);
               if (character_id && sprite) {
                 const assetPath = this.getCharacterAssetPath(character_id);
-                const spriteKey = `player_${id}`; // Unique key for each player
+                const spriteKey = id; // Unique key for each player
                 if (!this.textures.exists(spriteKey)) {
                   this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
                   this.load.start(); // Start loading if not already started
