@@ -331,13 +331,32 @@ export class MapScene extends Phaser.Scene {
                 if (character_id) {
                   const assetPath = this.getCharacterAssetPath(character_id);
                   spriteKey = `player_${id}`; // Unique key for each player
-                  this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
+                  // Load the SVG asset if not already loaded
+                  if (!this.textures.exists(spriteKey)) {
+                    this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
+                    this.load.start(); // Start loading if not already started
+                  }
                 }
                 const newPlayerSprite = this.add.image(1683, 991, spriteKey).setOrigin(0.5, 0.5);
                 // No tint for other players
                 newPlayerSprite.setDepth(5); // Set depth lower than local player
                 this.playerSprites.set(id, newPlayerSprite);
                 console.log(`Created sprite for player ${id} with key ${spriteKey}`);
+              }
+            } else {
+              // If sprite exists but character_id has changed or is now available, update the texture
+              const sprite = this.playerSprites.get(id);
+              if (character_id && sprite) {
+                const assetPath = this.getCharacterAssetPath(character_id);
+                const spriteKey = `player_${id}`; // Unique key for each player
+                if (!this.textures.exists(spriteKey)) {
+                  this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
+                  this.load.start(); // Start loading if not already started
+                }
+                if (sprite.texture.key !== spriteKey) {
+                  sprite.setTexture(spriteKey);
+                  console.log(`Updated texture for player ${id} to ${spriteKey}`);
+                }
               }
             }
             
