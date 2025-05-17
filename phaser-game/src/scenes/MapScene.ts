@@ -242,8 +242,8 @@ export class MapScene extends Phaser.Scene {
 
     // Move the player to the specified coordinates or tile number
     movePlayerTo(xOrTile: number, y?: number, playerId: number = this.playerId, characterId?: number) {
-      // Use characterId if provided, otherwise fallback to playerId to get the sprite
-      const spriteKey = characterId || playerId;
+      // Use characterId if provided, otherwise infer from playerToCharacterMap, fallback to playerId if not found
+      const spriteKey = characterId || this.playerToCharacterMap.get(playerId) || playerId;
       console.log(`characterId: ${characterId}, playerId: ${playerId}, spriteKey: ${spriteKey}`);
       let targetSprite = this.playerSprites.get(spriteKey);
       if (!targetSprite) {
