@@ -243,6 +243,7 @@ export class MapScene extends Phaser.Scene {
     movePlayerTo(xOrTile: number, y?: number, playerId: number = this.playerId, characterId?: number) {
       // Use characterId if provided, otherwise fallback to playerId to get the sprite
       const spriteKey = characterId || playerId;
+      console.log(`characterId: ${characterId}, playerId: ${playerId}, spriteKey: ${spriteKey}`);
       let targetSprite = this.playerSprites.get(spriteKey);
       if (!targetSprite) {
         // Map character IDs to preloaded texture keys
