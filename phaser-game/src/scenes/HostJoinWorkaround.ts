@@ -10,8 +10,6 @@ export class HostJoinWorkaround extends Phaser.Scene {
   private gameStateText!: Phaser.GameObjects.Text;
   private gameCode!: Phaser.GameObjects.Text;
   private playerId!: number;
-  private selectedCharacterId: number | undefined;
-  private gameId: string | undefined;
 
 
   constructor() {
@@ -52,18 +50,6 @@ export class HostJoinWorkaround extends Phaser.Scene {
       .graphics()
       .fillGradientStyle(0x000000, 0xff0000, 0xffffff, 0x00ffff)
       .fillRect(0, 0, 1920, 1080);
-      
-    // Check if returning from CharacterSelection with a selected character
-    const data = this.scene.settings.data as any;
-    if (data && data.selectedCharacterId && data.gameId) {
-      this.selectedCharacterId = data.selectedCharacterId;
-      this.gameId = data.gameId;
-      console.log(`Host selected character ID: ${this.selectedCharacterId} for game ID: ${this.gameId}`);
-      // Now emit hostLobby with the selected character ID
-      this.socket.emit("hostLobby", { characterId: this.selectedCharacterId });
-      // Update game code display
-      this.updateGameCode(this.gameId);
-    }
   
     // Host Button
     const buttonHost = this.add.rectangle(860, 590, 200, 100, 0x000000).setInteractive();
@@ -71,23 +57,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
   
     buttonHost.on("pointerdown", () => {
       buttonHost.setFillStyle(0x333333); // Change color on click
-      // Generate a game ID for the host
-      const gameId = this.generateGameId();
-      this.gameId = gameId;
-      // Redirect to CharacterSelection scene with available characters and game ID
-      const availableCharacters = [
-        { id: 1, name: "Solstice", assetPath: "character_asset/solsticeFront.svg" },
-        { id: 2, name: "Buckshot", assetPath: "character_asset/buckshotFront.svg" },
-        { id: 3, name: "Serpy", assetPath: "character_asset/serpyFront.svg" },
-        { id: 4, name: "Grit", assetPath: "character_asset/gritFront.svg" },
-        { id: 5, name: "Scout", assetPath: "character_asset/scoutFront.svg" }
-      ];
-      this.scene.start("CharacterSelection", { 
-        mode: "host", 
-        gameId: gameId,
-        availableCharacters: availableCharacters,
-        returnScene: "HostJoinWorkaround"
-      });
+      this.socket.emit("hostLobby");
     });
   
     // Join Button
@@ -169,10 +139,6 @@ private updateGameCode(gameId: string) {
       }
       this.gameCode.lastClickTime = this.time.now;
     });
-  }
-
-  private generateGameId(): string {
-    return 'game_' + Math.floor(Math.random() * 10000).toString().padStart(4, '0');
   }
 
   private updateGameState(message: string) {
