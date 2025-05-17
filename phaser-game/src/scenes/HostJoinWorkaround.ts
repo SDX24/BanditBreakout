@@ -42,6 +42,13 @@ export class HostJoinWorkaround extends Phaser.Scene {
     this.socket.on("joinedLobby", (data: { gameId: string; playerId: number }) => {
       this.updateGameState(`Joined Lobby: Game ID = ${data.gameId}, Player ID = ${data.playerId}`);
       this.playerId = data.playerId;
+      this.updateGameCode(data.gameId); // Update the game code display
+
+      // Wait for 1 second to allow game state synchronization
+      setTimeout(() => {
+        console.log(`Switching to CharacterSelection scene after delay. Game ID: ${data.gameId}, Player ID: ${data.playerId}`);
+        this.scene.start("CharacterSelection", { gameId: data.gameId, playerId: data.playerId });
+      }, 1000);
     });
 
     this.socket.on("playerJoined", (data: { playerId: number }) => {
