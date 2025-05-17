@@ -142,6 +142,11 @@ export class MapScene extends Phaser.Scene {
         });
       }
 
+      // Ensure the camera is positioned to show the area where sprites are placed
+      this.cameras.main.scrollX = 0;
+      this.cameras.main.scrollY = 0;
+      console.log('Camera positioned at (0, 0) to ensure visibility of character sprites');
+
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
 
