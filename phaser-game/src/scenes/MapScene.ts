@@ -247,13 +247,13 @@ export class MapScene extends Phaser.Scene {
       if (!targetSprite) {
         // Map character IDs to preloaded texture keys
         const characterTextureMap: { [key: number]: string } = {
-          1: 'buckshot',
-          2: 'serpy',
-          3: 'grit',
-          4: 'solstice',
-          5: 'scout'
+          1: 'buckshot-1',
+          2: 'serpy-1',
+          3: 'grit-1',
+          4: 'solstice-1',
+          5: 'scout-1'
         };
-        const textureKey = characterTextureMap[spriteKey] || 'solstice'; // Default to 'solstice' if not found
+        const textureKey = characterTextureMap[spriteKey] || 'solstice-1'; // Default to 'solstice' if not found
         console.log(`Creating sprite for character ID ${spriteKey} with texture ${textureKey}`);
         
         if (this.textures.exists(textureKey)) {
