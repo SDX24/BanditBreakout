@@ -190,7 +190,7 @@ export class MapScene extends Phaser.Scene {
         });
       }
 
-      //show all these sprites on the screen, to make sure it is really loaded, ai!
+      
     }
 
     // Parse the CSV file and store tile locations in a map
