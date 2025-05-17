@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-// import { socket } from "../middleware/socket";
 import { Socket } from 'socket.io-client';
 import { SocketService } from '../services/SocketService';
 
@@ -9,11 +8,32 @@ export class HostJoinWorkaround extends Phaser.Scene {
   private playerListText!: Phaser.GameObjects.Text;
   private gameStateText!: Phaser.GameObjects.Text;
   private gameCode!: Phaser.GameObjects.Text;
-  private playerId!: number;
+  private playerId: number = 0;
+  private pendingGameId: string | null = null;
+  private pendingPlayerId: number | null = null;
+  private selectedCharacterId: number | null = null;
+  private selectedCharacterAsset: string | null = null;
 
 
   constructor() {
     super("HostJoinWorkaround");
+  }
+
+  init(data: { gameId?: string; playerId?: number; selectedCharacterId?: number; selectedCharacterAsset?: string } = {}) {
+    if (data.gameId) {
+      this.pendingGameId = data.gameId;
+    }
+    if (data.playerId !== undefined) {
+      this.pendingPlayerId = data.playerId;
+      this.playerId = data.playerId;
+    }
+    if (data.selectedCharacterId) {
+      this.selectedCharacterId = data.selectedCharacterId;
+    }
+    if (data.selectedCharacterAsset) {
+      this.selectedCharacterAsset = data.selectedCharacterAsset;
+    }
+    console.log(`Initialized HostJoinWorkaround with data:`, data);
   }
 
   preload() {
@@ -34,14 +54,23 @@ export class HostJoinWorkaround extends Phaser.Scene {
 
     this.socket.on("error", (error) => {
       this.updateGameState(`Error: ${error.message}`);
+    });
 
-      });
+    this.socket.on("gameStarted", (data: { gameId: string, turnOrder: number[], currentPlayer: number }) => {
+      console.log(`Game started with turn order: ${data.turnOrder}`);
+      console.log(`${this.playerId}, ${data.currentPlayer}`);
+      this.scene.start("MapScene", { gameId: data.gameId, playerId: this.playerId, currentPlayerTurn: data.currentPlayer });
+    });
 
-      this.socket.on("gameStarted", (data: { gameId: string, turnOrder: number[], currentPlayer: number }) => {
-        console.log(`Game started with turn order: ${data.turnOrder}`);
-        console.log(`${this.playerId}, ${data.currentPlayer}`);
-        this.scene.start("MapScene", { gameId: data.gameId,  playerId: this.playerId, currentPlayerTurn: data.currentPlayer});
-      });
+    // Handle gameId event, transition to CharacterSelection
+    this.socket.on('gameId', (data: { gameId: string, playerId: number }) => {
+      this.pendingGameId = data.gameId;
+      this.pendingPlayerId = data.playerId;
+      this.playerId = data.playerId;
+      console.log(`Received gameId: ${data.gameId}, playerId: ${data.playerId}. Switching to CharacterSelection scene.`);
+      // Transition to CharacterSelection scene, passing gameId and playerId
+      this.scene.start('CharacterSelection', { gameId: data.gameId, playerId: data.playerId });
+    });
   }
 
   create() {
@@ -70,18 +99,18 @@ export class HostJoinWorkaround extends Phaser.Scene {
       this.socket.emit("joinLobby", gameId);
     });
 
-        // Start Button
-        const buttonStart = this.add.rectangle(1060, 750, 200, 100, 0x000000).setInteractive();
-        this.add.text(1010, 730, "Start", { fontSize: "32px", color: "#ffffff" });
+    // Start Button
+    const buttonStart = this.add.rectangle(1060, 750, 200, 100, 0x000000).setInteractive();
+    this.add.text(1010, 730, "Start", { fontSize: "32px", color: "#ffffff" });
     
-        buttonStart.on("pointerdown", () => {
-            const gameId = this.gameCode.text.trim();
-            if (gameId && gameId !== "Game Code:") {
-              this.socket.emit("startGame", gameId);
-            } else {
-              alert("No Game ID to start!");
-            }
-          });
+    buttonStart.on("pointerdown", () => {
+      const gameId = this.gameCode.text.trim();
+      if (gameId && gameId !== "Game Code:") {
+        this.socket.emit("startGame", gameId);
+      } else {
+        alert("No Game ID to start!");
+      }
+    });
   
     // Player list display
     this.playerListText = this.add.text(100, 100, "Players:\n", {
@@ -100,24 +129,36 @@ export class HostJoinWorkaround extends Phaser.Scene {
       fontSize: "24px",
       color: "#ffffff",
     });
-  
-    // Register the 'gameId' listener once
-    this.socket.on('gameId', (data: { gameId: string, playerId: number }) => {                                                                                                                      
-      this.updateGameCode(data.gameId);                                                                                                                                                             
-      this.playerId = data.playerId;
-      this.updateGameState(`Game ID: ${data.gameId}, Player ID: ${data.playerId}`);                                                                                                                 
-    });                                                                                                                                                                                             
-              
-  
 
-  this.socket.on('gameState', (gameState) => {
-    this.updatePlayerList(gameState.players);
-    this.updateGameState(this.formatGameState(gameState));
-  });
-}
+    // Apply pending data if any
+    if (this.pendingGameId) {
+      this.updateGameCode(this.pendingGameId);
+      if (this.pendingPlayerId !== null) {
+        this.playerId = this.pendingPlayerId;
+        this.updateGameState(`Game ID: ${this.pendingGameId}, Player ID: ${this.pendingPlayerId}`);
+      }
+      this.pendingGameId = null;
+      this.pendingPlayerId = null;
+    }
+
+    // Display selected character if returning from CharacterSelection
+    if (this.selectedCharacterId) {
+      this.updateGameState(`Selected Character ID: ${this.selectedCharacterId}`);
+      console.log(`Character selected with asset: ${this.selectedCharacterAsset}`);
+    }
+  
+    this.socket.on('gameState', (gameState) => {
+      this.updatePlayerList(gameState.players);
+      this.updateGameState(this.formatGameState(gameState));
+    });
+  }
 
 
 private updateGameCode(gameId: string) {
+    if (!this.gameCode) {
+      console.warn('Game code text object is not initialized yet. Update delayed to create().');
+      return;
+    }
     this.gameCode.setText(gameId ? `${gameId}` : "Game Code:\n");
     this.gameCode.setInteractive();
     this.gameCode.on('pointerdown', () => {
@@ -142,10 +183,18 @@ private updateGameCode(gameId: string) {
   }
 
   private updateGameState(message: string) {
+    if (!this.gameStateText) {
+      console.warn('Game state text object is not initialized yet. Update delayed to create().');
+      return;
+    }
     this.gameStateText.setText(`Game State:\n${message}`);
   }
 
   private updatePlayerList(players: any[]) {
+    if (!this.playerListText) {
+      console.warn('Player list text object is not initialized yet. Update delayed to create().');
+      return;
+    }
     if (!players) {
       this.playerListText.setText("Players:\nNone");
       return;

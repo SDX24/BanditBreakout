@@ -1,7 +1,9 @@
 import Phaser from "phaser";
-import { Characters, ICharacter } from "../../../backend/areas/Types/Character"
+import { Characters, ICharacter } from "../../../backend/areas/Types/Character";
 import WebFontLoader from "webfontloader";
 import settingsListener from "../middleware/settingsListener";
+import { Socket } from 'socket.io-client';
+import { SocketService } from '../services/SocketService';
 
 export class CharacterSelection extends Phaser.Scene {
   private charNameText!: Phaser.GameObjects.Text;
@@ -13,6 +15,9 @@ export class CharacterSelection extends Phaser.Scene {
   private dKey!: Phaser.Input.Keyboard.Key;
   private characterCircles: Phaser.GameObjects.Container[] = [];
   private characterFront!: Phaser.GameObjects.Image;
+  private socket: Socket;
+  private gameId: string = '';
+  private playerId: number = 0;
   // this is needed for cropping chars
   private characterCropSettings: {[key: string]: {crop: boolean, amount?: number}} = {
     "buckshot": { crop: true, amount: 0.9 },  
@@ -41,6 +46,13 @@ export class CharacterSelection extends Phaser.Scene {
 
   constructor() {
     super("CharacterSelection");
+    this.socket = SocketService.getInstance();
+  }
+
+  init(data: { gameId: string; playerId: number }) {
+    this.gameId = data.gameId;
+    this.playerId = data.playerId;
+    console.log(`CharacterSelection initialized with gameId: ${this.gameId}, playerId: ${this.playerId}`);
   }
 
   preload() {
@@ -199,15 +211,15 @@ selectInteractive.fillStyle(0x000000, 0)
 containerCharSign.add(selectInteractive);
 
 selectInteractive.on('pointerdown', () => {
-    // Get the gameId and return scene from the data passed to this scene
-    const data = this.scene.settings.data as any;
-    const returnScene = data.returnScene || "HostJoinWorkaround";
-    const gameId = data.gameId || "";
-    console.log(`Returning to ${returnScene} with selected character ID: ${Characters[this.charIndex].id} and game ID: ${gameId}`);
-    // Return to the specified scene with the selected character ID and game ID
-    this.scene.start(returnScene, { 
-        gameId: gameId, 
-        selectedCharacterId: Characters[this.charIndex].id
+    console.log(`Selected character: ${Characters[this.charIndex].name} (ID: ${Characters[this.charIndex].id}) for player ${this.playerId}`);
+    // Optionally notify server of character selection
+    this.socket.emit('selectCharacter', this.gameId, this.playerId, Characters[this.charIndex].id);
+    // Return to HostJoinWorkaround with selected character data
+    this.scene.start('HostJoinWorkaround', {
+        gameId: this.gameId,
+        playerId: this.playerId,
+        selectedCharacterId: Characters[this.charIndex].id,
+        selectedCharacterAsset: this.getCharacterAssetPath(Characters[this.charIndex].id)
     });
 });
 
