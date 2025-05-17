@@ -206,6 +206,7 @@ export class MapScene extends Phaser.Scene {
         if (this.textures.exists(spriteKey)) {
           const xPosition = startX + (id - 1) * spacing;
           const sprite = this.add.image(xPosition, yPosition, spriteKey).setOrigin(0.5, 0.5);
+          sprite.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
           sprite.setDepth(5); // Default depth for non-local players
           sprite.setVisible(true); // Ensure the sprite is visible
           this.playerSprites.set(id, sprite);
@@ -241,23 +242,42 @@ export class MapScene extends Phaser.Scene {
       const spriteKey = characterId || playerId;
       let targetSprite = this.playerSprites.get(spriteKey);
       if (!targetSprite) {
-        console.error(`Sprite for character ID ${spriteKey} not found, using default`);
-        targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-        targetSprite.setDepth(playerId === this.playerId ? 10 : 5);
-        if (playerId === this.playerId) {
-          targetSprite.setTint(0xFF0000);
-          this.tweens.add({
-            targets: targetSprite,
-            scaleX: 1.2,
-            scaleY: 1.2,
-            yoyo: true,
-            repeat: -1,
-            duration: 1000,
-            ease: 'Sine.easeInOut'
-          });
+        // Map character IDs to preloaded texture keys
+        const characterTextureMap: { [key: number]: string } = {
+          1: 'buckshot',
+          2: 'serpy',
+          3: 'grit',
+          4: 'solstice',
+          5: 'scout'
+        };
+        const textureKey = characterTextureMap[spriteKey] || 'solstice'; // Default to 'solstice' if not found
+        console.log(`Creating sprite for character ID ${spriteKey} with texture ${textureKey}`);
+        
+        if (this.textures.exists(textureKey)) {
+          targetSprite = this.add.image(1683, 991, textureKey).setOrigin(0.5, 0.5);
+          targetSprite.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
+          targetSprite.setDepth(playerId === this.playerId ? 10 : 5);
+          if (playerId === this.playerId) {
+            targetSprite.setTint(0xFF0000);
+            this.tweens.add({
+              targets: targetSprite,
+              scaleX: 1.2,
+              scaleY: 1.2,
+              yoyo: true,
+              repeat: -1,
+              duration: 1000,
+              ease: 'Sine.easeInOut'
+            });
+          }
+          this.playerSprites.set(spriteKey, targetSprite);
+          console.log(`Created sprite for player ${playerId} with character ID ${spriteKey} using texture ${textureKey}`);
+        } else {
+          console.error(`Texture ${textureKey} for character ID ${spriteKey} not found, using default 'player'`);
+          targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+          targetSprite.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
+          targetSprite.setDepth(playerId === this.playerId ? 10 : 5);
+          this.playerSprites.set(spriteKey, targetSprite);
         }
-        this.playerSprites.set(spriteKey, targetSprite);
-        console.log(`Created fallback sprite for player ${playerId} with key ${spriteKey}`);
       }
       
       if (y !== undefined) {
