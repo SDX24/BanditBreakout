@@ -154,10 +154,10 @@ export class MapScene extends Phaser.Scene {
     // New method to pre-create character sprites
     private preCreateCharacterSprites() {
       const characterMap: { [key: number]: string } = {
-        1: 'character_asset/solsticeFront.svg',
-        2: 'character_asset/buckshotFront.svg',
-        3: 'character_asset/serpyFront.svg',
-        4: 'character_asset/gritFront.svg',
+        1: 'character_asset/buckshotFront.svg',
+        2: 'character_asset/serpyFront.svg',
+        3: 'character_asset/gritFront.svg',
+        4: 'character_asset/solsticeFront.svg',
         5: 'character_asset/scoutFront.svg'
       };
 
@@ -189,6 +189,8 @@ export class MapScene extends Phaser.Scene {
           ease: 'Sine.easeInOut'
         });
       }
+
+      //show all these sprites on the screen, to make sure it is really loaded, ai!
     }
 
     // Parse the CSV file and store tile locations in a map
@@ -337,6 +339,7 @@ export class MapScene extends Phaser.Scene {
             const { id, position, status, character_id } = playerData;
 
             console.log(`character_id: ${character_id}`);
+            
             
             // Move player to the correct position using character_id to get the sprite
             this.movePlayerTo(position, undefined, id, character_id);
