@@ -111,7 +111,7 @@ export class CharacterSelection extends Phaser.Scene {
     backButtonInteractive.setInteractive(new Phaser.Geom.Rectangle(0, 30, 300, 130), Phaser.Geom.Rectangle.Contains);
     backButtonInteractive.on("pointerdown", () => {
       this.scene.stop(this)
-        this.scene.start("MainScreen")
+        this.scene.start("HostJoinWorkaround")
   });
 
 
