@@ -119,6 +119,9 @@ export class MapScene extends Phaser.Scene {
       const bg = this.add.image(0, 0, 'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
 
+      // Pre-create sprites for characters 1 to 5
+      this.preCreateCharacterSprites();
+
       const mapContainer = this.add.container(0, 0, [bg, overlay]);
 
       // Add videos for each dice result to the bottom-left corner of the mapContainer
@@ -180,6 +183,56 @@ export class MapScene extends Phaser.Scene {
         }
       }
       console.log('Tile locations loaded:', this.tileLocations);
+    }
+
+    // Pre-create character sprites for IDs 1 to 5
+    private preCreateCharacterSprites() {
+      const characterMap: { [key: number]: string } = {
+        1: 'buckshot',
+        2: 'serpy',
+        3: 'grit',
+        4: 'solstice',
+        5: 'scout'
+      };
+
+      const startX = 200; // Starting X position for the first sprite
+      const spacing = 100; // Horizontal spacing between sprites
+      const yPosition = 200; // Y position for all sprites (near the top of the screen)
+
+      // Use preloaded textures from preload method
+      for (let id = 1; id <= 5; id++) {
+        const spriteKey = characterMap[id];
+        // Check if texture loaded successfully during preload
+        if (this.textures.exists(spriteKey)) {
+          const xPosition = startX + (id - 1) * spacing;
+          const sprite = this.add.image(xPosition, yPosition, spriteKey).setOrigin(0.5, 0.5);
+          sprite.setDepth(5); // Default depth for non-local players
+          sprite.setVisible(true); // Ensure the sprite is visible
+          this.playerSprites.set(id, sprite);
+          console.log(`Created and displayed sprite for character ID ${id} with key ${spriteKey} at (${xPosition}, ${yPosition})`);
+        } else {
+          console.error(`Texture for character ID ${id} (${spriteKey}) failed to load during preload, sprite not created.`);
+        }
+      }
+
+      // Set the local player's sprite with a red tint and pulsing effect
+      const localPlayerSprite = this.playerSprites.get(this.playerId);
+      if (localPlayerSprite) {
+        localPlayerSprite.setTint(0xFF0000);
+        localPlayerSprite.setDepth(10);
+        this.tweens.add({
+          targets: localPlayerSprite,
+          scaleX: 1.2,
+          scaleY: 1.2,
+          yoyo: true,
+          repeat: -1,
+          duration: 1000,
+          ease: 'Sine.easeInOut'
+        });
+        console.log(`Applied local player effects to sprite for player ID ${this.playerId}`);
+      } else {
+        console.warn(`No sprite found for local player ID ${this.playerId}. Effects not applied yet.`);
+      }
     }
 
     // Move the player to the specified coordinates or tile number
