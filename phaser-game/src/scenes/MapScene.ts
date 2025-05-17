@@ -388,6 +388,9 @@ export class MapScene extends Phaser.Scene {
             const { id, position, status, character_id } = playerData;
             console.log(`character_id: ${character_id}`);
             
+            // Update the player to character ID mapping
+            this.playerToCharacterMap.set(id, character_id);
+            
             // Move player to the correct position using character_id to get the sprite
             this.movePlayerTo(position, undefined, id, character_id);
             
