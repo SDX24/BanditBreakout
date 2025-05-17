@@ -92,11 +92,11 @@ export class MapScene extends Phaser.Scene {
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
 
-      this.load.svg("buckshot", encodeURIComponent("character_asset/buckshotFront.svg"));
-      this.load.svg("serpy", encodeURIComponent("character_asset/serpyFront.svg"));
-      this.load.svg("grit", encodeURIComponent("character_asset/gritFront.svg"));
-      this.load.svg("solstice", encodeURIComponent("character_asset/solsticeFront.svg"));
-      this.load.svg("scout", encodeURIComponent("character_asset/scoutFront.svg"));
+      this.load.svg("buckshot", encodeURIComponent("character_asset/buckshotFront.svg"), { width: 64, height: 64 });
+      this.load.svg("serpy", encodeURIComponent("character_asset/serpyFront.svg"), { width: 64, height: 64 });
+      this.load.svg("grit", encodeURIComponent("character_asset/gritFront.svg"), { width: 64, height: 64 });
+      this.load.svg("solstice", encodeURIComponent("character_asset/solsticeFront.svg"), { width: 64, height: 64 });
+      this.load.svg("scout", encodeURIComponent("character_asset/scoutFront.svg"), { width: 64, height: 64 });
       
       // Load the dice videos with error handling
       console.log('Loading dice videos...');
