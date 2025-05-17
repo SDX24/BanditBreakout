@@ -161,16 +161,23 @@ export class MapScene extends Phaser.Scene {
         5: 'character_asset/scoutFront.svg'
       };
 
+      const startX = 200; // Starting X position for the first sprite
+      const spacing = 100; // Horizontal spacing between sprites
+      const yPosition = 200; // Y position for all sprites (near the top of the screen)
+
       for (let id = 1; id <= 5; id++) {
         const assetPath = characterMap[id];
         const spriteKey = `character_${id}`;
         if (!this.textures.exists(spriteKey)) {
           this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
         }
-        const sprite = this.add.image(1683, 991, spriteKey).setOrigin(0.5, 0.5);
+        // Position sprites side by side
+        const xPosition = startX + (id - 1) * spacing;
+        const sprite = this.add.image(xPosition, yPosition, spriteKey).setOrigin(0.5, 0.5);
         sprite.setDepth(5); // Default depth for non-local players
+        sprite.setVisible(true); // Ensure the sprite is visible
         this.playerSprites.set(id, sprite);
-        console.log(`Created sprite for character ID ${id} with key ${spriteKey}`);
+        console.log(`Created and displayed sprite for character ID ${id} with key ${spriteKey} at (${xPosition}, ${yPosition})`);
       }
       this.load.start(); // Start loading textures if not already started
 
@@ -188,9 +195,10 @@ export class MapScene extends Phaser.Scene {
           duration: 1000,
           ease: 'Sine.easeInOut'
         });
+        console.log(`Applied local player effects to sprite for player ID ${this.playerId}`);
+      } else {
+        console.warn(`No sprite found for local player ID ${this.playerId}. Effects not applied yet.`);
       }
-
-      
     }
 
     // Parse the CSV file and store tile locations in a map
