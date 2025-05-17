@@ -92,11 +92,11 @@ export class MapScene extends Phaser.Scene {
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
 
-      this.load.svg("buckshot", encodeURIComponent("character_asset/buckshotFront.svg"), { width: 64, height: 64 });
-      this.load.svg("serpy", encodeURIComponent("character_asset/serpyFront.svg"), { width: 64, height: 64 });
-      this.load.svg("grit", encodeURIComponent("character_asset/gritFront.svg"), { width: 64, height: 64 });
-      this.load.svg("solstice", encodeURIComponent("character_asset/solsticeFront.svg"), { width: 64, height: 64 });
-      this.load.svg("scout", encodeURIComponent("character_asset/scoutFront.svg"), { width: 64, height: 64 });
+      this.load.svg("buckshot-1", encodeURIComponent("character_asset/buckshotFront.svg"), { width: 64, height: 64 });
+      this.load.svg("serpy-1", encodeURIComponent("character_asset/serpyFront.svg"), { width: 64, height: 64 });
+      this.load.svg("grit-1", encodeURIComponent("character_asset/gritFront.svg"), { width: 64, height: 64 });
+      this.load.svg("solstice-1", encodeURIComponent("character_asset/solsticeFront.svg"), { width: 64, height: 64 });
+      this.load.svg("scout-1", encodeURIComponent("character_asset/scoutFront.svg"), { width: 64, height: 64 });
       
       // Load the dice videos with error handling
       console.log('Loading dice videos...');
@@ -188,11 +188,11 @@ export class MapScene extends Phaser.Scene {
     // Pre-create character sprites for IDs 1 to 5
     private preCreateCharacterSprites() {
       const characterMap: { [key: number]: string } = {
-        1: 'buckshot',
-        2: 'serpy',
-        3: 'grit',
-        4: 'solstice',
-        5: 'scout'
+        1: 'buckshot-1',
+        2: 'serpy-1',
+        3: 'grit-1',
+        4: 'solstice-1',
+        5: 'scout-1'
       };
 
       const startX = 200; // Starting X position for the first sprite
@@ -205,10 +205,11 @@ export class MapScene extends Phaser.Scene {
         // Check if texture loaded successfully during preload
         if (this.textures.exists(spriteKey)) {
           const xPosition = startX + (id - 1) * spacing;
-          const sprite = this.add.image(xPosition, yPosition, spriteKey).setOrigin(0.5, 0.5);
+          // const sprite = this.add.image(xPosition, yPosition, spriteKey).setOrigin(0.5, 0.5);
+          const sprite = this.add.image(1683, 991, spriteKey).setOrigin(0.5, 0.5);
           sprite.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
           sprite.setDepth(5); // Default depth for non-local players
-          sprite.setVisible(true); // Ensure the sprite is visible
+          sprite.setVisible(false); // Ensure the sprite is visible
           this.playerSprites.set(id, sprite);
           console.log(`Created and displayed sprite for character ID ${id} with key ${spriteKey} at (${xPosition}, ${yPosition})`);
         } else {
@@ -230,6 +231,8 @@ export class MapScene extends Phaser.Scene {
           duration: 1000,
           ease: 'Sine.easeInOut'
         });
+
+        
         console.log(`Applied local player effects to sprite for player ID ${this.playerId}`);
       } else {
         console.warn(`No sprite found for local player ID ${this.playerId}. Effects not applied yet.`);
@@ -269,6 +272,7 @@ export class MapScene extends Phaser.Scene {
               ease: 'Sine.easeInOut'
             });
           }
+          targetSprite.setVisible(true);
           this.playerSprites.set(spriteKey, targetSprite);
           console.log(`Created sprite for player ${playerId} with character ID ${spriteKey} using texture ${textureKey}`);
         } else {
@@ -276,18 +280,21 @@ export class MapScene extends Phaser.Scene {
           targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
           targetSprite.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
           targetSprite.setDepth(playerId === this.playerId ? 10 : 5);
+          targetSprite.setVisible(true);
           this.playerSprites.set(spriteKey, targetSprite);
         }
       }
       
       if (y !== undefined) {
         // If y is provided, treat xOrTile as x coordinate
+        targetSprite.setVisible(true);
         targetSprite.setPosition(xOrTile, y);
         console.log(`Player ${playerId} moved to (${xOrTile}, ${y})`);
       } else {
         // Treat xOrTile as tile number and look up coordinates
         const tileData = this.tileLocations.get(xOrTile);
         if (tileData) {
+          targetSprite.setVisible(true);
           targetSprite.setPosition(tileData.cx, tileData.cy);
           console.log(`Player ${playerId} moved to tile ${xOrTile} at (${tileData.cx}, ${tileData.cy})`);
         } else {
