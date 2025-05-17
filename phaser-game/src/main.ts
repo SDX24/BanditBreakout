@@ -7,7 +7,8 @@ import { SettingsMenu } from "./scenes/Settings";
 import { EmptyTest } from "./scenes/EmptyTest";
 import { MapScene } from "./scenes/MapScene";
 import { HostJoinWorkaround } from "./scenes/HostJoinWorkaround";
-import { BattleScene } from "./scenes/BattleScene"
+import { BattleScene } from "./scenes/BattleScene";
+import BattleResultScene  from "./scenes/BattleResultScene";
 
 const config = {
   type: Phaser.AUTO,
@@ -29,9 +30,10 @@ const config = {
     // Room,
     HostJoinWorkaround,
     CharacterSelection,
-    // SettingsMenu,
+    // // SettingsMenu,
     MapScene,
     BattleScene,
+    BattleResultScene,
   ],
   scale: {
     mode: Phaser.Scale.FIT,

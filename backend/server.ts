@@ -682,7 +682,23 @@ const criticalAssets = [
   'dice/dice3.mp4',
   'dice/dice4.mp4',
   'dice/dice5.mp4',
-  'dice/dice6.mp4'
+  'dice/dice6.mp4',
+  'battle_screen/background.png', // Added battle result assets
+  'battle_screen/defeat.svg',
+  'battle_screen/victory.svg',
+
+  'battle_scene/battle-bg.png', 
+  'battle_scene/health bar.svg',
+  'battle_scene/health bar.svg',
+  'battle_scene/backing-green.png',
+  'battle_scene/backing-green.png',
+  'battle_scene/banner.svg',
+  'battle_scene/banner.svg',
+  'battle_scene/buckshot-back.svg',
+  'battle_scene/wim-front.svg',
+  'battle_scene/health backing.svg',
+  'battle_scene/health backing.svg',
+
 ];
 
 // Function to preload assets into Redis
