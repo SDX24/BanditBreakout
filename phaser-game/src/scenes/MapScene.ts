@@ -118,7 +118,7 @@ export class MapScene extends Phaser.Scene {
 
       const bg = this.add.image(0, 0, 'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
-
+      
       // Pre-create sprites for characters 1 to 5
       this.preCreateCharacterSprites();
 
@@ -377,12 +377,29 @@ export class MapScene extends Phaser.Scene {
           // Update all player positions based on the game state
           gameState.players.forEach((playerData: any) => {
             const { id, position, status, character_id } = playerData;
-
             console.log(`character_id: ${character_id}`);
-            
             
             // Move player to the correct position using character_id to get the sprite
             this.movePlayerTo(position, undefined, id, character_id);
+            
+            // If this is the local player, ensure the sprite has the red tint and pulsing effect
+            if (id === this.playerId) {
+              const localSprite = this.playerSprites.get(character_id);
+              if (localSprite && localSprite.tintTopLeft !== 0xFF0000) { // Check if tint is not already applied
+                localSprite.setTint(0xFF0000);
+                localSprite.setDepth(10);
+                this.tweens.add({
+                  targets: localSprite,
+                  scaleX: 1.2,
+                  scaleY: 1.2,
+                  yoyo: true,
+                  repeat: -1,
+                  duration: 1000,
+                  ease: 'Sine.easeInOut'
+                });
+                console.log(`Applied local player effects to sprite for character ID ${character_id}`);
+              }
+            }
             
             // Optionally, update UI elements related to player status (gold, health, effects)
             console.log(`Player ${id} status - Gold: ${status.gold}, Health: ${status.health}, Effects: ${status.effects}`);
