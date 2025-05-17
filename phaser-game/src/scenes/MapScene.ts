@@ -112,26 +112,10 @@ export class MapScene extends Phaser.Scene {
 
       const bg = this.add.image(0, 0, 'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
-      this.player = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-      
-      // Add pulsing effect
-      this.tweens.add({
-        targets: this.player,
-        scaleX: 1.2,
-        scaleY: 1.2,
-        yoyo: true, // Makes the tween go back and forth
-        repeat: -1, // Repeat indefinitely
-        duration: 1000, // Duration of one pulse cycle in milliseconds
-        ease: 'Sine.easeInOut' // Smooth easing for the pulse
-      });
-      
-      // Add red tint to the local player
-      this.player.setTint(0xFF0000);
 
-      // Set depth to ensure the player sprite is above background and overlay
-      this.player.setDepth(10);
+      // Pre-create sprites for characters 1 to 5
+      this.preCreateCharacterSprites();
 
-      // const mapContainer = this.add.container(0, 0, [bg, overlay, this.player]);
       const mapContainer = this.add.container(0, 0, [bg, overlay]);
 
       // Add videos for each dice result to the bottom-left corner of the mapContainer
@@ -161,28 +145,50 @@ export class MapScene extends Phaser.Scene {
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
 
-      // this.movePlayerTo(3);
-      
-      
-      
-      // For testing: Add a button to start the game
-    //   const startButton = this.add.text(100, 200, 'Start Game', { 
-    //     fontSize: '32px', 
-    //     backgroundColor: '#fff', 
-    //     color: '#000', 
-    //     padding: { x: 10, y: 5 }
-    //   })
-    //   .setInteractive()
-    //   .on('pointerdown', () => {
-    //     this.startGame();
-    //     startButton.destroy(); // Remove the button after clicking
-    //   });
-
       console.log(`${this.playerId}, ${this.currentPlayerTurn}`);
       if (this.playerId === this.currentPlayerTurn) {
         this.showRollDiceButton();
       }
-    
+    }
+
+    // New method to pre-create character sprites
+    private preCreateCharacterSprites() {
+      const characterMap: { [key: number]: string } = {
+        1: 'character_asset/solsticeFront.svg',
+        2: 'character_asset/buckshotFront.svg',
+        3: 'character_asset/serpyFront.svg',
+        4: 'character_asset/gritFront.svg',
+        5: 'character_asset/scoutFront.svg'
+      };
+
+      for (let id = 1; id <= 5; id++) {
+        const assetPath = characterMap[id];
+        const spriteKey = `character_${id}`;
+        if (!this.textures.exists(spriteKey)) {
+          this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
+        }
+        const sprite = this.add.image(1683, 991, spriteKey).setOrigin(0.5, 0.5);
+        sprite.setDepth(5); // Default depth for non-local players
+        this.playerSprites.set(id, sprite);
+        console.log(`Created sprite for character ID ${id} with key ${spriteKey}`);
+      }
+      this.load.start(); // Start loading textures if not already started
+
+      // Set the local player's sprite with a red tint and pulsing effect
+      const localPlayerSprite = this.playerSprites.get(this.playerId);
+      if (localPlayerSprite) {
+        localPlayerSprite.setTint(0xFF0000);
+        localPlayerSprite.setDepth(10);
+        this.tweens.add({
+          targets: localPlayerSprite,
+          scaleX: 1.2,
+          scaleY: 1.2,
+          yoyo: true,
+          repeat: -1,
+          duration: 1000,
+          ease: 'Sine.easeInOut'
+        });
+      }
     }
 
     // Parse the CSV file and store tile locations in a map
@@ -208,19 +214,28 @@ export class MapScene extends Phaser.Scene {
     }
 
     // Move the player to the specified coordinates or tile number
-    movePlayerTo(xOrTile: number, y?: number, playerId: number = this.playerId) {
-      let targetSprite = this.playerSprites.get(playerId);
+    movePlayerTo(xOrTile: number, y?: number, playerId: number = this.playerId, characterId?: number) {
+      // Use characterId if provided, otherwise fallback to playerId to get the sprite
+      const spriteKey = characterId || playerId;
+      let targetSprite = this.playerSprites.get(spriteKey);
       if (!targetSprite) {
-        // Create a sprite for this player if it doesn't exist
+        console.error(`Sprite for character ID ${spriteKey} not found, using default`);
+        targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
+        targetSprite.setDepth(playerId === this.playerId ? 10 : 5);
         if (playerId === this.playerId) {
-          targetSprite = this.player; // Use the pre-created player sprite with tint and pulse
-        } else {
-          // Create a new sprite for other players without any tint or pulse
-          targetSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-          // No tint or effects for other players
+          targetSprite.setTint(0xFF0000);
+          this.tweens.add({
+            targets: targetSprite,
+            scaleX: 1.2,
+            scaleY: 1.2,
+            yoyo: true,
+            repeat: -1,
+            duration: 1000,
+            ease: 'Sine.easeInOut'
+          });
         }
-        this.playerSprites.set(playerId, targetSprite);
-        console.log(`Created sprite for player ${playerId}`);
+        this.playerSprites.set(spriteKey, targetSprite);
+        console.log(`Created fallback sprite for player ${playerId} with key ${spriteKey}`);
       }
       
       if (y !== undefined) {
@@ -323,47 +338,8 @@ export class MapScene extends Phaser.Scene {
 
             console.log(`character_id: ${character_id}`);
             
-            // Ensure a sprite exists for this player, but don't recreate if it exists
-            if (!this.playerSprites.has(id)) {
-              // Load character sprite based on character_id for all players
-              let spriteKey = 'player'; // Default key
-              if (character_id) {
-                const assetPath = this.getCharacterAssetPath(character_id);
-                spriteKey = id; // Unique key for each player
-                // Load the SVG asset if not already loaded
-                if (!this.textures.exists(spriteKey)) {
-                  this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
-                  this.load.start(); // Start loading if not already started
-                }
-              }
-              const newPlayerSprite = this.add.image(1683, 991, spriteKey).setOrigin(0.5, 0.5);
-              // Set depth based on whether it's the local player or not
-              newPlayerSprite.setDepth(id === this.playerId ? 10 : 5);
-              // Add red tint only for the local player
-              if (id === this.playerId) {
-                newPlayerSprite.setTint(0xFF0000);
-              }
-              this.playerSprites.set(id, newPlayerSprite);
-              console.log(`Created sprite for player ${id} with key ${spriteKey}`);
-            } else {
-              // If sprite exists but character_id has changed or is now available, update the texture
-              const sprite = this.playerSprites.get(id);
-              if (character_id && sprite) {
-                const assetPath = this.getCharacterAssetPath(character_id);
-                const spriteKey = id; // Unique key for each player
-                if (!this.textures.exists(spriteKey)) {
-                  this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
-                  this.load.start(); // Start loading if not already started
-                }
-                if (sprite.texture.key !== spriteKey) {
-                  sprite.setTexture(spriteKey);
-                  console.log(`Updated texture for player ${id} to ${spriteKey}`);
-                }
-              }
-            }
-            
-            // Move player to the correct position
-            this.movePlayerTo(position, undefined, id);
+            // Move player to the correct position using character_id to get the sprite
+            this.movePlayerTo(position, undefined, id, character_id);
             
             // Optionally, update UI elements related to player status (gold, health, effects)
             console.log(`Player ${id} status - Gold: ${status.gold}, Health: ${status.health}, Effects: ${status.effects}`);
@@ -390,18 +366,7 @@ export class MapScene extends Phaser.Scene {
           console.log(`Player ${data.playerId} joined with initial roll ${data.initialRoll}`);
           this.playerInitialRolls.set(data.playerId, data.initialRoll);
           // Update UI to show player and their roll
-          // Create sprite for new player if needed
-          if (!this.playerSprites.has(data.playerId)) {
-            const newPlayerSprite = this.add.image(1683, 991, 'player').setOrigin(0.5, 0.5);
-            // Set depth based on whether it's the local player or not
-            newPlayerSprite.setDepth(data.playerId === this.playerId ? 10 : 5);
-            // Add red tint only for the local player
-            if (data.playerId === this.playerId) {
-              newPlayerSprite.setTint(0xFF0000);
-            }
-            this.playerSprites.set(data.playerId, newPlayerSprite);
-            console.log(`Created sprite for player ${data.playerId}`);
-          }
+          // Sprite creation is handled by preCreateCharacterSprites and gameState updates
         });
         
         // Listen for player disconnected event
@@ -458,12 +423,12 @@ export class MapScene extends Phaser.Scene {
             if (data.playerId === this.playerId) {
               this.movePlayerTo(data.position, undefined, data.playerId);
               // Only end turn if there is no pending move (e.g., no fork requiring further input)
-                if (!data.isPendingMove) {
-                  this.endTurn();
-                } else {
-                  console.log(`Turn not ended for player ${data.playerId} due to pending move (e.g., fork).`);
-                }
-                
+              if (!data.isPendingMove) {
+                this.endTurn();
+              } else {
+                console.log(`Turn not ended for player ${data.playerId} due to pending move (e.g., fork).`);
+              }
+              
               this.playDiceRollAnimation(data.roll, () => {
                 
               });
@@ -471,19 +436,15 @@ export class MapScene extends Phaser.Scene {
               this.movePlayerTo(data.position, undefined, data.playerId);
             }
           } else {
-
             this.movePlayerTo(data.position, undefined, data.playerId);
 
             if (data.playerId === this.playerId) {
-                
-                  if (!data.isPendingMove) {
-                    this.endTurn();
-                  } else {
-                    console.log(`Turn not ended for player ${data.playerId} due to pending move (e.g., fork).`);
-                  }
-                  
+              if (!data.isPendingMove) {
+                this.endTurn();
+              } else {
+                console.log(`Turn not ended for player ${data.playerId} due to pending move (e.g., fork).`);
+              }
             }
-            
           }
         });
 
@@ -520,35 +481,48 @@ export class MapScene extends Phaser.Scene {
     
     // Update visual effect for the next player to move
     private updateNextPlayerEffect() {
-      this.playerSprites.forEach((sprite, playerId) => {
+      this.playerSprites.forEach((sprite, characterId) => {
         this.tweens.killTweensOf(sprite); // Stop any existing tweens for this sprite
         sprite.scaleX = 1; // Reset scale
         sprite.scaleY = 1;
         
-        if (playerId === this.currentPlayerTurn) {
-          // Add fast pulsing effect for the current turn player (if not local player)
+        // Check if this sprite corresponds to the current player's character ID
+        // This assumes a mapping or way to know which character ID is used by the current player
+        // For simplicity, we apply effects based on whether it's the local player or current turn
+        if (characterId === this.playerId) {
+          // Local player always has a specific effect
           this.tweens.add({
             targets: sprite,
             scaleX: 1.2,
             scaleY: 1.2,
-            yoyo: true, // Makes the tween go back and forth
-            repeat: -1, // Repeat indefinitely
-            duration: 500, // Fast pulse with 0.5 second duration
-            ease: 'Sine.easeInOut' // Smooth easing for the pulse
+            yoyo: true,
+            repeat: -1,
+            duration: 1000,
+            ease: 'Sine.easeInOut'
+          });
+        } else if (characterId === this.currentPlayerTurn) {
+          // Current turn player (non-local) has a fast pulse
+          this.tweens.add({
+            targets: sprite,
+            scaleX: 1.2,
+            scaleY: 1.2,
+            yoyo: true,
+            repeat: -1,
+            duration: 500,
+            ease: 'Sine.easeInOut'
           });
         } else {
-          // Add normal pulsing effect for non-turn players (if not local player)
+          // Other players have a normal pulse
           this.tweens.add({
             targets: sprite,
             scaleX: 1.1,
             scaleY: 1.1,
-            yoyo: true, // Makes the tween go back and forth
-            repeat: -1, // Repeat indefinitely
-            duration: 1000, // Normal pulse with 1 second duration
-            ease: 'Sine.easeInOut' // Smooth easing for the pulse
+            yoyo: true,
+            repeat: -1,
+            duration: 1000,
+            ease: 'Sine.easeInOut'
           });
         }
-        
       });
     }
     
