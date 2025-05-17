@@ -91,6 +91,12 @@ export class MapScene extends Phaser.Scene {
 
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
+
+      this.load.svg("buckshot", encodeURIComponent("character_asset/buckshotFront.svg"));
+      this.load.svg("serpy", encodeURIComponent("character_asset/serpyFront.svg"));
+      this.load.svg("grit", encodeURIComponent("character_asset/gritFront.svg"));
+      this.load.svg("solstice", encodeURIComponent("character_asset/solsticeFront.svg"));
+      this.load.svg("scout", encodeURIComponent("character_asset/scoutFront.svg"));
       
       // Load the dice videos with error handling
       console.log('Loading dice videos...');
@@ -112,9 +118,6 @@ export class MapScene extends Phaser.Scene {
 
       const bg = this.add.image(0, 0, 'backgroundMap').setOrigin(0);
       const overlay = this.add.image(0, 0, 'mapOverlay').setOrigin(0).setDisplaySize(bg.width, bg.height);
-
-      // Pre-create sprites for characters 1 to 5
-      this.preCreateCharacterSprites();
 
       const mapContainer = this.add.container(0, 0, [bg, overlay]);
 
@@ -156,55 +159,6 @@ export class MapScene extends Phaser.Scene {
       }
     }
 
-    // New method to pre-create character sprites
-    private preCreateCharacterSprites() {
-      const characterMap: { [key: number]: string } = {
-        1: 'character_asset/buckshotFront.svg',
-        2: 'character_asset/serpyFront.svg',
-        3: 'character_asset/gritFront.svg',
-        4: 'character_asset/solsticeFront.svg',
-        5: 'character_asset/scoutFront.svg'
-      };
-
-      const startX = 200; // Starting X position for the first sprite
-      const spacing = 100; // Horizontal spacing between sprites
-      const yPosition = 200; // Y position for all sprites (near the top of the screen)
-
-      for (let id = 1; id <= 5; id++) {
-        const assetPath = characterMap[id];
-        const spriteKey = `character_${id}`;
-        if (!this.textures.exists(spriteKey)) {
-          this.load.svg(spriteKey, encodeURIComponent(assetPath), { width: 64, height: 64 });
-        }
-        // Position sprites side by side
-        const xPosition = startX + (id - 1) * spacing;
-        const sprite = this.add.image(xPosition, yPosition, spriteKey).setOrigin(0.5, 0.5);
-        sprite.setDepth(5); // Default depth for non-local players
-        sprite.setVisible(true); // Ensure the sprite is visible
-        this.playerSprites.set(id, sprite);
-        console.log(`Created and displayed sprite for character ID ${id} with key ${spriteKey} at (${xPosition}, ${yPosition})`);
-      }
-      this.load.start(); // Start loading textures if not already started
-
-      // Set the local player's sprite with a red tint and pulsing effect
-      const localPlayerSprite = this.playerSprites.get(this.playerId);
-      if (localPlayerSprite) {
-        localPlayerSprite.setTint(0xFF0000);
-        localPlayerSprite.setDepth(10);
-        this.tweens.add({
-          targets: localPlayerSprite,
-          scaleX: 1.2,
-          scaleY: 1.2,
-          yoyo: true,
-          repeat: -1,
-          duration: 1000,
-          ease: 'Sine.easeInOut'
-        });
-        console.log(`Applied local player effects to sprite for player ID ${this.playerId}`);
-      } else {
-        console.warn(`No sprite found for local player ID ${this.playerId}. Effects not applied yet.`);
-      }
-    }
 
     // Parse the CSV file and store tile locations in a map
     private parseTileLocations() {
