@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
         console.log(`Player 1 added!`);
         socket.join(gameId);
         const playerId = 1;
-        socket.emit('gameId',  {gameId, playerId});
+        socket.emit('gameId', { gameId, playerId });
         // Update mappings for the new connection
         socketToPlayerMap[socket.id] = { gameId, playerId: 1 };
         playerToSocketMap[1] = socket.id;
@@ -78,6 +78,22 @@ io.on('connection', (socket) => {
     } catch (error) {
       socket.emit('error', { message: 'Failed to create game', details: error || 'Unknown error' });
       console.error('Error creating game:', error);
+    }
+  });
+
+  // Handle character selection
+  socket.on('selectCharacter', (gameId: string, playerId: number, characterId: number) => {
+    if (activeGames[gameId]) {
+      const player = activeGames[gameId].players.find(p => p.id === playerId);
+      if (player) {
+        player.character_id = characterId;
+        console.log(`Player ${playerId} selected character ${characterId} in game ${gameId}`);
+        io.to(gameId).emit('characterSelected', { playerId, characterId });
+      } else {
+        socket.emit('error', { message: 'Player not found in game' });
+      }
+    } else {
+      socket.emit('error', { message: 'Game does not exist' });
     }
   });
 
