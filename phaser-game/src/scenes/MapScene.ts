@@ -21,6 +21,7 @@ export class MapScene extends Phaser.Scene {
     private turnOrder: number[] = [];
     private currentPlayerTurn: number = -1;
     private playerInitialRolls: Map<number, number> = new Map();
+    private playerToCharacterMap: Map<number, number> = new Map(); // Mapping of player ID to character ID
     private playerSprites: Map<number, Phaser.GameObjects.Image> = new Map();
     private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
 
