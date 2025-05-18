@@ -1,6 +1,7 @@
 import Player from "./Player"
 import Map from "../Map/Map"
 import Settings from "./Settings";
+import Battle from "./Battle";
 
 export default class Game {
     players: Player[]
@@ -10,6 +11,8 @@ export default class Game {
     initialRolls: { playerId: number, roll: number }[] = [];
     turnOrder: number[] = [];
     currentTurnIndex: number = 0;
+    currentBattle: Battle | null = null;
+
 
     constructor(game_id: string) {
         this.players = []
