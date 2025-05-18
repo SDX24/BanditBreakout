@@ -10,7 +10,7 @@ export class MapScene extends Phaser.Scene {
       
     }
 
-    private player: Phaser.GameObjects.Image;
+    // private player: Phaser.GameObjects.Image;
     private tileLocations: Map<number, { cx: number, cy: number, r: number }> = new Map();
     private socket: any; // Socket.io client
     //TODO
@@ -103,7 +103,7 @@ export class MapScene extends Phaser.Scene {
       console.log('Loading dice videos...');
       for (let i = 1; i <= 6; i++) {
         const key = `dice${i}`;
-        this.load.video(key, encodeURIComponent(`dice/dice${i}.mp4`), 'loadeddata', false, true);
+        this.load.video(key, encodeURIComponent(`dice/dice${i}.mp4`), true);
         this.load.on(`filecomplete-video-${key}`, () => {
           console.log(`Video ${key} loaded successfully`);
         });
@@ -367,7 +367,7 @@ export class MapScene extends Phaser.Scene {
         //this.socket.emit('joinGame', this.gameId, this.playerId);
       });
       
-      this.socket.on('disconnect', (reason) => {
+      this.socket.on('disconnect', (reason: any) => {
         console.log(`Disconnected from server, reason: ${reason}`);
       });
       
