@@ -19,7 +19,7 @@ jobs:
             set -e
 
             cd /root/BanditBreakout-newmergingbranch
-            ../stop.sh
+            /root/stop.sh
 
             # If this is the first time, clone the repo using the PAT
             if [ ! -d .git ]; then
@@ -33,5 +33,5 @@ jobs:
             git reset --hard origin/"$BRANCH"
 
             # run your existing deploy script
-            ../deploy.sh
-            ../start.sh
+            /root/deploy.sh
+            /root/start.sh
