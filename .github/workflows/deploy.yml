@@ -29,8 +29,9 @@ jobs:
             # Otherwise just fetch & fast-forward
             git fetch --all
             BRANCH=${GITHUB_REF#refs/heads/}
-            git checkout "$BRANCH"
-            git reset --hard origin/"$BRANCH"
+            git checkout "${{ github.ref_name }}"
+            git reset --hard "origin/${{ github.ref_name }}"
+
 
             # run your existing deploy script
             /root/deploy.sh
