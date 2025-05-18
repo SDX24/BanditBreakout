@@ -1,0 +1,28 @@
+# .github/workflows/deploy.yml
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - newmergingbranch      # ← replace “main” with whichever branch you want to watch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH & run deploy
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}         # your VPS IP or hostname
+          username: ${{ secrets.SSH_USER }}     # SSH user on the VPS
+          key: ${{ secrets.SSH_KEY }}           # private key (no passphrase)
+          port: ${{ secrets.SSH_PORT || '22' }} # optional, default 22
+          script: |
+            set -e
+            cd /root/BanditBreakout-newmergingbranch                 # wherever your repo lives on the VPS
+            git fetch --all
+            # extract branch name, e.g. "main"
+            BRANCH=${GITHUB_REF#refs/heads/}
+            git checkout "$BRANCH"
+            git pull origin "$BRANCH"
+            ./deploy.sh                          # your deploy script
