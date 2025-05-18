@@ -36,4 +36,5 @@ jobs:
             # run your existing deploy script
             /root/deploy.sh
             /root/update_server_url.sh
-            /root/start.sh
+            sudo systemctl daemon-reload
+            sudo systemctl start banditbreakout
