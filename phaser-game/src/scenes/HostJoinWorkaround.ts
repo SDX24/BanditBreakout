@@ -155,8 +155,12 @@ export class HostJoinWorkaround extends Phaser.Scene {
     }
   
     this.socket.on('gameState', (gameState) => {
-      this.updatePlayerList(gameState.players);
-      this.updateGameState(this.formatGameState(gameState));
+      if (this.scene.isActive()) {
+        this.updatePlayerList(gameState.players);
+        this.updateGameState(this.formatGameState(gameState));
+      } else {
+        console.warn('Received gameState update but scene is not active, skipping UI updates.');
+      }
     });
   }
 
@@ -203,14 +207,27 @@ private updateGameCode(gameId: string) {
       return;
     }
     if (!players) {
-      this.playerListText.setText("Players:\nNone");
+      try {
+        this.playerListText.setText("Players:\nNone");
+      } catch (error) {
+        console.error('Error updating player list text:', error);
+      }
       return;
     }
     let text = "Players:\n";
     players.forEach((p: any) => {
       text += `ID: ${p.id} | Pos: ${p.position} | Gold: ${p.status.gold} | HP: ${p.status.health}\n`;
     });
-    this.playerListText.setText(text);
+    // Only update text if the scene is active and the object is ready
+    if (this.scene.isActive()) {
+      try {
+        this.playerListText.setText(text);
+      } catch (error) {
+        console.error('Error updating player list text:', error);
+      }
+    } else {
+      console.warn('Scene is not active, skipping player list update.');
+    }
   }
 
   private formatGameState(gameState: any): string {
