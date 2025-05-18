@@ -665,10 +665,10 @@ export class MapScene extends Phaser.Scene {
     // Utility to map character IDs to asset paths
     private getCharacterAssetPath(characterId: number): string {
       const characterMap: { [key: number]: string } = {
-        1: 'character_asset/solsticeFront.svg',
-        2: 'character_asset/buckshotFront.svg',
-        3: 'character_asset/serpyFront.svg',
-        4: 'character_asset/gritFront.svg',
+        1: 'character_asset/buckshotFront.svg',
+        2: 'character_asset/serpyFront.svg',
+        3: 'character_asset/gritFront.svg',
+        4: 'character_asset/solsticeFront.svg',
         5: 'character_asset/scoutFront.svg'
         // Add other character mappings here
       };
