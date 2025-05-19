@@ -193,7 +193,7 @@ io.on('connection', (socket) => {
       // Send the freshly-built game state to everyone already in the room (just the host for now)
       io.to(gameId).emit('gameState', serializeGame(activeGames[gameId]));
       console.log(`Game created: ${gameId}`);
-    } catch (error) {
+    } catch (error: any) {
       socket.emit('error', { message: 'Failed to create game', details: error.message || 'Unknown error' });
       console.error('Error creating game:', error);
     }
