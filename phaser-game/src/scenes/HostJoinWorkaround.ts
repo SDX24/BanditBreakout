@@ -174,7 +174,8 @@ export class HostJoinWorkaround extends Phaser.Scene {
     this.gameCode.setInteractive();
     this.gameCode.on('pointerdown', () => {
       // Double-click to copy
-      if (this.time.now - (this.gameCode.lastClickTime || 0) < 300) { // 300ms for double-click detection
+      const lastClick = this.gameCode.getData('lastClickTime') || 0;
+      if (this.time.now - lastClick < 300) { // 300ms for double-click detection
         navigator.clipboard.writeText(gameId)
           .then(() => {
             console.log(`Game code ${gameId} copied to clipboard`);
@@ -189,7 +190,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
             console.error('Failed to copy game code to clipboard:', err);
           });
       }
-      this.gameCode.lastClickTime = this.time.now;
+      this.gameCode.setData('lastClickTime', this.time.now);
     });
   }
 
