@@ -56,7 +56,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
     });
 
     this.socket.on("gameState", (gameState) => {
-      
+
     });
 
     this.socket.on("error", (error) => {
@@ -86,20 +86,20 @@ export class HostJoinWorkaround extends Phaser.Scene {
       .graphics()
       .fillGradientStyle(0x000000, 0xff0000, 0xffffff, 0x00ffff)
       .fillRect(0, 0, 1920, 1080);
-  
+
     // Host Button
     const buttonHost = this.add.rectangle(860, 590, 200, 100, 0x000000).setInteractive();
     this.add.text(810, 570, "Host", { fontSize: "32px", color: "#ffffff" });
-  
+
     buttonHost.on("pointerdown", () => {
       buttonHost.setFillStyle(0x333333); // Change color on click
       this.socket.emit("hostLobby");
     });
-  
+
     // Join Button
     const buttonJoin = this.add.rectangle(1260, 590, 200, 100, 0x000000).setInteractive();
     this.add.text(1210, 570, "Join", { fontSize: "32px", color: "#ffffff" });
-  
+
     buttonJoin.on("pointerdown", () => {
       buttonJoin.setFillStyle(0x333333); // Change color on click
       let gameId = prompt("Enter Game ID to Join:") || ""; // Prompt for Game ID
@@ -109,7 +109,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
     // Start Button
     const buttonStart = this.add.rectangle(1060, 750, 200, 100, 0x000000).setInteractive();
     this.add.text(1010, 730, "Start", { fontSize: "32px", color: "#ffffff" });
-    
+
     buttonStart.on("pointerdown", () => {
       const gameId = this.gameCode.text.trim();
       if (gameId && gameId !== "Game Code:") {
@@ -118,19 +118,19 @@ export class HostJoinWorkaround extends Phaser.Scene {
         alert("No Game ID to start!");
       }
     });
-  
+
     // Player list display
     this.playerListText = this.add.text(100, 100, "Players:\n", {
       fontSize: "24px",
       color: "#ffffff",
     });
-  
+
     // Game state display
     this.gameStateText = this.add.text(100, 400, "Game State:\n", {
       fontSize: "24px",
       color: "#ffffff",
     });
-  
+
     // Game code display
     this.gameCode = this.add.text(100, 700, "Game Code:\n", {
       fontSize: "24px",
@@ -153,7 +153,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
       this.updateGameState(`Selected Character ID: ${this.selectedCharacterId}`);
       console.log(`Character selected with asset: ${this.selectedCharacterAsset}`);
     }
-  
+
     this.socket.on('gameState', (gameState) => {
       if (this.scene.isActive()) {
         this.updatePlayerList(gameState.players);
@@ -165,7 +165,7 @@ export class HostJoinWorkaround extends Phaser.Scene {
   }
 
 
-private updateGameCode(gameId: string) {
+  private updateGameCode(gameId: string) {
     if (!this.gameCode) {
       console.warn('Game code text object is not initialized yet. Update delayed to create().');
       return;
