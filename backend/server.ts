@@ -699,6 +699,14 @@ const criticalAssets = [
   'battle_scene/health backing.svg',
   'battle_scene/health backing.svg',
 
+  'gui/coin_icon.png',
+  'gui/backing.svg',
+  'gui/banner.svg',
+  'gui/board.svg',
+  'gui/frame.svg',
+
+  'items/tumbleweed_zoom.svg',
+        
 ];
 
 // Function to preload assets into Redis

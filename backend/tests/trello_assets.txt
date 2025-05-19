@@ -8,7 +8,7 @@ GridFS Bucket (large files): assets_fs
 📄 Files in MongoDB Collection (assets):
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
-Atlas atlas-xnsupc-shard-0 [primary] game_assets> Total files in collection: 467
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> Total files in collection: 473
 
 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... ... Filenames:
@@ -479,6 +479,12 @@ Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... ... Fi
   - battle_scene/player icon.svg
   - battle_scene/wim-front.svg
   - battle_scene/start.png
+  - gui/coin_icon.png
+  - gui/banner.svg
+  - gui/backing.svg
+  - gui/frame.svg
+  - gui/board.svg
+  - items/tumbleweed_zoom.svg
 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
 🎥 Files in GridFS Bucket (assets_fs):

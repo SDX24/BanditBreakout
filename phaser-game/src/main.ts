@@ -9,6 +9,7 @@ import { MapScene } from "./scenes/MapScene";
 import { HostJoinWorkaround } from "./scenes/HostJoinWorkaround";
 import { BattleScene } from "./scenes/BattleScene";
 import BattleResultScene  from "./scenes/BattleResultScene";
+import { Gui } from "./scenes/Gui";
 
 const config = {
   type: Phaser.AUTO,
@@ -31,6 +32,7 @@ const config = {
     HostJoinWorkaround,
     CharacterSelection,
     // // SettingsMenu,
+    Gui,
     MapScene,
     BattleScene,
     BattleResultScene,
