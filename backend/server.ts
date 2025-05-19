@@ -704,8 +704,18 @@ const criticalAssets = [
   'gui/banner.svg',
   'gui/board.svg',
   'gui/frame.svg',
-
-  'items/tumbleweed_zoom.svg',
+  
+  'lasso/lasso zoom.svg',
+  'shovel/shovel zoom.svg',
+  'cowboy_vest/vest zoom.svg',
+  'poison_crossbow/crossbow zoom.svg',
+  'mirage_teleporter/teleporter zoom.svg',
+  'cursed_coffin/Coffin zoom.svg',
+  'rigged_dice/dice zoom.svg',
+  'v.s./vs zoom.svg',
+  'tumbleweed/tumbleweed zoom.svg',
+  'magic_carpet/carpet zoom.svg',
+   'wind_staff/staff zoom.svg',
         
 ];
 

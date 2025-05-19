@@ -38,10 +38,28 @@ export class Gui extends Phaser.Scene {
       this.load.svg("banner", encodeURIComponent("gui/banner.svg"));
       this.load.svg("board", encodeURIComponent("gui/board.svg"));
       this.load.svg("frame", encodeURIComponent("gui/frame.svg"));
+
+
+       const ITEM_ASSET_MAP: Record<string, string> = {
+            'Lasso':               'lasso/lasso zoom.svg',
+            'Shovel':              'shovel/shovel zoom.svg',
+            'Vest':                'cowboy_vest/vest zoom.svg',
+            'Poison Crossbow':   'poison_crossbow/crossbow zoom.svg',
+            'Mirage Teleporter': 'mirage_teleporter/teleporter zoom.svg',
+            'Cursed Coffin':     'cursed_coffin/Coffin zoom.svg',
+            'Rigged Dice':       'rigged_dice/dice zoom.svg',
+            'V.S.':              'v.s./vs zoom.svg',
+            'Tumbleweed':          'tumbleweed/tumbleweed zoom.svg',
+            'Magic Carpet':      'magic_carpet/carpet zoom.svg',
+            'Wind Staff':        'wind_staff/staff zoom.svg',
+            };
+
+
+
+
       ITEM_LIST.forEach(item => {
 
-        //TODO, need add more xxx_zoom.svg to mongodb
-        this.load.svg(item.name.toLowerCase(), encodeURIComponent(`items/${item.name.toLowerCase()}_zoom.svg`));
+        this.load.svg(item.name.toLowerCase(), encodeURIComponent(ITEM_ASSET_MAP[item.name]));
       })
       Characters.forEach(char => {
         this.load.svg(char.name.toLowerCase(), encodeURIComponent(`character_asset/${char.name.toLowerCase()}Front.svg`));
