@@ -785,7 +785,7 @@ server.listen(PORT, async () => {
       }
     });
     //TODO, temporarily fix initializeGui cause the scene couldn't be loaded
-  }, 60000); // Sync every 60 seconds
+  }, 10000); // Sync every 60 seconds
 });
 
 // Database connection removed for testing purposes
