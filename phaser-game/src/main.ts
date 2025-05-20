@@ -8,7 +8,7 @@ import { EmptyTest } from "./scenes/EmptyTest";
 import { MapScene } from "./scenes/MapScene";
 import { HostJoinWorkaround } from "./scenes/HostJoinWorkaround";
 import { BattleScene } from "./scenes/BattleScene";
-import BattleResultScene  from "./scenes/BattleResultScene";
+import BattleResultScene from "./scenes/BattleResultScene";
 import { Gui } from "./scenes/Gui";
 
 const config = {
@@ -21,7 +21,7 @@ const config = {
   backgroundColor: "#000000",
   pixelArt: false,
   scene: [
-    // EmptyTest,
+    EmptyTest,
     // Start,
     // CutScene,
     // LoadingScreen,
@@ -29,21 +29,21 @@ const config = {
     // Host,
     // Code,
     // Room,
-    HostJoinWorkaround,
-    CharacterSelection,
-    // // SettingsMenu,
-    Gui,
-    MapScene,
+    // HostJoinWorkaround,
+    // CharacterSelection,
+    // // // SettingsMenu,
+    // // Gui,
+    // MapScene,
     BattleScene,
-    BattleResultScene,
+    // BattleResultScene,
   ],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
   loader: {
-    crossOrigin: 'anonymous'
-  }
+    crossOrigin: "anonymous",
+  },
 };
 
 new Phaser.Game(config);

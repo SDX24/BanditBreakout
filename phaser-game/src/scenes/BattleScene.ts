@@ -3,31 +3,51 @@ import { Characters } from "../../../backend/areas/Types/Character";
 import WebFontLoader from "webfontloader";
 
 export class BattleScene extends Phaser.Scene {
-  private playerName: string = "Buckshot";
+  private playerName: string = "Scout";
   private enemyName: string = "Wim";
 
   private fontsReady = false;
+
+  // Add character settings for battle scene
+  private characterSettings: {
+    [key: string]: { scale: number; offsetY: number };
+  } = {
+    buckshot: { scale: 0.8, offsetY: 0 },
+    serpy: { scale: 0.7, offsetY: -30 },
+    grit: { scale: 0.75, offsetY: -20 },
+    solstice: { scale: 0.65, offsetY: -50 },
+    scout: { scale: 0.7, offsetY: -30 },
+  };
 
   constructor() {
     super("BattleScene");
   }
 
-  init(data: { playerId?: number; enemyId?: number }) {
-    if (data.playerId) {
-      const playerChar = Characters.find((c) => c.id === data.playerId);
+  init(data: {
+    playerId?: number;
+    enemyId?: number;
+    selectedCharacterId?: number;
+    enemyCharacterId?: number;
+  }) {
+    // For player
+    const playerCharId = data.selectedCharacterId;
+    if (typeof playerCharId === "number") {
+      const playerChar = Characters.find((c) => c.id === playerCharId);
       if (playerChar) this.playerName = playerChar.name;
     }
-    if (data.enemyId) {
-      const enemyChar = Characters.find((c) => c.id === data.enemyId);
+    // For enemy
+    const enemyCharId = data.enemyCharacterId;
+    if (typeof enemyCharId === "number") {
+      const enemyChar = Characters.find((c) => c.id === enemyCharId);
       if (enemyChar) this.enemyName = enemyChar.name;
     }
   }
 
   preload() {
-
-    const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
-    this.load.setBaseURL(serverUrl);          
-    this.load.setPath('assets');      
+    const serverUrl =
+      import.meta.env.VITE_SERVER_URL || "http://localhost:3000";
+    this.load.setBaseURL(serverUrl);
+    this.load.setPath("assets");
 
     // - battle_screen/shield.png
     // - battle_screen/victory.svg
@@ -44,10 +64,37 @@ export class BattleScene extends Phaser.Scene {
     this.load.image("health-back-bar 2", "battle_scene/backing-green.png");
     this.load.svg("banner 1", "battle_scene/banner.svg");
     this.load.svg("banner 2", "battle_scene/banner.svg");
-    this.load.svg("buckshot-back", "battle_scene/buckshot-back.svg");
-    this.load.svg("wim-front", "battle_scene/wim-front.svg");
+    // this.load.svg("buckshot-back", "battle_scene/buckshot-back.svg");
+    // this.load.svg("wim-front", "battle_scene/wim-front.svg");
     this.load.svg("attack-button", "battle_scene/health backing.svg");
     this.load.svg("defend-button", "battle_scene/health backing.svg");
+
+    const CHARACTER_ASSET_MAP: Record<string, string> = {
+      "Buckshot-back": "characterSVGs/Buckshot/005-cropped (1).svg",
+      "Grit-back": "characterSVGs/Grit/006-cropped (1).svg",
+      "Serpy-back": "characterSVGs/Serpy/006-cropped (4).svg",
+      "Solstice-back": "characterSVGs/Solstice/006-cropped (5).svg",
+      "Scout-back": "characterSVGs/Scout/006-cropped (3).svg",
+    };
+
+    Characters.forEach((char) => {
+      // Load front view
+      this.load.svg(
+        char.name.toLowerCase(),
+        encodeURIComponent(
+          `character_asset/${char.name.toLowerCase()}Front.svg`
+        )
+      );
+
+      // Load back view - make sure the key matches what we use in create()
+      const backKey = `${char.name.toLowerCase()}-back`;
+      const backAsset = CHARACTER_ASSET_MAP[`${char.name}-back`];
+      if (backAsset) {
+        this.load.svg(backKey, encodeURIComponent(backAsset));
+      } else {
+        console.warn(`No back asset found for character: ${char.name}`);
+      }
+    });
 
     WebFontLoader.load({
       custom: {
@@ -149,24 +196,42 @@ export class BattleScene extends Phaser.Scene {
     });
     bannerTwoContainer.add(bannerTextTwo);
 
-    const buckshotContainer = this.add.container(800, 700);
-    // Add shadow for Buckshot
-    const buckshotShadow = this.add.ellipse(-50, 250, 450, 90, 0x000000, 0.4);
-    buckshotContainer.add(buckshotShadow);
+    const playerContainer = this.add.container(800, 700);
+    // Add shadow for player character
+    const playerShadow = this.add.ellipse(-50, 250, 450, 90, 0x000000, 0.4);
+    playerContainer.add(playerShadow);
 
-    const buckshot = this.add.image(0, 0, "buckshot-back");
-    buckshot.setDisplaySize(500, 600);
-    buckshotContainer.add(buckshot);
+    // Debug logs
+    const backKey = `${this.playerName.toLowerCase()}-back`;
+    console.log("Loading back image with key:", backKey);
+    console.log("Available texture keys:", this.textures.list);
 
-    const wimContainer = this.add.container(1430, 300);
-    // Add shadow for Wim
-    const wimShadow = this.add.ellipse(-5, 230, 300, 40, 0x000000, 0.4);
+    // Display player character (back view) with similar scaling
+    const playerChar = this.add.image(0, 0, backKey);
+    const playerSettings = this.characterSettings[
+      this.playerName.toLowerCase()
+    ] || { scale: 0.7, offsetY: 0 };
+    const baseSize = 600;
+    const playerScaledSize = baseSize * playerSettings.scale * 1.2; // Slightly larger for player
+    playerChar.setDisplaySize(playerScaledSize * 0.8, playerScaledSize);
+    playerChar.setY(playerChar.y + playerSettings.offsetY);
+    playerContainer.add(playerChar);
 
-    wimContainer.add(wimShadow);
+    const enemyContainer = this.add.container(1430, 300);
+    // Add shadow for enemy character
+    const enemyShadow = this.add.ellipse(-5, 230, 300, 40, 0x000000, 0.4);
+    enemyContainer.add(enemyShadow);
 
-    const wim = this.add.image(0, 0, "wim-front");
-    wim.setDisplaySize(250, 500);
-    wimContainer.add(wim);
+    // Display enemy character (front view)
+    const enemyChar = this.add.image(-20, 100, this.enemyName.toLowerCase());
+    const settings = this.characterSettings[this.enemyName.toLowerCase()] || {
+      scale: 0.7,
+      offsetY: 0,
+    };
+    const scaledSize = baseSize * settings.scale;
+    enemyChar.setDisplaySize(scaledSize * 0.8, scaledSize);
+    enemyChar.setY(enemyChar.y + settings.offsetY);
+    enemyContainer.add(enemyChar);
 
     const attackButtonContainer = this.add.container(300, 900);
     const attackButton = this.add.image(0, 0, "attack-button");
