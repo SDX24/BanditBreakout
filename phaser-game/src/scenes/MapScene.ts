@@ -387,6 +387,7 @@ export class MapScene extends Phaser.Scene {
           gameState.players.forEach((playerData: any) => {
             const { id, position, status, character_id } = playerData;
             console.log(`character_id: ${character_id}`);
+            this.initializeGui(character_id);
             
             // Update the player to character ID mapping
             this.playerToCharacterMap.set(id, character_id);
@@ -531,6 +532,15 @@ export class MapScene extends Phaser.Scene {
       }
     }
     
+    private initializeGui(characterId: number) {
+      this.scene.launch("Gui", {
+        gameId: this.gameId,
+        playerId: this.playerId,
+        characterId: characterId
+      });
+      this.scene.bringToTop("Gui");
+    }
+
     // Show roll dice button
     private showRollDiceButton() {
       // Get the scene dimensions

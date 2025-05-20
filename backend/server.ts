@@ -268,7 +268,7 @@ io.on('connection', (socket) => {
         const tile = activeGames[gameId].map.tiles[position];
         if (tile.event.type !== 0) { // Assuming 0 is 'NothingEvent'
           tile.event.onStep(playerId, activeGames[gameId]);
-          io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type });
+          io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type, gameId });
         }
       }
     } catch (error) {
@@ -295,7 +295,7 @@ io.on('connection', (socket) => {
         const tile = activeGames[gameId].map.tiles[newPosition];
         if (tile.event.type !== 0) {
           tile.event.onStep(playerId, activeGames[gameId]);
-          io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type });
+          io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type, gameId });
         }
       }
     } catch (error) {
@@ -372,7 +372,7 @@ io.on('connection', (socket) => {
         const tile = activeGames[gameId].map.tiles[newPosition];
         if (tile.event.type !== 0) {
           tile.event.onStep(playerId, activeGames[gameId]);
-          io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type });
+          io.to(gameId).emit('tileEventTriggered', { playerId, eventType: tile.event.type, gameId });
           console.log(`Tile event triggered for player ${playerId}: type ${tile.event.type}`);
         }
         if (callback) callback({ success: true, roll: result.roll, position: newPosition });
@@ -455,6 +455,17 @@ io.on('connection', (socket) => {
     } catch (error) {
       socket.emit('error', { message: 'Failed to update resource' });
       console.error('Error updating resource:', error);
+    }
+  });
+
+  socket.on('tileEventTriggered', (playerId: number, eventType: number, gameId: string) => {
+    if ([1, 7, 8].includes(eventType) && activeGames[gameId]) {
+      const player = activeGames[gameId].players.find(p => p.id === playerId);
+      if (player) {
+        const gold = player.getGold ? player.getGold() : (player.status?.gold ?? 0);
+        io.to(gameId).emit('statusChange', {gameId, playerId, resource: 'gold', value: gold });
+        console.log(`statusChange emitted for player ${playerId} (eventType ${eventType}) with gold: ${gold}`);
+      }
     }
   });
 
