@@ -385,20 +385,29 @@ export class MapScene extends Phaser.Scene {
           
           // Update all player positions based on the game state
           gameState.players.forEach((playerData: any) => {
-            const { id, position, status, character_id } = playerData;
+            const { id, position, status, character_id, pendingMove } = playerData;
             console.log(`character_id: ${character_id}`);
-            
             
             // Update the player to character ID mapping
             this.playerToCharacterMap.set(id, character_id);
 
-            //TODO, update only local player to make it takes little time to refresh
-            if ( id === this.playerId ) {
-              //TODO BUGFIX FREEZES THE GAME AFTER A BIT
-              this.initializeGui(character_id);
+            // For the local player, initialize Gui only once and update its status
+            if (id === this.playerId) {
+              if (!this.guiInitialized) {
+                this.initializeGui(character_id);
+                this.guiInitialized = true;
+              }
+              // Send update to Gui scene with latest status
+              const guiScene = this.scene.get("Gui");
+              if (guiScene && guiScene.scene.isActive()) {
+                guiScene.events.emit('updatePlayerStatus', {
+                  gold: status.gold,
+                  health: status.health,
+                  effects: status.effects,
+                  pendingMove: pendingMove ? { stepsRemaining: pendingMove.stepsRemaining } : null
+                });
+              }
             }
-
-
             
             // Move player to the correct position using character_id to get the sprite
             this.movePlayerTo(position, undefined, id, character_id);
@@ -424,7 +433,6 @@ export class MapScene extends Phaser.Scene {
             
             // Optionally, update UI elements related to player status (gold, health, effects)
             console.log(`Player ${id} status - Gold: ${status.gold}, Health: ${status.health}, Effects: ${status.effects}`);
-            // TODO: Update UI elements for gold, health, and effects if needed
           });
           
           // Optionally, process tile information if needed for UI updates
@@ -540,13 +548,20 @@ export class MapScene extends Phaser.Scene {
       }
     }
     
+    private guiInitialized: boolean = false;
     private initializeGui(characterId: number) {
-      this.scene.launch("Gui", {
-        gameId: this.gameId,
-        playerId: this.playerId,
-        characterId: characterId
-      });
-      this.scene.bringToTop("Gui");
+      if (!this.guiInitialized) {
+        this.scene.launch("Gui", {
+          gameId: this.gameId,
+          playerId: this.playerId,
+          characterId: characterId
+        });
+        this.scene.bringToTop("Gui");
+        this.guiInitialized = true;
+        console.log("Gui scene initialized.");
+      } else {
+        console.log("Gui already initialized, skipping launch.");
+      }
     }
 
     // Show roll dice button

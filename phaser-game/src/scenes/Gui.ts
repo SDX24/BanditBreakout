@@ -75,63 +75,67 @@ export class Gui extends Phaser.Scene {
     }
   
     create(data: { gameId: string, playerId: number, characterId: number }) {
-      this.playerData = data
-      let characterId = this.playerData.characterId
-      characterId--
-        const board = this.add.image(290, 930, "board");
-        board.setDisplaySize(board.width * 0.3, board.height * 0.3);
-        
-        const backing = this.add.image(250, 930, "backing");
-        backing.setDisplaySize(backing.width * 0.2, backing.height * 0.2);
-        
-        const iconX = 140;
-        const iconY = 915;
-        const circleRadius = 80;
+      this.playerData = data;
+      let characterId = this.playerData.characterId;
+      characterId--;
+      const board = this.add.image(290, 930, "board");
+      board.setDisplaySize(board.width * 0.3, board.height * 0.3);
+      
+      const backing = this.add.image(250, 930, "backing");
+      backing.setDisplaySize(backing.width * 0.2, backing.height * 0.2);
+      
+      const iconX = 140;
+      const iconY = 915;
+      const circleRadius = 80;
 
-        const charName = Characters[characterId]?.name?.toLowerCase() ?? Characters[0].name.toLowerCase();
-        const headSettings = this.headSettings[charName];
+      const charName = Characters[characterId]?.name?.toLowerCase() ?? Characters[0].name.toLowerCase();
+      const headSettings = this.headSettings[charName];
 
-        // Add character head image with settings
-        this.charIcon = this.add.image(iconX + headSettings.x, iconY + headSettings.y, charName);
-        this.charIcon.setDisplaySize(headSettings.scale, headSettings.scale * 1.3);
+      // Add character head image with settings
+      this.charIcon = this.add.image(iconX + headSettings.x, iconY + headSettings.y, charName);
+      this.charIcon.setDisplaySize(headSettings.scale, headSettings.scale * 1.3);
 
-        // Create a circular mask for the icon
-        this.charMask = this.add.circle(iconX, iconY, circleRadius, 0xffffff, 1).setVisible(false);
-        const mask = this.charMask.createGeometryMask();
-        this.charIcon.setMask(mask);
+      // Create a circular mask for the icon
+      this.charMask = this.add.circle(iconX, iconY, circleRadius, 0xffffff, 1).setVisible(false);
+      const mask = this.charMask.createGeometryMask();
+      this.charIcon.setMask(mask);
 
-        const frame = this.add.image(iconX + 112, iconY + 15, "frame");
-        frame.setDisplaySize(frame.width * 0.21, frame.height * 0.21);
+      const frame = this.add.image(iconX + 112, iconY + 15, "frame");
+      frame.setDisplaySize(frame.width * 0.21, frame.height * 0.21);
 
-        const banner = this.add.image(iconX + 155, iconY + 10, "banner");
-        banner.setDisplaySize(banner.width * 0.3, banner.height * 0.3);
+      const banner = this.add.image(iconX + 155, iconY + 10, "banner");
+      banner.setDisplaySize(banner.width * 0.3, banner.height * 0.3);
 
-        const bannerText = this.add.text(iconX, iconY + 75, Characters[characterId].name, {
-          fontFamily: "WBB",
-          fontSize: 32,
-          color: "#000000",
-          align: "center",
+      const bannerText = this.add.text(iconX, iconY + 75, Characters[characterId].name, {
+        fontFamily: "WBB",
+        fontSize: 32,
+        color: "#000000",
+        align: "center",
       });
-        bannerText.setOrigin(0.5, 0.5);
+      bannerText.setOrigin(0.5, 0.5);
 
-        
+      const coinIcon = this.add.image(iconX + 100, iconY - 45, "coin_icon");
+      coinIcon.setDisplaySize(coinIcon.width * 0.03, coinIcon.height * 0.03);
 
-        const coinIcon = this.add.image(iconX + 100, iconY - 45, "coin_icon");
-        coinIcon.setDisplaySize(coinIcon.width * 0.03, coinIcon.height * 0.03);
+      this.coinText = this.add.text(iconX + 135, iconY - 45, "0", {
+        fontFamily: "Wellfleet",
+        fontSize: 40,
+        color: "#492807",
+        align: "center",
+      });
+      this.coinText.setOrigin(0.5, 0.5);
 
-        this.coinText = this.add.text(iconX + 135, iconY - 45, "0", {
-            fontFamily: "Wellfleet",
-            fontSize: 40,
-            color: "#492807",
-            align: "center",
-        });
-        this.coinText.setOrigin(0.5, 0.5);
+      const guiContainer = this.add.container(0, 0);
+      guiContainer.add([board, backing, this.charIcon, frame, banner, bannerText, coinIcon, this.coinText, ...this.itemIcons]);
 
-        const guiContainer = this.add.container(0, 0);
-        guiContainer.add([board, backing, this.charIcon, frame, banner, bannerText, coinIcon, this.coinText, ...this.itemIcons]);
+      // Listen for updates to player status
+      this.events.on('updatePlayerStatus', (statusData: any) => {
+        console.log('Updating Gui with new player status:', statusData);
+        this.coinText.setText(statusData.gold.toString());
+        // Additional UI updates for health, effects, etc., can be added here
+      }, this);
 
-
-        this.addListeners();
+      this.addListeners();
     }
 
 private addListeners() {
