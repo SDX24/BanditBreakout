@@ -112,7 +112,7 @@ export class ItemEvent implements IEvent {
         const player = game.players.find(player => player.id === playerId);
          if (player) {
              player.inventory.obtainRandom()
-             let latestAddition = player.inventory.items.length
+             let latestAddition = player.inventory.items.length - 1
              let newItem = player.inventory.items[latestAddition]
              console.log(`Player ${playerId} found an item: ${newItem}`);
          }

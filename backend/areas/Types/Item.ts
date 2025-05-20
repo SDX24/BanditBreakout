@@ -257,16 +257,16 @@ export class ItemFactory {
     public static createItem(type: number, player: Player): IBaseItem {
         switch (type) {
             case 0: return new LassoItem(player);
-            // case 1: return new ShovelItem();
-            // case 2: return new VestItem();
-            // case 3: return new PoisonCrossbowItem();
-            // case 4: return new MirageTeleporterItem();
-            // case 5: return new CursedCoffinItem();
-            // case 6: return new RiggedDiceItem();
-            // case 7: return new VSItem();
+            case 1: return new ShovelItem(player);
+            case 2: return new VestItem(player);
+            case 3: return new PoisonCrossbowItem(player);
+            case 4: return new MirageTeleporterItem(player);
+            case 5: return new CursedCoffinItem(player);
+            case 6: return new RiggedDiceItem(player);
+            case 7: return new VSItem(player);
             case 8: return new TumbleweedItem(player);
-            // case 9: return new MagicCarpetItem();
-            // case 10: return new WindStaffItem();
+            case 9: return new MagicCarpetItem(player);
+            case 10: return new WindStaffItem(player);
             default: return new TumbleweedItem(player);
         }
     }

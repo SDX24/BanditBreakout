@@ -462,20 +462,33 @@ io.on('connection', (socket) => {
     io.to(gameId).emit('tileEventTriggered', { playerId, eventType, gameId });
 
     // EVENTS 178
-    if ([1, 7, 8].includes(eventType) && activeGames[gameId]) {
+    const player = activeGames[gameId].players.find(p => p.id === playerId);
+    if (activeGames[gameId] && player) {
+      
+      if (eventType === 7 || eventType === 8 || eventType === 1) {
       try {
-
-        const player = activeGames[gameId].players.find(p => p.id === playerId);
-        if (player) {
           const gold = player.getGold ? player.getGold() : (player.status?.gold ?? 0);
           io.to(gameId).emit('statusChange', {gameId, playerId, resource: 'gold', value: gold });
           console.log(`statusChange emitted for player ${playerId} (eventType ${eventType}) with gold: ${gold}`);
-        }
+        
       } catch (error) {
         socket.emit('error', { message: 'Failed to emit tile event' });
         console.error('Error emitting tile event:', error);
       }
+    }
+
+      if (eventType === 4) {
+        try {
+          const latestItem = player.inventory.items[player.inventory.items.length - 1];
+          io.to(gameId).emit('statusChange', {gameId, playerId, resource: 'item', value: latestItem?.id });
+          console.log(`statusChange emitted for player ${playerId} (eventType ${eventType}) with item: ${latestItem?.id}`);
+        }
+        catch (error) {
+          socket.emit('error', { message: 'Failed to emit tile event' });
+          console.error('Error emitting tile event:', error);
+        }
       }
+    }
     }
 
   // Handle game start request (from host)

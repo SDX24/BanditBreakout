@@ -9,9 +9,8 @@ import { SocketService } from "../services/SocketService";
 export class Gui extends Phaser.Scene {
     private socket: any;
     private playerData: any
-    private itemIndex: number = 8;
+    private itemOffset = 30;
     private itemIcons: Phaser.GameObjects.Image[] = [];
-    private nextItemIndex: number = 8;
     private charIcon!: Phaser.GameObjects.Image;
     private charCircle!: Phaser.GameObjects.Graphics;
     private charMask!: Phaser.GameObjects.Arc;
@@ -120,7 +119,6 @@ export class Gui extends Phaser.Scene {
         const coinIcon = this.add.image(iconX + 100, iconY - 45, "coin_icon");
         coinIcon.setDisplaySize(coinIcon.width * 0.03, coinIcon.height * 0.03);
 
-        //socketio player money here
         this.coinText = this.add.text(iconX + 135, iconY - 45, "0", {
             fontFamily: "Wellfleet",
             fontSize: 40,
@@ -129,17 +127,6 @@ export class Gui extends Phaser.Scene {
         });
         this.coinText.setOrigin(0.5, 0.5);
 
-        // socketIo here
-        const item = ITEM_LIST[this.itemIndex];
-        const itemIcon = this.add.image(iconX + 150, iconY + 30, item.name.toLowerCase());
-        itemIcon.setDisplaySize(itemIcon.width * 0.1, itemIcon.height * 0.1);
-        itemIcon.setInteractive({ useHandCursor: true });
-        this.itemIcons.push(itemIcon);
-
-        itemIcon.on('pointerdown', () => {
-            this.addNextItemIcon();
-        });
-
         const guiContainer = this.add.container(0, 0);
         guiContainer.add([board, backing, this.charIcon, frame, banner, bannerText, coinIcon, this.coinText, ...this.itemIcons]);
 
@@ -147,34 +134,44 @@ export class Gui extends Phaser.Scene {
         this.addListeners();
     }
 
-
 private addListeners() {
   this.socket = SocketService.getInstance();
   this.socket.on("statusChange", (data: { gameId: string, playerId: number, resource: string, value: number }) => {
-      if (data.playerId === this.playerData.playerId && data.gameId === this.playerData.gameId && data.resource === 'gold') {
+      if (data.playerId === this.playerData.playerId && data.gameId === this.playerData.gameId) {
+        if (data.resource === "gold") {
           this.coinText.setText(data.value.toString());
+        } else if (data.resource === "item") {
+          this.addNextItemIcon(data.value);
+        }
       }
   });
 }
-    private addNextItemIcon() {
+    private addNextItemIcon(index: number) {
 
-      const item = ITEM_LIST[this.nextItemIndex];
-      const newIcon = this.add.image(240, 915, item.name.toLowerCase());
-      newIcon.setDisplaySize(newIcon.width * 0.1, newIcon.height * 0.1);
+      const item = ITEM_LIST[index];
+      if (!item) {
+        console.warn(`Item with index ${index} not found in ITEM_LIST`);
+        return;
+      }
+      const newIcon = this.add.image(240 + this.itemOffset, 935, item.name.toLowerCase());
+      newIcon.setDisplaySize(newIcon.width * 0.09, newIcon.height * 0.09);
       newIcon.setInteractive({ useHandCursor: true });
 
-      // Optional: allow chaining more items on click
       newIcon.on('pointerdown', () => {
-          this.addNextItemIcon();
+          this.socket.emit("useItem", { gameId: this.playerData.gameId, playerId: this.playerData.playerId, itemId: index });
+          newIcon.destroy();
+          this.itemIcons = this.itemIcons.filter(icon => icon !== newIcon);
+          this.itemOffset -= 70;
       });
 
       this.itemIcons.push(newIcon);
-
-      // Add to container if you want them grouped
+      
       const guiContainer = this.children.getByName('guiContainer') as Phaser.GameObjects.Container;
       if (guiContainer) {
           guiContainer.add(newIcon);
       }
+
+      this.itemOffset += 70; 
   }
 
 }
