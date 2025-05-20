@@ -2,18 +2,19 @@
 import { ITEM_LIST } from "../../../backend/areas/Types/Item";
 import { Characters } from "../../../backend/areas/Types/Character";
 import WebFontLoader from "webfontloader";
+import { SocketService } from "../services/SocketService";
 
 
 
 export class Gui extends Phaser.Scene {
-  
-    private charIndex: number = 0;
-    private itemIndex: number = 8;
+    private socket: any;
+    private playerData: any
+    private itemOffset = 30;
     private itemIcons: Phaser.GameObjects.Image[] = [];
-    private nextItemIndex: number = 8;
     private charIcon!: Phaser.GameObjects.Image;
     private charCircle!: Phaser.GameObjects.Graphics;
     private charMask!: Phaser.GameObjects.Arc;
+    private coinText!: Phaser.GameObjects.Text;
 
     private headSettings: { [key: string]: { x: number; y: number; scale: number } } = {
       "buckshot": { x: 20, y: 100, scale: 250 },
@@ -73,7 +74,10 @@ export class Gui extends Phaser.Scene {
           });
     }
   
-    create() {
+    create(data: { gameId: string, playerId: number, characterId: number }) {
+      this.playerData = data
+      let characterId = this.playerData.characterId
+      characterId--
         const board = this.add.image(290, 930, "board");
         board.setDisplaySize(board.width * 0.3, board.height * 0.3);
         
@@ -84,8 +88,7 @@ export class Gui extends Phaser.Scene {
         const iconY = 915;
         const circleRadius = 80;
 
-        // SOCKET IO CHARACTER HERE
-        const charName = Characters[this.charIndex].name.toLowerCase();
+        const charName = Characters[characterId]?.name?.toLowerCase() ?? Characters[0].name.toLowerCase();
         const headSettings = this.headSettings[charName];
 
         // Add character head image with settings
@@ -103,62 +106,72 @@ export class Gui extends Phaser.Scene {
         const banner = this.add.image(iconX + 155, iconY + 10, "banner");
         banner.setDisplaySize(banner.width * 0.3, banner.height * 0.3);
 
-        // SOCKET IO CHARACTER HERE
-        const bannerText = this.add.text(iconX, iconY + 75, Characters[this.charIndex].name, {
-            fontFamily: "WBB",
-            fontSize: 32,
-            color: "#000000",
-            align: "center",
-        });
+        const bannerText = this.add.text(iconX, iconY + 75, Characters[characterId].name, {
+          fontFamily: "WBB",
+          fontSize: 32,
+          color: "#000000",
+          align: "center",
+      });
         bannerText.setOrigin(0.5, 0.5);
 
-        const coinIcon = this.add.image(iconX + 100, iconY - 50, "coin_icon");
+        
+
+        const coinIcon = this.add.image(iconX + 100, iconY - 45, "coin_icon");
         coinIcon.setDisplaySize(coinIcon.width * 0.03, coinIcon.height * 0.03);
 
-        //socketio player money here
-        const coinText = this.add.text(iconX + 135, iconY - 50, "0", {
+        this.coinText = this.add.text(iconX + 135, iconY - 45, "0", {
             fontFamily: "Wellfleet",
             fontSize: 40,
             color: "#492807",
             align: "center",
         });
-        coinText.setOrigin(0.5, 0.5);
-
-        // socketIo here
-        const item = ITEM_LIST[this.itemIndex];
-        const itemIcon = this.add.image(iconX + 150, iconY + 30, item.name.toLowerCase());
-        itemIcon.setDisplaySize(itemIcon.width * 0.1, itemIcon.height * 0.1);
-        itemIcon.setInteractive({ useHandCursor: true });
-        this.itemIcons.push(itemIcon);
-
-        itemIcon.on('pointerdown', () => {
-            this.addNextItemIcon();
-        });
+        this.coinText.setOrigin(0.5, 0.5);
 
         const guiContainer = this.add.container(0, 0);
-        guiContainer.add([board, backing, this.charIcon, frame, banner, bannerText, coinIcon, coinText, ...this.itemIcons]);
+        guiContainer.add([board, backing, this.charIcon, frame, banner, bannerText, coinIcon, this.coinText, ...this.itemIcons]);
+
+
+        this.addListeners();
     }
 
-    //socketio items here, also adjust numbers
+private addListeners() {
+  this.socket = SocketService.getInstance();
+  this.socket.on("statusChange", (data: { gameId: string, playerId: number, resource: string, value: number }) => {
+      if (data.playerId === this.playerData.playerId && data.gameId === this.playerData.gameId) {
+        if (data.resource === "gold") {
+          this.coinText.setText(data.value.toString());
+        } else if (data.resource === "item") {
+          this.addNextItemIcon(data.value);
+        }
+      }
+  });
+}
+    private addNextItemIcon(index: number) {
 
-    private addNextItemIcon() {
-
-      const item = ITEM_LIST[this.nextItemIndex];
-      const newIcon = this.add.image(240, 915, item.name.toLowerCase());
-      newIcon.setDisplaySize(newIcon.width * 0.1, newIcon.height * 0.1);
+      const item = ITEM_LIST[index];
+      if (!item) {
+        console.warn(`Item with index ${index} not found in ITEM_LIST`);
+        return;
+      }
+      const newIcon = this.add.image(240 + this.itemOffset, 935, item.name.toLowerCase());
+      newIcon.setDisplaySize(newIcon.width * 0.09, newIcon.height * 0.09);
       newIcon.setInteractive({ useHandCursor: true });
 
-      // Optional: allow chaining more items on click
       newIcon.on('pointerdown', () => {
-          this.addNextItemIcon();
+          this.socket.emit("useItem", { gameId: this.playerData.gameId, playerId: this.playerData.playerId, itemId: index });
+          newIcon.destroy();
+          this.itemIcons = this.itemIcons.filter(icon => icon !== newIcon);
+          this.itemOffset -= 70;
       });
 
       this.itemIcons.push(newIcon);
-
-      // Add to container if you want them grouped
+      
       const guiContainer = this.children.getByName('guiContainer') as Phaser.GameObjects.Container;
       if (guiContainer) {
           guiContainer.add(newIcon);
       }
+
+      this.itemOffset += 70; 
   }
+
 }

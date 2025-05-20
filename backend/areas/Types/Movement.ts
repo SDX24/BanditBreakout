@@ -22,8 +22,6 @@ export default class Move {
             this.game.map.tiles[currentPos].removePlayer(this.player.id);
             this.game.map.tiles[tile].addPlayer(this.player.id);
             
-            this.game.map.tiles[tile].getEvent().onStep(this.player.id, this.game);
-            
             console.log(`Moved player ${this.player.id} to tile ${tile}`);
         } else {
             console.error(`Player ${this.player.id} not found on the map. Dead or not in the game.`);

@@ -112,7 +112,7 @@ export class ItemEvent implements IEvent {
         const player = game.players.find(player => player.id === playerId);
          if (player) {
              player.inventory.obtainRandom()
-             let latestAddition = player.inventory.items.length
+             let latestAddition = player.inventory.items.length - 1
              let newItem = player.inventory.items[latestAddition]
              console.log(`Player ${playerId} found an item: ${newItem}`);
          }
@@ -149,19 +149,17 @@ export class SlotsEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        // TODO FIX LATER
-        // const player = game.players.find(player => player.id === playerId);
-        // if (player) {
-        //     const amount = Math.floor(Math.random() * 61) - 10;
-        //     if (amount >= 0) {
-        //         player.gold(`+${amount}`)
-        //     } else {
-        //         for (let i = 0; player.getGold() > 0; i++) {
-        //             player.gold(`-${i}`)
-        //         }
-        //     }
-        //     console.log(`Player ${playerId} played slots and ${amount >= 0 ? 'won' : 'lost'} ${Math.abs(amount)} gold.`);
-        // }
+        const player = game.players.find(player => player.id === playerId);
+        if (player) {
+            // Give between -10 and 50 gold, but don't let gold go below 0
+            let amount = Math.floor(Math.random() * 61) - 10; // -10 to 50
+            let newGold = player.getGold() + amount;
+            if (newGold < 0) {
+                amount = -player.getGold(); // Remove all gold if would go below 0
+            }
+            player.gold(`${amount >= 0 ? '+' : ''}${amount}`);
+            console.log(`Player ${playerId} played slots and ${amount >= 0 ? 'won' : 'lost'} ${Math.abs(amount)} gold.`);
+        }
         console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
     }
 }
@@ -179,7 +177,13 @@ export class MiningEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
+        const player = game.players.find(player => player.id === playerId);
+        if (player) {
+            // Give between 10 and 30 gold
+            const amount = Math.floor(Math.random() * 21) + 10; // 10 to 30
+            player.gold(`+${amount}`);
+            console.log(`Player ${playerId} mined and gained ${amount} gold.`);
+        }
     }
 }
 
