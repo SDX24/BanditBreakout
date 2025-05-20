@@ -117,11 +117,11 @@ export class Gui extends Phaser.Scene {
 
         
 
-        const coinIcon = this.add.image(iconX + 100, iconY - 50, "coin_icon");
+        const coinIcon = this.add.image(iconX + 100, iconY - 45, "coin_icon");
         coinIcon.setDisplaySize(coinIcon.width * 0.03, coinIcon.height * 0.03);
 
         //socketio player money here
-        this.coinText = this.add.text(iconX + 135, iconY - 50, "0", {
+        this.coinText = this.add.text(iconX + 135, iconY - 45, "0", {
             fontFamily: "Wellfleet",
             fontSize: 40,
             color: "#492807",
