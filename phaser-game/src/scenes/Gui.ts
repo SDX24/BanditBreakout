@@ -121,7 +121,7 @@ export class Gui extends Phaser.Scene {
         coinIcon.setDisplaySize(coinIcon.width * 0.03, coinIcon.height * 0.03);
 
         //socketio player money here
-        this.coinText = this.add.text(iconX + 135, iconY - 50, "10", {
+        this.coinText = this.add.text(iconX + 135, iconY - 50, "0", {
             fontFamily: "Wellfleet",
             fontSize: 40,
             color: "#492807",
@@ -142,18 +142,20 @@ export class Gui extends Phaser.Scene {
 
         const guiContainer = this.add.container(0, 0);
         guiContainer.add([board, backing, this.charIcon, frame, banner, bannerText, coinIcon, this.coinText, ...this.itemIcons]);
+
+
         this.addListeners();
     }
 
 
-    private addListeners() {
-      this.socket = SocketService.getInstance();
-      this.socket.on("statusChange", (gameId: string, playerId: number, resource: string, value: number ) => {
-          if (playerId === this.playerData.playerId && gameId === this.playerData.gameId && resource === 'gold') {
-              this.coinText.setText(value.toString());
-          }
-      });
-  }
+private addListeners() {
+  this.socket = SocketService.getInstance();
+  this.socket.on("statusChange", (data: { gameId: string, playerId: number, resource: string, value: number }) => {
+      if (data.playerId === this.playerData.playerId && data.gameId === this.playerData.gameId && data.resource === 'gold') {
+          this.coinText.setText(data.value.toString());
+      }
+  });
+}
     private addNextItemIcon() {
 
       const item = ITEM_LIST[this.nextItemIndex];

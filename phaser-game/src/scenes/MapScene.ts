@@ -387,6 +387,7 @@ export class MapScene extends Phaser.Scene {
           gameState.players.forEach((playerData: any) => {
             const { id, position, status, character_id } = playerData;
             console.log(`character_id: ${character_id}`);
+            //TODO BUGFIX FREEZES THE GAME AFTER A BIT
             this.initializeGui(character_id);
             
             // Update the player to character ID mapping
@@ -547,7 +548,9 @@ export class MapScene extends Phaser.Scene {
       const { width, height } = this.scale;
       
       // Create a simple button to roll the dice at the bottom-left corner of the scene
-      const button = this.add.text(50, height - 120, 'Roll Dice', { 
+      // const button = this.add.text(50, height - 120, 'Roll Dice', { 
+      //adjusted for testing
+        const button = this.add.text(500, height - 500, 'Roll Dice', { 
         fontSize: '32px', 
         backgroundColor: '#fff', 
         color: '#000', 
