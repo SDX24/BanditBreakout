@@ -537,6 +537,7 @@ io.on('connection', (socket) => {
     if (!game) return;
     const tile = game.map.tiles[tileIndex];
     console.log(`Checking battle on tile ${tileIndex} for player ${playerId}, raw players on tile: ${JSON.stringify(tile.getPlayersOnTile())}`);
+    console.log(`Tile ${tileIndex} details - Index: ${tile.index}, Has Player: ${tile.hasPlayerOnTile}, Event: { Name: ${tile.event.name}, Type: ${tile.event.type}, Description: ${tile.event.description}, Effect: ${tile.event.effect} }, Connections: ${JSON.stringify(tile.connections)}, Front: ${JSON.stringify(tile.front)}, Back: ${JSON.stringify(tile.back)}`);
     const playersOnTile = tile.getPlayersOnTile().filter(id => id !== playerId);
     console.log(`Players on tile after filter (excluding player ${playerId}): ${JSON.stringify(playersOnTile)}`);
     if (playersOnTile.length > 0) {
@@ -544,6 +545,7 @@ io.on('connection', (socket) => {
       const player = game.players.find(p => p.id === playerId);
       const opponent = game.players.find(p => p.id === opponentId);
       if (player && opponent) {
+        console.log(`Battle preparation on tile ${tileIndex} between Player ${playerId} (HP: ${player.status.health}, Gold: ${player.status.gold}) and Player ${opponentId} (HP: ${opponent.status.health}, Gold: ${opponent.status.gold})`);
         console.log(`Battle on tile ${tileIndex} between Player ${playerId} and Player ${opponentId}`);
         game.currentBattle = new Battle(player, opponent);
         const battleResult = game.currentBattle.processTurn();
