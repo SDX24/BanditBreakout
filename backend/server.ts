@@ -784,7 +784,8 @@ server.listen(PORT, async () => {
         console.log(`Periodic game state sync sent for game ${gameId}`);
       }
     });
-  }, 10000); // Sync every 10 seconds
+    //TODO, temporarily fix initializeGui cause the scene couldn't be loaded
+  }, 10000); // Sync every 60 seconds
 });
 
 // Database connection removed for testing purposes
