@@ -131,8 +131,8 @@ private rollDiceNum(): number {
     const envDiceValue = process.env.DICE_ROLL_VALUE;
     if (envDiceValue !== undefined) {
         const parsedValue = parseInt(envDiceValue, 10);
-        if (!isNaN(parsedValue) && parsedValue >= 1 && parsedValue <= 6) {
-            return parsedValue; // Use value from .env if it's a valid dice roll (1-6)
+        if (!isNaN(parsedValue)) {
+            return parsedValue; // Use value from .env if it's a valid number
         } else {
             console.warn(`Invalid DICE_ROLL_VALUE in .env: ${envDiceValue}. Using random value.`);
         }
