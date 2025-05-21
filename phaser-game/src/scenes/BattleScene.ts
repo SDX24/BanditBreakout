@@ -5,6 +5,8 @@ import WebFontLoader from "webfontloader";
 export class BattleScene extends Phaser.Scene {
   private playerName: string = "Scout";
   private enemyName: string = "Wim";
+  private selectedCharacterId = 1;
+  private enemyCharacterId = 2;
 
   private fontsReady = false;
 
@@ -29,6 +31,14 @@ export class BattleScene extends Phaser.Scene {
     selectedCharacterId?: number;
     enemyCharacterId?: number;
   }) {
+    // Store the character IDs
+    if (data.selectedCharacterId) {
+      this.selectedCharacterId = data.selectedCharacterId;
+    }
+    if (data.enemyCharacterId) {
+      this.enemyCharacterId = data.enemyCharacterId;
+    }
+
     // For player
     const playerCharId = data.selectedCharacterId;
     if (typeof playerCharId === "number") {
@@ -69,14 +79,6 @@ export class BattleScene extends Phaser.Scene {
     this.load.svg("attack-button", "battle_scene/health backing.svg");
     this.load.svg("defend-button", "battle_scene/health backing.svg");
 
-    const CHARACTER_ASSET_MAP: Record<string, string> = {
-      "Buckshot-back": "characterSVGs/Buckshot/005-cropped (1).svg",
-      "Grit-back": "characterSVGs/Grit/006-cropped (1).svg",
-      "Serpy-back": "characterSVGs/Serpy/006-cropped (4).svg",
-      "Solstice-back": "characterSVGs/Solstice/006-cropped (5).svg",
-      "Scout-back": "characterSVGs/Scout/006-cropped (3).svg",
-    };
-
     Characters.forEach((char) => {
       // Load front view
       this.load.svg(
@@ -85,16 +87,32 @@ export class BattleScene extends Phaser.Scene {
           `character_asset/${char.name.toLowerCase()}Front.svg`
         )
       );
-
-      // Load back view - make sure the key matches what we use in create()
-      const backKey = `${char.name.toLowerCase()}-back`;
-      const backAsset = CHARACTER_ASSET_MAP[`${char.name}-back`];
-      if (backAsset) {
-        this.load.svg(backKey, encodeURIComponent(backAsset));
-      } else {
-        console.warn(`No back asset found for character: ${char.name}`);
-      }
     });
+
+    this.load.svg(
+      "buckshot-back",
+      encodeURIComponent("characterSVGs/Buckshot/005-cropped (1).svg")
+    );
+
+    this.load.svg(
+      "grit-back",
+      encodeURIComponent("characterSVGs/Grit/006-cropped (1).svg")
+    );
+
+    this.load.svg(
+      "serpy-back",
+      encodeURIComponent("characterSVGs/Serpy/006-cropped (4).svg")
+    );
+
+    this.load.svg(
+      "solstice-back",
+      encodeURIComponent("characterSVGs/Solstice/006-cropped (5).svg")
+    );
+
+    this.load.svg(
+      "scout-back",
+      encodeURIComponent("characterSVGs/Scout/006-cropped (3).svg")
+    );
 
     WebFontLoader.load({
       custom: {
@@ -149,12 +167,13 @@ export class BattleScene extends Phaser.Scene {
     const bannerOne = this.add.image(0, 0, "banner 1");
     bannerOne.setDisplaySize(600, 350);
     bannerOneContainer.add(bannerOne);
-    const bannerOneText = this.add.text(-230, 50, this.playerName, {
+    const bannerOneText = this.add.text(-165, 70, this.enemyName, {
       fontFamily: "WBB",
       fontSize: 45,
       color: "#462406",
       align: "center",
     });
+    bannerOneText.setOrigin(0.5);
     bannerOneContainer.add(bannerOneText);
 
     // Enemy part
@@ -188,18 +207,17 @@ export class BattleScene extends Phaser.Scene {
     const bannerTwo = this.add.image(0, 0, "banner 2");
     bannerTwo.setDisplaySize(600, 350);
     bannerTwoContainer.add(bannerTwo);
-    const bannerTextTwo = this.add.text(-200, 50, this.enemyName, {
+    const bannerTextTwo = this.add.text(-165, 70, this.playerName, {
       fontFamily: "WBB",
       fontSize: 45,
       color: "#462406",
       align: "center",
     });
+    bannerTextTwo.setOrigin(0.5);
     bannerTwoContainer.add(bannerTextTwo);
 
     const playerContainer = this.add.container(800, 700);
-    // Add shadow for player character
-    const playerShadow = this.add.ellipse(-50, 250, 450, 90, 0x000000, 0.4);
-    playerContainer.add(playerShadow);
+    
 
     // Debug logs
     const backKey = `${this.playerName.toLowerCase()}-back`;
@@ -207,7 +225,31 @@ export class BattleScene extends Phaser.Scene {
     console.log("Available texture keys:", this.textures.list);
 
     // Display player character (back view) with similar scaling
-    const playerChar = this.add.image(0, 0, backKey);
+
+    let backTexture = "";
+    const selectedCharId = this.selectedCharacterId;
+
+    if (selectedCharId) {
+      switch (selectedCharId) {
+        case 1:
+          backTexture = "buckshot-back";
+          break;
+        case 2:
+          backTexture = "serpy-back";
+          break;
+        case 3:
+          backTexture = "grit-back";
+          break;
+        case 4:
+          backTexture = "solstice-back";
+          break;
+        case 5:
+          backTexture = "scout-back";
+          break;
+      }
+    }
+
+    const playerChar = this.add.image(-40, 70, backTexture);
     const playerSettings = this.characterSettings[
       this.playerName.toLowerCase()
     ] || { scale: 0.7, offsetY: 0 };
@@ -218,12 +260,10 @@ export class BattleScene extends Phaser.Scene {
     playerContainer.add(playerChar);
 
     const enemyContainer = this.add.container(1430, 300);
-    // Add shadow for enemy character
-    const enemyShadow = this.add.ellipse(-5, 230, 300, 40, 0x000000, 0.4);
-    enemyContainer.add(enemyShadow);
+    
 
     // Display enemy character (front view)
-    const enemyChar = this.add.image(-20, 100, this.enemyName.toLowerCase());
+    const enemyChar = this.add.image(-20, 70, this.enemyName.toLowerCase());
     const settings = this.characterSettings[this.enemyName.toLowerCase()] || {
       scale: 0.7,
       offsetY: 0,
@@ -232,27 +272,5 @@ export class BattleScene extends Phaser.Scene {
     enemyChar.setDisplaySize(scaledSize * 0.8, scaledSize);
     enemyChar.setY(enemyChar.y + settings.offsetY);
     enemyContainer.add(enemyChar);
-
-    const attackButtonContainer = this.add.container(300, 900);
-    const attackButton = this.add.image(0, 0, "attack-button");
-    attackButton.setDisplaySize(500, 500);
-    const attackText = this.add.text(-70, -10, "Attack", {
-      fontFamily: "WBB",
-      fontSize: 45,
-      color: "#ffffff",
-      align: "center",
-    });
-    attackButtonContainer.add([attackButton, attackText]);
-
-    const defendButtonContainer = this.add.container(700, 900);
-    const defendButton = this.add.image(0, 0, "defend-button");
-    defendButton.setDisplaySize(500, 500);
-    const defendText = this.add.text(-70, -10, "Defend", {
-      fontFamily: "WBB",
-      fontSize: 45,
-      color: "#ffffff",
-      align: "center",
-    });
-    defendButtonContainer.add([defendButton, defendText]);
   }
 }
