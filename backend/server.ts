@@ -3,6 +3,7 @@ import http from 'http';
 import { Server } from 'socket.io';
 import Game from './areas/Types/Game';
 import Player from './areas/Types/Player';
+import Battle from './areas/Types/Battle';
 import { v4 as uuidv4 } from 'uuid';
 import { getAssetByFilename } from './db/operations/assetsOps';
 import { MongoClient, GridFSBucket } from 'mongodb';
