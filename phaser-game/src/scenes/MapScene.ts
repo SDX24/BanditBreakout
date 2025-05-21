@@ -78,8 +78,10 @@ export class MapScene extends Phaser.Scene {
       
       this.load.image('backgroundMap', encodeURIComponent('board/background.png'));   
 
-      //use boolean setting in .env controll if board/Board with Bridges.svg or board/BoardWithBridgesNumbered.svg to load, if it is set, use BoardWithBridgesNumbered.svg, ai!
-      this.load.svg('mapOverlay', encodeURIComponent('board/BoardWithBridgesNumbered.svg'), {
+      // Load the appropriate map overlay based on environment variable
+      const useNumberedMap = import.meta.env.VITE_USE_NUMBERED_MAP === 'true';
+      const mapFile = useNumberedMap ? 'board/BoardWithBridgesNumbered.svg' : 'board/Board with Bridges.svg';
+      this.load.svg('mapOverlay', encodeURIComponent(mapFile), {
         width: 1920,
         height: 1080
       });
