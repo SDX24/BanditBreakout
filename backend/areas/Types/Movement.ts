@@ -128,7 +128,7 @@ public back(by: number): void {
 
 
 private rollDiceNum(): number {
-    return Math.floor(Math.random() * 6) + 1;
+    return 9; // Fixed value of 9 for battle testing
 }
 
 public diceRoll(): { roll: number; pendingChoice?: { options: number[]; stepsRemaining: number } } {
