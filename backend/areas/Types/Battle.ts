@@ -22,35 +22,45 @@ export default class Battle {
     return Math.floor(Math.random() * 6) + 1; // Roll a die (1-6)
   }
 
-  public processTurn(): { result: string, playerHP: number, opponentHP: number, winner: Player | null } {
+  public processTurn(): { result: string, playerHP: number, opponentHP: number, winner: Player | null, turn: number } {
     this.checkBattleEffects(this.player);
     this.checkBattleEffects(this.opponent);
 
-    const playerRoll = this.rollDice();
-    const opponentRoll = this.rollDice();
-
-    // Damage is equal to the dice roll (number of bullets shot)
-    this.opponentHP -= playerRoll;
-    this.playerHP -= opponentRoll;
-
-    let result = `Player ${this.player.id} rolled ${playerRoll}, dealing ${playerRoll} damage. `;
-    result += `Player ${this.opponent.id} rolled ${opponentRoll}, dealing ${opponentRoll} damage. `;
-    result += `Player ${this.player.id} HP: ${this.playerHP}, Player ${this.opponent.id} HP: ${this.opponentHP}.`;
-
+    let turn = 0;
+    let result = "";
     let winner: Player | null = null;
-    if (this.playerHP <= 0 && this.opponentHP <= 0) {
-      result += " It's a draw! Both players are knocked out.";
-    } else if (this.playerHP <= 0) {
-      result += ` Player ${this.opponent.id} wins!`;
-      winner = this.opponent;
-      this.applyLossConsequences(this.player, this.opponent);
-    } else if (this.opponentHP <= 0) {
-      result += ` Player ${this.player.id} wins!`;
-      winner = this.player;
-      this.applyLossConsequences(this.opponent, this.player);
+
+    // Continue battle until one player is defeated
+    while (this.playerHP > 0 && this.opponentHP > 0) {
+      turn++;
+      const playerRoll = this.rollDice();
+      const opponentRoll = this.rollDice();
+
+      // Damage is equal to the dice roll (number of bullets shot)
+      this.opponentHP -= playerRoll;
+      this.playerHP -= opponentRoll;
+
+      result += `Turn ${turn}: Player ${this.player.id} rolled ${playerRoll}, dealing ${playerRoll} damage. `;
+      result += `Player ${this.opponent.id} rolled ${opponentRoll}, dealing ${opponentRoll} damage. `;
+      result += `Player ${this.player.id} HP: ${this.playerHP}, Player ${this.opponent.id} HP: ${this.opponentHP}.\n`;
+
+      if (this.playerHP <= 0 && this.opponentHP <= 0) {
+        result += "It's a draw! Both players are knocked out.";
+        break;
+      } else if (this.playerHP <= 0) {
+        result += `Player ${this.opponent.id} wins after ${turn} turns!`;
+        winner = this.opponent;
+        this.applyLossConsequences(this.player, this.opponent);
+        break;
+      } else if (this.opponentHP <= 0) {
+        result += `Player ${this.player.id} wins after ${turn} turns!`;
+        winner = this.player;
+        this.applyLossConsequences(this.opponent, this.player);
+        break;
+      }
     }
 
-    return { result, playerHP: this.playerHP, opponentHP: this.opponentHP, winner };
+    return { result, playerHP: this.playerHP, opponentHP: this.opponentHP, winner, turn };
   }
 
   private applyLossConsequences(loser: Player, winner: Player): void {
@@ -62,12 +72,13 @@ export default class Battle {
     winner.gold(`+${goldToTransfer}`);
   }
 
-  public processEndOfRoundBattle(): { result: string, winner: Player | null, itemTransferred?: number, goldTransferred?: number } {
+  public processEndOfRoundBattle(): { result: string, winner: Player | null, itemTransferred?: number, goldTransferred?: number, turn: number } {
     const turnResult = this.processTurn();
     let result = turnResult.result;
     let winner = turnResult.winner;
     let itemTransferred: number | undefined;
     let goldTransferred: number | undefined;
+    let turn = turnResult.turn;
 
     if (winner) {
       const loser = winner.id === this.player.id ? this.opponent : this.player;
@@ -88,7 +99,7 @@ export default class Battle {
       }
     }
 
-    return { result, winner, itemTransferred, goldTransferred };
+    return { result, winner, itemTransferred, goldTransferred, turn };
   }
 
   private getActionAmount(action: string): number {

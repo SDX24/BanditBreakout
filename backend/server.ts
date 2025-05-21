@@ -551,7 +551,8 @@ io.on('connection', (socket) => {
           result: battleResult.result,
           player1HP: battleResult.playerHP,
           player2HP: battleResult.opponentHP,
-          winner: battleResult.winner ? battleResult.winner.id : null
+          winner: battleResult.winner ? battleResult.winner.id : null,
+          turn: battleResult.turn
         });
         // Update game state after battle consequences (position, gold)
         io.to(gameId).emit('gameState', serializeGame(game));
@@ -577,7 +578,8 @@ io.on('connection', (socket) => {
       result: battleResult.result,
       winner: battleResult.winner ? battleResult.winner.id : null,
       itemTransferred: battleResult.itemTransferred,
-      goldTransferred: battleResult.goldTransferred
+      goldTransferred: battleResult.goldTransferred,
+      turn: battleResult.turn
     });
     // Update game state after battle consequences
     io.to(gameId).emit('gameState', serializeGame(game));

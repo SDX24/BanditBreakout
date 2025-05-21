@@ -528,15 +528,15 @@ export class MapScene extends Phaser.Scene {
         });
 
         // Listen for battle started event (when landing on a battle tile)
-        this.socket.on('battleStarted', (data: { player1: number, player2: number, result: string, player1HP: number, player2HP: number, winner: number | null }) => {
+        this.socket.on('battleStarted', (data: { player1: number, player2: number, result: string, player1HP: number, player2HP: number, winner: number | null, turn: number }) => {
           console.log(`Battle started between Player ${data.player1} and Player ${data.player2}`);
-          this.showBattleResultUI(data.player1, data.player2, data.result, data.player1HP, data.player2HP, data.winner);
+          this.showBattleResultUI(data.player1, data.player2, data.result, data.player1HP, data.player2HP, data.winner, data.turn);
         });
 
         // Listen for end of round battle event
-        this.socket.on('endOfRoundBattle', (data: { player1: number, player2: number, result: string, winner: number | null, itemTransferred?: number, goldTransferred?: number }) => {
+        this.socket.on('endOfRoundBattle', (data: { player1: number, player2: number, result: string, winner: number | null, itemTransferred?: number, goldTransferred?: number, turn: number }) => {
           console.log(`End of round battle between Player ${data.player1} and Player ${data.player2}`);
-          this.showEndOfRoundBattleResultUI(data.player1, data.player2, data.result, data.winner, data.itemTransferred, data.goldTransferred);
+          this.showEndOfRoundBattleResultUI(data.player1, data.player2, data.result, data.winner, data.itemTransferred, data.goldTransferred, data.turn);
         });
       } else {
         console.error('Socket not initialized');
@@ -728,7 +728,7 @@ export class MapScene extends Phaser.Scene {
     }
 
     // Show battle result UI when a battle occurs on a tile
-    private showBattleResultUI(player1: number, player2: number, result: string, player1HP: number, player2HP: number, winner: number | null) {
+    private showBattleResultUI(player1: number, player2: number, result: string, player1HP: number, player2HP: number, winner: number | null, turn: number) {
       const { width, height } = this.scale;
       const centerX = width / 2;
       const centerY = height / 2;
@@ -778,11 +778,11 @@ export class MapScene extends Phaser.Scene {
       });
 
       closeButton.setDepth(101);
-      console.log(`Battle result UI displayed for battle between Player ${player1} and Player ${player2}`);
+      console.log(`Battle result UI displayed for battle between Player ${player1} and Player ${player2} after ${turn} turns`);
     }
 
     // Show battle result UI for end of round battle
-    private showEndOfRoundBattleResultUI(player1: number, player2: number, result: string, winner: number | null, itemTransferred?: number, goldTransferred?: number) {
+    private showEndOfRoundBattleResultUI(player1: number, player2: number, result: string, winner: number | null, itemTransferred?: number, goldTransferred?: number, turn?: number) {
       const { width, height } = this.scale;
       const centerX = width / 2;
       const centerY = height / 2;
@@ -832,7 +832,7 @@ export class MapScene extends Phaser.Scene {
       });
 
       closeButton.setDepth(101);
-      console.log(`End of round battle result UI displayed for battle between Player ${player1} and Player ${player2}`);
+      console.log(`End of round battle result UI displayed for battle between Player ${player1} and Player ${player2} after ${turn} turns`);
     }
     
     // For testing purposes, add a method to start the game
