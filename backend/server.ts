@@ -597,6 +597,7 @@ io.on('connection', (socket) => {
     const selectedTile = battleTilesWithPlayers[Math.floor(Math.random() * battleTilesWithPlayers.length)];
     const playersOnTile = selectedTile.getPlayersOnTile();
     console.log(`End of round battle tile selected: Tile ${selectedTile.index} with players ${JSON.stringify(playersOnTile)}`);
+    console.log(`Tile ${selectedTile.index} details - Index: ${selectedTile.index}, Has Player: ${selectedTile.hasPlayerOnTile}, Event: { Name: ${selectedTile.event.name}, Type: ${selectedTile.event.type}, Description: ${selectedTile.event.description}, Effect: ${selectedTile.event.effect} }, Connections: ${JSON.stringify(selectedTile.connections)}, Front: ${JSON.stringify(selectedTile.front)}, Back: ${JSON.stringify(selectedTile.back)}`);
 
     // Randomly select two players from this tile
     const shuffledPlayerIds = playersOnTile.sort(() => Math.random() - 0.5);
@@ -604,6 +605,7 @@ io.on('connection', (socket) => {
     const player2 = game.players.find(p => p.id === shuffledPlayerIds[1]);
 
     if (player1 && player2) {
+      console.log(`End of round battle preparation between Player ${player1.id} (HP: ${player1.status.health}, Gold: ${player1.status.gold}) and Player ${player2.id} (HP: ${player2.status.health}, Gold: ${player2.status.gold}) on tile ${selectedTile.index} in game ${gameId}`);
       console.log(`End of round battle initiated between Player ${player1.id} and Player ${player2.id} on tile ${selectedTile.index} in game ${gameId}`);
       game.currentBattle = new Battle(player1, player2);
       const battleResult = game.currentBattle.processEndOfRoundBattle();
