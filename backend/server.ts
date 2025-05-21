@@ -536,7 +536,9 @@ io.on('connection', (socket) => {
     const game = activeGames[gameId];
     if (!game) return;
     const tile = game.map.tiles[tileIndex];
+    console.log(`Checking battle on tile ${tileIndex} for player ${playerId}, raw players on tile: ${JSON.stringify(tile.getPlayersOnTile())}`);
     const playersOnTile = tile.getPlayersOnTile().filter(id => id !== playerId);
+    console.log(`Players on tile after filter (excluding player ${playerId}): ${JSON.stringify(playersOnTile)}`);
     if (playersOnTile.length > 0) {
       const opponentId = playersOnTile[Math.floor(Math.random() * playersOnTile.length)];
       const player = game.players.find(p => p.id === playerId);
@@ -557,7 +559,11 @@ io.on('connection', (socket) => {
         // Update game state after battle consequences (position, gold)
         io.to(gameId).emit('gameState', serializeGame(game));
         game.currentBattle = null;
+      } else {
+        console.log(`Battle check failed: Could not find player or opponent objects. Player: ${!!player}, Opponent: ${!!opponent}`);
       }
+    } else {
+      console.log(`No battle on tile ${tileIndex}: Only player ${playerId} is present or no other players after filter.`);
     }
   };
 
