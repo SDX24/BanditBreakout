@@ -567,29 +567,59 @@ io.on('connection', (socket) => {
     }
   };
 
-  // Function to initiate a random battle at the end of a round
+  // Function to initiate a battle at the end of a round only if multiple players are on the same battle tile
   const initiateEndOfRoundBattle = async (gameId: string, game: Game) => {
-    if (game.players.length < 2) return; // Need at least 2 players for a battle
-    // Randomly select two players
-    const playerIndices = Array.from({ length: game.players.length }, (_, i) => i);
-    const shuffledIndices = playerIndices.sort(() => Math.random() - 0.5);
-    const player1 = game.players[shuffledIndices[0]];
-    const player2 = game.players[shuffledIndices[1]];
-    console.log(`End of round battle between Player ${player1.id} and Player ${player2.id}`);
-    game.currentBattle = new Battle(player1, player2);
-    const battleResult = game.currentBattle.processEndOfRoundBattle();
-    io.to(gameId).emit('endOfRoundBattle', {
-      player1: player1.id,
-      player2: player2.id,
-      result: battleResult.result,
-      winner: battleResult.winner ? battleResult.winner.id : null,
-      itemTransferred: battleResult.itemTransferred,
-      goldTransferred: battleResult.goldTransferred,
-      turn: battleResult.turn
-    });
-    // Update game state after battle consequences
-    io.to(gameId).emit('gameState', serializeGame(game));
-    game.currentBattle = null;
+    if (game.players.length < 2) {
+      console.log(`End of round battle skipped in game ${gameId}: Less than 2 players (${game.players.length}).`);
+      return; // Need at least 2 players for a battle
+    }
+
+    // Filter only active (alive) players for the battle
+    const activePlayers = game.players.filter(p => p.isAlive);
+    if (activePlayers.length < 2) {
+      console.log(`End of round battle skipped in game ${gameId}: Less than 2 active players (${activePlayers.length}).`);
+      return; // Need at least 2 active players for a battle
+    }
+
+    // Find battle tiles (event type 2) with at least 2 players
+    const battleTilesWithPlayers = game.map.tiles.filter(tile => 
+      tile.event.type === 2 && tile.getPlayersOnTile().length >= 2
+    );
+
+    if (battleTilesWithPlayers.length === 0) {
+      console.log(`End of round battle skipped in game ${gameId}: No battle tiles with at least 2 players.`);
+      return; // No battle tiles with multiple players
+    }
+
+    // Select a random battle tile with multiple players
+    const selectedTile = battleTilesWithPlayers[Math.floor(Math.random() * battleTilesWithPlayers.length)];
+    const playersOnTile = selectedTile.getPlayersOnTile();
+    console.log(`End of round battle tile selected: Tile ${selectedTile.index} with players ${JSON.stringify(playersOnTile)}`);
+
+    // Randomly select two players from this tile
+    const shuffledPlayerIds = playersOnTile.sort(() => Math.random() - 0.5);
+    const player1 = game.players.find(p => p.id === shuffledPlayerIds[0]);
+    const player2 = game.players.find(p => p.id === shuffledPlayerIds[1]);
+
+    if (player1 && player2) {
+      console.log(`End of round battle initiated between Player ${player1.id} and Player ${player2.id} on tile ${selectedTile.index} in game ${gameId}`);
+      game.currentBattle = new Battle(player1, player2);
+      const battleResult = game.currentBattle.processEndOfRoundBattle();
+      io.to(gameId).emit('endOfRoundBattle', {
+        player1: player1.id,
+        player2: player2.id,
+        result: battleResult.result,
+        winner: battleResult.winner ? battleResult.winner.id : null,
+        itemTransferred: battleResult.itemTransferred,
+        goldTransferred: battleResult.goldTransferred,
+        turn: battleResult.turn
+      });
+      // Update game state after battle consequences
+      io.to(gameId).emit('gameState', serializeGame(game));
+      game.currentBattle = null;
+    } else {
+      console.log(`End of round battle skipped in game ${gameId}: Could not find valid players on tile ${selectedTile.index}.`);
+    }
   };
 
   // ──────────────────────────────────────────────────────────────
