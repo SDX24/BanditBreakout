@@ -128,7 +128,16 @@ public back(by: number): void {
 
 
 private rollDiceNum(): number {
-    return 9; // Fixed value of 9 for battle testing
+    const envDiceValue = process.env.DICE_ROLL_VALUE;
+    if (envDiceValue !== undefined) {
+        const parsedValue = parseInt(envDiceValue, 10);
+        if (!isNaN(parsedValue) && parsedValue >= 1 && parsedValue <= 6) {
+            return parsedValue; // Use value from .env if it's a valid dice roll (1-6)
+        } else {
+            console.warn(`Invalid DICE_ROLL_VALUE in .env: ${envDiceValue}. Using random value.`);
+        }
+    }
+    return Math.floor(Math.random() * 6) + 1; // Return random value between 1 and 6 if no valid env value is set
 }
 
 public diceRoll(): { roll: number; pendingChoice?: { options: number[]; stepsRemaining: number } } {
