@@ -522,7 +522,7 @@ io.on('connection', (socket) => {
       // Check if all players have taken their turn (end of round)
       if (game.currentTurnIndex === 0 && game.players.length > 1) {
         console.log(`End of round in game ${gameId}, initiating random battle.`);
-        this.initiateEndOfRoundBattle(gameId, game);
+        initiateEndOfRoundBattle(gameId, game);
       }
     } catch (error) {
       socket.emit('error', { message: 'Failed to advance turn' });
