@@ -437,7 +437,6 @@ export class MapScene extends Phaser.Scene {
           
           // Optionally, process tile information if needed for UI updates
           gameState.tiles.forEach((tileData: any) => {
-            // TODO: Update tile UI if necessary, e.g., highlight tiles with events or players
             if (tileData.players.length > 0) {
               console.log(`Tile ${tileData.index} has players: ${tileData.players}, event type: ${tileData.eventType}`);
             }
@@ -454,20 +453,16 @@ export class MapScene extends Phaser.Scene {
         this.socket.on('playerJoined', (data: { playerId: number, initialRoll: number }) => {
           console.log(`Player ${data.playerId} joined with initial roll ${data.initialRoll}`);
           this.playerInitialRolls.set(data.playerId, data.initialRoll);
-          // Update UI to show player and their roll
-          // Sprite creation is handled by preCreateCharacterSprites and gameState updates
         });
         
         // Listen for player disconnected event
         this.socket.on('playerDisconnected', (data: { playerId: number }) => {
           console.log(`Player ${data.playerId} disconnected`);
-          // Remove the player's sprite if it exists
           const sprite = this.playerSprites.get(data.playerId);
           if (sprite) {
             sprite.destroy();
             this.playerSprites.delete(data.playerId);
           }
-          // Remove player from turn order and initial rolls
           this.playerInitialRolls.delete(data.playerId);
           this.turnOrder = this.turnOrder.filter(id => id !== data.playerId);
         });
@@ -477,26 +472,20 @@ export class MapScene extends Phaser.Scene {
           console.log(`Game started with turn order: ${data.turnOrder}`);
           this.turnOrder = data.turnOrder;
           this.currentPlayerTurn = data.currentPlayer;
-          // Update UI to show turn order and highlight next player
           this.updateNextPlayerEffect();
-          // If it's this player's turn, prompt for actions
           if (this.currentPlayerTurn === this.playerId) {
             console.log("It's your turn! Roll the dice!");
-            // Show UI button or prompt to roll dice
             this.showRollDiceButton();
           }
-          
         });
         
         // Listen for turn advanced event
         this.socket.on('turnAdvanced', (data: { currentPlayer: number }) => {
           console.log(`Turn advanced to player ${data.currentPlayer}`);
           this.currentPlayerTurn = data.currentPlayer;
-          // Update UI to highlight current player
           this.updateNextPlayerEffect();
           if (this.currentPlayerTurn === this.playerId) {
             console.log("It's your turn! Roll the dice!");
-            // Show UI button or prompt to roll dice
             this.showRollDiceButton();
           }
         });
@@ -505,28 +494,21 @@ export class MapScene extends Phaser.Scene {
         this.socket.on('playerMoved', (data: { playerId: number, position: number, roll?: number, isPendingMove?: boolean }) => {
           console.log(`Player ${data.playerId} moved to position ${data.position}, with roll is ${data.roll}, pending move: ${data.isPendingMove}`);
           if (data.roll) {
-            // If a roll value is provided, play animation (or update if already playing)
             console.log(`Dice roll result: ${data.roll}`);
             console.log(`${data.playerId}, ${this.playerId}`);
-            // Move player to new position after animation if it's the local player
             if (data.playerId === this.playerId) {
               this.movePlayerTo(data.position, undefined, data.playerId);
-              // Only end turn if there is no pending move (e.g., no fork requiring further input)
               if (!data.isPendingMove) {
                 this.endTurn();
               } else {
                 console.log(`Turn not ended for player ${data.playerId} due to pending move (e.g., fork).`);
               }
-              
-              this.playDiceRollAnimation(data.roll, () => {
-                
-              });
+              this.playDiceRollAnimation(data.roll, () => {});
             } else {
               this.movePlayerTo(data.position, undefined, data.playerId);
             }
           } else {
             this.movePlayerTo(data.position, undefined, data.playerId);
-
             if (data.playerId === this.playerId) {
               if (!data.isPendingMove) {
                 this.endTurn();
@@ -537,11 +519,24 @@ export class MapScene extends Phaser.Scene {
           }
         });
 
+        // Listen for path choice required event
         this.socket.on('pathChoiceRequired', (data: { playerId: number; options: number[]; stepsRemaining: number }) => {
           if (data.playerId !== this.playerId) return;
           this.showPathChoiceUI(data.options, (chosen) => {
             this.socket.emit('choosePath', this.gameId, this.playerId, chosen);
           });
+        });
+
+        // Listen for battle started event (when landing on a battle tile)
+        this.socket.on('battleStarted', (data: { player1: number, player2: number, result: string, player1HP: number, player2HP: number, winner: number | null }) => {
+          console.log(`Battle started between Player ${data.player1} and Player ${data.player2}`);
+          this.showBattleResultUI(data.player1, data.player2, data.result, data.player1HP, data.player2HP, data.winner);
+        });
+
+        // Listen for end of round battle event
+        this.socket.on('endOfRoundBattle', (data: { player1: number, player2: number, result: string, winner: number | null, itemTransferred?: number, goldTransferred?: number }) => {
+          console.log(`End of round battle between Player ${data.player1} and Player ${data.player2}`);
+          this.showEndOfRoundBattleResultUI(data.player1, data.player2, data.result, data.winner, data.itemTransferred, data.goldTransferred);
         });
       } else {
         console.error('Socket not initialized');
@@ -730,6 +725,114 @@ export class MapScene extends Phaser.Scene {
       } else {
         console.log('Cannot end turn: not your turn');
       }
+    }
+
+    // Show battle result UI when a battle occurs on a tile
+    private showBattleResultUI(player1: number, player2: number, result: string, player1HP: number, player2HP: number, winner: number | null) {
+      const { width, height } = this.scale;
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      // Create a modal background for the battle result
+      const modal = this.add.rectangle(centerX, centerY, width * 0.6, height * 0.4, 0x000000, 0.7);
+      modal.setStrokeStyle(4, 0xFFFFFF);
+      modal.setDepth(100);
+
+      // Add battle result text
+      const title = this.add.text(centerX, centerY - height * 0.15, 'Battle Result', {
+        fontSize: '28px',
+        color: '#FFFFFF'
+      }).setOrigin(0.5);
+      title.setDepth(101);
+
+      // Display battle details
+      const details = this.add.text(centerX, centerY - height * 0.05, result, {
+        fontSize: '18px',
+        color: '#FFFFFF',
+        align: 'center',
+        wordWrap: { width: width * 0.5 }
+      }).setOrigin(0.5);
+      details.setDepth(101);
+
+      // Add a button to close the modal
+      const closeButton = this.add.text(centerX, centerY + height * 0.15, 'Close', {
+        fontSize: '24px',
+        backgroundColor: '#4CAF50',
+        color: '#FFFFFF',
+        padding: { x: 20, y: 10 }
+      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+      
+      closeButton.on('pointerdown', () => {
+        modal.destroy();
+        title.destroy();
+        details.destroy();
+        closeButton.destroy();
+      });
+
+      closeButton.on('pointerover', () => {
+        closeButton.setBackgroundColor('#45a049');
+      });
+
+      closeButton.on('pointerout', () => {
+        closeButton.setBackgroundColor('#4CAF50');
+      });
+
+      closeButton.setDepth(101);
+      console.log(`Battle result UI displayed for battle between Player ${player1} and Player ${player2}`);
+    }
+
+    // Show battle result UI for end of round battle
+    private showEndOfRoundBattleResultUI(player1: number, player2: number, result: string, winner: number | null, itemTransferred?: number, goldTransferred?: number) {
+      const { width, height } = this.scale;
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      // Create a modal background for the battle result
+      const modal = this.add.rectangle(centerX, centerY, width * 0.6, height * 0.4, 0x000000, 0.7);
+      modal.setStrokeStyle(4, 0xFFFFFF);
+      modal.setDepth(100);
+
+      // Add battle result text
+      const title = this.add.text(centerX, centerY - height * 0.15, 'End of Round Battle Result', {
+        fontSize: '28px',
+        color: '#FFFFFF'
+      }).setOrigin(0.5);
+      title.setDepth(101);
+
+      // Display battle details
+      const details = this.add.text(centerX, centerY - height * 0.05, result, {
+        fontSize: '18px',
+        color: '#FFFFFF',
+        align: 'center',
+        wordWrap: { width: width * 0.5 }
+      }).setOrigin(0.5);
+      details.setDepth(101);
+
+      // Add a button to close the modal
+      const closeButton = this.add.text(centerX, centerY + height * 0.15, 'Close', {
+        fontSize: '24px',
+        backgroundColor: '#4CAF50',
+        color: '#FFFFFF',
+        padding: { x: 20, y: 10 }
+      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+      
+      closeButton.on('pointerdown', () => {
+        modal.destroy();
+        title.destroy();
+        details.destroy();
+        closeButton.destroy();
+      });
+
+      closeButton.on('pointerover', () => {
+        closeButton.setBackgroundColor('#45a049');
+      });
+
+      closeButton.on('pointerout', () => {
+        closeButton.setBackgroundColor('#4CAF50');
+      });
+
+      closeButton.setDepth(101);
+      console.log(`End of round battle result UI displayed for battle between Player ${player1} and Player ${player2}`);
     }
     
     // For testing purposes, add a method to start the game

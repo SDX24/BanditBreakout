@@ -323,7 +323,7 @@ io.on('connection', (socket) => {
         if (callback) callback(errorResponse);
         console.log(`It is not your turn, player ${playerId}, current turn is for player ${currentPlayer}`);
 
-        //Just in case lost current player turn and avoid deadlock
+        // Just in case lost current player turn and avoid deadlock
         io.to(gameId).emit('turnAdvanced', { currentPlayer: currentPlayer });
 
         return;
@@ -355,18 +355,8 @@ io.on('connection', (socket) => {
             stepsRemaining: result.pendingChoice.stepsRemaining
           });
           return; // Wait for the client’s response
-        } else {
-              // const game = activeGames[gameId];
-
-              // if (game.players.length === 1) {
-              //   console.log(`Single player ${playerId} moving`);
-              // }
-              // const nextPlayer = game.players.length === 1 ? playerId : game.advanceTurn();
-              // io.to(gameId).emit('turnAdvanced', { currentPlayer: nextPlayer });
-              // console.log(`Turn advanced to player ${nextPlayer} after move completion in game ${gameId}`);
         }
         
-
         console.log(`Player ${playerId} moved by dice roll of ${result.roll} to position ${newPosition} in game ${gameId}`);
         // Check for tile event
         const tile = activeGames[gameId].map.tiles[newPosition];
@@ -374,6 +364,10 @@ io.on('connection', (socket) => {
           await tile.event.onStep(playerId, activeGames[gameId]);
           await emitTileTrigger(gameId, playerId, tile.event.type);
           console.log(`Tile event triggered for player ${playerId}: type ${tile.event.type}`);
+          // If it's a battle tile, check for other players and initiate battle
+          if (tile.event.type === 2) {
+            await initiateBattleOnTile(gameId, playerId, newPosition);
+          }
         }
         if (callback) callback({ success: true, roll: result.roll, position: newPosition });
       } else {
@@ -517,7 +511,6 @@ io.on('connection', (socket) => {
     try {
       const game = activeGames[gameId];
       let nextPlayer;
-      // Special handling for single-player game to always return turn to the same player
       if (game.players.length === 1) {
         nextPlayer = game.players[0].id;
         console.log(`Single-player game ${gameId}, turn remains with player: ${nextPlayer}`);
@@ -526,11 +519,69 @@ io.on('connection', (socket) => {
         console.log(`Turn advanced in multiplayer game ${gameId}, next player: ${nextPlayer}`);
       }
       io.to(gameId).emit('turnAdvanced', { currentPlayer: nextPlayer });
+      // Check if all players have taken their turn (end of round)
+      if (game.currentTurnIndex === 0 && game.players.length > 1) {
+        console.log(`End of round in game ${gameId}, initiating random battle.`);
+        this.initiateEndOfRoundBattle(gameId, game);
+      }
     } catch (error) {
       socket.emit('error', { message: 'Failed to advance turn' });
       console.error('Error advancing turn:', error);
     }
   });
+
+  // Function to initiate a battle when landing on a battle tile with other players
+  const initiateBattleOnTile = async (gameId: string, playerId: number, tileIndex: number) => {
+    const game = activeGames[gameId];
+    if (!game) return;
+    const tile = game.map.tiles[tileIndex];
+    const playersOnTile = tile.getPlayersOnTile().filter(id => id !== playerId);
+    if (playersOnTile.length > 0) {
+      const opponentId = playersOnTile[Math.floor(Math.random() * playersOnTile.length)];
+      const player = game.players.find(p => p.id === playerId);
+      const opponent = game.players.find(p => p.id === opponentId);
+      if (player && opponent) {
+        console.log(`Battle on tile ${tileIndex} between Player ${playerId} and Player ${opponentId}`);
+        game.currentBattle = new Battle(player, opponent);
+        const battleResult = game.currentBattle.processTurn();
+        io.to(gameId).emit('battleStarted', {
+          player1: playerId,
+          player2: opponentId,
+          result: battleResult.result,
+          player1HP: battleResult.playerHP,
+          player2HP: battleResult.opponentHP,
+          winner: battleResult.winner ? battleResult.winner.id : null
+        });
+        // Update game state after battle consequences (position, gold)
+        io.to(gameId).emit('gameState', serializeGame(game));
+        game.currentBattle = null;
+      }
+    }
+  };
+
+  // Function to initiate a random battle at the end of a round
+  const initiateEndOfRoundBattle = async (gameId: string, game: Game) => {
+    if (game.players.length < 2) return; // Need at least 2 players for a battle
+    // Randomly select two players
+    const playerIndices = Array.from({ length: game.players.length }, (_, i) => i);
+    const shuffledIndices = playerIndices.sort(() => Math.random() - 0.5);
+    const player1 = game.players[shuffledIndices[0]];
+    const player2 = game.players[shuffledIndices[1]];
+    console.log(`End of round battle between Player ${player1.id} and Player ${player2.id}`);
+    game.currentBattle = new Battle(player1, player2);
+    const battleResult = game.currentBattle.processEndOfRoundBattle();
+    io.to(gameId).emit('endOfRoundBattle', {
+      player1: player1.id,
+      player2: player2.id,
+      result: battleResult.result,
+      winner: battleResult.winner ? battleResult.winner.id : null,
+      itemTransferred: battleResult.itemTransferred,
+      goldTransferred: battleResult.goldTransferred
+    });
+    // Update game state after battle consequences
+    io.to(gameId).emit('gameState', serializeGame(game));
+    game.currentBattle = null;
+  };
 
   // ──────────────────────────────────────────────────────────────
   // Client picks a branch when `pathChoiceRequired` fires

@@ -59,8 +59,8 @@ export class SafeEvent implements IEvent {
 export class BattleEvent implements IEvent {
     name = "Battle";
     type = 2;
-    description = "Ambushed by a random thug!";
-    effect = "Start a battle!";
+    description = "Ambushed by a random thug or player!";
+    effect = "Start a battle if other players are on this tile!";
     tile: Tile;
 
     constructor(tile: Tile) {
@@ -68,8 +68,16 @@ export class BattleEvent implements IEvent {
     }
 
     public onStep(playerId: number, game: Game): void {
-        console.log(`Player ${playerId} stepped on ${this.tile.index}`); 
-
+        console.log(`Player ${playerId} stepped on ${this.tile.index}`);
+        const playersOnTile = this.tile.getPlayersOnTile().filter(id => id !== playerId);
+        if (playersOnTile.length > 0) {
+            // Randomly select an opponent from players on the tile
+            const opponentId = playersOnTile[Math.floor(Math.random() * playersOnTile.length)];
+            console.log(`Battle initiated between Player ${playerId} and Player ${opponentId} on tile ${this.tile.index}`);
+            // The actual battle initiation will be handled in server.ts
+        } else {
+            console.log(`No other players on tile ${this.tile.index}, no battle initiated.`);
+        }
     }
 }
 
