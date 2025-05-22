@@ -757,18 +757,18 @@ export class MapScene extends Phaser.Scene {
       }).setOrigin(0.5);
       instruction.setDepth(101);
       
-      // Create buttons for each option with user-friendly text
+      // Create buttons for each option with user-friendly text strictly from choicesData
       const buttonSpacing = height * 0.07;
       const startY = centerY;
       const buttons = options.map((tile, index) => {
         const yPosition = startY + index * buttonSpacing;
         
-        // Check if we have custom text for this tile from choicesData
+        // Default to a generic text only if no choicesData is available
         let buttonText = `Path to Tile ${tile}`;
         if (choicesData) {
           const choice = choicesData.find(c => c.tileId === tile);
           if (choice) {
-            buttonText = choice.text;
+            buttonText = choice.text; // Use the exact text from decisionData choices
           }
         }
         
