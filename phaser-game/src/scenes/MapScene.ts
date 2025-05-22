@@ -803,6 +803,10 @@ export class MapScene extends Phaser.Scene {
           }
         }
         
+        // Add prefix like A:, B:, etc. based on the index
+        const prefix = String.fromCharCode(65 + index) + ": "; // 65 is ASCII for 'A'
+        buttonText = prefix + buttonText;
+        
         const button = this.add.text(centerX, yPosition, buttonText, {
           fontSize: '22px',
           backgroundColor: '#4CAF50',
