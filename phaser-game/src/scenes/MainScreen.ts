@@ -398,8 +398,7 @@ export class HostRoom extends Phaser.Scene {
   private pendingPlayerId: number | null = null;
   private selectedCharacterId: number | null = null;
   private selectedCharacterAsset: string | null = null;
-  private hostText!: Phaser.GameObjects.Text;
-  private hostContainer!: Phaser.GameObjects.Container;
+  private joinInteractive!: Phaser.GameObjects.Graphics;
   private hasPickedCharacter: boolean = false;
 
 
@@ -508,17 +507,17 @@ export class HostRoom extends Phaser.Scene {
     backContainer.add(backSign);
     backContainer.add(backSignText);
 
-    this.hostContainer = this.add.container(100, -240);
+    const hostContainer = this.add.container(100, -240);
     const host = this.add.image(0, 0, "host");
     host.setDisplaySize(890, 290);
-    this.hostText = this.add.text(-180, -100, "Code:", {
+    const hostText = this.add.text(-180, -100, "Code:", {
       fontFamily: "WBB",
       fontSize: 250,
       color: "#492807",
     });
-    this.hostContainer.add(host);
-    this.hostContainer.add(this.hostText);
-    postContainer.add(this.hostContainer);
+    hostContainer.add(host);
+    hostContainer.add(hostText);
+    postContainer.add(hostContainer);
 
     const codeContainer = this.add.container(100, 80);
     const code = this.add.image(0, 0, "code");
@@ -551,18 +550,18 @@ export class HostRoom extends Phaser.Scene {
     startContainer.add(start);
     startContainer.add(startText);
     postContainer.add(startContainer);
-    let joinInteractive = this.add.graphics();
-    joinInteractive.fillStyle(0x000000, 0);
-    joinInteractive.fillRect(260, 850, 460, 200);
-    joinInteractive.setInteractive(new Phaser.Geom.Rectangle(260, 850, 460, 200), Phaser.Geom.Rectangle.Contains);
-    joinInteractive.on("pointerdown", () => {
-      this.socket.emit("hostLobby");
-    })
+    this.joinInteractive = this.add.graphics();
+    this.joinInteractive.fillRect(260, 850, 460, 200);
+    this.joinInteractive.setInteractive(new Phaser.Geom.Rectangle(260, 850, 460, 200), Phaser.Geom.Rectangle.Contains);
+    this.joinInteractive.fillStyle(0x000000, 0);
 
-    if (this.hasPickedCharacter) {
-      this.hostText.setText("Start");
-      this.hostContainer.setInteractive(new Phaser.Geom.Rectangle(this.hostText.x - 240, this.hostText.y - 20, 840, 260), Phaser.Geom.Rectangle.Contains);
-      this.hostContainer.on("pointerdown", () => {
+    if (!this.hasPickedCharacter) {
+      this.joinInteractive.on("pointerdown", () => {
+        this.socket.emit("hostLobby");
+      })
+    } else {
+      startText.setText("Start");
+      this.joinInteractive.on("pointerdown", () => {
         const gameId = this.gameCode.text.trim();
         if (gameId && gameId !== "Game Code:") {
           this.socket.emit("startGame", gameId);
