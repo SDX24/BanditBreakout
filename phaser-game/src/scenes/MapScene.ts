@@ -3,63 +3,99 @@ import { SocketService } from '../services/SocketService';
 
 
 const decisionsText = `{
-    5: {
-            npc: "Angy",
-            choices: [
-                { text: "You only live once! Let's live with excitement!", tileId: 6 },
-                { text: "Take it slow, take it all in. You have time.", tileId: 44 }
-            ]
-        },
-        13: { 
-            npc: "Frogger",
-            
-            choices: [
-                { text: "I am a loser :( I don't want to go the other way", tileId: 14 },
-                { text: "I'm literally your bestie so I'm going that way!", tileId: 62 }
-            ]
-        },
-        28: { 
-            npc: "Sofie",
-            
-            choices: [
-                { text: "No, you're not a peasant. You're secretly rich...", tileId: 99 },
-                { text: "You are NOT dealing with this today. You run!", tileId: 29 }
-            ]
-        },
-         54: { 
-            npc: "Tay",
-            
-            choices: [
-                { text: "Yes I love powders", tileId: 55 },
-                { text: "No thanks buddy", tileId: 67 }
-            ]
-        },
-        57: { 
-            npc: "Danny",
-            
-            choices: [
-                { text: "Gold is way better, jewelry and all the fine things in life involve gold", tileId: 90 },
-                { text: "Coal is used for much more, it's necessary!", tileId: 58 }
-            ]
-        },
-        60: { 
-            npc: "Bru",
-            
-            choices: [
-                { text: "Grow and change! You're meant to grow and learn!", tileId: 61 },
-                { text: "Change is scary, I don't think I'm ready yet", tileId: 63 }
-            ]
-        },
-        73: { 
-            npc: "Aly",
-            
-            choices: [
-                { text: "Sure...I guess...I feel kinda threatened", tileId: 82 },
-                { text: "No thanks, just passing through", tileId: 74 }
-            ]
-        }
-    };
-}`
+  "5": {
+    "npc": "Angy",
+    "choices": [
+      {
+        "text": "You only live once! Let's live with excitement!",
+        "tileId": 6
+      },
+      {
+        "text": "Take it slow, take it all in. You have time.",
+        "tileId": 44
+      }
+    ]
+  },
+  "13": {
+    "npc": "Frogger",
+    "choices": [
+      {
+        "text": "I am a loser :( I don't want to go the other way",
+        "tileId": 14
+      },
+      {
+        "text": "I'm literally your bestie so I'm going that way!",
+        "tileId": 62
+      }
+    ]
+  },
+  "28": {
+    "npc": "Sofie",
+    "choices": [
+      {
+        "text": "No, you're not a peasant. You're secretly rich...",
+        "tileId": 99
+      },
+      {
+        "text": "You are NOT dealing with this today. You run!",
+        "tileId": 29
+      }
+    ]
+  },
+  "54": {
+    "npc": "Tay",
+    "choices": [
+      {
+        "text": "Yes I love powders",
+        "tileId": 55
+      },
+      {
+        "text": "No thanks buddy",
+        "tileId": 67
+      }
+    ]
+  },
+  "57": {
+    "npc": "Danny",
+    "choices": [
+      {
+        "text": "Gold is way better, jewelry and all the fine things in life involve gold",
+        "tileId": 90
+      },
+      {
+        "text": "Coal is used for much more, it's necessary!",
+        "tileId": 58
+      }
+    ]
+  },
+  "60": {
+    "npc": "Bru",
+    "choices": [
+      {
+        "text": "Grow and change! You're meant to grow and learn!",
+        "tileId": 61
+      },
+      {
+        "text": "Change is scary, I don't think I'm ready yet",
+        "tileId": 63
+      }
+    ]
+  },
+  "73": {
+    "npc": "Aly",
+    "choices": [
+      {
+        "text": "Sure...I guess...I feel kinda threatened",
+        "tileId": 82
+      },
+      {
+        "text": "No thanks, just passing through",
+        "tileId": 74
+      }
+    ]
+  }
+}`;
+
 
 export class MapScene extends Phaser.Scene {
   
@@ -739,7 +775,7 @@ export class MapScene extends Phaser.Scene {
         // Add NPC name to the instruction if available
         const npcName = this.decisionData[forkTile].npc;
         if (npcName) {
-          instructionText = `${npcName} at tile ${forkTile} says: Choose your path wisely!`;
+          instructionText = `${npcName} says: Choose your path wisely!`;
         }
       }
 
