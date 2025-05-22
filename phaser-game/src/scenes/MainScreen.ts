@@ -54,7 +54,19 @@ export class MainScreen extends Phaser.Scene {
     });
     optionsContainer.add(options);
     optionsContainer.add(optionsText);
-
+    const optionsInteractive = this.add.graphics();
+    optionsInteractive.fillStyle(0x000000, 0.0);
+    optionsInteractive.fillRect(500, 805, 400, 130);
+    optionsInteractive.setInteractive(
+      new Phaser.Geom.Rectangle(500, 805, 400, 130),
+      Phaser.Geom.Rectangle.Contains
+    );
+    optionsInteractive.on("pointerdown", () => {
+        this.scene.pause();
+        this.scene.launch('Settings', { previousSceneKey: this.scene.key });
+    });
+    optionsContainer.add(optionsInteractive);
+    
     const poleContainer = this.add.container(0, 0);
     const pole = this.add.image(860, 540, "pole");
     pole.setDisplaySize(1600, 1080);
@@ -100,6 +112,8 @@ export class MainScreen extends Phaser.Scene {
     startContainer.on("pointerdown", () => {
       this.scene.start("ConnectionMenu");
     });
+
+    settingsListener(this);
   }
 }
 
@@ -215,6 +229,8 @@ export class ConnectionMenu extends Phaser.Scene {
     codeContainer.on("pointerdown", () => {
       this.scene.start("JoinCode");
     });
+
+    settingsListener(this);
   }
 }
 
@@ -353,24 +369,7 @@ export class JoinCode extends Phaser.Scene {
     });
 
 
-  //   this.input.keyboard!.on("keydown", (event: KeyboardEvent) => {
-  //     this.handleTyping(event);
-  //   });
-  // }
-
-  // private handleTyping(event: KeyboardEvent) {
-  //   const key = event.key;
-
-    
-  //   if (/^[a-zA-Z0-9]$/.test(key) && this.typedCode.length < 6) {
-  //     this.typedCode += key.toLowerCase();
-  //   }
-
-  //   if (key === "Backspace" && this.typedCode.length > 0) {
-  //     this.typedCode = this.typedCode.slice(0, -1);
-  //   }
-
-  //   this.codeText.setText(this.typedCode || "_ _ _ _ _ _");
+settingsListener(this);
   }
 }
 
@@ -459,7 +458,13 @@ export class HostRoom extends Phaser.Scene {
     this.socket.on("gameStarted", (data: { gameId: string, turnOrder: number[], currentPlayer: number }) => {
       console.log(`Game started with turn order: ${data.turnOrder}`);
       console.log(`${this.playerId}, ${data.currentPlayer}`);
-      this.scene.start("MapScene", { gameId: data.gameId, playerId: this.playerId, currentPlayerTurn: data.currentPlayer });
+      // Go to Guide scene instead of MapScene
+      this.scene.start("Guide", { 
+        gameId: data.gameId, 
+        playerId: this.playerId, 
+        currentPlayerTurn: data.currentPlayer,
+        turnOrder: data.turnOrder
+      });
     });
 
     // Handle gameId event, transition to CharacterSelection
@@ -618,6 +623,7 @@ export class HostRoom extends Phaser.Scene {
       console.log(`Character selected with asset: ${this.selectedCharacterAsset}`);
     }
 
+    settingsListener(this);
 
   }
   private playerIconContainer!: Phaser.GameObjects.Container;
@@ -768,7 +774,7 @@ export class Guide extends Phaser.Scene {
     });
   }
 
-  create() {
+  create(data: { gameId: string, playerId: number, currentPlayerTurn: number, turnOrder: number[] }) {
     const screen = this.add.container(0, 0);
     const background = this.add.image(960, 540, "background-guide");
     screen.add(background);
@@ -1058,7 +1064,12 @@ export class Guide extends Phaser.Scene {
     );
 
     okayContainer.on("pointerdown", () => {
-      this.scene.start("CharacterSelection");
+      this.scene.start("MapScene", {
+        gameId: data.gameId,
+        playerId: data.playerId,
+        currentPlayerTurn: data.currentPlayerTurn,
+        turnOrder: data.turnOrder
+      });
     });
   }
 }

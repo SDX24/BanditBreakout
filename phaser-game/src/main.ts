@@ -1,6 +1,6 @@
 import { Start } from "./scenes/Start";
 import { CharacterSelection } from "./scenes/CharacterSelection";
-import { MainScreen, ConnectionMenu, HostRoom, JoinCode, } from "./scenes/MainScreen";
+import { MainScreen, ConnectionMenu, HostRoom, JoinCode, Guide } from "./scenes/MainScreen";
 import { LoadingScreen } from "./scenes/LoadingScreen";
 import { CutScene } from "./scenes/CutScene";
 import { SettingsMenu } from "./scenes/Settings";
@@ -31,7 +31,8 @@ const config = {
     JoinCode,
     // HostJoinWorkaround,
     CharacterSelection,
-    // // // SettingsMenu,
+    Guide,
+    SettingsMenu,
     Gui,
     MapScene,
     BattleScene,

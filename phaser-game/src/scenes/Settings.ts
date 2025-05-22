@@ -76,7 +76,7 @@ export class SettingsMenu extends Phaser.Scene {
     });
 }
 
-  create(data: { previousSceneKey: Phaser.Scene }) {
+  create(data: { previousSceneKey: Phaser.Scene, isInGame?: boolean}) {
     const containerScene = this.add.container(0, 0);
     const containerMain = this.add.container(960, 540);
     
@@ -93,9 +93,13 @@ export class SettingsMenu extends Phaser.Scene {
     const backboardTexts = ["Close options", "Rulebook", "Settings"];
     //this should be something like checkInGame()
     const checkInGame = () => {
+      
       backboardTexts.push("Leave game");
     }
-    checkInGame();
+
+    if (data.isInGame) {
+      checkInGame();
+    }
 
     const getBackboardsOffset = (index: number) => {
       if (backboardTexts.length === 3) {
