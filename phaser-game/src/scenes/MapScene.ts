@@ -711,8 +711,8 @@ export class MapScene extends Phaser.Scene {
     
     // Show path choice UI with user-friendly text from decisions data
     private showPathChoiceUI(options: number[], forkTile: number, onSelect: (tile: number) => void) {
-      // Log decisionData to verify its contents
-      console.log('Decision data in showPathChoiceUI:', this.decisionData);
+      // Log decisionData as a JSON string to verify its contents
+      console.log('Decision data in showPathChoiceUI:', JSON.stringify(this.decisionData, null, 2));
       
       // Create a non-blocking UI for path selection using Phaser elements
       const { width, height } = this.scale;
