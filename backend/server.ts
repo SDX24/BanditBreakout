@@ -353,7 +353,8 @@ io.on('connection', (socket) => {
           socket.emit('pathChoiceRequired', {
             playerId,
             options: result.pendingChoice.options,
-            stepsRemaining: result.pendingChoice.stepsRemaining
+            stepsRemaining: result.pendingChoice.stepsRemaining,
+            forkTile: newPosition
           });
           return; // Wait for the client’s response
         }
@@ -657,7 +658,8 @@ io.on('connection', (socket) => {
       socket.emit('pathChoiceRequired', {
         playerId,
         options: followUp.pendingChoice.options,
-        stepsRemaining: followUp.pendingChoice.stepsRemaining
+        stepsRemaining: followUp.pendingChoice.stepsRemaining,
+        forkTile: newPos
       });
     } else {
       delete player.pendingMove; // finished this move
