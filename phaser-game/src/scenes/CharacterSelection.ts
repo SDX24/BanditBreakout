@@ -111,7 +111,7 @@ export class CharacterSelection extends Phaser.Scene {
     backButtonInteractive.setInteractive(new Phaser.Geom.Rectangle(0, 30, 300, 130), Phaser.Geom.Rectangle.Contains);
     backButtonInteractive.on("pointerdown", () => {
       this.scene.stop(this)
-        this.scene.start("HostJoinWorkaround")
+        this.scene.start("HostRoom")
   });
 
 
@@ -215,7 +215,7 @@ selectInteractive.on('pointerdown', () => {
     // Optionally notify server of character selection
     this.socket.emit('selectCharacter', this.gameId, this.playerId, Characters[this.charIndex].id);
     // Return to HostJoinWorkaround with selected character data
-    this.scene.start('HostJoinWorkaround', {
+    this.scene.start('HostRoom', {
         gameId: this.gameId,
         playerId: this.playerId,
         selectedCharacterId: Characters[this.charIndex].id,
