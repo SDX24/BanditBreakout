@@ -341,11 +341,15 @@ export class JoinCode extends Phaser.Scene {
       let gameId = prompt("Enter Game ID to Join:") || "";
       if (gameId.trim().length > 0) {
         this.socket.emit("joinLobby", gameId);
-        this.scene.start("HostRoom");
+     
       } else {
-        // Optionally show a warning or do nothing
         alert("Please enter a valid Game ID.");
       }
+    });
+    
+
+    this.socket.on("joinedLobby", (data: { gameId: string; playerId: number }) => {
+      this.scene.start("CharacterSelection", { gameId: data.gameId, playerId: data.playerId });
     });
 
 
