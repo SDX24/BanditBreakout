@@ -796,7 +796,7 @@ export class Guide extends Phaser.Scene {
     this.load.image("paper-one", "tempAssets/settingsOverlay/page.png");
     this.load.image("paper-two", "tempAssets/settingsOverlay/pagePinned.png");
     this.load.image("paper-three", "tempAssets/settingsOverlay/pagePinned.png");
-    this.load.image("okay", "tempAssets/options.png");
+    this.load.image("okay", "assets/options.png");
     this.load.svg("battle", "tempAssets/tiles/battle.svg");
     this.load.svg("decision", "tempAssets/tiles/decision.svg");
     this.load.svg("effect", "tempAssets/tiles/effect.svg");
