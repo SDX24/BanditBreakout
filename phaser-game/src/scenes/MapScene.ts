@@ -84,7 +84,7 @@ export class MapScene extends Phaser.Scene {
     private playerToCharacterMap: Map<number, number> = new Map(); // Mapping of player ID to character ID
     private playerSprites: Map<number, Phaser.GameObjects.Image> = new Map();
     private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
-    private decisionData: { [key: number]: { npc: string, dialogues: string[], choices: { text: string, tileId: number }[] } } = {};
+    private decisionData: { [key: number]: { npc: string,  choices: { text: string, tileId: number }[] } } = {};
 
     // Initialize with data passed from another scene
     async init(data: { gameId?: string; playerId?: number, characterAsset?: string; currentPlayerTurn?: number } = {}) {
