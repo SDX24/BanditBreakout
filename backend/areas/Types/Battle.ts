@@ -88,7 +88,7 @@ export default class Battle {
         const item = loser.inventory.items[randomItemIndex];
         itemTransferred = item.id;
         loser.inventory.removeItem(item);
-        winner.inventory.addItem(item);
+        winner.inventory.obtain(item as any);
         result += ` Winner Player ${winner.id} took item ${item.name} from loser.`;
       } else {
         const goldToTransfer = Math.min(3, loser.getGold());
