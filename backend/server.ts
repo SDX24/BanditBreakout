@@ -845,6 +845,15 @@ const criticalAssets = [
   'tumbleweed/tumbleweed zoom.svg',
   'magic_carpet/carpet zoom.svg',
    'wind_staff/staff zoom.svg',
+
+  'main_assets/background.png',
+  'main_assets/post.png',
+  'main_assets/host.png',
+  'main_assets/code.png',
+  'main_assets/options.png',
+  'main_assets/host.png',
+  'main_assets/lobby.png',
+  'main_assets/player icon.svg',
         
 ];
 

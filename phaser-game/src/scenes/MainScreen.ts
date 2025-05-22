@@ -477,14 +477,27 @@ export class HostRoom extends Phaser.Scene {
       this.scene.start('CharacterSelection', { gameId: data.gameId, playerId: data.playerId });
     });
 
-    this.load.image("background-room", "assets/background.png");
-    this.load.image("post-room", "assets/post.png");
-    this.load.image("host", "assets/host.png");
-    this.load.image("code", "assets/code.png");
-    this.load.image("back-sign", "assets/options.png");
-    this.load.image("start-room", "assets/host.png");
-    this.load.image("lobby", "assets/lobby.png");
-    this.load.svg("playericon", "assets/player icon.svg");
+    const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
+    this.load.setBaseURL(serverUrl);          
+    this.load.setPath('assets');   
+
+    this.load.image("background-room", "main_assets/background.png");
+    this.load.image("post-room", "main_assets/post.png");
+    this.load.image("host", "main_assets/host.png");
+    this.load.image("code", "main_assets/code.png");
+    this.load.image("back-sign", "main_assets/options.png");
+    this.load.image("start-room", "main_assets/host.png");
+    this.load.image("lobby", "main_assets/lobby.png");
+    this.load.svg("playericon", "main_assets/player icon.svg");
+
+    // this.load.image("background-room", "assets/background.png");
+    // this.load.image("post-room", "assets/post.png");
+    // this.load.image("host", "assets/host.png");
+    // this.load.image("code", "assets/code.png");
+    // this.load.image("back-sign", "assets/options.png");
+    // this.load.image("start-room", "assets/host.png");
+    // this.load.image("lobby", "assets/lobby.png");
+    // this.load.svg("playericon", "assets/player icon.svg");
 
     WebFontLoader.load({
       custom: {

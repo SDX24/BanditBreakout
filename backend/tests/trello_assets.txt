@@ -8,7 +8,7 @@ GridFS Bucket (large files): assets_fs
 📄 Files in MongoDB Collection (assets):
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
-Atlas atlas-xnsupc-shard-0 [primary] game_assets> Total files in collection: 511
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> Total files in collection: 522
 
 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... ... Filenames:
@@ -523,6 +523,17 @@ Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... ... Fi
   - characterSVGs/Villain/004-cropped (1).svg
   - characterSVGs/Villain/005-cropped.svg
   - characterSVGs/Villain/007-cropped.svg
+  - main_assets/lobby.png
+  - main_assets/code.png
+  - main_assets/quit.png
+  - main_assets/host.png
+  - main_assets/post.png
+  - main_assets/title card.png
+  - main_assets/pole.png
+  - main_assets/background.png
+  - main_assets/options.png
+  - main_assets/player icon.svg
+  - main_assets/start.png
 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
 🎥 Files in GridFS Bucket (assets_fs):
