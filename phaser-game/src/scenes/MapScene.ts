@@ -156,9 +156,6 @@ export class MapScene extends Phaser.Scene {
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
 
-      // Load the decisions text file
-      // this.load.text('decisions', encodeURIComponent('decisions.txt'));
-
       this.load.svg("buckshot-1", encodeURIComponent("character_asset/buckshotFront.svg"), { width: 64, height: 64 });
       this.load.svg("serpy-1", encodeURIComponent("character_asset/serpyFront.svg"), { width: 64, height: 64 });
       this.load.svg("grit-1", encodeURIComponent("character_asset/gritFront.svg"), { width: 64, height: 64 });
@@ -223,19 +220,18 @@ export class MapScene extends Phaser.Scene {
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
 
-      // Parse the decisions data
-      // const decisionsText = this.cache.text.get('decisions') as string;
+      // Parse the decisions data directly from the constant
       if (decisionsText) {
         try {
-          // Parse the JSON data (removing any trailing semicolon or other characters if present)
+          // Clean up the text by removing any trailing semicolons or markdown artifacts
           const cleanedText = decisionsText.replace(/;\s*$/, '').replace(/```.*/g, '');
           this.decisionData = JSON.parse(cleanedText);
           console.log('Decisions data loaded:', this.decisionData);
         } catch (error) {
-          console.error('Failed to parse decisions.txt:', error);
+          console.error('Failed to parse decisionsText:', error);
         }
       } else {
-        console.error('Failed to load decisions.txt');
+        console.error('decisionsText is not defined');
       }
 
       console.log(`${this.playerId}, ${this.currentPlayerTurn}`);
