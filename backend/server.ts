@@ -859,6 +859,9 @@ const criticalAssets = [
   'main_assets/host.png',
   'main_assets/lobby.png',
   'main_assets/player icon.svg',
+
+  'company__group__logo/CMD Z Logo.svg',
+  'game_logo/Bandit Logo Circle.svg',
         
 ];
 

@@ -23,8 +23,8 @@ const config = {
   scene: [
     // EmptyTest,
     Start,
-    CutScene,
-    LoadingScreen,
+    // CutScene,
+    // LoadingScreen,
     MainScreen,
     ConnectionMenu,
     HostRoom,
