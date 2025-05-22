@@ -601,9 +601,9 @@ export class MapScene extends Phaser.Scene {
         });
 
         // Listen for path choice required event
-        this.socket.on('pathChoiceRequired', (data: { playerId: number; options: number[]; stepsRemaining: number }) => {
+        this.socket.on('pathChoiceRequired', (data: { playerId: number; options: number[]; stepsRemaining: number; forkTile: number }) => {
           if (data.playerId !== this.playerId) return;
-          this.showPathChoiceUI(data.options, (chosen) => {
+          this.showPathChoiceUI(data.options, data.forkTile, (chosen) => {
             this.socket.emit('choosePath', this.gameId, this.playerId, chosen);
           });
         });
@@ -709,47 +709,39 @@ export class MapScene extends Phaser.Scene {
       });
     }
     
-    // Show path choice UI
-    private showPathChoiceUI(options: number[], onSelect: (tile: number) => void) {
+    // Show path choice UI with user-friendly text from decisions data
+    private showPathChoiceUI(options: number[], forkTile: number, onSelect: (tile: number) => void) {
       // Create a non-blocking UI for path selection using Phaser elements
       const { width, height } = this.scale;
       const centerX = width / 2;
       const centerY = height / 2;
 
       // Create a semi-transparent background for the modal
-      const modal = this.add.rectangle(centerX, centerY, width * 0.6, height * 0.4, 0x000000, 0.7);
+      const modal = this.add.rectangle(centerX, centerY, width * 0.6, height * 0.5, 0x000000, 0.7);
       modal.setStrokeStyle(4, 0xFFFFFF);
       modal.setDepth(100);
 
       // Add a title text
-      const title = this.add.text(centerX, centerY - height * 0.15, 'Choose Your Path', {
+      const title = this.add.text(centerX, centerY - height * 0.2, 'Choose Your Path', {
         fontSize: '28px',
         color: '#FFFFFF'
       }).setOrigin(0.5);
       title.setDepth(101);
 
-      // Get the current tile to check if it has associated decision data
-      const localPlayerSprite = this.playerSprites.get(this.playerId);
-      let currentTile = -1;
-      if (localPlayerSprite) {
-        for (const [tileId, data] of this.tileLocations.entries()) {
-          if (Math.abs(data.cx - localPlayerSprite.x) < 10 && Math.abs(data.cy - localPlayerSprite.y) < 10) {
-            currentTile = tileId;
-            break;
-          }
+      let instructionText = `Select a path to continue your journey from tile ${forkTile}:`;
+      let choicesData: { text: string, tileId: number }[] | undefined;
+
+      if (forkTile !== -1 && this.decisionData[forkTile]) {
+        choicesData = this.decisionData[forkTile].choices;
+        // Add NPC name to the instruction if available
+        const npcName = this.decisionData[forkTile].npc;
+        if (npcName) {
+          instructionText = `${npcName} at tile ${forkTile} says: Choose your path wisely!`;
         }
       }
-      
-      let instructionText = `Select a tile to move to: ${options.join(', ')}`;
-      let choicesData: { text: string, tileId:	number }[] | undefined;
 
-      if (currentTile !== -1 && this.decisionData[currentTile]) {
-        choicesData = this.decisionData[currentTile].choices;
-        // We won't set instruction text here as we'll show individual choice texts on buttons
-      }
-
-      // Add instruction text (only if no specific decision text is available)
-      const instruction = this.add.text(centerX, centerY - height * 0.05, instructionText, {
+      // Add instruction text
+      const instruction = this.add.text(centerX, centerY - height * 0.1, instructionText, {
         fontSize: '20px',
         color: '#FFFFFF',
         align: 'center',
@@ -757,30 +749,28 @@ export class MapScene extends Phaser.Scene {
       }).setOrigin(0.5);
       instruction.setDepth(101);
       
-      if (choicesData) {
-        instruction.setVisible(false); // Hide default instruction if we have custom choices
-      }
-
-      // Create buttons for each option
-      const buttonSpacing = height * 0.05;
-      const startY = centerY + height * 0.05;
+      // Create buttons for each option with user-friendly text strictly from choicesData
+      const buttonSpacing = height * 0.07;
+      const startY = centerY;
       const buttons = options.map((tile, index) => {
         const yPosition = startY + index * buttonSpacing;
         
-        // Check if we have custom text for this tile from choicesData
-        let buttonText = `Tile ${tile}`;
+        // Default to a generic text only if no choicesData is available
+        let buttonText = `Path to Tile ${tile}`;
         if (choicesData) {
           const choice = choicesData.find(c => c.tileId === tile);
           if (choice) {
-            buttonText = choice.text;
+            buttonText = choice.text; // Use the exact text from decisionData choices
           }
         }
         
         const button = this.add.text(centerX, yPosition, buttonText, {
-          fontSize: '24px',
+          fontSize: '22px',
           backgroundColor: '#4CAF50',
           color: '#FFFFFF',
-          padding: { x: 20, y: 10 }
+          padding: { x: 15, y: 8 },
+          align: 'center',
+          wordWrap: { width: width * 0.5 }
         }).setOrigin(0.5).setInteractive({ useHandCursor: true });
         
         button.on('pointerdown', () => {
@@ -804,7 +794,7 @@ export class MapScene extends Phaser.Scene {
         return button;
       });
 
-      console.log(`Path choice UI displayed for options: ${options.join(', ')}`);
+      console.log(`Path choice UI displayed for options: ${options.join(', ')} at fork tile: ${forkTile} with user-friendly text`);
     }
 
     // Utility to map character IDs to asset paths
