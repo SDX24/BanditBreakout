@@ -8,7 +8,7 @@ GridFS Bucket (large files): assets_fs
 📄 Files in MongoDB Collection (assets):
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
-Atlas atlas-xnsupc-shard-0 [primary] game_assets> Total files in collection: 478
+Atlas atlas-xnsupc-shard-0 [primary] game_assets> Total files in collection: 511
 
 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... ... Filenames:
@@ -490,6 +490,39 @@ Atlas atlas-xnsupc-shard-0 [primary] game_assets> ... ... ... ... ... ... ... Fi
   - decision_desert/wind.mp3
   - decision_slums/Slums Soundscape.wav
   - battle_screen/backing-green.png
+  - characterSVGs/Buckshot/005-cropped (1).svg
+  - characterSVGs/Buckshot/002-cropped.svg
+  - characterSVGs/Buckshot/004-cropped (2).svg
+  - characterSVGs/Buckshot/003-cropped (2).svg
+  - characterSVGs/Shopkeeper/003-cropped (1).svg
+  - characterSVGs/Shopkeeper/004-cropped.svg
+  - characterSVGs/NPCs/006-cropped (2).svg
+  - characterSVGs/NPCs/006-cropped (3).svg
+  - characterSVGs/NPCs/002-cropped (1).svg
+  - characterSVGs/NPCs/007-cropped (1).svg
+  - characterSVGs/NPCs/004-cropped (4).svg
+  - characterSVGs/NPCs/003-cropped (4).svg
+  - characterSVGs/NPCs/008-cropped.svg
+  - characterSVGs/Serpy/004-cropped (6).svg
+  - characterSVGs/Serpy/006-cropped (4).svg
+  - characterSVGs/Serpy/003-cropped (6).svg
+  - characterSVGs/Serpy/005-cropped (5).svg
+  - characterSVGs/Solstice/005-cropped (6).svg
+  - characterSVGs/Solstice/003-cropped (7).svg
+  - characterSVGs/Solstice/006-cropped (5).svg
+  - characterSVGs/Solstice/004-cropped (7).svg
+  - characterSVGs/Grit/005-cropped (2).svg
+  - characterSVGs/Grit/003-cropped (3).svg
+  - characterSVGs/Grit/004-cropped (3).svg
+  - characterSVGs/Grit/006-cropped (1).svg
+  - characterSVGs/Scout/006-cropped (3).svg
+  - characterSVGs/Scout/003-cropped (5).svg
+  - characterSVGs/Scout/004-cropped (5).svg
+  - characterSVGs/Scout/005-cropped (4).svg
+  - characterSVGs/Villain/006-cropped.svg
+  - characterSVGs/Villain/004-cropped (1).svg
+  - characterSVGs/Villain/005-cropped.svg
+  - characterSVGs/Villain/007-cropped.svg
 
 Atlas atlas-xnsupc-shard-0 [primary] game_assets> 
 🎥 Files in GridFS Bucket (assets_fs):

@@ -230,7 +230,7 @@ export class MapScene extends Phaser.Scene {
       // Add videos for each dice result to the upper-right corner of the mapContainer
       for (let i = 1; i <= 6; i++) {
         const videoKey = `dice${i}`;
-        const video = this.add.video(bg.width - 50, 50, videoKey).setOrigin(0.5);
+        const video = this.add.video(bg.width - 100, 100, videoKey).setOrigin(0.5);
         video.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
         video.setVisible(false); // Start hidden
         mapContainer.add(video);
@@ -684,7 +684,7 @@ export class MapScene extends Phaser.Scene {
       // Create a simple button to roll the dice at the bottom-left corner of the scene
       // const button = this.add.text(50, height - 120, 'Roll Dice', { 
       //adjusted for testing
-        const button = this.add.text(500, height - 500, 'Roll Dice', { 
+        const button = this.add.text(50, height , 'Roll Dice', { 
         fontSize: '32px', 
         backgroundColor: '#fff', 
         color: '#000', 
