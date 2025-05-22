@@ -629,7 +629,7 @@ io.on('connection', (socket) => {
 
   // ──────────────────────────────────────────────────────────────
   // Client picks a branch when `pathChoiceRequired` fires
-  socket.on('choosePath', (gameId: string, playerId: number, chosenTile: number) => {
+  socket.on('choosePath', async (gameId: string, playerId: number, chosenTile: number) => {
     const game = activeGames[gameId];
     if (!game) return;
 
@@ -664,6 +664,11 @@ io.on('connection', (socket) => {
     } else {
       delete player.pendingMove; // finished this move
       console.log(`Player ${playerId} completed movement at tile ${newPos}`);
+      const tile = activeGames[gameId].map.tiles[newPos];
+      if (tile.event.type !== 0) { // Assuming 0 is 'NothingEvent'
+        await tile.event.onStep(playerId, activeGames[gameId]);
+        await emitTileTrigger(gameId, playerId, tile.event.type);
+      }
       // Automatically advance turn or keep it with the player in single-player mode
 
       // if (game.players.length === 1) {
