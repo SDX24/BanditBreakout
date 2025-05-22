@@ -227,11 +227,10 @@ export class MapScene extends Phaser.Scene {
 
       const mapContainer = this.add.container(0, 0, [bg, overlay]);
 
-      // Add videos for each dice result to the bottom-left corner of the mapContainer
+      // Add videos for each dice result to the upper-right corner of the mapContainer
       for (let i = 1; i <= 6; i++) {
         const videoKey = `dice${i}`;
-        //move video below to up right corner, ai!
-        const video = this.add.video(50, bg.height - 50, videoKey).setOrigin(0.5);
+        const video = this.add.video(bg.width - 50, 50, videoKey).setOrigin(0.5);
         video.setDisplaySize(64, 64); // Set the display size to 64x64 pixels
         video.setVisible(false); // Start hidden
         mapContainer.add(video);
