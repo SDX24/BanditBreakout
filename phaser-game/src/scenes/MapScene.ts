@@ -24,6 +24,7 @@ export class MapScene extends Phaser.Scene {
     private playerToCharacterMap: Map<number, number> = new Map(); // Mapping of player ID to character ID
     private playerSprites: Map<number, Phaser.GameObjects.Image> = new Map();
     private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
+    private decisionData: { [key: number]: { npc: string, dialogues: string[], choices: { text: string, tileId: number }[] } } = {};
 
     // Initialize with data passed from another scene
     async init(data: { gameId?: string; playerId?: number, characterAsset?: string; currentPlayerTurn?: number } = {}) {
@@ -95,6 +96,9 @@ export class MapScene extends Phaser.Scene {
       // Load the tile locations CSV file
       this.load.text('tileLocations', encodeURIComponent('board/tilesLocation.csv'));
 
+      // Load the decisions text file
+      this.load.text('decisions', encodeURIComponent('decisions.txt'));
+
       this.load.svg("buckshot-1", encodeURIComponent("character_asset/buckshotFront.svg"), { width: 64, height: 64 });
       this.load.svg("serpy-1", encodeURIComponent("character_asset/serpyFront.svg"), { width: 64, height: 64 });
       this.load.svg("grit-1", encodeURIComponent("character_asset/gritFront.svg"), { width: 64, height: 64 });
@@ -158,6 +162,21 @@ export class MapScene extends Phaser.Scene {
 
       // Parse the CSV data after it's loaded
       this.parseTileLocations();
+
+      // Parse the decisions data
+      const decisionsText = this.cache.text.get('decisions') as string;
+      if (decisionsText) {
+        try {
+          // Parse the JSON data (removing any trailing semicolon or other characters if present)
+          const cleanedText = decisionsText.replace(/;\s*$/, '').replace(/```.*/g, '');
+          this.decisionData = JSON.parse(cleanedText);
+          console.log('Decisions data loaded:', this.decisionData);
+        } catch (error) {
+          console.error('Failed to parse decisions.txt:', error);
+        }
+      } else {
+        console.error('Failed to load decisions.txt');
+      }
 
       console.log(`${this.playerId}, ${this.currentPlayerTurn}`);
       if (this.playerId === this.currentPlayerTurn) {
@@ -649,21 +668,55 @@ export class MapScene extends Phaser.Scene {
       }).setOrigin(0.5);
       title.setDepth(101);
 
-      // Add instruction text
-      const instruction = this.add.text(centerX, centerY - height * 0.05, `Select a tile to move to: ${options.join(', ')}`, {
+      // Get the current tile to check if it has associated decision data
+      const localPlayerSprite = this.playerSprites.get(this.playerId);
+      let currentTile = -1;
+      if (localPlayerSprite) {
+        for (const [tileId, data] of this.tileLocations.entries()) {
+          if (Math.abs(data.cx - localPlayerSprite.x) < 10 && Math.abs(data.cy - localPlayerSprite.y) < 10) {
+            currentTile = tileId;
+            break;
+          }
+        }
+      }
+      
+      let instructionText = `Select a tile to move to: ${options.join(', ')}`;
+      let choicesData: { text: string, tileId:	number }[] | undefined;
+
+      if (currentTile !== -1 && this.decisionData[currentTile]) {
+        choicesData = this.decisionData[currentTile].choices;
+        // We won't set instruction text here as we'll show individual choice texts on buttons
+      }
+
+      // Add instruction text (only if no specific decision text is available)
+      const instruction = this.add.text(centerX, centerY - height * 0.05, instructionText, {
         fontSize: '20px',
         color: '#FFFFFF',
         align: 'center',
         wordWrap: { width: width * 0.5 }
       }).setOrigin(0.5);
       instruction.setDepth(101);
+      
+      if (choicesData) {
+        instruction.setVisible(false); // Hide default instruction if we have custom choices
+      }
 
       // Create buttons for each option
       const buttonSpacing = height * 0.05;
       const startY = centerY + height * 0.05;
       const buttons = options.map((tile, index) => {
         const yPosition = startY + index * buttonSpacing;
-        const button = this.add.text(centerX, yPosition, `Tile ${tile}`, {
+        
+        // Check if we have custom text for this tile from choicesData
+        let buttonText = `Tile ${tile}`;
+        if (choicesData) {
+          const choice = choicesData.find(c => c.tileId === tile);
+          if (choice) {
+            buttonText = choice.text;
+          }
+        }
+        
+        const button = this.add.text(centerX, yPosition, buttonText, {
           fontSize: '24px',
           backgroundColor: '#4CAF50',
           color: '#FFFFFF',
@@ -676,7 +729,7 @@ export class MapScene extends Phaser.Scene {
           title.destroy();
           instruction.destroy();
           buttons.forEach(btn => btn.destroy());
-          onSelect(tile);
+          onSelect(tile); // Return the tile number, not the text
         });
 
         button.on('pointerover', () => {
