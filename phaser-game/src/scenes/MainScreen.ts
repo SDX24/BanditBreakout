@@ -778,19 +778,33 @@ export class Guide extends Phaser.Scene {
   // - main_assets/player icon.svg
   // - main_assets/start.png
 
+    // this.load.image("background-guide", "assets/background.png");
+    // this.load.image("paper-one", "assets/lobby.png");
+    // this.load.image("paper-two", "assets/pagePinned.png");
+    // this.load.image("paper-three", "assets/pagePinned.png");
+    // this.load.image("okay", "assets/options.png");
+    // this.load.svg("battle", "assets/battle.svg");
+    // this.load.svg("decision", "assets/decision.svg");
+    // this.load.svg("effect", "assets/effect.svg");
+    // this.load.svg("event", "assets/event.svg");
+    // this.load.svg("mining", "assets/mining.svg");
+    // this.load.svg("safe", "assets/safe.svg");
+    // this.load.svg("slots", "assets/slots.svg");
+    // this.load.svg("treasure", "assets/treasure.svg");
+    // load locally
     this.load.image("background-guide", "assets/background.png");
-    this.load.image("paper-one", "assets/lobby.png");
-    this.load.image("paper-two", "assets/pagePinned.png");
-    this.load.image("paper-three", "assets/pagePinned.png");
-    this.load.image("okay", "assets/options.png");
-    this.load.svg("battle", "assets/battle.svg");
-    this.load.svg("decision", "assets/decision.svg");
-    this.load.svg("effect", "assets/effect.svg");
-    this.load.svg("event", "assets/event.svg");
-    this.load.svg("mining", "assets/mining.svg");
-    this.load.svg("safe", "assets/safe.svg");
-    this.load.svg("slots", "assets/slots.svg");
-    this.load.svg("treasure", "assets/treasure.svg");
+    this.load.image("paper-one", "tempAssets/settingsOverlay/page.png");
+    this.load.image("paper-two", "tempAssets/settingsOverlay/pagePinned.png");
+    this.load.image("paper-three", "tempAssets/settingsOverlay/pagePinned.png");
+    this.load.image("okay", "tempAssets/options.png");
+    this.load.svg("battle", "tempAssets/tiles/battle.svg");
+    this.load.svg("decision", "tempAssets/tiles/decision.svg");
+    this.load.svg("effect", "tempAssets/tiles/effect.svg");
+    this.load.svg("event", "tempAssets/tiles/event.svg");
+    this.load.svg("mining", "tempAssets/tiles/mining.svg");
+    this.load.svg("safe", "tempAssets/tiles/safe.svg");
+    this.load.svg("slots", "tempAssets/tiles/slots.svg");
+    this.load.svg("treasure", "tempAssets/tiles/treasure.svg");
 
     WebFontLoader.load({
       custom: {
