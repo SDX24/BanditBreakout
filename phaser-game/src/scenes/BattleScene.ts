@@ -325,19 +325,10 @@ export class BattleScene extends Phaser.Scene {
 
     // Store references to health bars and texts
     // Always assign player1 to left (enemy) and player2 to right (player) for consistency
-    if (this.battleData.player1 === this.playerId) {
-      // Local player is player1
-      this.playerHealthBar = healthBackBarOne;
-      this.enemyHealthBar = healthBackBarTwo;
-      this.playerHealthText = healthTextOne;
-      this.enemyHealthText = healthTextTwo;
-    } else {
-      // Local player is player2
-      this.playerHealthBar = healthBackBarTwo;
-      this.enemyHealthBar = healthBackBarOne;
-      this.playerHealthText = healthTextTwo;
-      this.enemyHealthText = healthTextOne;
-    }
+    this.playerHealthBar = healthBackBarOne;
+    this.playerHealthText = healthTextOne;
+    this.enemyHealthBar = healthBackBarTwo;
+    this.enemyHealthText = healthTextTwo;
     // Store container references
     this.healthBackOneContainer = healthBackOneContainer;
     this.healthBackTwoContainer = healthBackTwoContainer;
@@ -447,18 +438,12 @@ export class BattleScene extends Phaser.Scene {
         cb();
       }
     };
-    // Animate player1's roll (left), then player2's roll (right), then update HPs
-    showDice(turn.p1 === this.battleData.player1 ? turn.p1Roll : turn.p2Roll, 600, 400, () => {
-      showDice(turn.p2 === this.battleData.player2 ? turn.p2Roll : turn.p1Roll, 1300, 400, () => {
+    // Always show player1's roll (left), then player2's roll (right), then update HPs
+    showDice(turn.p1Roll, 600, 400, () => {
+      showDice(turn.p2Roll, 1300, 400, () => {
         // Update HP bars
-        // p1 is enemy (left), p2 is player (right) if ids match
-        if (turn.p1 === this.battleData.player1) {
-          this.enemyHP = turn.p1HP;
-          this.playerHP = turn.p2HP;
-        } else {
-          this.enemyHP = turn.p2HP;
-          this.playerHP = turn.p1HP;
-        }
+        this.enemyHP = turn.p1HP;
+        this.playerHP = turn.p2HP;
         // If HP is negative, set to 0
         if (this.playerHP < 0) this.playerHP = 0;
         if (this.enemyHP < 0) this.enemyHP = 0;
