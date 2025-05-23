@@ -1,0 +1,38 @@
+name: Deploy to VPS
+on:
+  push:
+    branches:
+      - newmergingbranch    # or your watched branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH & run deploy
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key:      ${{ secrets.SSH_KEY }}
+          port:     ${{ secrets.SSH_PORT || '22' }}
+          script: |
+            set -e
+
+            cd /root/BanditBreakout-newmergingbranch
+            /root/stop.sh
+
+            # If this is the first time, clone the repo using the PAT
+            if [ ! -d .git ]; then
+              git clone https://${{ secrets.GH_PAT }}@github.com/BB-CommandZ/BanditBreakout.git .
+            fi
+
+            # Otherwise just fetch & fast-forward
+            git fetch --all
+            BRANCH=${GITHUB_REF#refs/heads/}
+            git checkout "${{ github.ref_name }}"
+            git reset --hard "origin/${{ github.ref_name }}"
+
+
+            # run your existing deploy script
+            /root/start.sh
+            
