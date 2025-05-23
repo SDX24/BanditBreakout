@@ -35,7 +35,6 @@ export class BattleScene extends Phaser.Scene {
   private battleData: any;
   private turns: any[] = [];
   private turnIndex: number = 0;
-  private turnText?: Phaser.GameObjects.Text;
 
   // Add character settings for battle scene
   private characterSettings: {
@@ -52,10 +51,12 @@ export class BattleScene extends Phaser.Scene {
     super("BattleScene");
   }
 
-  init(data: { player1: number; player2: number; result: string; player1HP: number; player2HP: number; winner: number | null; turn: number }) {
+  init(data: { player1: number; character1: number; player2: number; character2: number, result: string; player1HP: number; player2HP: number; winner: number | null; turn: number }) {
     this.battleData = {
       player1: data.player1,
+      character1: data.character1,
       player2: data.player2,
+      character2: data.character2,
       result: data.result,
       player1HP: data.player1HP,
       player2HP: data.player2HP,
@@ -170,6 +171,15 @@ export class BattleScene extends Phaser.Scene {
       return;
     }
 
+
+    // For player
+    this.selectedCharacterId = this.battleData.character1;
+    this.playerName = Characters.find((c) => c.id === this.battleData.character1)!.name || "";
+    // For enemy
+    this.enemyCharacterId = this.battleData.character2;
+    this.enemyName = Characters.find((c) => c.id === this.battleData.character2)!.name || "";
+
+
     const screen = this.add.container(0, 0);
     const background = this.add.image(960, 540, "battle-background");
     background.setDisplaySize(1920, 1080);
@@ -273,63 +283,61 @@ export class BattleScene extends Phaser.Scene {
 
     // Display player character (back view) with similar scaling
 
+    // For player character (back view)
     let backTexture = "";
-    const selectedCharId = this.selectedCharacterId;
-
-    if (selectedCharId) {
-      switch (selectedCharId) {
-        case 1:
-          backTexture = "buckshot-back";
-          break;
-        case 2:
-          backTexture = "serpy-back";
-          break;
-        case 3:
-          backTexture = "grit-back";
-          break;
-        case 4:
-          backTexture = "solstice-back";
-          break;
-        case 5:
-          backTexture = "scout-back";
-          break;
-      }
+    switch (this.selectedCharacterId) {
+      case 1: backTexture = "buckshot-back"; break;
+      case 2: backTexture = "serpy-back"; break;
+      case 3: backTexture = "grit-back"; break;
+      case 4: backTexture = "solstice-back"; break;
+      case 5: backTexture = "scout-back"; break;
+      default: backTexture = "scout-back";
     }
-
     const playerChar = this.add.image(-40, 70, backTexture);
-    const playerSettings = this.characterSettings[
-      this.playerName.toLowerCase()
-    ] || { scale: 0.7, offsetY: 0 };
+    const playerSettings = this.characterSettings[this.playerName.toLowerCase()] || { scale: 0.7, offsetY: 0 };
     const baseSize = 600;
-    const playerScaledSize = baseSize * playerSettings.scale * 1.2; // Slightly larger for player
+    const playerScaledSize = baseSize * playerSettings.scale * 1.2;
     playerChar.setDisplaySize(playerScaledSize * 0.8, playerScaledSize);
     playerChar.setY(playerChar.y + playerSettings.offsetY);
     playerContainer.add(playerChar);
 
-    // For enemy character
+    // For enemy character (front view)
+    let enemyTexture = "";
+    const enemyCharObj = Characters.find(c => c.id === this.enemyCharacterId);
+    if (enemyCharObj) {
+      enemyTexture = enemyCharObj.name.toLowerCase();
+    } else {
+      enemyTexture = "wim"; // fallback
+    }
+       // For enemy character
     const enemyContainer = this.add.container(1430, 300);
-
-    // Add shadow for enemy character (relative to container position)
     const enemyShadow = this.add.ellipse(0, 200, 400, 130, 0x000000, 0.4);
     enemyContainer.add(enemyShadow);
-
-    // Display enemy character (front view)
-    const enemyChar = this.add.image(-20, 70, this.enemyName.toLowerCase());
-    const settings = this.characterSettings[this.enemyName.toLowerCase()] || {
-      scale: 0.7,
-      offsetY: 0,
-    };
+    
+    const enemyChar = this.add.image(-20, 70, enemyTexture);
+    const settings = this.characterSettings[this.enemyName.toLowerCase()] || { scale: 0.7, offsetY: 0 };
     const scaledSize = baseSize * settings.scale;
     enemyChar.setDisplaySize(scaledSize * 0.8, scaledSize);
     enemyChar.setY(enemyChar.y + settings.offsetY);
     enemyContainer.add(enemyChar);
 
-    // Store references to health bars and texts
-    this.playerHealthBar = healthBackBarTwo; // Changed from healthBarTwo
-    this.enemyHealthBar = healthBackBarOne; // Changed from healthBarOne
-    this.playerHealthText = healthTextTwo;
-    this.enemyHealthText = healthTextOne;
 
+
+    // Store references to health bars and texts
+    // Always assign player1 to left (enemy) and player2 to right (player) for consistency
+    if (this.battleData.player1 === this.playerId) {
+      // Local player is player1
+      this.playerHealthBar = healthBackBarOne;
+      this.enemyHealthBar = healthBackBarTwo;
+      this.playerHealthText = healthTextOne;
+      this.enemyHealthText = healthTextTwo;
+    } else {
+      // Local player is player2
+      this.playerHealthBar = healthBackBarTwo;
+      this.enemyHealthBar = healthBackBarOne;
+      this.playerHealthText = healthTextTwo;
+      this.enemyHealthText = healthTextOne;
+    }
     // Store container references
     this.healthBackOneContainer = healthBackOneContainer;
     this.healthBackTwoContainer = healthBackTwoContainer;
@@ -354,16 +362,17 @@ export class BattleScene extends Phaser.Scene {
     this.playerHP = 10;
     this.enemyHP = 10;
     // Show turn text
-    this.turnText = this.add.text(this.scale.width / 2, 100, "", {
-      fontFamily: "WBB",
-      fontSize: 36,
-      color: "#fff",
-      align: "center",
-      wordWrap: { width: 1200 },
-    }).setOrigin(0.5);
+    // this.turnText = this.add.text(this.scale.width / 2, 100, "", {
+    //   fontFamily: "WBB",
+    //   fontSize: 36,
+    //   color: "#fff",
+    //   align: "center",
+    //   wordWrap: { width: 1200 },
+    // }).setOrigin(0.5);
     // Start the replay
     this.playBattleReplay();
 
+    
   }
 
   // Helper to parse the battle result string into an array of turn objects
@@ -416,15 +425,19 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private animateTurn(turn: any, onComplete: () => void) {
-    // Show turn summary text
-    if (this.turnText) this.turnText.setText(turn.raw);
     // Animate dice rolls for both players
     const showDice = (roll: number, x: number, y: number, cb: () => void) => {
       const key = `dice${roll}`;
       const video = this.diceVideos.get(key);
       if (video) {
+        video.setScale(0.5);
         video.setPosition(x, y);
         video.setVisible(true);
+        const maskShape = this.make.graphics({ x: x, y: y});
+        maskShape.fillStyle(0xffffff);
+        maskShape.fillRoundedRect(-97.5, -122.5, 195, 185, 72);
+        const mask = maskShape.createGeometryMask();
+        video.setMask(mask);
         video.play();
         video.once("complete", () => {
           video.setVisible(false);
@@ -435,8 +448,8 @@ export class BattleScene extends Phaser.Scene {
       }
     };
     // Animate player1's roll (left), then player2's roll (right), then update HPs
-    showDice(turn.p1Roll, 600, 400, () => {
-      showDice(turn.p2Roll, 1300, 400, () => {
+    showDice(turn.p1 === this.battleData.player1 ? turn.p1Roll : turn.p2Roll, 600, 400, () => {
+      showDice(turn.p2 === this.battleData.player2 ? turn.p2Roll : turn.p1Roll, 1300, 400, () => {
         // Update HP bars
         // p1 is enemy (left), p2 is player (right) if ids match
         if (turn.p1 === this.battleData.player1) {
@@ -446,6 +459,9 @@ export class BattleScene extends Phaser.Scene {
           this.enemyHP = turn.p2HP;
           this.playerHP = turn.p1HP;
         }
+        // If HP is negative, set to 0
+        if (this.playerHP < 0) this.playerHP = 0;
+        if (this.enemyHP < 0) this.enemyHP = 0;
         this.updateHealthBar(this.playerHealthBar, this.playerHealthText, this.playerHP);
         this.updateHealthBar(this.enemyHealthBar, this.enemyHealthText, this.enemyHP);
         onComplete();
@@ -454,27 +470,37 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private showBattleResult() {
-    // Show the final result string and winner
-    let resultText = "";
-    if (typeof this.battleData.result === "string") {
-      // Show only the last lines (summary)
-      const lines = this.battleData.result.split(/\n|\r/).filter((l: any) => l.trim().length > 0);
-      resultText = lines.slice(-2).join("\n");
+    // Determine winner's character name or draw
+    let winnerCharName = "";
+    let isDraw = false;
+    if (this.battleData.winner === this.battleData.player1) {
+      winnerCharName = Characters.find(c => c.id === this.battleData.character1)?.name || "";
+    } else if (this.battleData.winner === this.battleData.player2) {
+      winnerCharName = Characters.find(c => c.id === this.battleData.character2)?.name || "";
+    } else {
+      isDraw = true;
     }
+    // Show winner or draw text with bigger font
     this.add
-      .text(this.scale.width / 2, this.scale.height / 2, resultText, {
-        fontSize: "48px",
+      .text(this.scale.width / 2, this.scale.height / 2, isDraw ? "Draw!" : `${winnerCharName} wins!`, {
+        fontSize: "120px",
         color: "#fff",
         fontFamily: "WBB",
         align: "center",
         wordWrap: { width: 1200 },
       })
       .setOrigin(0.5);
-
     // Return to map after delay
     this.time.delayedCall(2500, () => {
+      let outcome: string;
+      if (isDraw) outcome = "draw";
+      else if (this.battleData.winner === this.battleData.player1) outcome = "win";
+      else outcome = "lose";
       this.scene.start("BattleResultScene", {
-        outcome: this.battleData.winner === this.battleData.player1 ? "win" : "lose",
+        outcome,
+        winnerName: winnerCharName,
+        playerName: this.playerName,
+        enemyName: this.enemyName
       });
     });
   }
@@ -510,30 +536,31 @@ export class BattleScene extends Phaser.Scene {
   }
 
   private handleBattleEnd() {
-    const winner = this.playerHP > 0 ? "player" : "enemy";
-
+    // Use character names for win/lose
+    const winnerName = this.playerHP > 0 ? this.playerName : this.enemyName;
     // Disable roll button
     if (this.rollButton) {
       this.rollButton.destroy();
     }
-
     // Show battle result
     this.add
       .text(
         this.scale.width / 2,
         this.scale.height / 2,
-        `${winner === "player" ? this.playerName : this.enemyName} wins!`,
+        `${winnerName} wins!`,
         {
           fontSize: "64px",
           color: "#ffffff",
         }
       )
       .setOrigin(0.5);
-
     // Return to map after delay
     this.time.delayedCall(2000, () => {
       this.scene.start("BattleResultScene", {
-        outcome: winner === "player" ? "win" : "lose",
+        outcome: this.playerHP > 0 ? "win" : "lose",
+        winnerName,
+        playerName: this.playerName,
+        enemyName: this.enemyName
       });
     });
   }

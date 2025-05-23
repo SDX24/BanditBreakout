@@ -552,7 +552,9 @@ io.on('connection', (socket) => {
         const battleResult = game.currentBattle.processTurn();
         io.to(gameId).emit('battleStarted', {
           player1: playerId,
+          character1: player.character_id,
           player2: opponentId,
+          character2: opponent.character_id,
           result: battleResult.result,
           player1HP: battleResult.playerHP,
           player2HP: battleResult.opponentHP,
