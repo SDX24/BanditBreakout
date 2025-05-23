@@ -32,6 +32,10 @@ export class BattleScene extends Phaser.Scene {
   private rollButton?: Phaser.GameObjects.Text;
   private diceResult?: Phaser.GameObjects.Text;
   private isRolling: boolean = false;
+  private battleData: any;
+  private turns: any[] = [];
+  private turnIndex: number = 0;
+  private turnText?: Phaser.GameObjects.Text;
 
   // Add character settings for battle scene
   private characterSettings: {
@@ -48,35 +52,39 @@ export class BattleScene extends Phaser.Scene {
     super("BattleScene");
   }
 
-  init(data: {
-    gameId: string;
-    playerId: number;
-    selectedCharacterId?: number;
-    enemyCharacterId?: number;
-  }) {
-    this.gameId = data.gameId;
-    this.playerId = data.playerId;
+  init(data: { player1: number; player2: number; result: string; player1HP: number; player2HP: number; winner: number | null; turn: number }) {
+    this.battleData = {
+      player1: data.player1,
+      player2: data.player2,
+      result: data.result,
+      player1HP: data.player1HP,
+      player2HP: data.player2HP,
+      winner: data.winner,
+      turn: data.turn,
+    };
+    // this.gameId = data.gameId;
+    // this.playerId = data.playerId;
 
-    // Store the character IDs
-    if (data.selectedCharacterId) {
-      this.selectedCharacterId = data.selectedCharacterId;
-    }
-    if (data.enemyCharacterId) {
-      this.enemyCharacterId = data.enemyCharacterId;
-    }
+    // // Store the character IDs
+    // if (data.selectedCharacterId) {
+    //   this.selectedCharacterId = data.selectedCharacterId;
+    // }
+    // if (data.enemyCharacterId) {
+    //   this.enemyCharacterId = data.enemyCharacterId;
+    // }
 
-    // For player
-    const playerCharId = data.selectedCharacterId;
-    if (typeof playerCharId === "number") {
-      const playerChar = Characters.find((c) => c.id === playerCharId);
-      if (playerChar) this.playerName = playerChar.name;
-    }
-    // For enemy
-    const enemyCharId = data.enemyCharacterId;
-    if (typeof enemyCharId === "number") {
-      const enemyChar = Characters.find((c) => c.id === enemyCharId);
-      if (enemyChar) this.enemyName = enemyChar.name;
-    }
+    // // For player
+    // const playerCharId = data.selectedCharacterId;
+    // if (typeof playerCharId === "number") {
+    //   const playerChar = Characters.find((c) => c.id === playerCharId);
+    //   if (playerChar) this.playerName = playerChar.name;
+    // }
+    // // For enemy
+    // const enemyCharId = data.enemyCharacterId;
+    // if (typeof enemyCharId === "number") {
+    //   const enemyChar = Characters.find((c) => c.id === enemyCharId);
+    //   if (enemyChar) this.enemyName = enemyChar.name;
+    // }
   }
 
   preload() {
@@ -333,101 +341,142 @@ export class BattleScene extends Phaser.Scene {
       this.diceVideos.set(`dice${i}`, video);
     }
 
-    // Create dice roll button and start battle
-    this.createDiceButton();
-    this.battleStarted = true;
+    // Remove manual dice button and logic
+    if (this.rollButton) this.rollButton.destroy();
+    this.rollButton = undefined;
+    if (this.diceResult) this.diceResult.destroy();
+    this.diceResult = undefined;
+
+    // Parse turns from result string
+    this.turns = this.parseBattleResult(this.battleData.result);
+    this.turnIndex = 0;
+    // Set initial HPs
+    this.playerHP = 10;
+    this.enemyHP = 10;
+    // Show turn text
+    this.turnText = this.add.text(this.scale.width / 2, 100, "", {
+      fontFamily: "WBB",
+      fontSize: 36,
+      color: "#fff",
+      align: "center",
+      wordWrap: { width: 1200 },
+    }).setOrigin(0.5);
+    // Start the replay
+    this.playBattleReplay();
+
   }
 
-  private createDiceButton() {
-    // Position in bottom left corner
-    const x = 100;
-    const y = this.scale.height - 100;
-
-    this.rollButton = this.add
-      .text(x, y, "Roll Dice", {
-        fontSize: "32px",
-        backgroundColor: "#4CAF50",
-        color: "#ffffff",
-        padding: { x: 20, y: 10 },
-      })
-      .setInteractive({ useHandCursor: true })
-      .on("pointerdown", () => this.handleDiceRoll());
-
-    // Add dice result text below button
-    this.diceResult = this.add.text(x, y + 50, "", {
-      fontSize: "28px",
-      color: "#ffffff",
+  // Helper to parse the battle result string into an array of turn objects
+  private parseBattleResult(result: string) {
+    // Example line: Turn 1: Player 2 rolled 1, dealing 1 damage. Player 1 rolled 4, dealing 4 damage. Player 2 HP: 6, Player 1 HP: 9,
+    const turnLines = result.split(/\n|\r/).filter((l) => l.trim().startsWith("Turn"));
+    const turns = turnLines.map((line) => {
+      const turnMatch = line.match(/Turn (\d+): Player (\d+) rolled (\d+), dealing (\d+) damage. Player (\d+) rolled (\d+), dealing (\d+) damage. Player (\d+) HP: (-?\d+), Player (\d+) HP: (-?\d+)[.,]/);
+      if (turnMatch) {
+        return {
+          turn: parseInt(turnMatch[1]),
+          p1: parseInt(turnMatch[2]),
+          p1Roll: parseInt(turnMatch[3]),
+          p1Dmg: parseInt(turnMatch[4]),
+          p2: parseInt(turnMatch[5]),
+          p2Roll: parseInt(turnMatch[6]),
+          p2Dmg: parseInt(turnMatch[7]),
+          p1HP: parseInt(turnMatch[9]),
+          p2HP: parseInt(turnMatch[11]),
+          raw: line,
+        };
+      }
+      return { raw: line };
     });
-
-    this.updateRollButtonVisibility();
+    return turns;
   }
 
-  private handleDiceRoll() {
-    if (this.isRolling || !this.rollButton) return;
+  // Animate each turn with delays
+  private playBattleReplay() {
+    if (this.turnIndex >= this.turns.length) {
+      // Show winner/final result
+      this.showBattleResult();
+      return;
+    }
+    const turn = this.turns[this.turnIndex];
+    if (!turn.p1Roll || !turn.p2Roll) {
+      // Skip malformed turn
+      this.turnIndex++;
+      this.time.delayedCall(500, () => this.playBattleReplay());
+      return;
+    }
+    // Determine which player is which
+    const p1Id = this.battleData.player1;
+    const p2Id = this.battleData.player2;
+    // Animate dice rolls and HP changes
+    this.animateTurn(turn, () => {
+      this.turnIndex++;
+      this.time.delayedCall(1200, () => this.playBattleReplay());
+    });
+  }
 
-    this.isRolling = true;
-    const roll = Math.floor(Math.random() * 6) + 1;
-
-    // Play dice animation
-    const videoKey = `dice${roll}`;
-    const video = this.diceVideos.get(videoKey);
-    if (video) {
-      video.setVisible(true);
-      video.play();
-
-      // Update after animation
-      this.time.delayedCall(1000, () => {
-        if (this.diceResult) {
-          this.diceResult.setText(`Rolled: ${roll}`);
+  private animateTurn(turn: any, onComplete: () => void) {
+    // Show turn summary text
+    if (this.turnText) this.turnText.setText(turn.raw);
+    // Animate dice rolls for both players
+    const showDice = (roll: number, x: number, y: number, cb: () => void) => {
+      const key = `dice${roll}`;
+      const video = this.diceVideos.get(key);
+      if (video) {
+        video.setPosition(x, y);
+        video.setVisible(true);
+        video.play();
+        video.once("complete", () => {
+          video.setVisible(false);
+          cb();
+        });
+      } else {
+        cb();
+      }
+    };
+    // Animate player1's roll (left), then player2's roll (right), then update HPs
+    showDice(turn.p1Roll, 600, 400, () => {
+      showDice(turn.p2Roll, 1300, 400, () => {
+        // Update HP bars
+        // p1 is enemy (left), p2 is player (right) if ids match
+        if (turn.p1 === this.battleData.player1) {
+          this.enemyHP = turn.p1HP;
+          this.playerHP = turn.p2HP;
+        } else {
+          this.enemyHP = turn.p2HP;
+          this.playerHP = turn.p1HP;
         }
-        this.applyDamage(roll);
-        video.setVisible(false);
-        this.isRolling = false;
-        this.switchTurns();
+        this.updateHealthBar(this.playerHealthBar, this.playerHealthText, this.playerHP);
+        this.updateHealthBar(this.enemyHealthBar, this.enemyHealthText, this.enemyHP);
+        onComplete();
       });
-    }
+    });
   }
 
-  private switchTurns() {
-    this.currentTurn = this.currentTurn === "player" ? "enemy" : "player";
-
-    // If it's enemy turn, automatically roll after a delay
-    if (this.currentTurn === "enemy") {
-      this.time.delayedCall(1000, () => this.handleDiceRoll());
+  private showBattleResult() {
+    // Show the final result string and winner
+    let resultText = "";
+    if (typeof this.battleData.result === "string") {
+      // Show only the last lines (summary)
+      const lines = this.battleData.result.split(/\n|\r/).filter((l: any) => l.trim().length > 0);
+      resultText = lines.slice(-2).join("\n");
     }
+    this.add
+      .text(this.scale.width / 2, this.scale.height / 2, resultText, {
+        fontSize: "48px",
+        color: "#fff",
+        fontFamily: "WBB",
+        align: "center",
+        wordWrap: { width: 1200 },
+      })
+      .setOrigin(0.5);
 
-    this.updateRollButtonVisibility();
-  }
-
-  private updateRollButtonVisibility() {
-    if (this.rollButton) {
-      this.rollButton.setVisible(this.currentTurn === "player");
-    }
-  }
-
-  private applyDamage(amount: number) {
-    if (this.currentTurn === "player") {
-      // Player attacking enemy
-      this.enemyHP = Math.max(0, this.enemyHP - amount);
-      this.updateHealthBar(
-        this.enemyHealthBar,
-        this.enemyHealthText,
-        this.enemyHP
-      );
-    } else {
-      // Enemy attacking player
-      this.playerHP = Math.max(0, this.playerHP - amount);
-      this.updateHealthBar(
-        this.playerHealthBar,
-        this.playerHealthText,
-        this.playerHP
-      );
-    }
-
-    // Check for battle end
-    if (this.enemyHP <= 0 || this.playerHP <= 0) {
-      this.handleBattleEnd();
-    }
+    // Return to map after delay
+    this.time.delayedCall(2500, () => {
+      this.scene.start("BattleResultScene", {
+        outcome: this.battleData.winner === this.battleData.player1 ? "win" : "lose",
+      });
+    });
   }
 
   private updateHealthBar(
