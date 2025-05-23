@@ -645,15 +645,31 @@ export class MapScene extends Phaser.Scene {
         });
 
         // Listen for battle started event (when landing on a battle tile)
-        this.socket.on('battleStarted', (data: { player1: number, player2: number, result: string, player1HP: number, player2HP: number, winner: number | null, turn: number }) => {
+        this.socket.on('battleStarted', (data: { player1: number, character1?: number, player2: number, character2?: number, result: string, player1HP: number, player2HP: number, winner: number | null, turn: number }) => {
           console.log(`Battle started between Player ${data.player1} and Player ${data.player2}`);
-          this.showBattleResultUI(data.player1, data.player2, data.result, data.player1HP, data.player2HP, data.winner, data.turn);
+          // Always resolve character1/character2 from playerToCharacterMap
+          const character1 = this.playerToCharacterMap.get(data.player1);
+          const character2 = this.playerToCharacterMap.get(data.player2);
+          this.scene.sleep('Gui');
+          this.scene.launch('BattleScene', {
+            ...data,
+            character1,
+            character2,
+            onBattleEnd: () => {
+              this.scene.stop('BattleScene');
+              this.scene.wake('Gui');
+            }
+          });
+          this.scene.bringToTop('BattleScene');
         });
 
         // Listen for end of round battle event
         this.socket.on('endOfRoundBattle', (data: { player1: number, player2: number, result: string, winner: number | null, itemTransferred?: number, goldTransferred?: number, turn: number }) => {
           console.log(`End of round battle between Player ${data.player1} and Player ${data.player2}`);
-          this.showEndOfRoundBattleResultUI(data.player1, data.player2, data.result, data.winner, data.itemTransferred, data.goldTransferred, data.turn);
+          // Always resolve character1/character2 from playerToCharacterMap
+          const character1 = this.playerToCharacterMap.get(data.player1);
+          const character2 = this.playerToCharacterMap.get(data.player2);
+          this.showEndOfRoundBattleResultUI(data.player1, data.player2, data.result, data.winner, data.itemTransferred, data.goldTransferred, data.turn, character1, character2);
         });
       } else {
         console.error('Socket not initialized');
@@ -930,57 +946,24 @@ export class MapScene extends Phaser.Scene {
     }
 
     // Show battle result UI for end of round battle
-    private showEndOfRoundBattleResultUI(player1: number, player2: number, result: string, winner: number | null, itemTransferred?: number, goldTransferred?: number, turn?: number) {
-      const { width, height } = this.scale;
-      const centerX = width / 2;
-      const centerY = height / 2;
-
-      // Create a modal background for the battle result
-      const modal = this.add.rectangle(centerX, centerY, width * 0.6, height * 0.4, 0x000000, 0.7);
-      modal.setStrokeStyle(4, 0xFFFFFF);
-      modal.setDepth(100);
-
-      // Add battle result text
-      const title = this.add.text(centerX, centerY - height * 0.15, 'End of Round Battle Result', {
-        fontSize: '28px',
-        color: '#FFFFFF'
-      }).setOrigin(0.5);
-      title.setDepth(101);
-
-      // Display battle details
-      const details = this.add.text(centerX, centerY - height * 0.05, result, {
-        fontSize: '18px',
-        color: '#FFFFFF',
-        align: 'center',
-        wordWrap: { width: width * 0.5 }
-      }).setOrigin(0.5);
-      details.setDepth(101);
-
-      // Add a button to close the modal
-      const closeButton = this.add.text(centerX, centerY + height * 0.15, 'Close', {
-        fontSize: '24px',
-        backgroundColor: '#4CAF50',
-        color: '#FFFFFF',
-        padding: { x: 20, y: 10 }
-      }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-      
-      closeButton.on('pointerdown', () => {
-        modal.destroy();
-        title.destroy();
-        details.destroy();
-        closeButton.destroy();
+    private showEndOfRoundBattleResultUI(player1: number, player2: number, result: string, winner: number | null, itemTransferred?: number, goldTransferred?: number, turn?: number, character1?: number, character2?: number) {
+      this.scene.sleep('Gui');
+      this.scene.launch('BattleScene', {
+        player1,
+        player2,
+        result,
+        winner,
+        itemTransferred,
+        goldTransferred,
+        turn,
+        character1,
+        character2,
+        onBattleEnd: () => {
+          this.scene.stop('BattleScene');
+          this.scene.wake('Gui');
+        }
       });
-
-      closeButton.on('pointerover', () => {
-        closeButton.setBackgroundColor('#45a049');
-      });
-
-      closeButton.on('pointerout', () => {
-        closeButton.setBackgroundColor('#4CAF50');
-      });
-
-      closeButton.setDepth(101);
-      console.log(`End of round battle result UI displayed for battle between Player ${player1} and Player ${player2} after ${turn} turns`);
+      this.scene.bringToTop('BattleScene');
     }
     
     // For testing purposes, add a method to start the game
@@ -993,4 +976,4 @@ export class MapScene extends Phaser.Scene {
       }
     }
   }
-  
+
