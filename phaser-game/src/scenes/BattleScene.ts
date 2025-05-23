@@ -1,8 +1,13 @@
 import Phaser from "phaser";
 import { Characters } from "../../../backend/areas/Types/Character";
 import WebFontLoader from "webfontloader";
+import { SocketService } from "../services/SocketService";
+import { MapScene } from "./MapScene";
 
 export class BattleScene extends Phaser.Scene {
+  private socket = SocketService.getInstance();
+  private gameId: string = "";
+  private playerId: number = 0;
   private playerName: string = "Scout";
   private enemyName: string = "Wim";
   private selectedCharacterId = 1;
@@ -10,12 +15,30 @@ export class BattleScene extends Phaser.Scene {
 
   private fontsReady = false;
 
+  private currentTurn: "player" | "enemy" = "player";
+  private playerHP: number = 10;
+  private enemyHP: number = 10;
+  private diceVideos: Map<string, Phaser.GameObjects.Video> = new Map();
+  private playerHealthBar!: Phaser.GameObjects.Image;
+  private enemyHealthBar!: Phaser.GameObjects.Image;
+  private playerHealthText!: Phaser.GameObjects.Text;
+  private enemyHealthText!: Phaser.GameObjects.Text;
+
+  private healthBackOneContainer!: Phaser.GameObjects.Container;
+  private healthBackTwoContainer!: Phaser.GameObjects.Container;
+
+  private battleStarted: boolean = false;
+
+  private rollButton?: Phaser.GameObjects.Text;
+  private diceResult?: Phaser.GameObjects.Text;
+  private isRolling: boolean = false;
+
   // Add character settings for battle scene
   private characterSettings: {
     [key: string]: { scale: number; offsetY: number };
   } = {
-    buckshot: { scale: 0.8, offsetY: 0 },
-    serpy: { scale: 0.7, offsetY: -30 },
+    buckshot: { scale: 0.7, offsetY: 0 },
+    serpy: { scale: 0.75, offsetY: -30 },
     grit: { scale: 0.75, offsetY: -20 },
     solstice: { scale: 0.65, offsetY: -50 },
     scout: { scale: 0.7, offsetY: -30 },
@@ -26,11 +49,14 @@ export class BattleScene extends Phaser.Scene {
   }
 
   init(data: {
-    playerId?: number;
-    enemyId?: number;
+    gameId: string;
+    playerId: number;
     selectedCharacterId?: number;
     enemyCharacterId?: number;
   }) {
+    this.gameId = data.gameId;
+    this.playerId = data.playerId;
+
     // Store the character IDs
     if (data.selectedCharacterId) {
       this.selectedCharacterId = data.selectedCharacterId;
@@ -123,6 +149,11 @@ export class BattleScene extends Phaser.Scene {
         this.fontsReady = true;
       },
     });
+
+    // Add dice video preloading
+    for (let i = 1; i <= 6; i++) {
+      this.load.video(`dice${i}`, `assets/dice/dice${i}.mp4`);
+    }
   }
 
   create() {
@@ -145,6 +176,8 @@ export class BattleScene extends Phaser.Scene {
     const healthBarOneContainer = this.add.container(400, 150);
     const healthBarOne = this.add.image(0, 0, "health-bar 1");
     healthBarOne.setDisplaySize(700, 400);
+    healthBarOne.setOrigin(0, 0.5); // Set origin to left side
+    healthBarOne.setX(-350); // Adjust X position to align with backing
     healthBarOneContainer.add(healthBarOne);
 
     const healthTextOne = this.add.text(-80, -10, "10/10", {
@@ -185,6 +218,8 @@ export class BattleScene extends Phaser.Scene {
     const healthBarTwoContainer = this.add.container(1500, 900);
     const healthBarTwo = this.add.image(0, 0, "health-bar 2");
     healthBarTwo.setDisplaySize(700, 400);
+    healthBarTwo.setOrigin(0, 0.5); // Set origin to left side
+    healthBarTwo.setX(-350); // Adjust X position to align with backing
     healthBarTwoContainer.add(healthBarTwo);
 
     const healthTextTwo = this.add.text(-80, -10, "10/10", {
@@ -216,8 +251,12 @@ export class BattleScene extends Phaser.Scene {
     bannerTextTwo.setOrigin(0.5);
     bannerTwoContainer.add(bannerTextTwo);
 
+    // For player character
     const playerContainer = this.add.container(800, 700);
-    
+
+    // Add shadow for player character (relative to container position)
+    const playerShadow = this.add.ellipse(-90, 300, 450, 150, 0x000000, 0.4);
+    playerContainer.add(playerShadow);
 
     // Debug logs
     const backKey = `${this.playerName.toLowerCase()}-back`;
@@ -259,8 +298,12 @@ export class BattleScene extends Phaser.Scene {
     playerChar.setY(playerChar.y + playerSettings.offsetY);
     playerContainer.add(playerChar);
 
+    // For enemy character
     const enemyContainer = this.add.container(1430, 300);
-    
+
+    // Add shadow for enemy character (relative to container position)
+    const enemyShadow = this.add.ellipse(0, 200, 400, 130, 0x000000, 0.4);
+    enemyContainer.add(enemyShadow);
 
     // Display enemy character (front view)
     const enemyChar = this.add.image(-20, 70, this.enemyName.toLowerCase());
@@ -272,5 +315,177 @@ export class BattleScene extends Phaser.Scene {
     enemyChar.setDisplaySize(scaledSize * 0.8, scaledSize);
     enemyChar.setY(enemyChar.y + settings.offsetY);
     enemyContainer.add(enemyChar);
+
+    // Store references to health bars and texts
+    this.playerHealthBar = healthBackBarTwo; // Changed from healthBarTwo
+    this.enemyHealthBar = healthBackBarOne; // Changed from healthBarOne
+    this.playerHealthText = healthTextTwo;
+    this.enemyHealthText = healthTextOne;
+
+    // Store container references
+    this.healthBackOneContainer = healthBackOneContainer;
+    this.healthBackTwoContainer = healthBackTwoContainer;
+
+    // Initialize dice videos
+    for (let i = 1; i <= 6; i++) {
+      const video = this.add.video(960, 540, `dice${i}`);
+      video.setVisible(false);
+      this.diceVideos.set(`dice${i}`, video);
+    }
+
+    // Create dice roll button and start battle
+    this.createDiceButton();
+    this.battleStarted = true;
+  }
+
+  private createDiceButton() {
+    // Position in bottom left corner
+    const x = 100;
+    const y = this.scale.height - 100;
+
+    this.rollButton = this.add
+      .text(x, y, "Roll Dice", {
+        fontSize: "32px",
+        backgroundColor: "#4CAF50",
+        color: "#ffffff",
+        padding: { x: 20, y: 10 },
+      })
+      .setInteractive({ useHandCursor: true })
+      .on("pointerdown", () => this.handleDiceRoll());
+
+    // Add dice result text below button
+    this.diceResult = this.add.text(x, y + 50, "", {
+      fontSize: "28px",
+      color: "#ffffff",
+    });
+
+    this.updateRollButtonVisibility();
+  }
+
+  private handleDiceRoll() {
+    if (this.isRolling || !this.rollButton) return;
+
+    this.isRolling = true;
+    const roll = Math.floor(Math.random() * 6) + 1;
+
+    // Play dice animation
+    const videoKey = `dice${roll}`;
+    const video = this.diceVideos.get(videoKey);
+    if (video) {
+      video.setVisible(true);
+      video.play();
+
+      // Update after animation
+      this.time.delayedCall(1000, () => {
+        if (this.diceResult) {
+          this.diceResult.setText(`Rolled: ${roll}`);
+        }
+        this.applyDamage(roll);
+        video.setVisible(false);
+        this.isRolling = false;
+        this.switchTurns();
+      });
+    }
+  }
+
+  private switchTurns() {
+    this.currentTurn = this.currentTurn === "player" ? "enemy" : "player";
+
+    // If it's enemy turn, automatically roll after a delay
+    if (this.currentTurn === "enemy") {
+      this.time.delayedCall(1000, () => this.handleDiceRoll());
+    }
+
+    this.updateRollButtonVisibility();
+  }
+
+  private updateRollButtonVisibility() {
+    if (this.rollButton) {
+      this.rollButton.setVisible(this.currentTurn === "player");
+    }
+  }
+
+  private applyDamage(amount: number) {
+    if (this.currentTurn === "player") {
+      // Player attacking enemy
+      this.enemyHP = Math.max(0, this.enemyHP - amount);
+      this.updateHealthBar(
+        this.enemyHealthBar,
+        this.enemyHealthText,
+        this.enemyHP
+      );
+    } else {
+      // Enemy attacking player
+      this.playerHP = Math.max(0, this.playerHP - amount);
+      this.updateHealthBar(
+        this.playerHealthBar,
+        this.playerHealthText,
+        this.playerHP
+      );
+    }
+
+    // Check for battle end
+    if (this.enemyHP <= 0 || this.playerHP <= 0) {
+      this.handleBattleEnd();
+    }
+  }
+
+  private updateHealthBar(
+    healthBackBar: Phaser.GameObjects.Image,
+    healthText: Phaser.GameObjects.Text,
+    currentHP: number
+  ) {
+    // Calculate health percentage
+    const healthPercent = currentHP / 10;
+
+    // Update the width of the green health bar while keeping its position fixed
+    const originalWidth = 600;
+    const newWidth = originalWidth * healthPercent;
+
+    // Set the display size maintaining the height
+    healthBackBar.setDisplaySize(newWidth, 100);
+
+    // Important: Keep the x-position fixed by setting origin to right side (1, 0.5)
+    // This makes it shrink from left to right while staying in place
+    healthBackBar.setOrigin(0, 0.5);
+
+    // Position adjustment to align with the brown backing bar
+    if (healthBackBar === this.enemyHealthBar) {
+      healthBackBar.setX(-300); // For enemy health bar (left side)
+    } else {
+      healthBackBar.setX(-300); // For player health bar (right side)
+    }
+
+    // Update health text
+    healthText.setText(`${currentHP}/10`);
+  }
+
+  private handleBattleEnd() {
+    const winner = this.playerHP > 0 ? "player" : "enemy";
+
+    // Disable roll button
+    if (this.rollButton) {
+      this.rollButton.destroy();
+    }
+
+    // Show battle result
+    this.add
+      .text(
+        this.scale.width / 2,
+        this.scale.height / 2,
+        `${winner === "player" ? this.playerName : this.enemyName} wins!`,
+        {
+          fontSize: "64px",
+          color: "#ffffff",
+        }
+      )
+      .setOrigin(0.5);
+
+    // Return to map after delay
+    this.time.delayedCall(2000, () => {
+      this.scene.start("BattleResultScene", {
+        outcome: winner === "player" ? "win" : "lose",
+      });
+    });
   }
 }
